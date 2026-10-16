@@ -18,6 +18,7 @@ struct ProgressEntry: TimelineEntry {
     let date: Date
     let habits: [WidgetHabit]
     var unavailable = false
+    var scope = "local"
 }
 
 struct ProgressProvider: TimelineProvider {
@@ -39,19 +40,20 @@ struct ProgressProvider: TimelineProvider {
     }
     @MainActor private func load() -> ProgressEntry {
         do {
-            let container = try SharedStore.makeContainer()
-            let context = ModelContext(container)
-            let habits = try context.fetch(FetchDescriptor<Habit>(predicate: #Predicate { !$0.archived }, sortBy: [SortDescriptor(\.createdAt)]))
-            let activities = try context.fetch(FetchDescriptor<Activity>()).map(\.snapshot)
-            let values = habits.map { habit in
-                let progress = HabitEngine.progress(for: habit.snapshot, on: Date(), activities: activities)
-                return WidgetHabit(id: habit.id, name: habit.name, symbol: habit.symbol, colorIndex: habit.colorIndex,
-                    unit: habit.unit, quantity: progress.quantity, target: habit.target, step: habit.step)
-            }.sorted { lhs, rhs in
-                let leftDone = lhs.quantity >= lhs.target, rightDone = rhs.quantity >= rhs.target
-                return leftDone != rightDone ? !leftDone : lhs.name < rhs.name
+            return try WidgetAccountScope.withContainer { container, scope in
+                let context = ModelContext(container)
+                let habits = try context.fetch(FetchDescriptor<Habit>(predicate: #Predicate { !$0.archived }, sortBy: [SortDescriptor(\.createdAt)]))
+                let activities = try context.fetch(FetchDescriptor<Activity>()).map(\.snapshot)
+                let values = habits.map { habit in
+                    let progress = HabitEngine.progress(for: habit.snapshot, on: Date(), activities: activities)
+                    return WidgetHabit(id: habit.id, name: habit.name, symbol: habit.symbol, colorIndex: habit.colorIndex,
+                        unit: habit.unit, quantity: progress.quantity, target: habit.target, step: habit.step)
+                }.sorted { lhs, rhs in
+                    let leftDone = lhs.quantity >= lhs.target, rightDone = rhs.quantity >= rhs.target
+                    return leftDone != rightDone ? !leftDone : lhs.name < rhs.name
+                }
+                return ProgressEntry(date: Date(), habits: values, scope: scope)
             }
-            return ProgressEntry(date: Date(), habits: values)
         } catch { return ProgressEntry(date: Date(), habits: [], unavailable: true) }
     }
 }
@@ -61,10 +63,11 @@ struct LogHabitIntent: AppIntent {
     static var description = IntentDescription("Aggiunge la quantità scelta all’abitudine, senza aprire Makeet.")
     static var openAppWhenRun = false
     @Parameter(title: "Abitudine") var habitID: String
+    @Parameter(title: "Archivio") var storeScope: String
     init() {}
-    init(habitID: UUID) { self.habitID = habitID.uuidString }
+    init(habitID: UUID, scope: String) { self.habitID = habitID.uuidString; storeScope = scope }
     @MainActor func perform() async throws -> some IntentResult {
-        try HabitIntentStore.change(habitID, subtract: false)
+        try HabitIntentStore.change(habitID, scope: storeScope, subtract: false)
         return .result()
     }
 }
@@ -74,23 +77,25 @@ struct DecrementHabitIntent: AppIntent {
     static var description = IntentDescription("Riduce la quantità di oggi, senza scendere sotto zero o aprire Makeet.")
     static var openAppWhenRun = false
     @Parameter(title: "Abitudine") var habitID: String
+    @Parameter(title: "Archivio") var storeScope: String
     init() {}
-    init(habitID: UUID) { self.habitID = habitID.uuidString }
+    init(habitID: UUID, scope: String) { self.habitID = habitID.uuidString; storeScope = scope }
     @MainActor func perform() async throws -> some IntentResult {
-        try HabitIntentStore.change(habitID, subtract: true)
+        try HabitIntentStore.change(habitID, scope: storeScope, subtract: true)
         return .result()
     }
 }
 
 enum HabitIntentStore {
-    @MainActor static func change(_ habitID: String, subtract: Bool) throws {
+    @MainActor static func change(_ habitID: String, scope: String, subtract: Bool) throws {
         guard let id = UUID(uuidString: habitID) else { throw IntentFailure.missingHabit }
-        let container = try SharedStore.makeContainer()
-        let context = ModelContext(container)
-        let descriptor = FetchDescriptor<Habit>(predicate: #Predicate { $0.id == id && !$0.archived })
-        guard let habit = try context.fetch(descriptor).first else { throw IntentFailure.missingHabit }
-        if subtract { try SharedStore.decrement(habit, in: context) }
-        else { try SharedStore.log(habit, in: context, source: "widget") }
+        try WidgetAccountScope.withContainer(expected: scope) { container, _ in
+            let context = ModelContext(container)
+            let descriptor = FetchDescriptor<Habit>(predicate: #Predicate { $0.id == id && !$0.archived })
+            guard let habit = try context.fetch(descriptor).first else { throw IntentFailure.missingHabit }
+            if subtract { try SharedStore.decrement(habit, in: context) }
+            else { try SharedStore.log(habit, in: context, source: "widget") }
+        }
     }
 }
 
@@ -141,7 +146,7 @@ struct ProgressWidgetView: View {
     }
 
     private func minus(_ habit: WidgetHabit) -> some View {
-        Button(intent: DecrementHabitIntent(habitID: habit.id)) {
+        Button(intent: DecrementHabitIntent(habitID: habit.id, scope: entry.scope)) {
             Text("−\(habit.step.quantityText)").font(.subheadline.weight(.semibold)).frame(minWidth: 44, minHeight: 44)
         }.buttonStyle(.plain).foregroundStyle(Palette.habit(habit.colorIndex))
             .background(Palette.habit(habit.colorIndex).opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
@@ -150,7 +155,7 @@ struct ProgressWidgetView: View {
     }
 
     private func plus(_ habit: WidgetHabit) -> some View {
-        Button(intent: LogHabitIntent(habitID: habit.id)) {
+        Button(intent: LogHabitIntent(habitID: habit.id, scope: entry.scope)) {
             Text("+\(habit.step.quantityText)").font(.subheadline.weight(.semibold)).frame(minWidth: 44, minHeight: 44)
         }.buttonStyle(.plain).foregroundStyle(Palette.habit(habit.colorIndex))
             .background(Palette.habit(habit.colorIndex).opacity(0.12), in: RoundedRectangle(cornerRadius: 12))

@@ -741,6 +741,108 @@
         }
       }
     },
+    "Accesso non riuscito. Riprova senza modificare il tuo archivio locale.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accesso non riuscito. Riprova senza modificare il tuo archivio locale."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign-in failed. Try again; your local archive is unchanged."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La connexion a échoué. Réessayez ; votre archive locale est conservée."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anmeldung fehlgeschlagen. Versuche es erneut; dein lokales Archiv bleibt erhalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar sesión. Reintenta; tu archivo local se conserva."
+          }
+        }
+      }
+    },
+    "Account Makeet": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account Makeet"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet account"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte Makeet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet-Konto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta Makeet"
+          }
+        }
+      }
+    },
+    "Account eliminato dal servizio. La pulizia dell’archivio su questo dispositivo richiede un nuovo avvio.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account eliminato dal servizio. La pulizia dell’archivio su questo dispositivo richiede un nuovo avvio."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your account was deleted from the service. Restart the app to finish clearing this device’s archive."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre compte a été supprimé du service. Relancez l’app pour terminer le nettoyage de l’archive sur cet appareil."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Konto wurde beim Dienst gelöscht. Starte die App neu, um das Archiv auf diesem Gerät vollständig zu leeren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu cuenta se eliminó del servicio. Reinicia la app para terminar de limpiar el archivo de este dispositivo."
+          }
+        }
+      }
+    },
     "Ad esempio: bere acqua": {
       "localizations": {
         "it": {
@@ -1353,6 +1455,74 @@
         }
       }
     },
+    "Archivio": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivio"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archive"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archive"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archiv"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo"
+          }
+        }
+      }
+    },
+    "Archivio dell’account": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivio dell’account"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account archive"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archive du compte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontoarchiv"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo de la cuenta"
+          }
+        }
+      }
+    },
     "Archivio locale": {
       "localizations": {
         "it": {
@@ -1519,6 +1689,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Actividad de los últimos 14 días"
+          }
+        }
+      }
+    },
+    "Attività modificata su più dispositivi": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attività modificata su più dispositivi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity changed on multiple devices"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activité modifiée sur plusieurs appareils"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität auf mehreren Geräten geändert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actividad modificada en varios dispositivos"
           }
         }
       }
@@ -1965,6 +2169,40 @@
         }
       }
     },
+    "Conferma importazione": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conferma importazione"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm import"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmer l’importation"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import bestätigen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmar importación"
+          }
+        }
+      }
+    },
     "Configurato · da verificare": {
       "localizations": {
         "it": {
@@ -1995,6 +2233,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Configurado · por verificar"
+          }
+        }
+      }
+    },
+    "Connessione al servizio non disponibile. Puoi continuare sul dispositivo.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione al servizio non disponibile. Puoi continuare sul dispositivo."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The service is unavailable. You can keep using this device."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le service est indisponible. Vous pouvez continuer sur cet appareil."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Dienst ist nicht erreichbar. Du kannst auf diesem Gerät weitermachen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servicio no está disponible. Puedes continuar en este dispositivo."
           }
         }
       }
@@ -2135,6 +2407,40 @@
         }
       }
     },
+    "Conserva su questo dispositivo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conserva su questo dispositivo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep this device’s version"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conserver la version de cet appareil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version dieses Geräts behalten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conservar la versión de este dispositivo"
+          }
+        }
+      }
+    },
     "Considera gli impegni di": {
       "localizations": {
         "it": {
@@ -2165,6 +2471,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tener en cuenta los compromisos de"
+          }
+        }
+      }
+    },
+    "Copia soltanto i progressi locali non dimostrativi nell’account attuale. L’archivio originale resta sul dispositivo.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia soltanto i progressi locali non dimostrativi nell’account attuale. L’archivio originale resta sul dispositivo."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy only your real local progress into the current account. The original archive stays on this device."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiez uniquement vos progrès locaux réels dans le compte actuel. L’archive originale reste sur cet appareil."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nur deine echten lokalen Fortschritte werden in das aktuelle Konto kopiert. Das ursprüngliche Archiv bleibt auf diesem Gerät."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia solo tu progreso local real a la cuenta actual. El archivo original permanece en este dispositivo."
           }
         }
       }
@@ -2645,6 +2985,40 @@
         }
       }
     },
+    "Disconnessione non completata. Verifica la connessione e riprova.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disconnessione non completata. Verifica la connessione e riprova."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign-out could not be completed. Check your connection and retry."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La déconnexion n’a pas pu aboutir. Vérifiez votre connexion et réessayez."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abmeldung nicht abgeschlossen. Prüfe die Verbindung und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo cerrar sesión. Comprueba la conexión y reintenta."
+          }
+        }
+      }
+    },
     "Dispositivo registrato · server da collegare": {
       "localizations": {
         "it": {
@@ -2675,6 +3049,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dispositivo registrado · servidor por conectar"
+          }
+        }
+      }
+    },
+    "Elimina account": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina account"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete account"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer le compte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konto löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta"
+          }
+        }
+      }
+    },
+    "Elimina account e dati": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina account e dati"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete account and data"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer le compte et les données"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konto und Daten löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta y datos"
           }
         }
       }
@@ -2713,6 +3155,40 @@
         }
       }
     },
+    "Eliminare l’account Makeet?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminare l’account Makeet?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete your Makeet account?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer votre compte Makeet ?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet-Konto löschen?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar tu cuenta Makeet?"
+          }
+        }
+      }
+    },
     "Eliminare tutti i dati dimostrativi?": {
       "localizations": {
         "it": {
@@ -2747,6 +3223,74 @@
         }
       }
     },
+    "Eliminazione non completata. I dati restano disponibili: riprova quando il servizio è raggiungibile.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminazione non completata. I dati restano disponibili: riprova quando il servizio è raggiungibile."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deletion could not be completed. Your data is retained: retry when the service is reachable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La suppression n’a pas abouti. Vos données sont conservées : réessayez lorsque le service est accessible."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löschung nicht abgeschlossen. Deine Daten bleiben erhalten: Versuche es erneut, wenn der Dienst erreichbar ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se completó la eliminación. Tus datos se conservan: reintenta cuando el servicio esté disponible."
+          }
+        }
+      }
+    },
+    "Elimineremo dal servizio abitudini e attività e revocheremo l’accesso Apple. Questa operazione è definitiva.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimineremo dal servizio abitudini e attività e revocheremo l’accesso Apple. Questa operazione è definitiva."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We will delete your habits and activities from the service and revoke Apple access. This cannot be undone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nous supprimerons vos habitudes et activités du service et révoquerons l’accès Apple. Cette opération est définitive."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wir löschen deine Gewohnheiten und Aktivitäten aus dem Dienst und widerrufen den Apple-Zugriff. Dies kann nicht rückgängig gemacht werden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminaremos tus hábitos y actividades del servicio y revocaremos el acceso de Apple. Esta operación es definitiva."
+          }
+        }
+      }
+    },
     "Emoji": {
       "localizations": {
         "it": {
@@ -2777,6 +3321,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Emoji"
+          }
+        }
+      }
+    },
+    "Esci dall’account": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esci dall’account"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign out"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se déconnecter"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abmelden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar sesión"
           }
         }
       }
@@ -2985,6 +3563,40 @@
         }
       }
     },
+    "Fine evento": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fine evento"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fin"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ende"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fin"
+          }
+        }
+      }
+    },
     "Gestisci calendari": {
       "localizations": {
         "it": {
@@ -3121,6 +3733,40 @@
         }
       }
     },
+    "Gli accessi Apple e Google saranno attivati al completamento della configurazione del servizio.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gli accessi Apple e Google saranno attivati al completamento della configurazione del servizio."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple and Google sign-in will be enabled when service setup is complete."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La connexion Apple et Google sera activée une fois la configuration du service terminée."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Anmeldung mit Apple und Google wird nach Abschluss der Einrichtung aktiviert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El acceso con Apple y Google se activará cuando termine la configuración del servicio."
+          }
+        }
+      }
+    },
     "Google diretto": {
       "localizations": {
         "it": {
@@ -3219,6 +3865,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Has alcanzado tus objetivos o ya no queda un hueco suficiente entre las 7 y las 22. Puedes seguir registrando actividad en Hoy."
+          }
+        }
+      }
+    },
+    "I progressi restano su questo dispositivo finché non accedi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I progressi restano su questo dispositivo finché non accedi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your progress stays on this device until you sign in."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos progrès restent sur cet appareil tant que vous ne vous connectez pas."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Fortschritte bleiben auf diesem Gerät, bis du dich anmeldest."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu progreso permanece en este dispositivo hasta que inicies sesión."
           }
         }
       }
@@ -3495,6 +4175,108 @@
         }
       }
     },
+    "Importa l’archivio locale": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa l’archivio locale"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import local archive"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer l’archive locale"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokales Archiv importieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar archivo local"
+          }
+        }
+      }
+    },
+    "Importare in questo account?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importare in questo account?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import into this account?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer dans ce compte ?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In dieses Konto importieren?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Importar a esta cuenta?"
+          }
+        }
+      }
+    },
+    "Importazione non completata. L’archivio locale è conservato.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importazione non completata. L’archivio locale è conservato."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import could not be completed. Your local archive is preserved."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’importation n’a pas abouti. Votre archive locale est conservée."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import nicht abgeschlossen. Dein lokales Archiv bleibt erhalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se completó la importación. Tu archivo local se conserva."
+          }
+        }
+      }
+    },
     "In “Il tuo piano” trovi gli orari proposti in base ai tuoi progressi e agli spazi liberi.": {
       "localizations": {
         "it": {
@@ -3661,6 +4443,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "TUS HÁBITOS"
+          }
+        }
+      }
+    },
+    "La sincronizzazione Makeet usa il tuo account. I calendari del dispositivo restano gestiti dal sistema.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sincronizzazione Makeet usa il tuo account. I calendari del dispositivo restano gestiti dal sistema."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet sync uses your account. Device calendars are managed by the system."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La synchronisation Makeet utilise votre compte. Les calendriers de l’appareil restent gérés par le système."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet synchronisiert über dein Konto. Die Gerätekalender werden vom System verwaltet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sincronización Makeet usa tu cuenta. Los calendarios del dispositivo los gestiona el sistema."
           }
         }
       }
@@ -4613,6 +5429,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hoy"
+          }
+        }
+      }
+    },
+    "Ogni account ha un archivio separato. Accedere non carica automaticamente i dati locali o dimostrativi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni account ha un archivio separato. Accedere non carica automaticamente i dati locali o dimostrativi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each account has a separate archive. Signing in never uploads local or demo data automatically."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque compte possède une archive distincte. La connexion ne transfère pas automatiquement les données locales ou de démonstration."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jedes Konto hat ein eigenes Archiv. Bei der Anmeldung werden lokale Daten und Beispieldaten nicht automatisch hochgeladen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada cuenta tiene un archivo separado. Iniciar sesión no sube automáticamente los datos locales ni de demostración."
           }
         }
       }
@@ -5739,6 +6589,40 @@
         }
       }
     },
+    "Scegli quale versione conservare. Nessuna modifica viene scartata automaticamente.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli quale versione conservare. Nessuna modifica viene scartata automaticamente."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose which version to keep. Changes are never discarded automatically."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez la version à conserver. Aucune modification n’est supprimée automatiquement."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle die Version, die du behalten möchtest. Änderungen werden nie automatisch verworfen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige qué versión conservar. Ningún cambio se descarta automáticamente."
+          }
+        }
+      }
+    },
     "Scegli tu quando consentire le notifiche. L’invio dei promemoria richiede anche il collegamento al servizio Makeet, ancora in configurazione.": {
       "localizations": {
         "it": {
@@ -5977,6 +6861,40 @@
         }
       }
     },
+    "Sincronizza ora": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizza ora"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync now"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchroniser maintenant"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt synchronisieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizar ahora"
+          }
+        }
+      }
+    },
     "Sincronizzazione": {
       "localizations": {
         "it": {
@@ -6007,6 +6925,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sincronización"
+          }
+        }
+      }
+    },
+    "Sincronizzazione in corso": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizzazione in corso"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syncing"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchronisation en cours"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchronisierung läuft"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizando"
+          }
+        }
+      }
+    },
+    "Sincronizzazione in pausa. I progressi restano sul dispositivo; riproveremo alla prossima connessione.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizzazione in pausa. I progressi restano sul dispositivo; riproveremo alla prossima connessione."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync is paused. Your progress stays on this device; we’ll retry when connected."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La synchronisation est en pause. Vos progrès restent sur cet appareil ; nous réessaierons à la prochaine connexion."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Synchronisierung pausiert. Deine Fortschritte bleiben auf diesem Gerät; bei Verbindung versuchen wir es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sincronización está en pausa. Tu progreso permanece en este dispositivo; reintentaremos cuando haya conexión."
           }
         }
       }
@@ -6279,6 +7265,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Encuentra tu momento"
+          }
+        }
+      }
+    },
+    "Ultima sincronizzazione": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultima sincronizzazione"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last sync"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernière synchronisation"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letzte Synchronisierung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última sincronización"
           }
         }
       }
@@ -6611,6 +7631,108 @@
           "stringUnit": {
             "state": "translated",
             "value": "Unidad, p. ej. vasos, páginas, minutos"
+          }
+        }
+      }
+    },
+    "Usa la versione sincronizzata": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa la versione sincronizzata"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the synced version"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser la version synchronisée"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchronisierte Version verwenden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar la versión sincronizada"
+          }
+        }
+      }
+    },
+    "Uscita completata su questo dispositivo. La sessione sul servizio scadrà automaticamente.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uscita completata su questo dispositivo. La sessione sul servizio scadrà automaticamente."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signed out on this device. The service session will expire automatically."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déconnexion effectuée sur cet appareil. La session du service expirera automatiquement."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf diesem Gerät abgemeldet. Die Sitzung beim Dienst läuft automatisch ab."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión cerrada en este dispositivo. La sesión del servicio caducará automáticamente."
+          }
+        }
+      }
+    },
+    "Verifica disponibilità": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifica disponibilità"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check availability"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier la disponibilité"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verfügbarkeit prüfen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprobar disponibilidad"
           }
         }
       }
@@ -6951,40 +8073,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "−%@"
-          }
-        }
-      }
-    },
-    "Fine evento": {
-      "localizations": {
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fine evento"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "End"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fin"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ende"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fin"
           }
         }
       }

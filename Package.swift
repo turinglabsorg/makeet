@@ -7,7 +7,8 @@ let package = Package(
     products: [.library(name: "MakeetCore", targets: ["MakeetCore"])],
     targets: [
         .target(name: "MakeetCore", path: "Core"),
+        .target(name: "MakeetAccounts", dependencies: ["MakeetCore"], path: "Accounts"),
         .target(name: "MakeetPersistence", dependencies: ["MakeetCore"], path: "Shared", exclude: ["Assets.xcassets", "Theme.swift"]),
-        .testTarget(name: "MakeetCoreTests", dependencies: ["MakeetCore", "MakeetPersistence"], path: "Tests/MakeetCoreTests")
+        .testTarget(name: "MakeetCoreTests", dependencies: ["MakeetCore", "MakeetPersistence", "MakeetAccounts"], path: "Tests/MakeetCoreTests", exclude: ["Fixtures"])
     ]
 )

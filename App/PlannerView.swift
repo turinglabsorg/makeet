@@ -156,11 +156,13 @@ struct PlanReviewView: View {
 }
 
 struct ConnectionsView: View {
+    @Environment(AccountManager.self) private var account
     let calendar: CalendarService
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         NavigationStack {
             Form {
+                AccountSettingsSection()
                 NotificationSettingsSection()
                 Section {
                     LabeledContent(String(localized: "Calendari di sistema"), value: calendar.authorized ? String(localized: "Collegati") : String(localized: "Non collegati"))
@@ -189,10 +191,9 @@ struct ConnectionsView: View {
                     }
                 }
                 Section {
-                    LabeledContent(String(localized: "Dati su questo dispositivo"), value: String(localized: "Archivio locale"))
-                    LabeledContent(String(localized: "iCloud tra dispositivi"), value: SharedStore.cloudEnabled ? String(localized: "Configurato · da verificare") : String(localized: "Da attivare"))
+                    LabeledContent(String(localized: "Dati su questo dispositivo"), value: account.user == nil ? String(localized: "Archivio locale") : String(localized: "Archivio dell’account"))
                     LabeledContent(String(localized: "Google diretto"), value: String(localized: "Da integrare"))
-                    Text(String(localized: "I tuoi progressi sono salvati su questo dispositivo. Il collegamento iCloud e l’accesso diretto a Google saranno disponibili in una prossima versione."))
+                    Text(String(localized: "La sincronizzazione Makeet usa il tuo account. I calendari del dispositivo restano gestiti dal sistema."))
                         .font(.caption).foregroundStyle(.secondary)
                 } header: { Text(String(localized: "Sincronizzazione")) }
             }.navigationTitle(String(localized: "Connessioni"))

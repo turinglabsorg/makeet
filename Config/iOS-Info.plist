@@ -24,6 +24,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>makeet</string>
+				<string>com.googleusercontent.apps.731972856977-2se8bn3c40ad9lvkbg5didlo2i8vc77n</string>
 			</array>
 		</dict>
 	</array>
@@ -31,9 +32,26 @@
 	<string>1</string>
 	<key>CloudSyncEnabled</key>
 	<false/>
+	<key>GIDClientID</key>
+	<string>731972856977-2se8bn3c40ad9lvkbg5didlo2i8vc77n.apps.googleusercontent.com</string>
+	<key>GIDServerClientID</key>
+	<string>731972856977-opcdpeclv1bs9raeuru6oton77ifig4r.apps.googleusercontent.com</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

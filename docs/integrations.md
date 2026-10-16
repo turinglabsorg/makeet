@@ -2,7 +2,7 @@
 
 ## Public account architecture requirements
 
-The target product supports open self-service registration and authenticated account-based synchronization. `backend/` implements the Go account and sync APIs with dedicated SQLite persistence and signed-identity HTTP integration tests. The native app is not connected yet. The Go service and embedded pre-release website are deployed on the dedicated Mac Pro service; authentication providers remain disabled. Use the owner's Mac Pro with a Makeet-specific service, database, and persistent storage. Authentication uses Apple and Google only; Supabase and password registration are excluded.
+The target product supports open self-service registration and authenticated account-based synchronization. `backend/` implements the Go account and sync APIs with dedicated SQLite persistence and signed-identity HTTP integration tests. The native adapter is implemented; real provider and multi-device verification remain pending. The Go service and embedded pre-release website are deployed on the dedicated Mac Pro service; authentication providers remain disabled. Use the owner's Mac Pro with a Makeet-specific service, database, and persistent storage. Authentication uses Apple and Google only; Supabase and password registration are excluded.
 
 The shared account service should be the authoritative synchronization boundary for the public product. SwiftData remains the on-device store used by the app and its widget extension. Before enabling CloudKit alongside a backend, define one authority and an explicit adapter or migration strategy rather than allowing two independent writers to synchronize the same records differently.
 
@@ -10,7 +10,7 @@ Every remotely stored habit, activity, calendar connection, and planned session 
 
 Account switching and logout must also isolate the local App Group store, widget snapshots, pending writes, and calendar connection state. The current account-free local archive needs an explicit one-time import decision when registration is introduced. A successful sign-in must not silently upload a different person's previous local archive.
 
-Account-scoped native caches, Keychain sessions, provider provisioning, live Apple authorization/revocation verification, and production account configuration remain implementation requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing native foundation. See the [backend protocol](../backend/README.md).
+Account-scoped native caches, Keychain sessions and the durable sync ledger are implemented. Provider provisioning, live Apple authorization/revocation verification and production account configuration remain release requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing native foundation. See the [backend protocol](../backend/README.md).
 
 ## Sources of truth
 
@@ -20,7 +20,7 @@ App and widget extensions use the same `Habit` and `Activity` models and App Gro
 
 The shared store is intentionally local by default. Independent-context persistence tests verify that app-like and widget-like contexts retain each other's registrations and that undo survives reopening the store. These tests do not establish cross-device sync or widget lifecycle correctness.
 
-App and widget decrement operations subtract the configured step from today's newest entries in the habit's time zone. Exhausted entries are deleted and partial entries retain their original timestamp with a smaller positive amount. The operation stops at zero and leaves other days and habits unchanged. A future native sync adapter must publish these revisions/deletions rather than inventing negative activity records. The medium widget shows two habits so both adjustment controls retain 44-point touch targets.
+App and widget decrement operations subtract the configured step from today's newest entries in the habit's time zone. Exhausted entries are deleted and partial entries retain their original timestamp with a smaller positive amount. The operation stops at zero and leaves other days and habits unchanged. The native sync adapter publishes these revisions/deletions without inventing negative activity records. The medium widget shows two habits so both adjustment controls retain 44-point touch targets.
 
 Appearance is stored in the existing `symbol` field: SF Symbol names retain their current meaning, while a single emoji is encoded as `emoji:` plus its grapheme. The native picker supports presets and custom composed emoji. This does not change the SwiftData schema or the backend record shape.
 
@@ -77,3 +77,15 @@ The iOS and macOS app targets include their platform-specific APNs entitlement. 
 The interface distinguishes OS permission, APNs registration, and the pending server connection. A token callback does not prove backend registration or delivery. A topic-specific Sandbox APNs key is provisioned for the two Makeet app IDs and stored encrypted through hush. A production key, authenticated device-token ownership, account logout/revocation cleanup, reminder scheduling, and signed-device delivery remain open. This foundation does not automatically schedule or send notifications.
 
 References: [APNs registration](https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns), [notification permission](https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications), [scoped APNs keys](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns).
+
+## Native account adapter
+
+`Accounts/AccountAPI` talks to the HTTPS service and stores Makeet sessions exclusively in a device-only, non-synchronizing Keychain item. Concurrent requests share one refresh task; replacement tokens are persisted before use. A signed-out generation cannot be restored by an old response, and sync requests require the expected account UUID. HTTP redirects are refused. The Google SDK uses a server-issued nonce and the official native flow, with no calendar scopes requested during login; its provider session is removed after the Makeet exchange. Public OAuth IDs and URL schemes belong in `project.yml`, while server credentials remain in hush.
+
+Each account has a distinct SwiftData store and atomic sync ledger under its App Group directory. The legacy local store is preserved, and its non-demo records are copied only after explicit import confirmation. No email-based account merging occurs. Apple and Google identities remain separate accounts unless explicit linking is added.
+
+The ledger persists an immutable request and mutation UUID before networking, retries that exact request, tracks per-record revisions and tombstones, ignores older pulled revisions, and preserves edits made while a request is in flight. Conflicting changes require the user to choose the device or synchronized version. Batches contain at most 100 changes, with habits before activities. The foreground adapter retries periodically and when returning to the app. Background synchronization and multi-device/provider validation remain pending.
+
+Widgets read an active-scope file rather than tokens. A cross-process file lock serializes account activation and widget writes; intents carry the scope from their timeline and reject it after an account change or logout. Logout hides the account archive from future widget loads. WidgetKit may retain an existing visual snapshot until the OS processes a reload request. Calendar source/destination preferences are separate per account; new accounts start without selected calendars or a write destination.
+
+Google integration references: [SDK setup](https://developers.google.com/identity/sign-in/ios/start-integrating), [nonce-capable native API](https://github.com/google/GoogleSignIn-iOS/blob/9.1.0/GoogleSignIn/Sources/Public/GoogleSignIn/GIDSignIn.h).

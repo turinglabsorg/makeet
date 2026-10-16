@@ -1,6 +1,27 @@
 import XCTest
 
 final class MakeetUITests: XCTestCase {
+    @MainActor func testAccountStatusInFiveLanguages() {
+        for (language, plan, connections, heading, local) in [
+            ("it", "Il tuo piano", "Connessioni", "Account Makeet", "I progressi restano su questo dispositivo finché non accedi."),
+            ("en", "Your plan", "Connections", "Makeet account", "Your progress stays on this device until you sign in."),
+            ("fr", "Votre programme", "Connexions", "Compte Makeet", "Vos progrès restent sur cet appareil tant que vous ne vous connectez pas."),
+            ("de", "Dein Plan", "Verbindungen", "Makeet-Konto", "Deine Fortschritte bleiben auf diesem Gerät, bis du dich anmeldest."),
+            ("es", "Tu plan", "Conexiones", "Cuenta Makeet", "Tu progreso permanece en este dispositivo hasta que inicies sesión.")
+        ] {
+            let app = XCUIApplication()
+            app.launchArguments = ["--ui-testing", "-AppleLanguages", "(\(language))"]
+            app.launch()
+            app.tabBars.buttons[plan].tap()
+            app.buttons[connections].tap()
+            XCTAssertTrue(app.staticTexts[heading].waitForExistence(timeout: 5), language)
+            XCTAssertTrue(app.staticTexts[local].exists, language)
+            XCTAssertFalse(app.alerts.firstMatch.exists)
+            attach("Account \(language)", app)
+            app.terminate()
+        }
+    }
+
     @MainActor func testCreateLogTwiceAndUndoOneRegistration() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "-AppleLanguages", "(it)", "-AppleLocale", "it_IT"]
@@ -56,8 +77,9 @@ final class MakeetUITests: XCTestCase {
         app.buttons["Connessioni"].tap()
         XCTAssertTrue(app.staticTexts["notificationPermission"].waitForExistence(timeout: 5))
         XCTAssertFalse(app.alerts.firstMatch.exists)
-        XCTAssertTrue(app.staticTexts["iCloud tra dispositivi, Da attivare"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["Google diretto, Da integrare"].exists)
+        XCTAssertTrue(app.staticTexts["Account Makeet"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["I progressi restano su questo dispositivo finché non accedi."].exists)
+        XCTAssertFalse(app.buttons["Elimina account"].exists)
         attach("Connections", app)
     }
 

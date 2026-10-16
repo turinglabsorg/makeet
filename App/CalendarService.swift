@@ -2,6 +2,12 @@ import EventKit
 import Foundation
 import Observation
 
+private final class CalendarObservation {
+    let token: NSObjectProtocol
+    init(_ token: NSObjectProtocol) { self.token = token }
+    deinit { NotificationCenter.default.removeObserver(token) }
+}
+
 @MainActor @Observable final class CalendarService {
     private let store = EKEventStore()
     var calendars: [EKCalendar] = []
@@ -11,13 +17,15 @@ import Observation
     var authorized = false
     var message: String?
     var revision = 0
-    private var observer: NSObjectProtocol?
+    private var observer: CalendarObservation?
+    private let preferencePrefix: String
 
-    init() {
-        observer = NotificationCenter.default.addObserver(forName: .EKEventStoreChanged,
+    init(scope: String = "local") {
+        preferencePrefix = scope == "local" ? "" : scope + "."
+        observer = CalendarObservation(NotificationCenter.default.addObserver(forName: .EKEventStoreChanged,
             object: nil, queue: .main) { [weak self] _ in
                 Task { @MainActor [weak self] in self?.refresh() }
-            }
+            })
         refresh()
     }
 
@@ -33,10 +41,10 @@ import Observation
         authorized = EKEventStore.authorizationStatus(for: .event) == .fullAccess
         guard authorized else { calendars = []; events = []; revision += 1; return }
         calendars = store.calendars(for: .event).sorted { $0.title < $1.title }
-        let saved = UserDefaults.standard.stringArray(forKey: "calendarSources")
-        selectedIDs = Set(saved ?? calendars.map(\.calendarIdentifier))
-        destinationID = UserDefaults.standard.string(forKey: "calendarDestination")
-            ?? store.defaultCalendarForNewEvents?.calendarIdentifier
+        let saved = UserDefaults.standard.stringArray(forKey: preferencePrefix + "calendarSources")
+        selectedIDs = Set(saved ?? (preferencePrefix.isEmpty ? calendars.map(\.calendarIdentifier) : []))
+        destinationID = UserDefaults.standard.string(forKey: preferencePrefix + "calendarDestination")
+            ?? (preferencePrefix.isEmpty ? store.defaultCalendarForNewEvents?.calendarIdentifier : nil)
         let start = Calendar.current.startOfDay(for: Date())
         let end = Calendar.current.date(byAdding: .day, value: 1, to: start)!
         let selected = calendars.filter { selectedIDs.contains($0.calendarIdentifier) }
@@ -49,12 +57,12 @@ import Observation
     func toggle(_ calendar: EKCalendar) {
         if selectedIDs.contains(calendar.calendarIdentifier) { selectedIDs.remove(calendar.calendarIdentifier) }
         else { selectedIDs.insert(calendar.calendarIdentifier) }
-        UserDefaults.standard.set(Array(selectedIDs), forKey: "calendarSources")
+        UserDefaults.standard.set(Array(selectedIDs), forKey: preferencePrefix + "calendarSources")
         refresh()
     }
 
     func chooseDestination(_ id: String) {
-        UserDefaults.standard.set(id, forKey: "calendarDestination")
+        UserDefaults.standard.set(id, forKey: preferencePrefix + "calendarDestination")
         destinationID = id
     }
 

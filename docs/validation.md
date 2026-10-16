@@ -43,3 +43,9 @@ The iOS App Store Connect record exists with version 1.0 in preparation. No Test
 ## Apple account lifecycle
 
 Go HTTP/database integration tests verify authorization-code identity binding, encrypted grant custody, rejection under the wrong account/audience, a failed provider revocation preserving the account and records, and successful revocation followed by complete deletion. Additional checks reject altered ciphertext, invalid signing/encryption configuration and provider redirects that could disclose credentials. Existing identity/session/sync integration tests still pass under the race detector, and vet passes. These tests use generated signing fixtures; real Apple login/revocation is not yet verified.
+
+## Native account foundation
+
+32 Swift package tests pass, including real local HTTP checks for concurrent refresh, rotation persistence failure, sign-out during refresh and expected-account rejection. Disk-store checks cover account separation and stale widget scope rejection. Ledger tests cover persistence/retry identity, in-flight edits, independent activity UUIDs, bounded batches, latest revisions and explicit conflicts. Both iOS and macOS apps/widgets compile with Google SDK 9.1.0; the Connections UI scenario and account status in all five languages pass on iPhone Simulator. Public registration stays disabled, so these are not real provider or multi-device account-sync results.
+
+Build 0.1.0 (3) is installed and launched on the connected physical iPhone, preserving the existing archive. Real provider sign-in remains disabled on the public service. A separate regression confirms a widget correction is respected even when the app previously loaded that activity.

@@ -4,7 +4,7 @@ Custom Go HTTP service with SQLite storage. Apple and Google provide identity; M
 
 ## Status
 
-The HTTP service and embedded pre-release website are deployed on the dedicated Mac Pro service, behind HTTPS at `makeet.app` and `api.makeet.app`. Authentication providers remain disabled in that deployment. Integration tests also run locally. The native app currently uses its local SwiftData archive and is not connected to these APIs. Provider clients, live Apple authorization/revocation verification, account-scoped native caches, and production account configuration must be completed before public registration.
+The HTTP service and embedded pre-release website are deployed on the dedicated Mac Pro service, behind HTTPS at `makeet.app` and `api.makeet.app`. Authentication providers remain disabled in that deployment. Integration tests also run locally. The native app includes the account/session/sync adapter, while the deployed service still disables public registration. Provider clients, live Apple authorization/revocation verification, signed-device and multi-device validation, and production account configuration must be completed before public registration.
 
 ## Run
 

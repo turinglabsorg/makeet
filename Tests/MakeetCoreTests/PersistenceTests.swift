@@ -4,6 +4,70 @@ import MakeetCore
 @testable import MakeetPersistence
 
 final class PersistenceTests: XCTestCase {
+    @MainActor func testDecrementSeesWidgetCorrectionEvenWhenAppAlreadyCachedTheActivity() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let schema = Schema([Habit.self, Activity.self]); let url = directory.appendingPathComponent("shared.store")
+        func open() throws -> ModelContainer {
+            try ModelContainer(for: schema, configurations: [ModelConfiguration(schema: schema, url: url, cloudKitDatabase: .none)])
+        }
+        let app = ModelContext(try open())
+        let habit = Habit(name: "Read", symbol: "book", colorIndex: 0, target: 20, step: 1, unit: "pages")
+        app.insert(habit); app.insert(Activity(habitID: habit.id, amount: 5)); try app.save()
+        _ = try app.fetch(FetchDescriptor<Activity>())
+        let widget = ModelContext(try open())
+        let activity = try XCTUnwrap(widget.fetch(FetchDescriptor<Activity>()).first)
+        activity.amount = 3; try widget.save()
+        try SharedStore.decrement(habit, in: app)
+        let value = try ModelContext(open()).fetch(FetchDescriptor<Activity>()).first?.amount
+        XCTAssertEqual(value, 2)
+    }
+
+    @MainActor func testAccountArchivesRemainSeparateAndScopedIntentCannotCrossAccounts() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let location = try AccountStoreLocation(root: directory)
+        let first = UUID(), second = UUID()
+        let firstContext = ModelContext(try location.container(for: first))
+        firstContext.insert(Habit(name: "Private", symbol: "leaf", colorIndex: 0, target: 1, step: 1, unit: "times"))
+        try firstContext.save()
+        let secondContext = ModelContext(try location.container(for: second))
+        XCTAssertEqual(try secondContext.fetchCount(FetchDescriptor<Habit>()), 0)
+        XCTAssertEqual(try ModelContext(location.container(for: first)).fetchCount(FetchDescriptor<Habit>()), 1)
+        let registry = try ScopeRegistry(root: directory)
+        try registry.write(StoreScope.account(first).key)
+        let stale = try XCTUnwrap(registry.read())
+        try registry.write(StoreScope.account(second).key)
+        var performed = false
+        XCTAssertThrowsError(try registry.withScope(expected: stale) { _ in performed = true })
+        XCTAssertFalse(performed)
+        try registry.write("signed-out")
+        XCTAssertThrowsError(try registry.withScope(expected: StoreScope.account(second).key) { _ in performed = true })
+        XCTAssertFalse(performed)
+    }
+
+    @MainActor func testSyncSnapshotExcludesDemoAndRemoteApplyPersistsQuantities() throws {
+        let container = try ModelContainer(for: Habit.self, Activity.self,
+            configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        let context = ModelContext(container)
+        let demo = Habit(name: "Demo", symbol: "leaf", colorIndex: 0, target: 1, step: 1, unit: "times")
+        demo.isDemo = true; context.insert(demo)
+        context.insert(Activity(habitID: demo.id, amount: 9, source: "demo"))
+        let habit = Habit(name: "Water", symbol: "drop", colorIndex: 1, target: 8, step: 1, unit: "glasses")
+        context.insert(habit); context.insert(Activity(habitID: habit.id, amount: 3)); try context.save()
+        let original = try AccountRecords.snapshot(in: context)
+        XCTAssertEqual(original.count, 2)
+        var remote = try XCTUnwrap(original.first { $0.kind == .activity })
+        remote.activity?.amount = 7
+        try AccountRecords.apply([remote], in: context)
+        let next = try AccountRecords.snapshot(in: context)
+        XCTAssertEqual(next.first { $0.kind == .activity }?.activity?.amount, 7)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<Habit>()), 2)
+        try AccountRecords.apply([remote.tombstone()], in: context)
+        XCTAssertEqual(try AccountRecords.snapshot(in: context).count, 1)
+    }
+
     @MainActor func testDecrementUsesHabitDayAndStepClampsAtZeroAndSurvivesReopen() async throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)

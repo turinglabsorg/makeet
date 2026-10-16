@@ -12,8 +12,10 @@
 		12F2084A611CA3345CF1F7D4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8EF339792D048E778065CEF1 /* Localizable.xcstrings */; };
 		154F9511C7BB2AD568D3DF65 /* MakeetMacWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1616B8A0CDEED2B989E4127E /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C872F78FF7A870B27ED9D86 /* PlannerView.swift */; };
+		1694814712EE81C4A6D9B0B2 /* SyncProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C1B1BF09D661A799600760 /* SyncProtocol.swift */; };
 		17C3BBB04EB1D09145D7CAD8 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
 		19B5855F05E67B6CC15A3324 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
+		1CCB8D22B9A47BE48B84C99C /* SyncLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */; };
 		1E482DB553A8F4F93BE8B738 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FC9984242CC6634D72E864 /* TrendsView.swift */; };
 		1EBF1B2B807CEC44BC386E40 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
 		1FEEB150350CCFAA86D628A0 /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
@@ -21,11 +23,13 @@
 		2A28237498A0883958760320 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */; };
 		2B06E5E2BE2592FEB202E532 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8EF339792D048E778065CEF1 /* Localizable.xcstrings */; };
 		32647B824BE6D8D4A05C619D /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
+		39390FF77713B09E40D3EBEC /* SyncLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */; };
 		3A064D9F88E2E1F67952A3A4 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE86BE058455F79D120E8E84 /* AddHabitView.swift */; };
 		3B3F7690E0F179530D46D3AA /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
 		3B980483D1A59B0B563485A4 /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
 		4422F67AAD6F1B59756C0DFC /* MakeetWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C47E134F5207238BA1DB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
+		6136199EC43798B4DCF3CA25 /* SyncLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */; };
 		67A34CADEDA12963147B55C9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8EF339792D048E778065CEF1 /* Localizable.xcstrings */; };
 		67F39417114D21C6059641DB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
 		6CD9EDCC8C15C72F7C140CC1 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
@@ -38,21 +42,33 @@
 		745656F6F7D42075CA28EBAA /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
 		7BD66E489931C3803874CBA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
 		7C57FCB7D3CA755E833C13D8 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172A1ED536485A0658060A7 /* CalendarService.swift */; };
+		7CD298465FF54D9D0EB85A7A /* KeychainSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54ED3EA62009446C32C0EB7 /* KeychainSessionStorage.swift */; };
+		8230FABE87838CE8F49A7DDC /* SyncLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */; };
 		82E07E71B5483AA377F04167 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */; };
 		83D54E428915496D6072D5F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
+		88159AB621193686E8E5D1E9 /* AccountSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA637E491A80C570F4A8E022 /* AccountSyncService.swift */; };
+		88C5B82C5831534D6985800E /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
 		8ED934EE2B4E4DBAC97F45EC /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C1FE5B4CD4748D63459CFD /* NotificationService.swift */; };
+		8FF34DA0A94AA0AC12A5496A /* SyncProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C1B1BF09D661A799600760 /* SyncProtocol.swift */; };
 		949AEF9FFE3520FA77E66FF6 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172A1ED536485A0658060A7 /* CalendarService.swift */; };
+		9780B4235732FCCA858F49A2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 287462D97D0BA5E9E6CD2F2E /* GoogleSignIn */; };
 		9A40F60A674C09C16A6F4326 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE86BE058455F79D120E8E84 /* AddHabitView.swift */; };
 		9C11C1E594C8E9238E63C9CE /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */; };
 		9CE293B73B2B6D98E014B79A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
+		9F8C2B672FAAE98B83AD6E31 /* AccountSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5862C45C954D1F1334C025BE /* AccountSettingsSection.swift */; };
 		A38C92304E74DAD11FBDEEFD /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D19613A3934E9695BEBD056 /* TodayView.swift */; };
 		A64933F55DA21C52051EEA7E /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C872F78FF7A870B27ED9D86 /* PlannerView.swift */; };
 		AD6F78C819739304F88D10BE /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
+		AE674ABD4155A4991FBFE832 /* KeychainSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54ED3EA62009446C32C0EB7 /* KeychainSessionStorage.swift */; };
 		AFB66B1B92B85ABCE75654B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A646774440548F9D07CAB /* Assets.xcassets */; };
 		B1D9CC7ADED5DE670F23EA9E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
+		B3504A3E26C69B6201EC4B75 /* SyncProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C1B1BF09D661A799600760 /* SyncProtocol.swift */; };
 		B35E9123676DBB2E7D4398D4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
+		B49E754A6728B4DEA2B6A3C2 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6F56AC816972AAE9EF27 /* AccountAPI.swift */; };
 		B4D7CB66509D4E610E60897C /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
 		B706826B0828B5B5DAED68A2 /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
+		B7357D949E32ACEFB0AB9A88 /* SyncProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C1B1BF09D661A799600760 /* SyncProtocol.swift */; };
+		BA36FC0EC8DF842B53D39DE5 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565655381A18FD725549CD7 /* AccountManager.swift */; };
 		BA50BD9CB93D3B50073154BB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8EF339792D048E778065CEF1 /* Localizable.xcstrings */; };
 		BC286D1AFCBA1811C23E1DEE /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
 		BFE440E790B456ED00710B65 /* CalendarServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6018989EDED05E750152A82 /* CalendarServiceTests.swift */; };
@@ -60,8 +76,18 @@
 		C2839F8A75A3E9F37772C178 /* MakeetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */; };
 		CAAE015118968EC4A6F27D1C /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D19613A3934E9695BEBD056 /* TodayView.swift */; };
 		CC221462B1773B2CB69D776F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
+		D7F2D0032F8EB7CF00DBC923 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6F56AC816972AAE9EF27 /* AccountAPI.swift */; };
+		DB75E18DDAD985DA9AC831CE /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
+		DE80855BC6F0858F7E07684A /* AccountSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA637E491A80C570F4A8E022 /* AccountSyncService.swift */; };
+		E0E6FF3E735D94A92498CB6B /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5930B98D9E60B07A35574CB4 /* GoogleSignIn */; };
+		EA0112147AB371A401DFC32C /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
 		EAFE12CD98745B0A1DE5D346 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C1FE5B4CD4748D63459CFD /* NotificationService.swift */; };
 		F388D421AF6A67E5536124E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A646774440548F9D07CAB /* Assets.xcassets */; };
+		F5E7A0CA22B50BB98EC1832B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565655381A18FD725549CD7 /* AccountManager.swift */; };
+		FA804BDD6FA9E9D291C12ED0 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
+		FD870906C82EB7F6353F7B7F /* AccountSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5862C45C954D1F1334C025BE /* AccountSettingsSection.swift */; };
+		FF362787ECD22576802773FD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CDA211E3F74C49BB61B43A9 /* GoogleSignInSwift */; };
+		FF948AF63AC90CC0E9A02B11 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4604DEDED38E987C68739341 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,37 +148,67 @@
 
 /* Begin PBXFileReference section */
 		1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MakeetMacWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncLedger.swift; sourceTree = "<group>"; };
 		2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEngine.swift; sourceTree = "<group>"; };
 		27EAF38905E863D2D6ED17D8 /* MakeetCalendarTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MakeetCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38656D5077BD3D7F72E7A82D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		4565655381A18FD725549CD7 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		4F28922DF689E430A56BA629 /* MakeetMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakeetMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558A646774440548F9D07CAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5862C45C954D1F1334C025BE /* AccountSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsSection.swift; sourceTree = "<group>"; };
 		5B77910AB9FF3C2B3D2A036A /* Makeet.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Makeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D19613A3934E9695BEBD056 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = MakeetWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AC40D62AA1B02A6298DB7A7 /* NotificationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServiceTests.swift; sourceTree = "<group>"; };
 		709F99091FAC8F0BFF8B9E17 /* MakeetUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MakeetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7172A1ED536485A0658060A7 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		71B0A14A0070D7B714276612 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		72C1FE5B4CD4748D63459CFD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8C872F78FF7A870B27ED9D86 /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
 		8EF339792D048E778065CEF1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		92C1B1BF09D661A799600760 /* SyncProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncProtocol.swift; sourceTree = "<group>"; };
 		9B8797C3234E26FD735807DC /* MakeetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetUITests.swift; sourceTree = "<group>"; };
 		A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetWidget.swift; sourceTree = "<group>"; };
 		A4FC9984242CC6634D72E864 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		A54ED3EA62009446C32C0EB7 /* KeychainSessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSessionStorage.swift; sourceTree = "<group>"; };
 		AC88E138CB5413197569EB2B /* MakeetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetApp.swift; sourceTree = "<group>"; };
 		AE86BE058455F79D120E8E84 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEngine.swift; sourceTree = "<group>"; };
+		BA637E491A80C570F4A8E022 /* AccountSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSyncService.swift; sourceTree = "<group>"; };
 		CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE16E79D0337524029F11416 /* HabitAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitAppearance.swift; sourceTree = "<group>"; };
+		CE6C6F56AC816972AAE9EF27 /* AccountAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = "<group>"; };
 		E6018989EDED05E750152A82 /* CalendarServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarServiceTests.swift; sourceTree = "<group>"; };
 		F1BD5A21DD54C084FC1612C0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3196548111915A1E46AB0862 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9780B4235732FCCA858F49A2 /* GoogleSignIn in Frameworks */,
+				FF948AF63AC90CC0E9A02B11 /* GoogleSignInSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C87CE5E012F501ADCB38E3E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0E6FF3E735D94A92498CB6B /* GoogleSignIn in Frameworks */,
+				FF362787ECD22576802773FD /* GoogleSignInSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		128B818EF46ACCD92AD9D812 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				71B0A14A0070D7B714276612 /* AccountStore.swift */,
 				CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */,
 				CE16E79D0337524029F11416 /* HabitAppearance.swift */,
 				F1BD5A21DD54C084FC1612C0 /* Models.swift */,
@@ -194,6 +250,9 @@
 		57734A50CA4881591EC45915 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				4565655381A18FD725549CD7 /* AccountManager.swift */,
+				5862C45C954D1F1334C025BE /* AccountSettingsSection.swift */,
+				BA637E491A80C570F4A8E022 /* AccountSyncService.swift */,
 				AE86BE058455F79D120E8E84 /* AddHabitView.swift */,
 				558A646774440548F9D07CAB /* Assets.xcassets */,
 				7172A1ED536485A0658060A7 /* CalendarService.swift */,
@@ -226,6 +285,7 @@
 		AFCB38E9DF5FC660B5B4FD53 = {
 			isa = PBXGroup;
 			children = (
+				D1B6E5CD0C3C9EDECD02ED89 /* Accounts */,
 				57734A50CA4881591EC45915 /* App */,
 				7C79A0F45004B84E4054229B /* CalendarTests */,
 				DBD74CFBD7B7617736942C24 /* Core */,
@@ -237,11 +297,22 @@
 			);
 			sourceTree = "<group>";
 		};
+		D1B6E5CD0C3C9EDECD02ED89 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C6F56AC816972AAE9EF27 /* AccountAPI.swift */,
+				A54ED3EA62009446C32C0EB7 /* KeychainSessionStorage.swift */,
+			);
+			path = Accounts;
+			sourceTree = "<group>";
+		};
 		DBD74CFBD7B7617736942C24 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */,
 				B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */,
+				202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */,
+				92C1B1BF09D661A799600760 /* SyncProtocol.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -273,6 +344,7 @@
 			buildPhases = (
 				A4DA4094C32789E63BBE58F2 /* Sources */,
 				D34B049489DBDA5DF6639524 /* Resources */,
+				C87CE5E012F501ADCB38E3E3 /* Frameworks */,
 				EF64B63F3B984D8D3020AD08 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -282,6 +354,8 @@
 			);
 			name = MakeetMac;
 			packageProductDependencies = (
+				5930B98D9E60B07A35574CB4 /* GoogleSignIn */,
+				3CDA211E3F74C49BB61B43A9 /* GoogleSignInSwift */,
 			);
 			productName = MakeetMac;
 			productReference = 4F28922DF689E430A56BA629 /* MakeetMac.app */;
@@ -311,6 +385,7 @@
 			buildPhases = (
 				0DA3D1F5F55B3F8E40FB4FCD /* Sources */,
 				1F2648F4D956367DE38ED9F7 /* Resources */,
+				3196548111915A1E46AB0862 /* Frameworks */,
 				37B34D6DD7CF86F5516A24C8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -320,6 +395,8 @@
 			);
 			name = Makeet;
 			packageProductDependencies = (
+				287462D97D0BA5E9E6CD2F2E /* GoogleSignIn */,
+				4604DEDED38E987C68739341 /* GoogleSignInSwift */,
 			);
 			productName = Makeet;
 			productReference = 5B77910AB9FF3C2B3D2A036A /* Makeet.app */;
@@ -404,6 +481,9 @@
 			);
 			mainGroup = AFCB38E9DF5FC660B5B4FD53;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2D1843463BDEE77693E3B9EF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5362A864D9763F2F0B8E800B /* Products */;
 			projectDirPath = "";
@@ -469,15 +549,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F2D0032F8EB7CF00DBC923 /* AccountAPI.swift in Sources */,
+				F5E7A0CA22B50BB98EC1832B /* AccountManager.swift in Sources */,
+				9F8C2B672FAAE98B83AD6E31 /* AccountSettingsSection.swift in Sources */,
+				FA804BDD6FA9E9D291C12ED0 /* AccountStore.swift in Sources */,
+				DE80855BC6F0858F7E07684A /* AccountSyncService.swift in Sources */,
 				3A064D9F88E2E1F67952A3A4 /* AddHabitView.swift in Sources */,
 				949AEF9FFE3520FA77E66FF6 /* CalendarService.swift in Sources */,
 				1FEEB150350CCFAA86D628A0 /* HabitAppearance.swift in Sources */,
 				AD6F78C819739304F88D10BE /* HabitEngine.swift in Sources */,
+				AE674ABD4155A4991FBFE832 /* KeychainSessionStorage.swift in Sources */,
 				C1E8A2E3FFD77DF86C9D2308 /* MakeetApp.swift in Sources */,
 				B1D9CC7ADED5DE670F23EA9E /* Models.swift in Sources */,
 				8ED934EE2B4E4DBAC97F45EC /* NotificationService.swift in Sources */,
 				A64933F55DA21C52051EEA7E /* PlannerView.swift in Sources */,
 				745656F6F7D42075CA28EBAA /* ScheduleEngine.swift in Sources */,
+				1CCB8D22B9A47BE48B84C99C /* SyncLedger.swift in Sources */,
+				1694814712EE81C4A6D9B0B2 /* SyncProtocol.swift in Sources */,
 				1EBF1B2B807CEC44BC386E40 /* Theme.swift in Sources */,
 				A38C92304E74DAD11FBDEEFD /* TodayView.swift in Sources */,
 				1E482DB553A8F4F93BE8B738 /* TrendsView.swift in Sources */,
@@ -505,11 +593,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0112147AB371A401DFC32C /* AccountStore.swift in Sources */,
 				B4D7CB66509D4E610E60897C /* HabitAppearance.swift in Sources */,
 				BC286D1AFCBA1811C23E1DEE /* HabitEngine.swift in Sources */,
 				C2839F8A75A3E9F37772C178 /* MakeetWidget.swift in Sources */,
 				B35E9123676DBB2E7D4398D4 /* Models.swift in Sources */,
 				6CD9EDCC8C15C72F7C140CC1 /* ScheduleEngine.swift in Sources */,
+				6136199EC43798B4DCF3CA25 /* SyncLedger.swift in Sources */,
+				B3504A3E26C69B6201EC4B75 /* SyncProtocol.swift in Sources */,
 				CC221462B1773B2CB69D776F /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,11 +609,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB75E18DDAD985DA9AC831CE /* AccountStore.swift in Sources */,
 				B706826B0828B5B5DAED68A2 /* HabitAppearance.swift in Sources */,
 				32647B824BE6D8D4A05C619D /* HabitEngine.swift in Sources */,
 				21AFC0ED02E6039533B2666B /* MakeetWidget.swift in Sources */,
 				19B5855F05E67B6CC15A3324 /* Models.swift in Sources */,
 				6DCCD27ED078E4DBDD5D0209 /* ScheduleEngine.swift in Sources */,
+				39390FF77713B09E40D3EBEC /* SyncLedger.swift in Sources */,
+				B7357D949E32ACEFB0AB9A88 /* SyncProtocol.swift in Sources */,
 				710101C5DA9D2853AC81A703 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,15 +625,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B49E754A6728B4DEA2B6A3C2 /* AccountAPI.swift in Sources */,
+				BA36FC0EC8DF842B53D39DE5 /* AccountManager.swift in Sources */,
+				FD870906C82EB7F6353F7B7F /* AccountSettingsSection.swift in Sources */,
+				88C5B82C5831534D6985800E /* AccountStore.swift in Sources */,
+				88159AB621193686E8E5D1E9 /* AccountSyncService.swift in Sources */,
 				9A40F60A674C09C16A6F4326 /* AddHabitView.swift in Sources */,
 				7C57FCB7D3CA755E833C13D8 /* CalendarService.swift in Sources */,
 				3B980483D1A59B0B563485A4 /* HabitAppearance.swift in Sources */,
 				3B3F7690E0F179530D46D3AA /* HabitEngine.swift in Sources */,
+				7CD298465FF54D9D0EB85A7A /* KeychainSessionStorage.swift in Sources */,
 				7079A3E6E46DC1B658482C50 /* MakeetApp.swift in Sources */,
 				0FFBD930394A500771AF5D0F /* Models.swift in Sources */,
 				EAFE12CD98745B0A1DE5D346 /* NotificationService.swift in Sources */,
 				1616B8A0CDEED2B989E4127E /* PlannerView.swift in Sources */,
 				17C3BBB04EB1D09145D7CAD8 /* ScheduleEngine.swift in Sources */,
+				8230FABE87838CE8F49A7DDC /* SyncLedger.swift in Sources */,
+				8FF34DA0A94AA0AC12A5496A /* SyncProtocol.swift in Sources */,
 				67F39417114D21C6059641DB /* Theme.swift in Sources */,
 				CAAE015118968EC4A6F27D1C /* TodayView.swift in Sources */,
 				6E83CA73AD3980850EA7B52A /* TrendsView.swift in Sources */,
@@ -644,7 +746,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -735,7 +837,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -986,6 +1088,40 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2D1843463BDEE77693E3B9EF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = exactVersion;
+				version = 9.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		287462D97D0BA5E9E6CD2F2E /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D1843463BDEE77693E3B9EF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		3CDA211E3F74C49BB61B43A9 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D1843463BDEE77693E3B9EF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		4604DEDED38E987C68739341 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D1843463BDEE77693E3B9EF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		5930B98D9E60B07A35574CB4 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D1843463BDEE77693E3B9EF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6292574163A82835936704F2 /* Project object */;
 }

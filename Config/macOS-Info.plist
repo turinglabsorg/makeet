@@ -24,6 +24,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>makeet</string>
+				<string>com.googleusercontent.apps.731972856977-v8qqgo8u1fu4cp5g2c2sqqan7jb1jurb</string>
 			</array>
 		</dict>
 	</array>
@@ -31,5 +32,9 @@
 	<string>1</string>
 	<key>CloudSyncEnabled</key>
 	<false/>
+	<key>GIDClientID</key>
+	<string>731972856977-v8qqgo8u1fu4cp5g2c2sqqan7jb1jurb.apps.googleusercontent.com</string>
+	<key>GIDServerClientID</key>
+	<string>731972856977-opcdpeclv1bs9raeuru6oton77ifig4r.apps.googleusercontent.com</string>
 </dict>
 </plist>

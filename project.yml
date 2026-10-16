@@ -6,12 +6,16 @@ options:
   deploymentTarget:
     iOS: '17.0'
     macOS: '14.0'
+packages:
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    exactVersion: 9.1.0
 settings:
   base:
     SWIFT_VERSION: '5.0'
     SWIFT_EMIT_LOC_STRINGS: YES
     MARKETING_VERSION: '0.1.0'
-    CURRENT_PROJECT_VERSION: 2
+    CURRENT_PROJECT_VERSION: 3
     CODE_SIGN_STYLE: Automatic
     ENABLE_USER_SCRIPT_SANDBOXING: YES
     ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
@@ -28,7 +32,7 @@ targets:
   Makeet:
     type: application
     platform: iOS
-    sources: [App, Core, Shared, Resources]
+    sources: [App, Accounts, Core, Shared, Resources]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet
@@ -39,10 +43,14 @@ targets:
       path: Config/iOS-Info.plist
       properties:
         CloudSyncEnabled: false
+        GIDClientID: 731972856977-2se8bn3c40ad9lvkbg5didlo2i8vc77n.apps.googleusercontent.com
+        GIDServerClientID: 731972856977-opcdpeclv1bs9raeuru6oton77ifig4r.apps.googleusercontent.com
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UIBackgroundModes: [remote-notification]
         CFBundleURLTypes:
           - CFBundleURLName: org.turinglabs.makeet
-            CFBundleURLSchemes: [makeet]
+            CFBundleURLSchemes: [makeet, com.googleusercontent.apps.731972856977-2se8bn3c40ad9lvkbg5didlo2i8vc77n]
     entitlements:
       path: Config/iOS.entitlements
       properties:
@@ -50,6 +58,10 @@ targets:
         com.apple.developer.applesignin: [Default]
         com.apple.security.application-groups: [group.org.turinglabs.makeet]
     dependencies:
+      - package: GoogleSignIn
+        product: GoogleSignIn
+      - package: GoogleSignIn
+        product: GoogleSignInSwift
       - target: MakeetWidget
   MakeetWidget:
     type: app-extension
@@ -72,7 +84,7 @@ targets:
   MakeetMac:
     type: application
     platform: macOS
-    sources: [App, Core, Shared, Resources]
+    sources: [App, Accounts, Core, Shared, Resources]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.mac
@@ -81,9 +93,11 @@ targets:
       path: Config/macOS-Info.plist
       properties:
         CloudSyncEnabled: false
+        GIDClientID: 731972856977-v8qqgo8u1fu4cp5g2c2sqqan7jb1jurb.apps.googleusercontent.com
+        GIDServerClientID: 731972856977-opcdpeclv1bs9raeuru6oton77ifig4r.apps.googleusercontent.com
         CFBundleURLTypes:
           - CFBundleURLName: org.turinglabs.makeet
-            CFBundleURLSchemes: [makeet]
+            CFBundleURLSchemes: [makeet, com.googleusercontent.apps.731972856977-v8qqgo8u1fu4cp5g2c2sqqan7jb1jurb]
     entitlements:
       path: Config/macOS.entitlements
       properties:
@@ -92,8 +106,13 @@ targets:
         com.apple.developer.aps-environment: $(MAKEET_APNS_ENVIRONMENT)
         com.apple.developer.applesignin: [Default]
         com.apple.security.personal-information.calendars: true
+        keychain-access-groups: [$(AppIdentifierPrefix)$(CFBundleIdentifier)]
         com.apple.security.application-groups: [group.org.turinglabs.makeet]
     dependencies:
+      - package: GoogleSignIn
+        product: GoogleSignIn
+      - package: GoogleSignIn
+        product: GoogleSignInSwift
       - target: MakeetMacWidget
   MakeetMacWidget:
     type: app-extension

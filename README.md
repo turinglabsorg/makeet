@@ -10,7 +10,7 @@ Screenshots show sample data.
 
 ## Product target
 
-Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). Provider registration and the native account connection are pending; registration is not live. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
+Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). The native account adapter is implemented, with Keychain sessions, separate account archives and durable retry/conflict handling; real provider/device validation is pending and registration is not live. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
 
 ## Current foundation
 
@@ -28,8 +28,8 @@ Makeet is intended for public use with open self-service registration and privat
 | Integration | State |
 | --- | --- |
 | Offline habit persistence | Implemented; tested across separate contexts and store reopening |
-| Public registration and accounts | Go identity/session endpoints tested; provider clients and native login pending; not live |
-| Account-based synchronization | Go sync API tested; native account storage/sync pending |
+| Public registration and accounts | Go identity/session endpoints and native account adapter implemented; real provider validation pending; not live |
+| Account-based synchronization | Go sync API and native durable sync adapter implemented/tested; live multi-device validation pending |
 | App/widget storage | App Group configuration and shared SwiftData schema implemented |
 | Push notifications | Native consent, token callbacks, and entitlements implemented; Sandbox provider key provisioned; authenticated server registration and delivery pending |
 | EventKit calendars | Availability reading, change refresh, calendar selection, conflict recheck, confirmed event creation implemented; validated using an isolated Simulator calendar |
@@ -70,7 +70,8 @@ xcodebuild -project Makeet.xcodeproj -scheme Makeet \
 
 ## Repository map
 
-- `Core/`: platform-independent day boundaries, statistics, and scheduling.
+- `Core/`: platform-independent day boundaries, statistics, scheduling and sync protocol/ledger.
+- `Accounts/`: HTTP account client, serialized session rotation and Keychain storage.
 - `Shared/`: SwiftData models, storage configuration, colors, and UI tokens.
 - `App/`: shared SwiftUI iOS/macOS interface and EventKit adapter.
 - `Widget/`: interactive WidgetKit extension and logging intent.

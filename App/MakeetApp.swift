@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import GoogleSignIn
 
 @main struct MakeetApp: App {
     #if os(iOS)
@@ -7,28 +8,17 @@ import SwiftData
     #else
     @NSApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
     #endif
-    private let container: ModelContainer?
-    private let startupError: String?
-
-    init() {
-        do {
-            if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
-                container = try ModelContainer(for: Habit.self, Activity.self,
-                    configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-            } else { container = try SharedStore.makeContainer() }
-            startupError = nil
-        }
-        catch { container = nil; startupError = error.localizedDescription }
-    }
+    @State private var account = AccountManager()
 
     var body: some Scene {
         WindowGroup {
-            if let container {
-                RootView().modelContainer(container).tint(Palette.accent)
+            if let container = account.container {
+                RootView().id(account.scope.key).modelContainer(container).tint(Palette.accent)
                     .environment(NotificationService.shared)
+                    .environment(account)
             } else {
                 ContentUnavailableView(String(localized: "Archivio non disponibile"), systemImage: "externaldrive.badge.exclamationmark",
-                                       description: Text(startupError ?? String(localized: "Riapri l’app per riprovare.")))
+                                       description: Text(account.startupError ?? String(localized: "Riapri l’app per riprovare.")))
             }
         }
         #if os(macOS)
@@ -38,13 +28,14 @@ import SwiftData
 }
 
 struct RootView: View {
+    @Environment(AccountManager.self) private var account
     @Environment(NotificationService.self) private var notifications
     @Environment(\.modelContext) private var context
     @Environment(\.scenePhase) private var phase
-    @State private var calendar = CalendarService()
+    @State private var calendar: CalendarService?
     @State private var selection = 0
     @State private var error: String?
-    @AppStorage("demoMode") private var demoMode = false
+    @State private var demoMode = false
 
     var body: some View {
         TabView(selection: $selection) {
@@ -52,13 +43,16 @@ struct RootView: View {
                 .tabItem { Label(String(localized: "Oggi"), systemImage: "square.grid.2x2") }.tag(0)
             NavigationStack { TrendsView() }
                 .tabItem { Label(String(localized: "Andamento"), systemImage: "chart.xyaxis.line") }.tag(1)
-            NavigationStack { PlannerView(calendar: calendar) }
+            NavigationStack { if let calendar { PlannerView(calendar: calendar) } }
                 .tabItem { Label(String(localized: "Il tuo piano"), systemImage: "sparkles") }.tag(2)
         }
         .foregroundStyle(Palette.ink)
         .task {
+            calendar = CalendarService(scope: account.scope.key)
             if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
                 demoMode = ProcessInfo.processInfo.arguments.contains("--demo")
+            } else {
+                demoMode = ((try? context.fetchCount(FetchDescriptor<Habit>(predicate: #Predicate { $0.isDemo }))) ?? 0) > 0
             }
             if !ProcessInfo.processInfo.arguments.contains("--ui-testing") { await notifications.refresh() }
             if ProcessInfo.processInfo.arguments.contains("--demo"),
@@ -66,10 +60,16 @@ struct RootView: View {
                 do { try DemoData.insert(in: context); demoMode = true }
                 catch { self.error = error.localizedDescription }
             }
+            await account.start()
+            while !Task.isCancelled {
+                do { try await Task.sleep(for: .seconds(15)) } catch { break }
+                if phase == .active { await account.sync?.synchronize() }
+            }
         }
         .onChange(of: phase) { _, value in
             if value == .active {
-                calendar.refresh()
+                calendar?.refresh()
+                Task { await account.sync?.synchronize() }
                 if !ProcessInfo.processInfo.arguments.contains("--ui-testing") { Task { await notifications.refresh() } }
             }
         }
@@ -80,6 +80,7 @@ struct RootView: View {
             }
         }
         .onOpenURL { url in
+            if GIDSignIn.sharedInstance.handle(url) { return }
             if url.host == "habit" { selection = 0 }
             if url.host == "plan" { selection = 2 }
         }
