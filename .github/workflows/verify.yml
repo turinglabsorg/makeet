@@ -1,0 +1,17 @@
+name: Verify Apple foundation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Domain and persistence tests
+        run: swift test --disable-sandbox
+      - name: Build iOS app and widget
+        run: xcodebuild -project Avvi.xcodeproj -scheme Avvi -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build -quiet
+      - name: Build macOS app and widget
+        run: xcodebuild -project Avvi.xcodeproj -scheme AvviMac -destination 'platform=macOS,arch=arm64' CODE_SIGNING_ALLOWED=NO build -quiet

@@ -1,0 +1,935 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BDF4C0CE0DF9185B265F21C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210BE26CC524E309CA67DC13 /* Assets.xcassets */; };
+		0C0ADABCA61E426C922DA148 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E7F6E297A6D0F9A1567A6 /* CalendarService.swift */; };
+		127DE7ABF8AF8212F423A18A /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796B7B64BB488B56FD021B9 /* PlannerView.swift */; };
+		16410848816AE4B750172C00 /* AvviWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9A830830EFA44868D0698EDE /* AvviWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2A696E0E79AEE44B7A61174E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C51D9B90D63F1579635310 /* Assets.xcassets */; };
+		3326AB0876A18D3ABB7F5A52 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C8EF8281C6024C864075B0 /* AddHabitView.swift */; };
+		3CC86EC5C95EEF45C5B26A24 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C943765759DE337AD8B770C /* ScheduleEngine.swift */; };
+		40DBDAFCAA92525A8500FB26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210BE26CC524E309CA67DC13 /* Assets.xcassets */; };
+		4A74F8F6ED0009BE1F8F4996 /* AvviApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F1800698DFBD8739172764 /* AvviApp.swift */; };
+		4FA7F37293DFFEB9BB8C6B06 /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF48B9AD555A52FB98D19F /* HabitEngine.swift */; };
+		519560ACE332103126AB2FE4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0C93F8FC2E38BC8A6D9336 /* Models.swift */; };
+		538D5217223890ED535BAC86 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0EFF0D55CE85E488294AB /* TodayView.swift */; };
+		58606E5CE98DBC6420547B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210BE26CC524E309CA67DC13 /* Assets.xcassets */; };
+		5C5EBF792B5F28301FB4478E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D0F6A0C10F68362501CE53 /* Theme.swift */; };
+		64288E75664E504075B0564B /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0EFF0D55CE85E488294AB /* TodayView.swift */; };
+		6A9E2EB9950B75AF63D2ADBC /* AvviWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B080E0669BA66C35E4E01 /* AvviWidget.swift */; };
+		6E35CE2CDC91DE2779596059 /* AvviUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2CFEEF893FFD30CD0D0CC /* AvviUITests.swift */; };
+		7086A43AF2ABE7AEDE775FD7 /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF48B9AD555A52FB98D19F /* HabitEngine.swift */; };
+		750963B89917AA20A62066EF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0C93F8FC2E38BC8A6D9336 /* Models.swift */; };
+		768CE3AC84A3FBC0D4CDAF0A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D0F6A0C10F68362501CE53 /* Theme.swift */; };
+		76C7EF4C2E97D484F999AB40 /* AvviWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B080E0669BA66C35E4E01 /* AvviWidget.swift */; };
+		9A49C90B51B97EC13E0C6D50 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C943765759DE337AD8B770C /* ScheduleEngine.swift */; };
+		B0950A49ED23DE67E5ACAED7 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C943765759DE337AD8B770C /* ScheduleEngine.swift */; };
+		B2F221E0748CA9F025E36765 /* AvviMacWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 72E98E4E27B913182535EA86 /* AvviMacWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B67251FFF7E91E6DD476FCC0 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C943765759DE337AD8B770C /* ScheduleEngine.swift */; };
+		C0D2D709AFB8FF6BC78203C0 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4E85E5C2D0928A5647ABC1 /* TrendsView.swift */; };
+		C45F114E1779346EABFC7EFC /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C8EF8281C6024C864075B0 /* AddHabitView.swift */; };
+		C6E7A244A36E34C2DD4B21C3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D0F6A0C10F68362501CE53 /* Theme.swift */; };
+		CA3E422AC4F020B32D8BC807 /* CalendarServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580D99FB5195265ABFAF9BF /* CalendarServiceTests.swift */; };
+		CD978D10A338BD9C8889338F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D0F6A0C10F68362501CE53 /* Theme.swift */; };
+		D029EE0DBB22EDD856941DCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210BE26CC524E309CA67DC13 /* Assets.xcassets */; };
+		D25138A5E5A72D7BC61A9D2A /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4E85E5C2D0928A5647ABC1 /* TrendsView.swift */; };
+		D42FFCDD205D86360B2587A5 /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF48B9AD555A52FB98D19F /* HabitEngine.swift */; };
+		D454548F95A00B25C5FA9158 /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796B7B64BB488B56FD021B9 /* PlannerView.swift */; };
+		D74F568DEE1D75B35A7DDB4A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0C93F8FC2E38BC8A6D9336 /* Models.swift */; };
+		DF87DE728EFEF6C0BAC3D81B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C51D9B90D63F1579635310 /* Assets.xcassets */; };
+		E320B69F3940B4F9F5250FF4 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E7F6E297A6D0F9A1567A6 /* CalendarService.swift */; };
+		E90227FFE8D828C76AB87E34 /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF48B9AD555A52FB98D19F /* HabitEngine.swift */; };
+		F880935CDB0E2A14017C1BDD /* AvviApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F1800698DFBD8739172764 /* AvviApp.swift */; };
+		F8945A183121ECC71F8B3E19 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0C93F8FC2E38BC8A6D9336 /* Models.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0FF5E9A3C34601CC030A7D6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EABCA26B6B98EA414293E24A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A84764FA430E0BB7DF69D24;
+			remoteInfo = Avvi;
+		};
+		2449A6B656D52838FF61BA00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EABCA26B6B98EA414293E24A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A84764FA430E0BB7DF69D24;
+			remoteInfo = Avvi;
+		};
+		342C9D781069943B0AEEF39D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EABCA26B6B98EA414293E24A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA481599D3284BAB7EF8D738;
+			remoteInfo = AvviWidget;
+		};
+		FE776FAE5A466141CFDB05E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EABCA26B6B98EA414293E24A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E6530ACE5E375E266F01F64;
+			remoteInfo = AvviMacWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		23F3783710061F00FBE02EF3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				16410848816AE4B750172C00 /* AvviWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE0570DB06DFAFE33785E98A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B2F221E0748CA9F025E36765 /* AvviMacWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		05C51D9B90D63F1579635310 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		210BE26CC524E309CA67DC13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2796B7B64BB488B56FD021B9 /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
+		291502292A9CF14466E1E195 /* AvviUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AvviUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		483B080E0669BA66C35E4E01 /* AvviWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvviWidget.swift; sourceTree = "<group>"; };
+		62D0F6A0C10F68362501CE53 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		69C68A5AEC9E64E4B93BBBE3 /* AvviCalendarTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AvviCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B4E85E5C2D0928A5647ABC1 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		6C943765759DE337AD8B770C /* ScheduleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEngine.swift; sourceTree = "<group>"; };
+		72E98E4E27B913182535EA86 /* AvviMacWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AvviMacWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		88AF49CCB495C63053C0A95B /* Avvi.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Avvi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92DF48B9AD555A52FB98D19F /* HabitEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEngine.swift; sourceTree = "<group>"; };
+		9A830830EFA44868D0698EDE /* AvviWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AvviWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2F2CFEEF893FFD30CD0D0CC /* AvviUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvviUITests.swift; sourceTree = "<group>"; };
+		BC0C93F8FC2E38BC8A6D9336 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		BF9393A1D823412CA9B906FF /* AvviMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AvviMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5C8EF8281C6024C864075B0 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
+		DE8E7F6E297A6D0F9A1567A6 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		E0F1800698DFBD8739172764 /* AvviApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvviApp.swift; sourceTree = "<group>"; };
+		E580D99FB5195265ABFAF9BF /* CalendarServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarServiceTests.swift; sourceTree = "<group>"; };
+		F5A0EFF0D55CE85E488294AB /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		06E5A6E018879C0B39F9990D /* CalendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				E580D99FB5195265ABFAF9BF /* CalendarServiceTests.swift */,
+			);
+			path = CalendarTests;
+			sourceTree = "<group>";
+		};
+		13271D2A278E5C615F65D02D = {
+			isa = PBXGroup;
+			children = (
+				777FC2A11A9F5C986A45BCB4 /* App */,
+				06E5A6E018879C0B39F9990D /* CalendarTests */,
+				138983E705F7EDD0B7614343 /* Core */,
+				6587A7B5798D3F51D0BE95FD /* Shared */,
+				61913C304D1F56AC7366E7BE /* UITests */,
+				7273E55D4120A9549D1B47B3 /* Widget */,
+				4E80ED7120A4EF01A7713169 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		138983E705F7EDD0B7614343 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				92DF48B9AD555A52FB98D19F /* HabitEngine.swift */,
+				6C943765759DE337AD8B770C /* ScheduleEngine.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4E80ED7120A4EF01A7713169 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88AF49CCB495C63053C0A95B /* Avvi.app */,
+				69C68A5AEC9E64E4B93BBBE3 /* AvviCalendarTests.xctest */,
+				BF9393A1D823412CA9B906FF /* AvviMac.app */,
+				72E98E4E27B913182535EA86 /* AvviMacWidget.appex */,
+				291502292A9CF14466E1E195 /* AvviUITests.xctest */,
+				9A830830EFA44868D0698EDE /* AvviWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		61913C304D1F56AC7366E7BE /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				B2F2CFEEF893FFD30CD0D0CC /* AvviUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		6587A7B5798D3F51D0BE95FD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				210BE26CC524E309CA67DC13 /* Assets.xcassets */,
+				BC0C93F8FC2E38BC8A6D9336 /* Models.swift */,
+				62D0F6A0C10F68362501CE53 /* Theme.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		7273E55D4120A9549D1B47B3 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				483B080E0669BA66C35E4E01 /* AvviWidget.swift */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		777FC2A11A9F5C986A45BCB4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C5C8EF8281C6024C864075B0 /* AddHabitView.swift */,
+				05C51D9B90D63F1579635310 /* Assets.xcassets */,
+				E0F1800698DFBD8739172764 /* AvviApp.swift */,
+				DE8E7F6E297A6D0F9A1567A6 /* CalendarService.swift */,
+				2796B7B64BB488B56FD021B9 /* PlannerView.swift */,
+				F5A0EFF0D55CE85E488294AB /* TodayView.swift */,
+				6B4E85E5C2D0928A5647ABC1 /* TrendsView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E6530ACE5E375E266F01F64 /* AvviMacWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A5198964048C29EC6ABB7CC /* Build configuration list for PBXNativeTarget "AvviMacWidget" */;
+			buildPhases = (
+				99C0F2615162BA84B195DA20 /* Sources */,
+				297A3C570C899BC2DD76CE11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AvviMacWidget;
+			packageProductDependencies = (
+			);
+			productName = AvviMacWidget;
+			productReference = 72E98E4E27B913182535EA86 /* AvviMacWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		7A84764FA430E0BB7DF69D24 /* Avvi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A7605507D6BBAD12A4039AB /* Build configuration list for PBXNativeTarget "Avvi" */;
+			buildPhases = (
+				8BA33F408237702880AEF0A2 /* Sources */,
+				2B48A4685FA4D700F09D9FDD /* Resources */,
+				23F3783710061F00FBE02EF3 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2ACD6BA3AA65937E56DA223 /* PBXTargetDependency */,
+			);
+			name = Avvi;
+			packageProductDependencies = (
+			);
+			productName = Avvi;
+			productReference = 88AF49CCB495C63053C0A95B /* Avvi.app */;
+			productType = "com.apple.product-type.application";
+		};
+		947608B68BD5B2D2AA1E97D8 /* AvviUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8693DD87DEE962820C3C7CD6 /* Build configuration list for PBXNativeTarget "AvviUITests" */;
+			buildPhases = (
+				8B80D747CEC11E74BDF512FA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68D4457A2685AF299D7D03AA /* PBXTargetDependency */,
+			);
+			name = AvviUITests;
+			packageProductDependencies = (
+			);
+			productName = AvviUITests;
+			productReference = 291502292A9CF14466E1E195 /* AvviUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C6F126F403B8F0CAC1A7C088 /* AvviMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 297F44B6F2440B1423D24A75 /* Build configuration list for PBXNativeTarget "AvviMac" */;
+			buildPhases = (
+				74B9378961C5965A188C66BE /* Sources */,
+				B1EE1CB3FCB645C21B05F770 /* Resources */,
+				AE0570DB06DFAFE33785E98A /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2AEEBD202A46AA2735C85F0 /* PBXTargetDependency */,
+			);
+			name = AvviMac;
+			packageProductDependencies = (
+			);
+			productName = AvviMac;
+			productReference = BF9393A1D823412CA9B906FF /* AvviMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CA481599D3284BAB7EF8D738 /* AvviWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E57D4289601D5CC0333676A5 /* Build configuration list for PBXNativeTarget "AvviWidget" */;
+			buildPhases = (
+				897CAFD92A081593550389F1 /* Sources */,
+				12E17E850E340B722B39ED39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AvviWidget;
+			packageProductDependencies = (
+			);
+			productName = AvviWidget;
+			productReference = 9A830830EFA44868D0698EDE /* AvviWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		DAEA87A8968A5312B1B64E90 /* AvviCalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E9E01A8C8C0F161A6F015E8 /* Build configuration list for PBXNativeTarget "AvviCalendarTests" */;
+			buildPhases = (
+				29D1E154D90A4B51731DCC36 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				886E2A7CE6E29D90B2D2ADCC /* PBXTargetDependency */,
+			);
+			name = AvviCalendarTests;
+			packageProductDependencies = (
+			);
+			productName = AvviCalendarTests;
+			productReference = 69C68A5AEC9E64E4B93BBBE3 /* AvviCalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EABCA26B6B98EA414293E24A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					6E6530ACE5E375E266F01F64 = {
+						ProvisioningStyle = Automatic;
+					};
+					7A84764FA430E0BB7DF69D24 = {
+						ProvisioningStyle = Automatic;
+					};
+					947608B68BD5B2D2AA1E97D8 = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7A84764FA430E0BB7DF69D24;
+					};
+					C6F126F403B8F0CAC1A7C088 = {
+						ProvisioningStyle = Automatic;
+					};
+					CA481599D3284BAB7EF8D738 = {
+						ProvisioningStyle = Automatic;
+					};
+					DAEA87A8968A5312B1B64E90 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 66A71A288784CC1597FBD6B1 /* Build configuration list for PBXProject "Avvi" */;
+			developmentRegion = it;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				it,
+			);
+			mainGroup = 13271D2A278E5C615F65D02D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 4E80ED7120A4EF01A7713169 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7A84764FA430E0BB7DF69D24 /* Avvi */,
+				DAEA87A8968A5312B1B64E90 /* AvviCalendarTests */,
+				C6F126F403B8F0CAC1A7C088 /* AvviMac */,
+				6E6530ACE5E375E266F01F64 /* AvviMacWidget */,
+				947608B68BD5B2D2AA1E97D8 /* AvviUITests */,
+				CA481599D3284BAB7EF8D738 /* AvviWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		12E17E850E340B722B39ED39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D029EE0DBB22EDD856941DCA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		297A3C570C899BC2DD76CE11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40DBDAFCAA92525A8500FB26 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B48A4685FA4D700F09D9FDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF87DE728EFEF6C0BAC3D81B /* Assets.xcassets in Resources */,
+				58606E5CE98DBC6420547B1E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1EE1CB3FCB645C21B05F770 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A696E0E79AEE44B7A61174E /* Assets.xcassets in Resources */,
+				0BDF4C0CE0DF9185B265F21C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29D1E154D90A4B51731DCC36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA3E422AC4F020B32D8BC807 /* CalendarServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74B9378961C5965A188C66BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3326AB0876A18D3ABB7F5A52 /* AddHabitView.swift in Sources */,
+				F880935CDB0E2A14017C1BDD /* AvviApp.swift in Sources */,
+				0C0ADABCA61E426C922DA148 /* CalendarService.swift in Sources */,
+				4FA7F37293DFFEB9BB8C6B06 /* HabitEngine.swift in Sources */,
+				F8945A183121ECC71F8B3E19 /* Models.swift in Sources */,
+				D454548F95A00B25C5FA9158 /* PlannerView.swift in Sources */,
+				B0950A49ED23DE67E5ACAED7 /* ScheduleEngine.swift in Sources */,
+				C6E7A244A36E34C2DD4B21C3 /* Theme.swift in Sources */,
+				64288E75664E504075B0564B /* TodayView.swift in Sources */,
+				C0D2D709AFB8FF6BC78203C0 /* TrendsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		897CAFD92A081593550389F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9E2EB9950B75AF63D2ADBC /* AvviWidget.swift in Sources */,
+				7086A43AF2ABE7AEDE775FD7 /* HabitEngine.swift in Sources */,
+				519560ACE332103126AB2FE4 /* Models.swift in Sources */,
+				B67251FFF7E91E6DD476FCC0 /* ScheduleEngine.swift in Sources */,
+				768CE3AC84A3FBC0D4CDAF0A /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B80D747CEC11E74BDF512FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E35CE2CDC91DE2779596059 /* AvviUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BA33F408237702880AEF0A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C45F114E1779346EABFC7EFC /* AddHabitView.swift in Sources */,
+				4A74F8F6ED0009BE1F8F4996 /* AvviApp.swift in Sources */,
+				E320B69F3940B4F9F5250FF4 /* CalendarService.swift in Sources */,
+				D42FFCDD205D86360B2587A5 /* HabitEngine.swift in Sources */,
+				750963B89917AA20A62066EF /* Models.swift in Sources */,
+				127DE7ABF8AF8212F423A18A /* PlannerView.swift in Sources */,
+				9A49C90B51B97EC13E0C6D50 /* ScheduleEngine.swift in Sources */,
+				CD978D10A338BD9C8889338F /* Theme.swift in Sources */,
+				538D5217223890ED535BAC86 /* TodayView.swift in Sources */,
+				D25138A5E5A72D7BC61A9D2A /* TrendsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99C0F2615162BA84B195DA20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C7EF4C2E97D484F999AB40 /* AvviWidget.swift in Sources */,
+				E90227FFE8D828C76AB87E34 /* HabitEngine.swift in Sources */,
+				D74F568DEE1D75B35A7DDB4A /* Models.swift in Sources */,
+				3CC86EC5C95EEF45C5B26A24 /* ScheduleEngine.swift in Sources */,
+				5C5EBF792B5F28301FB4478E /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68D4457A2685AF299D7D03AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A84764FA430E0BB7DF69D24 /* Avvi */;
+			targetProxy = 0FF5E9A3C34601CC030A7D6E /* PBXContainerItemProxy */;
+		};
+		886E2A7CE6E29D90B2D2ADCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A84764FA430E0BB7DF69D24 /* Avvi */;
+			targetProxy = 2449A6B656D52838FF61BA00 /* PBXContainerItemProxy */;
+		};
+		A2ACD6BA3AA65937E56DA223 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA481599D3284BAB7EF8D738 /* AvviWidget */;
+			targetProxy = 342C9D781069943B0AEEF39D /* PBXContainerItemProxy */;
+		};
+		E2AEEBD202A46AA2735C85F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E6530ACE5E375E266F01F64 /* AvviMacWidget */;
+			targetProxy = FE776FAE5A466141CFDB05E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		42A9443F69B783768990D65F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Avvi;
+			};
+			name = Debug;
+		};
+		43A8701A580B0EB812BA9048 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Avvi;
+			};
+			name = Release;
+		};
+		675D76627867ABDEDB80E532 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Config/iOS-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		71C3BD47309D70D844E2A0F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Config/iOS-Widget.entitlements";
+				INFOPLIST_FILE = "Config/iOS-Widget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		742BFA67F9B091400A39FE90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.calendartests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avvi.app/Avvi";
+			};
+			name = Debug;
+		};
+		7FC849A9EAE4759633478D35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Config/macOS-Widget.entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = "Config/macOS-Widget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.mac.widget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8BA4C8E181A35DF3B6D3C7A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Config/iOS-Widget.entitlements";
+				INFOPLIST_FILE = "Config/iOS-Widget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9168CE5490E09ADBE567844E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Config/macOS-Widget.entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = "Config/macOS-Widget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.mac.widget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B38FC7668EF84635BF68D974 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/macOS.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = "Config/macOS-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.mac;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D11A843EF41D828F2C31E213 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Config/iOS-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D23D466D5B697091D20E0D36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Avvi;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Avvi usa i calendari scelti per proporti orari liberi e aggiungere solo i blocchi che confermi.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D38797DD95CA74E71049A764 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Avvi;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Avvi usa i calendari scelti per proporti orari liberi e aggiungere solo i blocchi che confermi.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		DC83C583E43BC93C2E332FAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.calendartests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avvi.app/Avvi";
+			};
+			name = Release;
+		};
+		F1C384C9D775D69BFD09D885 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/macOS.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = "Config/macOS-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.avvi.mac;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		297F44B6F2440B1423D24A75 /* Build configuration list for PBXNativeTarget "AvviMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B38FC7668EF84635BF68D974 /* Debug */,
+				F1C384C9D775D69BFD09D885 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2A7605507D6BBAD12A4039AB /* Build configuration list for PBXNativeTarget "Avvi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				675D76627867ABDEDB80E532 /* Debug */,
+				D11A843EF41D828F2C31E213 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5A5198964048C29EC6ABB7CC /* Build configuration list for PBXNativeTarget "AvviMacWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FC849A9EAE4759633478D35 /* Debug */,
+				9168CE5490E09ADBE567844E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		66A71A288784CC1597FBD6B1 /* Build configuration list for PBXProject "Avvi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D23D466D5B697091D20E0D36 /* Debug */,
+				D38797DD95CA74E71049A764 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8693DD87DEE962820C3C7CD6 /* Build configuration list for PBXNativeTarget "AvviUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A9443F69B783768990D65F /* Debug */,
+				43A8701A580B0EB812BA9048 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8E9E01A8C8C0F161A6F015E8 /* Build configuration list for PBXNativeTarget "AvviCalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				742BFA67F9B091400A39FE90 /* Debug */,
+				DC83C583E43BC93C2E332FAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E57D4289601D5CC0333676A5 /* Build configuration list for PBXNativeTarget "AvviWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BA4C8E181A35DF3B6D3C7A3 /* Debug */,
+				71C3BD47309D70D844E2A0F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EABCA26B6B98EA414293E24A /* Project object */;
+}
