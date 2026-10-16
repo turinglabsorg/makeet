@@ -1,0 +1,54 @@
+{
+  "Language": "Italiano",
+  "Description": "Abitudini, al tuo passo",
+  "Status": "In sviluppo per iPhone. Non ancora disponibile su App Store.",
+  "Eyebrow": "Piccoli passi. Progressi veri.",
+  "Headline": "Fai spazio.\nOgni giorno.",
+  "Intro": "Qualche pagina in più. Un momento per muoverti. Dai spazio alle abitudini che contano, un passo alla volta.",
+  "Explore": "Scopri Makeet",
+  "Support": "Supporto",
+  "Preview": "Anteprima di sviluppo · abitudini di esempio · interfaccia in italiano",
+  "FeaturesTitle": "Intorno alla tua giornata",
+  "FeaturesIntro": "Ogni piccolo\npasso conta.",
+  "Future": "Il prossimo passo: un piano che si adatta al calendario, sincronizzazione privata tra dispositivi e promemoria al momento giusto. Ci stiamo lavorando.",
+  "Footer": "Abitudini, al tuo passo. Per iOS, con Mac e widget in sviluppo.",
+  "Privacy": "Privacy",
+  "Terms": "Termini",
+  "Deletion": "Elimina account",
+  "Back": "Torna a Makeet",
+  "Email": "Scrivi al supporto",
+  "SupportBody": "Ti serve una mano con Makeet? Scrivi a support@makeet.app indicando dispositivo, versione dell’app e cosa è successo. Non inviare password, token di accesso o dettagli privati del calendario.",
+  "LegalStatus": "Ci prepariamo al lancio",
+  "LegalBody": "Makeet non è ancora aperta alle registrazioni pubbliche. L’informativa privacy completa dell’app, i termini e le istruzioni per eliminare l’account saranno pubblicati qui prima di attivare gli account. Puoi contattare Meaningtech a support@makeet.app.",
+  "NotFound": "Una piccola deviazione.",
+  "NotFoundBody": "Questa pagina non esiste. Torniamo a Makeet.",
+  "FAQ": "Qualche risposta",
+  "Features": [
+    {
+      "Title": "Più di una spunta",
+      "Body": "Conta bicchieri, pagine, minuti o ripetizioni. Aggiungi ciò che hai fatto, correggi una registrazione e conserva la storia della tua giornata."
+    },
+    {
+      "Title": "Riconosci il tuo ritmo",
+      "Body": "Quantità giornaliere, serie e distribuzione oraria ti aiutano a capire quando un’abitudine trova spazio nella tua vita. I progressi meritano più di un sì o un no."
+    },
+    {
+      "Title": "Dai un volto alle abitudini",
+      "Body": "Scegli icona o emoji, colore, obiettivo e incremento. Tieni vicine le abitudini più importanti con i widget interattivi."
+    }
+  ],
+  "Questions": [
+    {
+      "Title": "Quando posso scaricarla?",
+      "Body": "Makeet è in sviluppo e viene testata su iPhone. Il link ad App Store comparirà qui quando sarà disponibile."
+    },
+    {
+      "Title": "Funzionerà con il mio calendario?",
+      "Body": "La versione di sviluppo legge i calendari del dispositivo che scegli e aggiunge solo gli eventi che confermi. Il collegamento diretto a Google Calendar e la sincronizzazione dell’account sono in lavorazione."
+    },
+    {
+      "Title": "Quali lingue supporta?",
+      "Body": "App e widget supportano italiano, inglese, francese, tedesco e spagnolo. I nomi delle tue abitudini rimangono esattamente come li scrivi."
+    }
+  ]
+}

@@ -27,3 +27,7 @@ A calm native tool for personal momentum. Warm surfaces, forest ink, precise col
 Place minus on the left and plus on the right of habit content. Each plus records one timestamped entry using the habit's chosen step. Minus subtracts that step from today's newest entries, stops at zero, and is disabled when empty. Detail undo still removes an individual entry. Reaching a target never prevents additional logging. A planned calendar block never marks a habit complete. Widgets share these rules, with two rows in medium widgets to preserve 44-point controls.
 
 Habit appearance offers SF Symbols or a single emoji, including composed emoji and flags. Preserve native emoji colors. Keep all app-owned text in the five-language catalogs and allow translated labels to wrap; dates and quantities follow the system locale. User-entered habit names and units remain unchanged. Blank state offers creation; demo data is opt-in and visibly labeled.
+
+## Public website
+
+Use the same warm canvas, forest ink and native system sans typography. The home page combines a large action-led heading, a labeled native app screenshot and a small intensity grid, followed by numbered feature rows and native expandable FAQs. Keep navigation and language switching keyboard accessible; stack the hero and feature columns on narrow screens. All visible copy supports the same five languages. Clearly label pre-release availability and illustrative data; show a download link only after verified availability.

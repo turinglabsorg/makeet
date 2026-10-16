@@ -1,0 +1,54 @@
+{
+  "Language": "Español",
+  "Description": "Hábitos a tu ritmo",
+  "Status": "En desarrollo para iPhone. Aún no disponible en el App Store.",
+  "Eyebrow": "Pequeños pasos. Progreso real.",
+  "Headline": "Haz espacio.\nCada día.",
+  "Intro": "Unas páginas más. Un momento para moverte. Haz espacio para los hábitos que importan, paso a paso.",
+  "Explore": "Descubre Makeet",
+  "Support": "Soporte",
+  "Preview": "Vista previa de desarrollo · hábitos de ejemplo · interfaz en italiano",
+  "FeaturesTitle": "Alrededor de tu día",
+  "FeaturesIntro": "Cada pequeño\npaso cuenta.",
+  "Future": "Lo próximo: un plan que se adapta a tu calendario, sincronización privada entre dispositivos y recordatorios en el momento adecuado. Estamos trabajando en ello.",
+  "Footer": "Hábitos a tu ritmo. Para iOS, con Mac y widgets en desarrollo.",
+  "Privacy": "Privacidad",
+  "Terms": "Condiciones",
+  "Deletion": "Eliminar cuenta",
+  "Back": "Volver a Makeet",
+  "Email": "Contactar con soporte",
+  "SupportBody": "¿Necesitas ayuda con Makeet? Escribe a support@makeet.app e indica tu dispositivo, versión de la app y qué ha ocurrido. No envíes contraseñas, tokens de acceso ni detalles privados de tu calendario.",
+  "LegalStatus": "Preparamos el lanzamiento",
+  "LegalBody": "El registro público de Makeet aún no está abierto. La política de privacidad completa de la app, las condiciones y las instrucciones para eliminar la cuenta se publicarán aquí antes de activar las cuentas. Puedes contactar con Meaningtech en support@makeet.app.",
+  "NotFound": "Un pequeño desvío.",
+  "NotFoundBody": "Esta página no existe. Volvamos a Makeet.",
+  "FAQ": "Algunas respuestas",
+  "Features": [
+    {
+      "Title": "Más que una casilla marcada",
+      "Body": "Cuenta vasos, páginas, minutos o repeticiones. Añade lo que has hecho, corrige un registro y conserva la historia de tu día."
+    },
+    {
+      "Title": "Encuentra tu propio ritmo",
+      "Body": "Las cantidades diarias, las rachas y la distribución horaria te ayudan a ver cuándo encaja un hábito en tu vida. Tu progreso merece más que un sí o un no."
+    },
+    {
+      "Title": "Dale personalidad a tus hábitos",
+      "Body": "Elige un icono o emoji, un color, un objetivo y un incremento. Ten a mano tus hábitos más importantes con widgets interactivos."
+    }
+  ],
+  "Questions": [
+    {
+      "Title": "¿Cuándo podré descargarla?",
+      "Body": "Makeet está en desarrollo y se está probando en iPhone. El enlace al App Store aparecerá aquí cuando esté disponible."
+    },
+    {
+      "Title": "¿Funcionará con mi calendario?",
+      "Body": "La versión de desarrollo lee los calendarios del dispositivo que elijas y añade solo los eventos que confirmes. La conexión directa con Google Calendar y la sincronización de la cuenta están en desarrollo."
+    },
+    {
+      "Title": "¿Qué idiomas admite?",
+      "Body": "La app y los widgets admiten español, inglés, italiano, francés y alemán. Los nombres de tus hábitos se conservan tal como los escribes."
+    }
+  ]
+}

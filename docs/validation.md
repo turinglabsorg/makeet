@@ -22,7 +22,7 @@ The initial calendar integration creates confirmed time blocks and refreshes ava
 - Five Simulator-hosted tests cover no prompt during refresh, explicit consent, refreshed tokens, denied/revoked permission, APNs registration failure/retry, and permission-request errors.
 - The Connections UI scenario confirms the notification permission row exists and no system alert appears on opening the screen.
 - Both platform applications and widget extensions compile with APNs configuration. These unsigned builds do not establish provisioning or APNs delivery.
-- Provider credentials, authenticated device registration, scheduling, and delivery to a signed installation remain unverified.
+- A topic-specific Sandbox provider key has been created and encrypted through hush. Authenticated device registration, scheduling, production credentials, and delivery to a signed installation remain unverified.
 
 ## Quantity controls, appearance, and languages
 
@@ -32,9 +32,10 @@ Native catalogs contain 203 keys across the interface and permission description
 
 Development-signed build 0.1.0 (2), containing these changes, was installed as an update and launched on the owner's physical iPhone. The existing app data container was retained. Physical widget placement, widget button interaction, and complete device permission/calendar flows remain separate checks.
 
-## Push foundation verification
+## Public service and website
 
-- Five Simulator-hosted tests cover no permission prompt during refresh, explicit consent, updated tokens, denied/revoked permission, APNs registration failure/retry, and permission-request errors.
-- The Connections UI scenario confirms the notification permission row exists and no system alert appears on opening the screen.
-- Both platform applications and widget extensions compile with the APNs configuration. These unsigned builds do not establish provisioning or APNs delivery.
-- Provider credentials, authenticated device registration, scheduled delivery, and notification presentation on a signed installation have not been validated.
+The embedded Go site passes HTTP integration tests for all five languages and page states. Desktop and iPhone-width layouts, the German interface, language switching and native FAQ expansion were inspected in the browser. Go race integration tests and vet pass.
+
+The dedicated persistent Mac Pro process serves the public website and API through valid HTTPS at `makeet.app` and `api.makeet.app`. Public health returns `ok`; provider configuration returns an empty list, so public sign-in/registration is not enabled. SQLite uses a private directory and 0600 database permissions. The website labels development screenshots and unfinished integrations. Legal pages return 503/noindex until launch requirements are met.
+
+The iOS App Store Connect record exists with version 1.0 in preparation. No TestFlight upload, App Review submission or store publication is verified by this infrastructure work.

@@ -1,0 +1,54 @@
+{
+  "Language": "Deutsch",
+  "Description": "Gewohnheiten in deinem Tempo",
+  "Status": "In Entwicklung für iPhone. Noch nicht im App Store verfügbar.",
+  "Eyebrow": "Kleine Schritte. Echte Fortschritte.",
+  "Headline": "Schaffe Raum.\nJeden Tag.",
+  "Intro": "Ein paar Seiten mehr. Ein Moment für Bewegung. Schaffe Raum für die Gewohnheiten, die dir wichtig sind. Schritt für Schritt.",
+  "Explore": "Makeet entdecken",
+  "Support": "Support",
+  "Preview": "Entwicklungsvorschau · Beispielgewohnheiten · italienische Oberfläche",
+  "FeaturesTitle": "Rund um deinen Tag",
+  "FeaturesIntro": "Jeder kleine\nSchritt zählt.",
+  "Future": "Als Nächstes: ein Plan, der sich deinem Kalender anpasst, private Synchronisierung zwischen Geräten und Erinnerungen zur richtigen Zeit. Daran arbeiten wir.",
+  "Footer": "Gewohnheiten in deinem Tempo. Für iOS, mit Mac und Widgets in Entwicklung.",
+  "Privacy": "Datenschutz",
+  "Terms": "Bedingungen",
+  "Deletion": "Konto löschen",
+  "Back": "Zurück zu Makeet",
+  "Email": "Support kontaktieren",
+  "SupportBody": "Brauchst du Hilfe mit Makeet? Schreibe an support@makeet.app und nenne Gerät, App-Version und das aufgetretene Problem. Sende keine Passwörter, Anmeldetokens oder privaten Kalenderdetails.",
+  "LegalStatus": "Wir bereiten den Start vor",
+  "LegalBody": "Die öffentliche Registrierung für Makeet ist noch nicht geöffnet. Die vollständigen Datenschutzhinweise der App, Nutzungsbedingungen und Anweisungen zur Kontolöschung werden hier vor der Freigabe der Konten veröffentlicht. Du erreichst Meaningtech unter support@makeet.app.",
+  "NotFound": "Ein kleiner Umweg.",
+  "NotFoundBody": "Diese Seite gibt es nicht. Zurück zu Makeet.",
+  "FAQ": "Ein paar Antworten",
+  "Features": [
+    {
+      "Title": "Mehr als ein Häkchen",
+      "Body": "Zähle Gläser, Seiten, Minuten oder Wiederholungen. Erfasse deine Aktivitäten, korrigiere einen Eintrag und behalte den Überblick über deinen Tag."
+    },
+    {
+      "Title": "Erkenne dein Muster",
+      "Body": "Tagesmengen, Serien und die Verteilung nach Uhrzeit zeigen dir, wann eine Gewohnheit zu deinem Leben passt. Dein Fortschritt verdient mehr als ein Ja oder Nein."
+    },
+    {
+      "Title": "Deine Gewohnheiten, dein Stil",
+      "Body": "Wähle ein Symbol oder Emoji, eine Farbe, ein Ziel und eine Schrittweite. Mit interaktiven Widgets bleiben wichtige Gewohnheiten griffbereit."
+    }
+  ],
+  "Questions": [
+    {
+      "Title": "Wann kann ich die App herunterladen?",
+      "Body": "Makeet ist in Entwicklung und wird auf dem iPhone getestet. Sobald die App verfügbar ist, erscheint hier ein App-Store-Link."
+    },
+    {
+      "Title": "Funktioniert sie mit meinem Kalender?",
+      "Body": "Die Entwicklungsversion liest die ausgewählten Gerätekalender und fügt nur bestätigte Termine hinzu. Die direkte Google-Calendar-Verbindung und Kontosynchronisierung sind in Arbeit."
+    },
+    {
+      "Title": "Welche Sprachen werden unterstützt?",
+      "Body": "App und Widgets unterstützen Deutsch, Englisch, Italienisch, Französisch und Spanisch. Die Namen deiner Gewohnheiten bleiben so, wie du sie schreibst."
+    }
+  ]
+}

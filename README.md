@@ -10,7 +10,7 @@ Screenshots show sample data.
 
 ## Product target
 
-Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app and is intended for the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. Provider registration, the native account connection, and deployment are pending; registration is not live. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
+Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). Provider registration and the native account connection are pending; registration is not live. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
 
 ## Current foundation
 
@@ -29,9 +29,9 @@ Makeet is intended for public use with open self-service registration and privat
 | --- | --- |
 | Offline habit persistence | Implemented; tested across separate contexts and store reopening |
 | Public registration and accounts | Go identity/session endpoints tested; provider clients and native login pending; not live |
-| Account-based synchronization | Go sync API tested; native account storage/sync and deployment pending |
+| Account-based synchronization | Go sync API tested; native account storage/sync pending |
 | App/widget storage | App Group configuration and shared SwiftData schema implemented |
-| Push notifications | Native consent, token callbacks, and entitlements implemented; provider credentials, server registration, and delivery pending |
+| Push notifications | Native consent, token callbacks, and entitlements implemented; Sandbox provider key provisioned; authenticated server registration and delivery pending |
 | EventKit calendars | Availability reading, change refresh, calendar selection, conflict recheck, confirmed event creation implemented; validated using an isolated Simulator calendar |
 | Google through system calendars | Available through EventKit when the Google account is configured in device settings; actual provider synchronization belongs to the OS |
 | iCloud across devices | CloudKit configuration path prepared; disabled by default; requires Apple capability provisioning and multi-device validation |
@@ -90,3 +90,9 @@ xcodebuild -project Makeet.xcodeproj -scheme Makeet \
 ```
 
 Test permission setup is not a substitute for validating the real user consent screen before release.
+
+## Public website
+
+The Go service embeds a responsive pre-release website in `backend/internal/site/`, with Italian, English, French, German, and Spanish content. It uses system typography and a labeled screenshot of the native app. Support is available at [makeet.app/en/support](https://makeet.app/en/support). No sign-up or download button is shown before those services are ready.
+
+App privacy, terms and account deletion URLs currently return a localized pre-launch notice with HTTP 503 and `noindex`; they are not final legal policies. Complete public operator/contact information and account lifecycle verification remain launch requirements. Apple App Store Connect has a Makeet iOS record, version 1.0 in preparation; this does not mean the app has been submitted or approved.

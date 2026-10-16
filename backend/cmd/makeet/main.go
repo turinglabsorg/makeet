@@ -12,6 +12,7 @@ import (
 
 	"github.com/turinglabsorg/makeet/backend/internal/api"
 	"github.com/turinglabsorg/makeet/backend/internal/identity"
+	"github.com/turinglabsorg/makeet/backend/internal/site"
 	"github.com/turinglabsorg/makeet/backend/internal/store"
 )
 
@@ -39,7 +40,7 @@ func main() {
 			providers[p.name] = identity.New(ctx, p.issuer, p.keys, strings.Split(ids, ","))
 		}
 	}
-	handler := api.New(db, api.Config{Providers: providers}).Handler()
+	handler := api.New(db, api.Config{Providers: providers, Site: site.New()}).Handler()
 	server := &http.Server{Addr: env("MAKEET_LISTEN", "127.0.0.1:8086"), Handler: handler, ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 << 10}
 	go func() {
 		<-ctx.Done()

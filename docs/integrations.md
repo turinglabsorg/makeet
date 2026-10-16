@@ -2,7 +2,7 @@
 
 ## Public account architecture requirements
 
-The target product supports open self-service registration and authenticated account-based synchronization. `backend/` implements the Go account and sync APIs with dedicated SQLite persistence and signed-identity HTTP integration tests. The native app is not connected yet and no server is deployed. Use the owner's Mac Pro with a Makeet-specific service, database, and persistent storage. Authentication uses Apple and Google only; Supabase and password registration are excluded.
+The target product supports open self-service registration and authenticated account-based synchronization. `backend/` implements the Go account and sync APIs with dedicated SQLite persistence and signed-identity HTTP integration tests. The native app is not connected yet. The Go service and embedded pre-release website are deployed on the dedicated Mac Pro service; authentication providers remain disabled. Use the owner's Mac Pro with a Makeet-specific service, database, and persistent storage. Authentication uses Apple and Google only; Supabase and password registration are excluded.
 
 The shared account service should be the authoritative synchronization boundary for the public product. SwiftData remains the on-device store used by the app and its widget extension. Before enabling CloudKit alongside a backend, define one authority and an explicit adapter or migration strategy rather than allowing two independent writers to synchronize the same records differently.
 
@@ -10,7 +10,7 @@ Every remotely stored habit, activity, calendar connection, and planned session 
 
 Account switching and logout must also isolate the local App Group store, widget snapshots, pending writes, and calendar connection state. The current account-free local archive needs an explicit one-time import decision when registration is introduced. A successful sign-in must not silently upload a different person's previous local archive.
 
-Account-scoped native caches, Keychain sessions, provider provisioning, Apple grant revocation, and deployment remain implementation requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing native foundation. See the [backend protocol](../backend/README.md).
+Account-scoped native caches, Keychain sessions, provider provisioning, Apple grant revocation, and production account configuration remain implementation requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing native foundation. See the [backend protocol](../backend/README.md).
 
 ## Sources of truth
 
@@ -74,6 +74,6 @@ The iOS and macOS app targets include their platform-specific APNs entitlement. 
 
 `NotificationService` requests alert, sound, and badge permission only from the explicit Connections action. Foreground refresh observes changes made in system Settings and registers already-authorized installations with APNs. Platform delegates receive refreshed tokens and registration failures; tokens stay in memory and are never logged. Notification taps open Today or Planner using a fixed destination allowlist.
 
-The interface distinguishes OS permission, APNs registration, and the pending server connection. A token callback does not prove backend registration or delivery. Provider keys, authenticated device-token ownership, account logout/revocation cleanup, reminder scheduling, and signed-device delivery remain open. This foundation does not automatically schedule or send notifications.
+The interface distinguishes OS permission, APNs registration, and the pending server connection. A token callback does not prove backend registration or delivery. A topic-specific Sandbox APNs key is provisioned for the two Makeet app IDs and stored encrypted through hush. A production key, authenticated device-token ownership, account logout/revocation cleanup, reminder scheduling, and signed-device delivery remain open. This foundation does not automatically schedule or send notifications.
 
 References: [APNs registration](https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns), [notification permission](https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications), [scoped APNs keys](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns).

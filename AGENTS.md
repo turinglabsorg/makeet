@@ -46,7 +46,7 @@ This is a native SwiftUI habit tracker for iOS, with a macOS companion and Widge
 
 ## Naming and public information
 
-- The owner selected Makeet as the definitive product name on 2026-10-16. Use `org.turinglabs.makeet` identifiers, the `makeet` URL scheme, and public repository `turinglabsorg/makeet`. Purchase of `makeet.app` is verified. Its nameservers were migrated to Cloudflare; site/API hosting and email routing are still pending.
+- The owner selected Makeet as the definitive product name on 2026-10-16. Use `org.turinglabs.makeet` identifiers, the `makeet` URL scheme, and public repository `turinglabsorg/makeet`. Purchase of `makeet.app` is verified. Its nameservers were migrated to Cloudflare; the pre-release site/API are deployed on the Mac Pro and support@makeet.app forwards through Cloudflare Email Routing.
 - Public-facing operator branding is Meaningtech. Do not put the owner’s personal name, residential address, personal email/PEC, tax code, or invoicing identifiers into source, website content, screenshots, or public configuration. Legal pages remain unpublished until adequate public operator details are confirmed.
 - `backend/` uses Go, standard HTTP, OIDC verification, and a dedicated SQLite database. Its authentication/session and sync integration tests use generated signed fixtures over actual HTTP and a temporary database. Never add a test-token login bypass to production.
 
@@ -57,4 +57,11 @@ This is a native SwiftUI habit tracker for iOS, with a macOS companion and Widge
 - Identity ownership uses the verified provider/subject pair, never email matching. Challenges expire after five minutes and are consumed once. Access tokens expire after 15 minutes; rotating refresh tokens share a fixed 30-day session expiry. Replayed refresh tokens revoke the session. Persist token hashes only.
 - SQLite tables are `users`, `identities`, `challenges`, `sessions`, `access_tokens`, `used_refresh`, `records`, `changes`, and `batches`. User deletion cascades through account data, but Apple provider-grant revocation remains a separate unfinished requirement.
 - Sync mutations accept at most 100 habit/activity records and use per-account UUID mutation IDs, atomic revision checks, tombstones, and cached retry responses. Normalize UUIDs and validate activity parents within the same account. Pulls paginate 200 changes with a cursor and `has_more`. Preserve independent activity UUIDs; do not overwrite daily counters.
-- Auth rate limits currently use the socket peer address. Finalize trusted relay client-IP handling before public registration. The service is tested but not deployed, and the native app does not use these account endpoints yet.
+- Auth rate limits currently use the socket peer address. Finalize trusted relay client-IP handling before public registration. The service is deployed with identity providers disabled, and the native app does not use these account endpoints yet.
+
+## Public pre-release website
+
+- `backend/internal/site` embeds templates, assets and five language catalogs in the Go executable. The public deployment runs persistently through grog serve on the Mac Pro, isolated from other services.
+- Home/support pages are live; privacy, terms and account deletion routes return a localized pre-launch notice with HTTP 503/noindex. Do not present these as completed release policies or enable public accounts before the remaining identity, privacy, sync and deletion work.
+- App Store Connect app ID is 6823557479, iOS version 1.0 in preparation. The owner authorized the legal name only in Apple's mandatory seller field; public site/source branding remains Meaningtech and personal data restrictions still apply.
+- A topic-specific Sandbox APNs key is provisioned for the two Makeet app IDs, encrypted as hush MAKEET_APNS_KEY. Keep its value and all provider credentials out of source/logs. Production provisioning and actual delivery remain pending.

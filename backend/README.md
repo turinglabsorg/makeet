@@ -4,7 +4,7 @@ Custom Go HTTP service with SQLite storage. Apple and Google provide identity; M
 
 ## Status
 
-The HTTP service and integration tests run locally. The native app currently uses its local SwiftData archive and is not connected to these APIs. Provider clients, Apple grant revocation, account-scoped native caches, and production deployment must be completed before public registration.
+The HTTP service and embedded pre-release website are deployed on the dedicated Mac Pro service, behind HTTPS at `makeet.app` and `api.makeet.app`. Authentication providers remain disabled in that deployment. Integration tests also run locally. The native app currently uses its local SwiftData archive and is not connected to these APIs. Provider clients, Apple grant revocation, account-scoped native caches, and production account configuration must be completed before public registration.
 
 ## Run
 
@@ -72,3 +72,11 @@ Quantitative logging uses a new UUID per activity, so simultaneous independent l
 Tests use generated RSA keys, a real local JWKS HTTP server, signed JWTs, an actual API HTTP server, and temporary on-disk SQLite databases. Coverage includes signature/audience/issuer/nonce/expiry rejection, challenge replay, account separation, refresh replay revocation, logout, access/session expiry, atomic conflicts, idempotent retries, tombstones, pagination, durability, and deletion cascades. `go test -race ./...` passes.
 
 HTTP requests have body/header/time limits; authentication routes are rate-limited using the socket peer IP. Do not trust arbitrary forwarded headers. Behind a shared relay the socket-peer limit is shared by callers, so trusted client-IP routing/rate limits must be finalized before opening registration. Provider token revocation, encrypted provider-credential storage, backup/restore drills, legal publication, native account isolation, and multi-device sync remain release requirements.
+
+## Embedded website
+
+`internal/site` embeds its templates, CSS, native screenshot, app icon and five translation catalogs into the Go executable. The site serves language-specific home/support pages, preserves the current page when changing language, and uses native details controls for the language menu and FAQs. It has no third-party scripts, font requests, analytics or sign-up form.
+
+Legal/account-deletion routes return HTTP 503, `Retry-After` and `X-Robots-Tag: noindex` while public registration is unavailable. Replace that explicit pre-release state with complete policies and verified deletion instructions before enabling accounts. The site does not invent legal operator details.
+
+HTTP integration tests exercise all page/language combinations, security headers, language navigation/negotiation, unavailable legal content, assets, missing routes, HEAD, and rejected write methods.
