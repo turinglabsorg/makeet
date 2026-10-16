@@ -20,6 +20,10 @@ App and widget extensions use the same `Habit` and `Activity` models and App Gro
 
 The shared store is intentionally local by default. Independent-context persistence tests verify that app-like and widget-like contexts retain each other's registrations and that undo survives reopening the store. These tests do not establish cross-device sync or widget lifecycle correctness.
 
+App and widget decrement operations subtract the configured step from today's newest entries in the habit's time zone. Exhausted entries are deleted and partial entries retain their original timestamp with a smaller positive amount. The operation stops at zero and leaves other days and habits unchanged. A future native sync adapter must publish these revisions/deletions rather than inventing negative activity records. The medium widget shows two habits so both adjustment controls retain 44-point touch targets.
+
+Appearance is stored in the existing `symbol` field: SF Symbol names retain their current meaning, while a single emoji is encoded as `emoji:` plus its grapheme. The native picker supports presets and custom composed emoji. This does not change the SwiftData schema or the backend record shape.
+
 ## CloudKit activation
 
 Apple's supported SwiftData sync path uses CloudKit. The schema avoids unique constraints and required relationships, and all stored properties have defaults. `SharedStore` supports the private container `iCloud.org.turinglabs.makeet`, gated by the Boolean `CloudSyncEnabled` Info.plist value declared explicitly for each target in `project.yml`.

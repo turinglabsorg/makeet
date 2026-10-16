@@ -68,4 +68,26 @@ enum SharedStore {
         do { try context.save() } catch { context.rollback(); throw error }
         WidgetCenter.shared.reloadAllTimelines()
     }
+
+    @MainActor static func decrement(_ habit: Habit, in context: ModelContext, now: Date = Date()) throws {
+        guard habit.step.isFinite, habit.step > 0, !habit.archived else { return }
+        let calendar = habit.snapshot.calendar
+        let start = calendar.startOfDay(for: now)
+        let end = calendar.date(byAdding: .day, value: 1, to: start)!
+        let id = habit.id
+        let descriptor = FetchDescriptor<Activity>(predicate: #Predicate {
+            $0.habitID == id && $0.timestamp >= start && $0.timestamp < end && $0.amount > 0
+        }, sortBy: [SortDescriptor(\.timestamp, order: .reverse)])
+        let entries = try context.fetch(descriptor).filter { $0.amount.isFinite }
+        var remaining = habit.step
+        for entry in entries where remaining > 0 {
+            let removed = min(remaining, entry.amount)
+            let corrected = entry.amount - removed
+            remaining -= removed
+            if corrected <= max(entry.amount.ulp, removed.ulp) * 8 { context.delete(entry) }
+            else { entry.amount = corrected }
+        }
+        do { try context.save() } catch { context.rollback(); throw error }
+        WidgetCenter.shared.reloadAllTimelines()
+    }
 }

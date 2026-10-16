@@ -11,7 +11,7 @@ import UserNotifications
         XCTAssertEqual(client.requests, 0)
         XCTAssertEqual(registrations, 0)
         XCTAssertFalse(service.authorized)
-        XCTAssertEqual(service.permissionLabel, "Da attivare")
+        XCTAssertEqual(service.permissionLabel, String(localized: "Da attivare"))
     }
 
     func testConsentRegistersAndTokenRefreshReplacesPreviousToken() async {
@@ -29,7 +29,7 @@ import UserNotifications
         service.registered(token: Data([4, 5, 6]))
         XCTAssertEqual(service.deviceToken, Data([4, 5, 6]))
         XCTAssertFalse(service.isRegistering)
-        XCTAssertTrue(service.deliveryLabel.contains("server da collegare"))
+        XCTAssertEqual(service.deliveryLabel, String(localized: "Dispositivo registrato · server da collegare"))
     }
 
     func testDeniedPermissionNeverRegistersAndRevocationClearsToken() async {
@@ -44,7 +44,7 @@ import UserNotifications
         XCTAssertNil(service.deviceToken)
         await service.refresh()
         XCTAssertNil(service.deviceToken)
-        XCTAssertEqual(service.permissionLabel, "Non consentite")
+        XCTAssertEqual(service.permissionLabel, String(localized: "Non consentite"))
     }
 
     func testRegistrationFailureNeedsExplicitRetry() async {

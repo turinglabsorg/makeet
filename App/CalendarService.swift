@@ -24,7 +24,7 @@ import Observation
     func connect() async {
         do {
             authorized = try await store.requestFullAccessToEvents()
-            message = authorized ? nil : "Accesso al calendario non concesso. Puoi abilitarlo nelle Impostazioni."
+            message = authorized ? nil : String(localized: "Accesso al calendario non concesso. Puoi abilitarlo nelle Impostazioni.")
             refresh()
         } catch { message = error.localizedDescription }
     }
@@ -88,7 +88,7 @@ import Observation
         event.title = habit.name
         event.startDate = proposal.start; event.endDate = proposal.end
         event.url = marker
-        event.notes = "Blocco pianificato dall’app. Il completamento dell’abitudine si registra separatamente."
+        event.notes = String(localized: "Blocco pianificato dall’app. Il completamento dell’abitudine si registra separatamente.")
         try store.save(event, span: .thisEvent)
         refresh()
     }
@@ -98,9 +98,9 @@ enum CalendarFailure: LocalizedError {
     case noDestination, conflict, expired
     var errorDescription: String? {
         switch self {
-        case .noDestination: "Scegli un calendario scrivibile nelle connessioni."
-        case .conflict: "Il calendario è cambiato: questo spazio è occupato. Aggiorna le proposte."
-        case .expired: "Questo orario è già passato. Aggiorna le proposte."
+        case .noDestination: String(localized: "Scegli un calendario scrivibile nelle connessioni.")
+        case .conflict: String(localized: "Il calendario è cambiato: questo spazio è occupato. Aggiorna le proposte.")
+        case .expired: String(localized: "Questo orario è già passato. Aggiorna le proposte.")
         }
     }
 }

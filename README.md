@@ -2,7 +2,7 @@
 
 A native, quantitative habit tracker that makes room for habits in your calendar.
 
-Makeet starts from the clarity of a habit grid and adds timestamped quantities, deeper statistics, and an explainable scheduling assistant. The initial interface is Italian. iOS 17 and macOS 14 or later are supported.
+Makeet starts from the clarity of a habit grid and adds timestamped quantities, deeper statistics, and an explainable scheduling assistant. The app and widgets support Italian, English, French, German, and Spanish using the device language. iOS 17 and macOS 14 or later are supported.
 
 <img src="docs/images/today.png" width="280" alt="Makeet Today screen with labeled demo data"> <img src="docs/images/trends.png" width="280" alt="Makeet quantity trends with demo data">
 
@@ -14,8 +14,8 @@ Makeet is intended for public use with open self-service registration and privat
 
 ## Current foundation
 
-- Create daily habits with a target, unit, increment, preferred hour, and session duration.
-- Log multiple times per day, continue beyond a target, inspect timestamps, and undo individual registrations.
+- Create daily habits with an SF Symbol or emoji, target, unit, increment, preferred hour, and session duration.
+- Adjust today's quantity with minus on the left and plus on the right, stop at zero, continue beyond a target, inspect timestamps, and undo individual registrations.
 - Review 7-day, 28-day, and 12-week quantities, daily averages, completion rates, current/best streaks, activity intensity, and hourly distributions.
 - Get local scheduling proposals that avoid calendar conflicts, other proposals, past hours, and completed goals. With sufficient history, proposals use the most frequently logged hour in the previous 28 days.
 - Connect device calendars through EventKit, select availability sources and a writable destination, and review each proposed event before creating it. Planned events never mark habits as complete.

@@ -27,8 +27,8 @@ import SwiftData
                 RootView().modelContainer(container).tint(Palette.accent)
                     .environment(NotificationService.shared)
             } else {
-                ContentUnavailableView("Archivio non disponibile", systemImage: "externaldrive.badge.exclamationmark",
-                                       description: Text(startupError ?? "Riapri l’app per riprovare."))
+                ContentUnavailableView(String(localized: "Archivio non disponibile"), systemImage: "externaldrive.badge.exclamationmark",
+                                       description: Text(startupError ?? String(localized: "Riapri l’app per riprovare.")))
             }
         }
         #if os(macOS)
@@ -49,14 +49,17 @@ struct RootView: View {
     var body: some View {
         TabView(selection: $selection) {
             NavigationStack { TodayView(demoMode: $demoMode) }
-                .tabItem { Label("Oggi", systemImage: "square.grid.2x2") }.tag(0)
+                .tabItem { Label(String(localized: "Oggi"), systemImage: "square.grid.2x2") }.tag(0)
             NavigationStack { TrendsView() }
-                .tabItem { Label("Andamento", systemImage: "chart.xyaxis.line") }.tag(1)
+                .tabItem { Label(String(localized: "Andamento"), systemImage: "chart.xyaxis.line") }.tag(1)
             NavigationStack { PlannerView(calendar: calendar) }
-                .tabItem { Label("Il tuo piano", systemImage: "sparkles") }.tag(2)
+                .tabItem { Label(String(localized: "Il tuo piano"), systemImage: "sparkles") }.tag(2)
         }
         .foregroundStyle(Palette.ink)
         .task {
+            if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
+                demoMode = ProcessInfo.processInfo.arguments.contains("--demo")
+            }
             if !ProcessInfo.processInfo.arguments.contains("--ui-testing") { await notifications.refresh() }
             if ProcessInfo.processInfo.arguments.contains("--demo"),
                !demoMode || ProcessInfo.processInfo.arguments.contains("--ui-testing") {
@@ -80,8 +83,8 @@ struct RootView: View {
             if url.host == "habit" { selection = 0 }
             if url.host == "plan" { selection = 2 }
         }
-        .alert("Operazione non riuscita", isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
-            Button("OK") { error = nil }
+        .alert(String(localized: "Operazione non riuscita"), isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+            Button(String(localized: "OK")) { error = nil }
         } message: { Text(error ?? "") }
     }
 }
@@ -93,9 +96,9 @@ enum DemoData {
         let today = calendar.startOfDay(for: Date())
         let start = calendar.date(byAdding: .day, value: -83, to: today)!
         let habits = [
-            Habit(name: "Bere acqua", symbol: "drop", colorIndex: 1, target: 8, step: 1, unit: "bicchieri", preferredHour: 10, durationMinutes: 5, createdAt: start),
-            Habit(name: "Leggere", symbol: "book.closed", colorIndex: 0, target: 20, step: 5, unit: "pagine", preferredHour: 19, durationMinutes: 20, createdAt: start),
-            Habit(name: "Muovermi", symbol: "figure.walk", colorIndex: 2, target: 30, step: 10, unit: "minuti", preferredHour: 18, durationMinutes: 30, createdAt: start)
+            Habit(name: String(localized: "Bere acqua"), symbol: "drop", colorIndex: 1, target: 8, step: 1, unit: String(localized: "bicchieri"), preferredHour: 10, durationMinutes: 5, createdAt: start),
+            Habit(name: String(localized: "Leggere"), symbol: "book.closed", colorIndex: 0, target: 20, step: 5, unit: String(localized: "pagine"), preferredHour: 19, durationMinutes: 20, createdAt: start),
+            Habit(name: String(localized: "Muovermi"), symbol: "figure.walk", colorIndex: 2, target: 30, step: 10, unit: String(localized: "minuti"), preferredHour: 18, durationMinutes: 30, createdAt: start)
         ]
         for (index, habit) in habits.enumerated() {
             habit.isDemo = true

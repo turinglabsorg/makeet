@@ -4,7 +4,7 @@ Validated on 16 October 2026 using Apple Swift 6.4, an iPhone 16 Pro Simulator r
 
 ## Verified behavior
 
-- 15 Swift Package Manager tests cover quantitative logging, extra activity beyond a target, day boundaries around both daylight saving transitions, observed-day denominators, current/best streaks, invalid entries, scheduling collisions, historical preferences, exhausted availability, and persistence between independent model containers.
+- 18 Swift Package Manager tests cover quantitative logging, extra activity beyond a target, day boundaries around both daylight saving transitions, observed-day denominators, current/best streaks, invalid entries, scheduling collisions, historical preferences, exhausted availability, persistence between independent model containers, corrections limited to the chosen habit and its local day, decimal rounding, and composed emoji validation.
 - Simulator UI tests cover creating a habit, repeated increments, undo, archiving/restoring, demo navigation, and truthful connection status.
 - A Simulator-only EventKit integration test creates an isolated temporary calendar, creates a real event, repeats the request without duplicating the event, recognizes the planned habit, and rejects a conflicting second block. The temporary calendar is removed at the end of the test.
 - The iOS application and its WidgetKit extension compile.
@@ -23,6 +23,14 @@ The initial calendar integration creates confirmed time blocks and refreshes ava
 - The Connections UI scenario confirms the notification permission row exists and no system alert appears on opening the screen.
 - Both platform applications and widget extensions compile with APNs configuration. These unsigned builds do not establish provisioning or APNs delivery.
 - Provider credentials, authenticated device registration, scheduling, and delivery to a signed installation remain unverified.
+
+## Quantity controls, appearance, and languages
+
+Four Simulator UI scenarios verify left-minus/right-plus ordering, decrement to zero, disabled empty-state controls, creation using an emoji, existing detail undo/archive/restore, and localized navigation/creation in Italian, English, French, German, and Spanish. Screenshots of all five languages were rendered; the German layout and emoji creation were visually inspected.
+
+Native catalogs contain 203 keys across the interface and permission descriptions. Validation checks all five translations, interpolation types, and coverage against compiler-extracted app/widget strings. User-authored names and units are preserved. Additional languages can be added in Xcode's string catalogs without new runtime branching.
+
+Development-signed build 0.1.0 (2), containing these changes, was installed as an update and launched on the owner's physical iPhone. The existing app data container was retained. Physical widget placement, widget button interaction, and complete device permission/calendar flows remain separate checks.
 
 ## Push foundation verification
 

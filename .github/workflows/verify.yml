@@ -11,8 +11,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Domain and persistence tests
         run: swift test --disable-sandbox
+      - name: Translation coverage and interpolation validation
+        run: python3 scripts/ValidateLocalizations.py
       - name: Build iOS app and widget
-        run: xcodebuild -project Makeet.xcodeproj -scheme Makeet -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build -quiet
+        run: xcodebuild -project Makeet.xcodeproj -scheme Makeet -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath artifacts/CIiOS CODE_SIGNING_ALLOWED=NO build -quiet
+      - name: Compiler localization coverage
+        run: python3 scripts/ValidateLocalizations.py --extracted-root artifacts/CIiOS
       - name: Build macOS app and widget
         run: xcodebuild -project Makeet.xcodeproj -scheme MakeetMac -destination 'platform=macOS,arch=arm64' CODE_SIGNING_ALLOWED=NO build -quiet
 

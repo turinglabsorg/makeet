@@ -1,0 +1,40 @@
+{
+  "sourceLanguage": "it",
+  "strings": {
+    "NSCalendarsFullAccessUsageDescription": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet usa i calendari scelti per proporti orari liberi e aggiungere solo i blocchi che confermi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet uses your selected calendars to suggest free times and add only the time blocks you confirm."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet utilise les calendriers choisis pour proposer des créneaux libres et ajouter uniquement les événements que vous confirmez."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet verwendet deine ausgewählten Kalender, um freie Zeiten vorzuschlagen und nur die von dir bestätigten Zeitblöcke einzutragen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet utiliza los calendarios elegidos para proponerte huecos libres y añadir solo los bloques que confirmes."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

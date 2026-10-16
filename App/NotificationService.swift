@@ -53,22 +53,22 @@ struct SystemNotificationAuthorization: NotificationAuthorizationClient {
 
     var permissionLabel: String {
         switch authorization {
-        case .authorized: return "Consentite"
-        case .provisional: return "Consentite con limitazioni"
+        case .authorized: return String(localized: "Consentite")
+        case .provisional: return String(localized: "Consentite con limitazioni")
         #if os(iOS)
-        case .ephemeral: return "Consentite con limitazioni"
+        case .ephemeral: return String(localized: "Consentite con limitazioni")
         #endif
-        case .denied: return "Non consentite"
-        case .notDetermined: return "Da attivare"
-        @unknown default: return "Da verificare"
+        case .denied: return String(localized: "Non consentite")
+        case .notDetermined: return String(localized: "Da attivare")
+        @unknown default: return String(localized: "Da verificare")
         }
     }
 
     var deliveryLabel: String {
-        if deviceToken != nil { return "Dispositivo registrato · server da collegare" }
-        if registrationFailed { return "Registrazione non riuscita" }
-        if isRegistering { return "Registrazione in corso" }
-        return "Non collegato"
+        if deviceToken != nil { return String(localized: "Dispositivo registrato · server da collegare") }
+        if registrationFailed { return String(localized: "Registrazione non riuscita") }
+        if isRegistering { return String(localized: "Registrazione in corso") }
+        return String(localized: "Non collegato")
     }
 
     func refresh() async {
@@ -187,26 +187,26 @@ struct NotificationSettingsSection: View {
 
     var body: some View {
         Section {
-            LabeledContent("Permesso sul dispositivo", value: notifications.permissionLabel)
+            LabeledContent(String(localized: "Permesso sul dispositivo"), value: notifications.permissionLabel)
                 .accessibilityIdentifier("notificationPermission")
-            LabeledContent("Notifiche dal server", value: notifications.deliveryLabel)
+            LabeledContent(String(localized: "Notifiche dal server"), value: notifications.deliveryLabel)
             if notifications.authorization == .denied {
-                Button("Apri impostazioni notifiche") { openSettings() }
+                Button(String(localized: "Apri impostazioni notifiche")) { openSettings() }
             } else if !notifications.authorized || notifications.registrationFailed {
-                Button(notifications.registrationFailed ? "Riprova registrazione push" : "Attiva notifiche") {
+                Button(notifications.registrationFailed ? String(localized: "Riprova registrazione push") : String(localized: "Attiva notifiche")) {
                     Task { await notifications.enable() }
                 }
                 .disabled(notifications.isRequesting || notifications.isRegistering)
                 .accessibilityIdentifier("enableNotifications")
             } else {
-                Button("Gestisci nelle impostazioni") { openSettings() }
+                Button(String(localized: "Gestisci nelle impostazioni")) { openSettings() }
             }
             if notifications.permissionFailed {
-                Text("Non è stato possibile richiedere il permesso. Riprova dalle impostazioni del dispositivo.")
+                Text(String(localized: "Non è stato possibile richiedere il permesso. Riprova dalle impostazioni del dispositivo."))
                     .font(.caption).foregroundStyle(.secondary)
             }
-        } header: { Text("Notifiche") } footer: {
-            Text("Scegli tu quando consentire le notifiche. L’invio dei promemoria richiede anche il collegamento al servizio Makeet, ancora in configurazione.")
+        } header: { Text(String(localized: "Notifiche")) } footer: {
+            Text(String(localized: "Scegli tu quando consentire le notifiche. L’invio dei promemoria richiede anche il collegamento al servizio Makeet, ancora in configurazione."))
         }
     }
 

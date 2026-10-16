@@ -1,8 +1,66 @@
 import XCTest
 import SwiftData
+import MakeetCore
 @testable import MakeetPersistence
 
 final class PersistenceTests: XCTestCase {
+    @MainActor func testDecrementUsesHabitDayAndStepClampsAtZeroAndSurvivesReopen() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let schema = Schema([Habit.self, Activity.self])
+        let url = directory.appendingPathComponent("correction.store")
+        func container() throws -> ModelContainer {
+            try ModelContainer(for: schema, configurations: [ModelConfiguration(schema: schema, url: url, cloudKitDatabase: .none)])
+        }
+        let context = ModelContext(try container())
+        let habit = Habit(name: "Read", symbol: "emoji:📚", colorIndex: 0, target: 10, step: 5, unit: "pages")
+        habit.timeZoneID = "Pacific/Auckland"
+        let now = ISO8601DateFormatter().date(from: "2026-03-28T12:00:00Z")!
+        let start = habit.snapshot.calendar.startOfDay(for: now)
+        let end = habit.snapshot.calendar.date(byAdding: .day, value: 1, to: start)!
+        context.insert(habit)
+        for (amount, timestamp) in [(4.0, now.addingTimeInterval(-60)), (3, now), (99, start.addingTimeInterval(-1)), (77, end)] {
+            context.insert(Activity(habitID: habit.id, amount: amount, timestamp: timestamp))
+        }
+        let otherID = UUID()
+        context.insert(Activity(habitID: otherID, amount: 20, timestamp: now))
+        try context.save()
+        try SharedStore.decrement(habit, in: context, now: now)
+        let reopened = ModelContext(try container())
+        let savedHabit = try XCTUnwrap(reopened.fetch(FetchDescriptor<Habit>()).first)
+        XCTAssertEqual(savedHabit.symbol, "emoji:📚")
+        var entries = try reopened.fetch(FetchDescriptor<Activity>())
+        XCTAssertEqual(HabitEngine.progress(for: savedHabit.snapshot, on: now, activities: entries.map(\.snapshot)).quantity, 2)
+        try SharedStore.decrement(savedHabit, in: reopened, now: now)
+        try SharedStore.decrement(savedHabit, in: reopened, now: now)
+        entries = try ModelContext(container()).fetch(FetchDescriptor<Activity>())
+        XCTAssertEqual(HabitEngine.progress(for: savedHabit.snapshot, on: now, activities: entries.map(\.snapshot)).quantity, 0)
+        XCTAssertEqual(entries.map(\.amount).sorted(), [20, 77, 99])
+        XCTAssertEqual(entries.first(where: { $0.habitID == otherID })?.amount, 20)
+    }
+
+    func testEmojiValidationSupportsSequencesAndRejectsOrdinaryText() {
+        for emoji in ["🌱", "☀️", "👨‍👩‍👧‍👦", "🇮🇹", "👍🏽", "1️⃣", "©️"] {
+            XCTAssertTrue(HabitAppearance.validEmoji(emoji))
+            XCTAssertEqual(HabitAppearance.emoji(in: "emoji:\(emoji)"), emoji)
+        }
+        for value in ["", "a", "1", "hello", "🌱💧"] { XCTAssertFalse(HabitAppearance.validEmoji(value)) }
+        XCTAssertNil(HabitAppearance.emoji(in: "leaf"))
+        XCTAssertNil(HabitAppearance.emoji(in: "emoji:invalid"))
+    }
+
+    @MainActor func testFractionalDecrementDoesNotLeaveRoundingResidue() async throws {
+        let container = try ModelContainer(for: Habit.self, Activity.self,
+                                          configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        let context = ModelContext(container)
+        let habit = Habit(name: "Fraction", symbol: "leaf", colorIndex: 0, target: 1, step: 0.3, unit: "units")
+        context.insert(habit)
+        for _ in 0..<3 { context.insert(Activity(habitID: habit.id, amount: 0.1)) }
+        try context.save()
+        try SharedStore.decrement(habit, in: context)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<Activity>()), 0)
+    }
     @MainActor func testAppAndWidgetContextsSeeEveryIncrementAndUndoPersistsAfterReopen() async throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
