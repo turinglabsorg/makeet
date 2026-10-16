@@ -1,5 +1,5 @@
 import XCTest
-@testable import AvviCore
+@testable import MakeetCore
 
 final class HabitEngineTests: XCTestCase {
     private let utc = TimeZone(secondsFromGMT: 0)!

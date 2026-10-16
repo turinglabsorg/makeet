@@ -1,0 +1,947 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0FFBD930394A500771AF5D0F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
+		154F9511C7BB2AD568D3DF65 /* MakeetMacWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1616B8A0CDEED2B989E4127E /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C872F78FF7A870B27ED9D86 /* PlannerView.swift */; };
+		17C3BBB04EB1D09145D7CAD8 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
+		19B5855F05E67B6CC15A3324 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
+		1E482DB553A8F4F93BE8B738 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FC9984242CC6634D72E864 /* TrendsView.swift */; };
+		1EBF1B2B807CEC44BC386E40 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
+		21AFC0ED02E6039533B2666B /* MakeetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */; };
+		32647B824BE6D8D4A05C619D /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
+		3A064D9F88E2E1F67952A3A4 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE86BE058455F79D120E8E84 /* AddHabitView.swift */; };
+		3B3F7690E0F179530D46D3AA /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
+		4422F67AAD6F1B59756C0DFC /* MakeetWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C47E134F5207238BA1DB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
+		67F39417114D21C6059641DB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
+		6CD9EDCC8C15C72F7C140CC1 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
+		6DCCD27ED078E4DBDD5D0209 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
+		6E83CA73AD3980850EA7B52A /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FC9984242CC6634D72E864 /* TrendsView.swift */; };
+		6F7FC3F089A3D506A3F9A328 /* NotificationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC40D62AA1B02A6298DB7A7 /* NotificationServiceTests.swift */; };
+		7079A3E6E46DC1B658482C50 /* MakeetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88E138CB5413197569EB2B /* MakeetApp.swift */; };
+		710101C5DA9D2853AC81A703 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
+		71814DC5E846CBCCFB0C2008 /* MakeetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8797C3234E26FD735807DC /* MakeetUITests.swift */; };
+		745656F6F7D42075CA28EBAA /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
+		7BD66E489931C3803874CBA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
+		7C57FCB7D3CA755E833C13D8 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172A1ED536485A0658060A7 /* CalendarService.swift */; };
+		83D54E428915496D6072D5F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
+		8ED934EE2B4E4DBAC97F45EC /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C1FE5B4CD4748D63459CFD /* NotificationService.swift */; };
+		949AEF9FFE3520FA77E66FF6 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172A1ED536485A0658060A7 /* CalendarService.swift */; };
+		9A40F60A674C09C16A6F4326 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE86BE058455F79D120E8E84 /* AddHabitView.swift */; };
+		9CE293B73B2B6D98E014B79A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
+		A38C92304E74DAD11FBDEEFD /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D19613A3934E9695BEBD056 /* TodayView.swift */; };
+		A64933F55DA21C52051EEA7E /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C872F78FF7A870B27ED9D86 /* PlannerView.swift */; };
+		AD6F78C819739304F88D10BE /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
+		AFB66B1B92B85ABCE75654B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A646774440548F9D07CAB /* Assets.xcassets */; };
+		B1D9CC7ADED5DE670F23EA9E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
+		B35E9123676DBB2E7D4398D4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
+		BC286D1AFCBA1811C23E1DEE /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
+		BFE440E790B456ED00710B65 /* CalendarServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6018989EDED05E750152A82 /* CalendarServiceTests.swift */; };
+		C1E8A2E3FFD77DF86C9D2308 /* MakeetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88E138CB5413197569EB2B /* MakeetApp.swift */; };
+		C2839F8A75A3E9F37772C178 /* MakeetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */; };
+		CAAE015118968EC4A6F27D1C /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D19613A3934E9695BEBD056 /* TodayView.swift */; };
+		CC221462B1773B2CB69D776F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
+		EAFE12CD98745B0A1DE5D346 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C1FE5B4CD4748D63459CFD /* NotificationService.swift */; };
+		F388D421AF6A67E5536124E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A646774440548F9D07CAB /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		429EF8DB523EAD4DD8C8818E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6292574163A82835936704F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3A5A26FF5F120F84E4E5E3C;
+			remoteInfo = Makeet;
+		};
+		8A8BA15E87F8FE6FC0CBC0C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6292574163A82835936704F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 248A1795BCE348E6C77691C2;
+			remoteInfo = MakeetWidget;
+		};
+		C091AE846E11BB0C9CC780AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6292574163A82835936704F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3A5A26FF5F120F84E4E5E3C;
+			remoteInfo = Makeet;
+		};
+		F9F4C6C43CD745F99B4550F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6292574163A82835936704F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF2F750A90A4CC610A04C522;
+			remoteInfo = MakeetMacWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		37B34D6DD7CF86F5516A24C8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4422F67AAD6F1B59756C0DFC /* MakeetWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF64B63F3B984D8D3020AD08 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				154F9511C7BB2AD568D3DF65 /* MakeetMacWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MakeetMacWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEngine.swift; sourceTree = "<group>"; };
+		27EAF38905E863D2D6ED17D8 /* MakeetCalendarTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MakeetCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		38656D5077BD3D7F72E7A82D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		4F28922DF689E430A56BA629 /* MakeetMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakeetMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		558A646774440548F9D07CAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5B77910AB9FF3C2B3D2A036A /* Makeet.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Makeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D19613A3934E9695BEBD056 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = MakeetWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AC40D62AA1B02A6298DB7A7 /* NotificationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServiceTests.swift; sourceTree = "<group>"; };
+		709F99091FAC8F0BFF8B9E17 /* MakeetUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MakeetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7172A1ED536485A0658060A7 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		72C1FE5B4CD4748D63459CFD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8C872F78FF7A870B27ED9D86 /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
+		9B8797C3234E26FD735807DC /* MakeetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetUITests.swift; sourceTree = "<group>"; };
+		A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetWidget.swift; sourceTree = "<group>"; };
+		A4FC9984242CC6634D72E864 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		AC88E138CB5413197569EB2B /* MakeetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetApp.swift; sourceTree = "<group>"; };
+		AE86BE058455F79D120E8E84 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
+		B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEngine.swift; sourceTree = "<group>"; };
+		CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E6018989EDED05E750152A82 /* CalendarServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarServiceTests.swift; sourceTree = "<group>"; };
+		F1BD5A21DD54C084FC1612C0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		128B818EF46ACCD92AD9D812 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */,
+				F1BD5A21DD54C084FC1612C0 /* Models.swift */,
+				38656D5077BD3D7F72E7A82D /* Theme.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		273D8BC95A96E1CF0E80B312 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		5362A864D9763F2F0B8E800B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B77910AB9FF3C2B3D2A036A /* Makeet.app */,
+				27EAF38905E863D2D6ED17D8 /* MakeetCalendarTests.xctest */,
+				4F28922DF689E430A56BA629 /* MakeetMac.app */,
+				1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */,
+				709F99091FAC8F0BFF8B9E17 /* MakeetUITests.xctest */,
+				6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		57734A50CA4881591EC45915 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AE86BE058455F79D120E8E84 /* AddHabitView.swift */,
+				558A646774440548F9D07CAB /* Assets.xcassets */,
+				7172A1ED536485A0658060A7 /* CalendarService.swift */,
+				AC88E138CB5413197569EB2B /* MakeetApp.swift */,
+				72C1FE5B4CD4748D63459CFD /* NotificationService.swift */,
+				8C872F78FF7A870B27ED9D86 /* PlannerView.swift */,
+				5D19613A3934E9695BEBD056 /* TodayView.swift */,
+				A4FC9984242CC6634D72E864 /* TrendsView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7C79A0F45004B84E4054229B /* CalendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				E6018989EDED05E750152A82 /* CalendarServiceTests.swift */,
+				6AC40D62AA1B02A6298DB7A7 /* NotificationServiceTests.swift */,
+			);
+			path = CalendarTests;
+			sourceTree = "<group>";
+		};
+		90546B561B6A18C14E11B2AD /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				9B8797C3234E26FD735807DC /* MakeetUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		AFCB38E9DF5FC660B5B4FD53 = {
+			isa = PBXGroup;
+			children = (
+				57734A50CA4881591EC45915 /* App */,
+				7C79A0F45004B84E4054229B /* CalendarTests */,
+				DBD74CFBD7B7617736942C24 /* Core */,
+				128B818EF46ACCD92AD9D812 /* Shared */,
+				90546B561B6A18C14E11B2AD /* UITests */,
+				273D8BC95A96E1CF0E80B312 /* Widget */,
+				5362A864D9763F2F0B8E800B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DBD74CFBD7B7617736942C24 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */,
+				B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		248A1795BCE348E6C77691C2 /* MakeetWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 474A19CA00BB7CB7A2A6524D /* Build configuration list for PBXNativeTarget "MakeetWidget" */;
+			buildPhases = (
+				69BA9CA2927583F6A563469E /* Sources */,
+				7B71BE0696C385138D788A4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MakeetWidget;
+			packageProductDependencies = (
+			);
+			productName = MakeetWidget;
+			productReference = 6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		958C23D2857D484945E081D5 /* MakeetMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 815AF3A61FE751BA831E20BE /* Build configuration list for PBXNativeTarget "MakeetMac" */;
+			buildPhases = (
+				A4DA4094C32789E63BBE58F2 /* Sources */,
+				D34B049489DBDA5DF6639524 /* Resources */,
+				EF64B63F3B984D8D3020AD08 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79AD650A3B57207F1366572A /* PBXTargetDependency */,
+			);
+			name = MakeetMac;
+			packageProductDependencies = (
+			);
+			productName = MakeetMac;
+			productReference = 4F28922DF689E430A56BA629 /* MakeetMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D1B9527DCBD5ED3A9949DDEE /* MakeetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E95284F3DC89978AE4BB8D0 /* Build configuration list for PBXNativeTarget "MakeetUITests" */;
+			buildPhases = (
+				5ED135CDE8E9314EDB41767C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				76D8394B55AB290961C24678 /* PBXTargetDependency */,
+			);
+			name = MakeetUITests;
+			packageProductDependencies = (
+			);
+			productName = MakeetUITests;
+			productReference = 709F99091FAC8F0BFF8B9E17 /* MakeetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E3A5A26FF5F120F84E4E5E3C /* Makeet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A82ED7F89AC5C6EBC067BFC8 /* Build configuration list for PBXNativeTarget "Makeet" */;
+			buildPhases = (
+				0DA3D1F5F55B3F8E40FB4FCD /* Sources */,
+				1F2648F4D956367DE38ED9F7 /* Resources */,
+				37B34D6DD7CF86F5516A24C8 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F0691CA48DCFC515EF9602C2 /* PBXTargetDependency */,
+			);
+			name = Makeet;
+			packageProductDependencies = (
+			);
+			productName = Makeet;
+			productReference = 5B77910AB9FF3C2B3D2A036A /* Makeet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F36909E2C2AFF6CB7EC86C9C /* MakeetCalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E50F4E550819BBBF3FE4B74D /* Build configuration list for PBXNativeTarget "MakeetCalendarTests" */;
+			buildPhases = (
+				66DAD6CA7FA27A0A219A8F8A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D6A9335D342338E0C1B6D03D /* PBXTargetDependency */,
+			);
+			name = MakeetCalendarTests;
+			packageProductDependencies = (
+			);
+			productName = MakeetCalendarTests;
+			productReference = 27EAF38905E863D2D6ED17D8 /* MakeetCalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FF2F750A90A4CC610A04C522 /* MakeetMacWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54594D47B155B525BA8A245F /* Build configuration list for PBXNativeTarget "MakeetMacWidget" */;
+			buildPhases = (
+				7F381709278FC71AB7F77172 /* Sources */,
+				E0372FBA08990738160E59BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MakeetMacWidget;
+			packageProductDependencies = (
+			);
+			productName = MakeetMacWidget;
+			productReference = 1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6292574163A82835936704F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					248A1795BCE348E6C77691C2 = {
+						ProvisioningStyle = Automatic;
+					};
+					958C23D2857D484945E081D5 = {
+						ProvisioningStyle = Automatic;
+					};
+					D1B9527DCBD5ED3A9949DDEE = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = E3A5A26FF5F120F84E4E5E3C;
+					};
+					E3A5A26FF5F120F84E4E5E3C = {
+						ProvisioningStyle = Automatic;
+					};
+					F36909E2C2AFF6CB7EC86C9C = {
+						ProvisioningStyle = Automatic;
+					};
+					FF2F750A90A4CC610A04C522 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 69093538E8720A06977C959F /* Build configuration list for PBXProject "Makeet" */;
+			developmentRegion = it;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				it,
+			);
+			mainGroup = AFCB38E9DF5FC660B5B4FD53;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5362A864D9763F2F0B8E800B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E3A5A26FF5F120F84E4E5E3C /* Makeet */,
+				F36909E2C2AFF6CB7EC86C9C /* MakeetCalendarTests */,
+				958C23D2857D484945E081D5 /* MakeetMac */,
+				FF2F750A90A4CC610A04C522 /* MakeetMacWidget */,
+				D1B9527DCBD5ED3A9949DDEE /* MakeetUITests */,
+				248A1795BCE348E6C77691C2 /* MakeetWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F2648F4D956367DE38ED9F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F388D421AF6A67E5536124E0 /* Assets.xcassets in Resources */,
+				9CE293B73B2B6D98E014B79A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B71BE0696C385138D788A4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BD66E489931C3803874CBA6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D34B049489DBDA5DF6639524 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB66B1B92B85ABCE75654B1 /* Assets.xcassets in Resources */,
+				83D54E428915496D6072D5F2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0372FBA08990738160E59BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C47E134F5207238BA1DB834 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0DA3D1F5F55B3F8E40FB4FCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A064D9F88E2E1F67952A3A4 /* AddHabitView.swift in Sources */,
+				949AEF9FFE3520FA77E66FF6 /* CalendarService.swift in Sources */,
+				AD6F78C819739304F88D10BE /* HabitEngine.swift in Sources */,
+				C1E8A2E3FFD77DF86C9D2308 /* MakeetApp.swift in Sources */,
+				B1D9CC7ADED5DE670F23EA9E /* Models.swift in Sources */,
+				8ED934EE2B4E4DBAC97F45EC /* NotificationService.swift in Sources */,
+				A64933F55DA21C52051EEA7E /* PlannerView.swift in Sources */,
+				745656F6F7D42075CA28EBAA /* ScheduleEngine.swift in Sources */,
+				1EBF1B2B807CEC44BC386E40 /* Theme.swift in Sources */,
+				A38C92304E74DAD11FBDEEFD /* TodayView.swift in Sources */,
+				1E482DB553A8F4F93BE8B738 /* TrendsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ED135CDE8E9314EDB41767C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71814DC5E846CBCCFB0C2008 /* MakeetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66DAD6CA7FA27A0A219A8F8A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFE440E790B456ED00710B65 /* CalendarServiceTests.swift in Sources */,
+				6F7FC3F089A3D506A3F9A328 /* NotificationServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69BA9CA2927583F6A563469E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC286D1AFCBA1811C23E1DEE /* HabitEngine.swift in Sources */,
+				C2839F8A75A3E9F37772C178 /* MakeetWidget.swift in Sources */,
+				B35E9123676DBB2E7D4398D4 /* Models.swift in Sources */,
+				6CD9EDCC8C15C72F7C140CC1 /* ScheduleEngine.swift in Sources */,
+				CC221462B1773B2CB69D776F /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F381709278FC71AB7F77172 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32647B824BE6D8D4A05C619D /* HabitEngine.swift in Sources */,
+				21AFC0ED02E6039533B2666B /* MakeetWidget.swift in Sources */,
+				19B5855F05E67B6CC15A3324 /* Models.swift in Sources */,
+				6DCCD27ED078E4DBDD5D0209 /* ScheduleEngine.swift in Sources */,
+				710101C5DA9D2853AC81A703 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4DA4094C32789E63BBE58F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A40F60A674C09C16A6F4326 /* AddHabitView.swift in Sources */,
+				7C57FCB7D3CA755E833C13D8 /* CalendarService.swift in Sources */,
+				3B3F7690E0F179530D46D3AA /* HabitEngine.swift in Sources */,
+				7079A3E6E46DC1B658482C50 /* MakeetApp.swift in Sources */,
+				0FFBD930394A500771AF5D0F /* Models.swift in Sources */,
+				EAFE12CD98745B0A1DE5D346 /* NotificationService.swift in Sources */,
+				1616B8A0CDEED2B989E4127E /* PlannerView.swift in Sources */,
+				17C3BBB04EB1D09145D7CAD8 /* ScheduleEngine.swift in Sources */,
+				67F39417114D21C6059641DB /* Theme.swift in Sources */,
+				CAAE015118968EC4A6F27D1C /* TodayView.swift in Sources */,
+				6E83CA73AD3980850EA7B52A /* TrendsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		76D8394B55AB290961C24678 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E3A5A26FF5F120F84E4E5E3C /* Makeet */;
+			targetProxy = C091AE846E11BB0C9CC780AB /* PBXContainerItemProxy */;
+		};
+		79AD650A3B57207F1366572A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF2F750A90A4CC610A04C522 /* MakeetMacWidget */;
+			targetProxy = F9F4C6C43CD745F99B4550F9 /* PBXContainerItemProxy */;
+		};
+		D6A9335D342338E0C1B6D03D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E3A5A26FF5F120F84E4E5E3C /* Makeet */;
+			targetProxy = 429EF8DB523EAD4DD8C8818E /* PBXContainerItemProxy */;
+		};
+		F0691CA48DCFC515EF9602C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 248A1795BCE348E6C77691C2 /* MakeetWidget */;
+			targetProxy = 8A8BA15E87F8FE6FC0CBC0C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		47A60F2EF0CF2D84C1F27CFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/macOS.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = "Config/macOS-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.mac;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		54F1BF3F371E86CCF5962454 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Config/iOS-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		59087CD01ECB704AF0ACB92E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Makeet;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Makeet usa i calendari scelti per proporti orari liberi e aggiungere solo i blocchi che confermi.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MAKEET_APNS_ENVIRONMENT = development;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		77765AD3E6BF8D75F6D22D33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/macOS.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = "Config/macOS-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.mac;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		798D48F91182ED55C77CDB47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Makeet;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Makeet usa i calendari scelti per proporti orari liberi e aggiungere solo i blocchi che confermi.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MAKEET_APNS_ENVIRONMENT = production;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		7CC6801FFC38622D542DA8DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Makeet;
+			};
+			name = Debug;
+		};
+		7D52C5167238A83F57F8788C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Config/iOS-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A7D8EBFCD1EC52EBB0521ADE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.calendartests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Makeet.app/Makeet";
+			};
+			name = Release;
+		};
+		BA682FE3F8363CF17B83553A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Config/iOS-Widget.entitlements";
+				INFOPLIST_FILE = "Config/iOS-Widget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C755F08C73A82E2B8E4EE790 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Makeet;
+			};
+			name = Release;
+		};
+		C8F50DC95B2532A747563BD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Config/iOS-Widget.entitlements";
+				INFOPLIST_FILE = "Config/iOS-Widget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E87CF92BA8DF6940E8191E13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.calendartests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Makeet.app/Makeet";
+			};
+			name = Debug;
+		};
+		F654EF570ADE4A606C17F9E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Config/macOS-Widget.entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = "Config/macOS-Widget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.mac.widget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F7C1FCB9C436A4536906BD78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Config/macOS-Widget.entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				INFOPLIST_FILE = "Config/macOS-Widget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.mac.widget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0E95284F3DC89978AE4BB8D0 /* Build configuration list for PBXNativeTarget "MakeetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CC6801FFC38622D542DA8DB /* Debug */,
+				C755F08C73A82E2B8E4EE790 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		474A19CA00BB7CB7A2A6524D /* Build configuration list for PBXNativeTarget "MakeetWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8F50DC95B2532A747563BD5 /* Debug */,
+				BA682FE3F8363CF17B83553A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		54594D47B155B525BA8A245F /* Build configuration list for PBXNativeTarget "MakeetMacWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F654EF570ADE4A606C17F9E4 /* Debug */,
+				F7C1FCB9C436A4536906BD78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		69093538E8720A06977C959F /* Build configuration list for PBXProject "Makeet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59087CD01ECB704AF0ACB92E /* Debug */,
+				798D48F91182ED55C77CDB47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		815AF3A61FE751BA831E20BE /* Build configuration list for PBXNativeTarget "MakeetMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47A60F2EF0CF2D84C1F27CFA /* Debug */,
+				77765AD3E6BF8D75F6D22D33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A82ED7F89AC5C6EBC067BFC8 /* Build configuration list for PBXNativeTarget "Makeet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54F1BF3F371E86CCF5962454 /* Debug */,
+				7D52C5167238A83F57F8788C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E50F4E550819BBBF3FE4B74D /* Build configuration list for PBXNativeTarget "MakeetCalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E87CF92BA8DF6940E8191E13 /* Debug */,
+				A7D8EBFCD1EC52EBB0521ADE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6292574163A82835936704F2 /* Project object */;
+}

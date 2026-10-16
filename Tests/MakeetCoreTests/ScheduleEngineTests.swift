@@ -1,5 +1,5 @@
 import XCTest
-@testable import AvviCore
+@testable import MakeetCore
 
 final class ScheduleEngineTests: XCTestCase {
     private func date(_ value: String) -> Date { ISO8601DateFormatter().date(from: value)! }

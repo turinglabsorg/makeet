@@ -1,0 +1,55 @@
+package main
+
+import (
+	"context"
+	"log/slog"
+	"net/http"
+	"os"
+	"os/signal"
+	"strings"
+	"syscall"
+	"time"
+
+	"github.com/turinglabsorg/makeet/backend/internal/api"
+	"github.com/turinglabsorg/makeet/backend/internal/identity"
+	"github.com/turinglabsorg/makeet/backend/internal/store"
+)
+
+func env(key, fallback string) string {
+	if value := os.Getenv(key); value != "" {
+		return value
+	}
+	return fallback
+}
+func main() {
+	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGTERM, os.Interrupt)
+	defer stop()
+	db, err := store.Open(env("MAKEET_DATABASE", "./data/makeet.sqlite"))
+	if err != nil {
+		slog.Error("cannot open database")
+		os.Exit(1)
+	}
+	defer db.Close()
+	providers := map[string]identity.Verifier{}
+	for _, p := range []struct{ name, issuer, keys, env string }{
+		{"apple", "https://appleid.apple.com", "https://appleid.apple.com/auth/keys", "MAKEET_APPLE_CLIENT_IDS"},
+		{"google", "https://accounts.google.com", "https://www.googleapis.com/oauth2/v3/certs", "MAKEET_GOOGLE_CLIENT_IDS"},
+	} {
+		if ids := os.Getenv(p.env); ids != "" {
+			providers[p.name] = identity.New(ctx, p.issuer, p.keys, strings.Split(ids, ","))
+		}
+	}
+	handler := api.New(db, api.Config{Providers: providers}).Handler()
+	server := &http.Server{Addr: env("MAKEET_LISTEN", "127.0.0.1:8086"), Handler: handler, ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 << 10}
+	go func() {
+		<-ctx.Done()
+		shutdown, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		server.Shutdown(shutdown)
+	}()
+	slog.Info("makeet starting", "address", server.Addr, "providers", len(providers))
+	if err = server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+		slog.Error("server stopped")
+		os.Exit(1)
+	}
+}

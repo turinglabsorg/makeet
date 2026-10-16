@@ -6,11 +6,11 @@ Help people build sustainable daily habits with a clear visual history and a sch
 
 ## Public audience and accounts
 
-Avvi is intended to be a publicly available product. Anyone must be able to register through self-service sign-up without an invitation or an administrator-created account. Each account has its own private habits, activity history, statistics, calendar connections, and assistant context.
+Makeet is intended to be a publicly available product. Anyone must be able to register through self-service sign-up without an invitation or an administrator-created account. Each account has its own private habits, activity history, statistics, calendar connections, and assistant context.
 
-The current native foundation stores data locally and has no registration service. Public sign-up, account management, and account-based synchronization are the next implementation requirements; they are not live features yet.
+The native foundation currently stores data locally. The Go account/sync service has integration coverage, but provider provisioning, native account sessions, and cross-device synchronization are not live features yet.
 
-If server infrastructure is required, the owner's Mac Pro is the preferred host. The Avvi service and its persistent data must remain isolated from other projects on that machine.
+The custom Go backend is required and will run on the owner's Mac Pro. The Makeet service and its persistent data must remain isolated from other projects on that machine.
 
 ## A richer completion model
 
@@ -32,11 +32,11 @@ The initial engine proposes one session for each incomplete, unplanned habit. Se
 
 After at least five historical registrations, the preferred hour is replaced by the most frequently logged hour during the previous 28 days. Ties select the earlier hour. Every proposal explains whether it used preference or recorded history. A session is a suggested opportunity, not an assertion that it will satisfy the remaining daily quantity.
 
-Calendar access is optional. Without it, proposals explicitly say availability is unknown. With it, the user selects considered calendars and a write destination. Every event requires review and confirmation. Busy state and future time are checked again immediately before saving. Existing Avvi blocks suppress duplicate same-day proposals. There is no external language model in this version.
+Calendar access is optional. Without it, proposals explicitly say availability is unknown. With it, the user selects considered calendars and a write destination. Every event requires review and confirmation. Busy state and future time are checked again immediately before saving. Existing Makeet blocks suppress duplicate same-day proposals. There is no external language model in this version.
 
 ## Next product milestones
 
-1. Implement open self-service registration, login/logout, account management, and per-account data isolation. Use the Mac Pro for the backend when needed.
+1. Implement open self-service registration, login/logout, account management, and per-account data isolation. Use the custom Go backend on the Mac Pro.
 2. Implement account-based synchronization and safe local-cache migration across iPhone, Mac, and widgets. Decide the role of the prepared CloudKit path before enabling another sync authority.
 3. Validate widget increments against the foreground app and after relaunch on each platform.
 4. Complete calendar lifecycle reconciliation: move, cancel, recurrence, external edits, stable mappings, provider failures, and time-zone travel policies.

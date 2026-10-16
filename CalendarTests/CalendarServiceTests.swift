@@ -1,6 +1,6 @@
 import XCTest
 import EventKit
-@testable import Avvi
+@testable import Makeet
 
 final class CalendarServiceTests: XCTestCase {
     @MainActor func testConfirmedBlockIsIdempotentAndConflictRecheckPreventsOverlap() async throws {
@@ -14,7 +14,7 @@ final class CalendarServiceTests: XCTestCase {
         let sources = store.sources
         let source = try XCTUnwrap(sources.first(where: { $0.sourceType == .local }) ?? store.defaultCalendarForNewEvents?.source)
         let isolatedCalendar = EKCalendar(for: .event, eventStore: store)
-        isolatedCalendar.title = "Avvi Integration Test \(UUID().uuidString)"
+        isolatedCalendar.title = "Makeet Integration Test \(UUID().uuidString)"
         isolatedCalendar.source = source
         try store.saveCalendar(isolatedCalendar, commit: true)
         let defaults = UserDefaults.standard
@@ -42,7 +42,7 @@ final class CalendarServiceTests: XCTestCase {
         let events = store.events(matching: predicate)
         XCTAssertEqual(events.count, 1)
         XCTAssertEqual(events.first?.title, "Integration walk")
-        XCTAssertEqual(events.first?.url?.scheme, "avvi")
+        XCTAssertEqual(events.first?.url?.scheme, "makeet")
         XCTAssertTrue(service.plannedHabitIDs.contains(habit.id))
         let anotherHabit = Habit(name: "Conflicting read", symbol: "book", colorIndex: 1,
                                 target: 20, step: 5, unit: "pages")

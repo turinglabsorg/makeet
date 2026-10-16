@@ -9,3 +9,9 @@ xcuserdata/
 *.mobileprovision
 artifacts/
 PLAN.md
+
+backend/data/
+backend/bin/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

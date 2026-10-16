@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C6F126F403B8F0CAC1A7C088"
-               BuildableName = "AvviMac.app"
-               BlueprintName = "AvviMac"
-               ReferencedContainer = "container:Avvi.xcodeproj">
+               BlueprintIdentifier = "958C23D2857D484945E081D5"
+               BuildableName = "MakeetMac.app"
+               BlueprintName = "MakeetMac"
+               ReferencedContainer = "container:Makeet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C6F126F403B8F0CAC1A7C088"
-            BuildableName = "AvviMac.app"
-            BlueprintName = "AvviMac"
-            ReferencedContainer = "container:Avvi.xcodeproj">
+            BlueprintIdentifier = "958C23D2857D484945E081D5"
+            BuildableName = "MakeetMac.app"
+            BlueprintName = "MakeetMac"
+            ReferencedContainer = "container:Makeet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C6F126F403B8F0CAC1A7C088"
-            BuildableName = "AvviMac.app"
-            BlueprintName = "AvviMac"
-            ReferencedContainer = "container:Avvi.xcodeproj">
+            BlueprintIdentifier = "958C23D2857D484945E081D5"
+            BuildableName = "MakeetMac.app"
+            BlueprintName = "MakeetMac"
+            ReferencedContainer = "container:Makeet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C6F126F403B8F0CAC1A7C088"
-            BuildableName = "AvviMac.app"
-            BlueprintName = "AvviMac"
-            ReferencedContainer = "container:Avvi.xcodeproj">
+            BlueprintIdentifier = "958C23D2857D484945E081D5"
+            BuildableName = "MakeetMac.app"
+            BlueprintName = "MakeetMac"
+            ReferencedContainer = "container:Makeet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

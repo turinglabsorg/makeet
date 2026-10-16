@@ -20,7 +20,7 @@ A calm native tool for personal momentum. Warm surfaces, forest ink, precise col
 - Today: date, native heading, daily progress, quantitative habit cards, and 14-day intensity marks.
 - Trends: per-habit metrics, a daily quantity chart, an hourly distribution, and a 12-week intensity grid. Denominators exclude future and pre-creation days.
 - Planner: explicit calendar source state, explainable free-slot proposals, and a review step before writing an event.
-- Connections: actual calendar access and honest CloudKit/Google integration states.
+- Connections: actual calendar access, explicit notification opt-in, and honest service integration states. Keep OS notification permission, APNs device registration, and server delivery visibly distinct.
 
 ## Interaction
 

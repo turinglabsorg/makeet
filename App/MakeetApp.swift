@@ -1,7 +1,12 @@
 import SwiftUI
 import SwiftData
 
-@main struct AvviApp: App {
+@main struct MakeetApp: App {
+    #if os(iOS)
+    @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
+    #else
+    @NSApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
+    #endif
     private let container: ModelContainer?
     private let startupError: String?
 
@@ -20,6 +25,7 @@ import SwiftData
         WindowGroup {
             if let container {
                 RootView().modelContainer(container).tint(Palette.accent)
+                    .environment(NotificationService.shared)
             } else {
                 ContentUnavailableView("Archivio non disponibile", systemImage: "externaldrive.badge.exclamationmark",
                                        description: Text(startupError ?? "Riapri l’app per riprovare."))
@@ -32,6 +38,7 @@ import SwiftData
 }
 
 struct RootView: View {
+    @Environment(NotificationService.self) private var notifications
     @Environment(\.modelContext) private var context
     @Environment(\.scenePhase) private var phase
     @State private var calendar = CalendarService()
@@ -50,13 +57,25 @@ struct RootView: View {
         }
         .foregroundStyle(Palette.ink)
         .task {
+            if !ProcessInfo.processInfo.arguments.contains("--ui-testing") { await notifications.refresh() }
             if ProcessInfo.processInfo.arguments.contains("--demo"),
                !demoMode || ProcessInfo.processInfo.arguments.contains("--ui-testing") {
                 do { try DemoData.insert(in: context); demoMode = true }
                 catch { self.error = error.localizedDescription }
             }
         }
-        .onChange(of: phase) { _, value in if value == .active { calendar.refresh() } }
+        .onChange(of: phase) { _, value in
+            if value == .active {
+                calendar.refresh()
+                if !ProcessInfo.processInfo.arguments.contains("--ui-testing") { Task { await notifications.refresh() } }
+            }
+        }
+        .onChange(of: notifications.destination, initial: true) { _, value in
+            if let value {
+                selection = value == "today" ? 0 : 2
+                notifications.destination = nil
+            }
+        }
         .onOpenURL { url in
             if url.host == "habit" { selection = 0 }
             if url.host == "plan" { selection = 2 }

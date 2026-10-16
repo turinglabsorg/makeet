@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7A84764FA430E0BB7DF69D24"
-               BuildableName = "Avvi.app"
-               BlueprintName = "Avvi"
-               ReferencedContainer = "container:Avvi.xcodeproj">
+               BlueprintIdentifier = "E3A5A26FF5F120F84E4E5E3C"
+               BuildableName = "Makeet.app"
+               BlueprintName = "Makeet"
+               ReferencedContainer = "container:Makeet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,15 +27,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldUseLaunchSchemeArgsEnv = "NO"
       onlyGenerateCoverageForSpecifiedTargets = "NO">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A84764FA430E0BB7DF69D24"
-            BuildableName = "Avvi.app"
-            BlueprintName = "Avvi"
-            ReferencedContainer = "container:Avvi.xcodeproj">
+            BlueprintIdentifier = "E3A5A26FF5F120F84E4E5E3C"
+            BuildableName = "Makeet.app"
+            BlueprintName = "Makeet"
+            ReferencedContainer = "container:Makeet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -44,10 +44,10 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "947608B68BD5B2D2AA1E97D8"
-               BuildableName = "AvviUITests.xctest"
-               BlueprintName = "AvviUITests"
-               ReferencedContainer = "container:Avvi.xcodeproj">
+               BlueprintIdentifier = "D1B9527DCBD5ED3A9949DDEE"
+               BuildableName = "MakeetUITests.xctest"
+               BlueprintName = "MakeetUITests"
+               ReferencedContainer = "container:Makeet.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -55,14 +55,18 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DAEA87A8968A5312B1B64E90"
-               BuildableName = "AvviCalendarTests.xctest"
-               BlueprintName = "AvviCalendarTests"
-               ReferencedContainer = "container:Avvi.xcodeproj">
+               BlueprintIdentifier = "F36909E2C2AFF6CB7EC86C9C"
+               BuildableName = "MakeetCalendarTests.xctest"
+               BlueprintName = "MakeetCalendarTests"
+               ReferencedContainer = "container:Makeet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <CommandLineArguments>
+         <CommandLineArgument
+            argument = "--ui-testing"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
    </TestAction>
    <LaunchAction
@@ -79,10 +83,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A84764FA430E0BB7DF69D24"
-            BuildableName = "Avvi.app"
-            BlueprintName = "Avvi"
-            ReferencedContainer = "container:Avvi.xcodeproj">
+            BlueprintIdentifier = "E3A5A26FF5F120F84E4E5E3C"
+            BuildableName = "Makeet.app"
+            BlueprintName = "Makeet"
+            ReferencedContainer = "container:Makeet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -98,10 +102,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A84764FA430E0BB7DF69D24"
-            BuildableName = "Avvi.app"
-            BlueprintName = "Avvi"
-            ReferencedContainer = "container:Avvi.xcodeproj">
+            BlueprintIdentifier = "E3A5A26FF5F120F84E4E5E3C"
+            BuildableName = "Makeet.app"
+            BlueprintName = "Makeet"
+            ReferencedContainer = "container:Makeet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

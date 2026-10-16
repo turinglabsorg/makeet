@@ -1,4 +1,4 @@
-name: Verify Apple foundation
+name: Verify Makeet
 on:
   push:
   pull_request:
@@ -12,6 +12,21 @@ jobs:
       - name: Domain and persistence tests
         run: swift test --disable-sandbox
       - name: Build iOS app and widget
-        run: xcodebuild -project Avvi.xcodeproj -scheme Avvi -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build -quiet
+        run: xcodebuild -project Makeet.xcodeproj -scheme Makeet -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build -quiet
       - name: Build macOS app and widget
-        run: xcodebuild -project Avvi.xcodeproj -scheme AvviMac -destination 'platform=macOS,arch=arm64' CODE_SIGNING_ALLOWED=NO build -quiet
+        run: xcodebuild -project Makeet.xcodeproj -scheme MakeetMac -destination 'platform=macOS,arch=arm64' CODE_SIGNING_ALLOWED=NO build -quiet
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+          cache-dependency-path: backend/go.sum
+      - name: Signed identity and sync integration tests
+        working-directory: backend
+        run: go test -race ./...
+      - name: Vet backend
+        working-directory: backend
+        run: go vet ./...

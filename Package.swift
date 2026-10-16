@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "AvviCore",
+    name: "MakeetCore",
     platforms: [.macOS(.v14), .iOS(.v17)],
-    products: [.library(name: "AvviCore", targets: ["AvviCore"])],
+    products: [.library(name: "MakeetCore", targets: ["MakeetCore"])],
     targets: [
-        .target(name: "AvviCore", path: "Core"),
-        .target(name: "AvviPersistence", dependencies: ["AvviCore"], path: "Shared", exclude: ["Assets.xcassets", "Theme.swift"]),
-        .testTarget(name: "AvviCoreTests", dependencies: ["AvviCore", "AvviPersistence"], path: "Tests/AvviCoreTests")
+        .target(name: "MakeetCore", path: "Core"),
+        .target(name: "MakeetPersistence", dependencies: ["MakeetCore"], path: "Shared", exclude: ["Assets.xcassets", "Theme.swift"]),
+        .testTarget(name: "MakeetCoreTests", dependencies: ["MakeetCore", "MakeetPersistence"], path: "Tests/MakeetCoreTests")
     ]
 )

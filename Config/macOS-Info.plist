@@ -20,10 +20,10 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>org.turinglabs.avvi</string>
+			<string>org.turinglabs.makeet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>avvi</string>
+				<string>makeet</string>
 			</array>
 		</dict>
 	</array>

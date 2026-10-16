@@ -42,7 +42,7 @@ struct PlannerView: View {
                 if !calendar.plannedHabitIDs.isEmpty {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Già nel tuo calendario").font(.headline)
-                        ForEach(calendar.events.filter { $0.url?.scheme == "avvi" && $0.url?.host == "plan" }, id: \.calendarItemIdentifier) { event in
+                        ForEach(calendar.events.filter { $0.url?.scheme == "makeet" && $0.url?.host == "plan" }, id: \.calendarItemIdentifier) { event in
                             HStack {
                                 Text(event.startDate, style: .time).monospacedDigit()
                                 Text(event.title ?? "Abitudine")
@@ -161,6 +161,7 @@ struct ConnectionsView: View {
     var body: some View {
         NavigationStack {
             Form {
+                NotificationSettingsSection()
                 Section {
                     LabeledContent("Calendari di sistema", value: calendar.authorized ? "Collegati" : "Non collegati")
                     if !calendar.authorized {

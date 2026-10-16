@@ -2,7 +2,7 @@
 
 ## Public account architecture requirements
 
-The target product supports open self-service registration and authenticated account-based synchronization. The current implementation has no account backend, public registration endpoint, or deployed server. When server infrastructure is required, use the owner's Mac Pro with an Avvi-specific service, database, and persistent storage.
+The target product supports open self-service registration and authenticated account-based synchronization. `backend/` implements the Go account and sync APIs with dedicated SQLite persistence and signed-identity HTTP integration tests. The native app is not connected yet and no server is deployed. Use the owner's Mac Pro with a Makeet-specific service, database, and persistent storage. Authentication uses Apple and Google only; Supabase and password registration are excluded.
 
 The shared account service should be the authoritative synchronization boundary for the public product. SwiftData remains the on-device store used by the app and its widget extension. Before enabling CloudKit alongside a backend, define one authority and an explicit adapter or migration strategy rather than allowing two independent writers to synchronize the same records differently.
 
@@ -10,7 +10,7 @@ Every remotely stored habit, activity, calendar connection, and planned session 
 
 Account switching and logout must also isolate the local App Group store, widget snapshots, pending writes, and calendar connection state. The current account-free local archive needs an explicit one-time import decision when registration is introduced. A successful sign-in must not silently upload a different person's previous local archive.
 
-These are implementation requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing foundation.
+Account-scoped native caches, Keychain sessions, provider provisioning, Apple grant revocation, and deployment remain implementation requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing native foundation. See the [backend protocol](../backend/README.md).
 
 ## Sources of truth
 
@@ -22,7 +22,7 @@ The shared store is intentionally local by default. Independent-context persiste
 
 ## CloudKit activation
 
-Apple's supported SwiftData sync path uses CloudKit. The schema avoids unique constraints and required relationships, and all stored properties have defaults. `SharedStore` supports the private container `iCloud.org.turinglabs.avvi`, gated by the Boolean `CloudSyncEnabled` Info.plist value declared explicitly for each target in `project.yml`.
+Apple's supported SwiftData sync path uses CloudKit. The schema avoids unique constraints and required relationships, and all stored properties have defaults. `SharedStore` supports the private container `iCloud.org.turinglabs.makeet`, gated by the Boolean `CloudSyncEnabled` Info.plist value declared explicitly for each target in `project.yml`.
 
 Before enabling that value:
 
@@ -40,9 +40,9 @@ Reference: [Syncing model data across a person's devices](https://developer.appl
 
 Request full event access only after the user chooses to connect calendars. Read today's events from selected calendars, consider non-free/non-cancelled intervals occupied, observe `EKEventStoreChanged`, and refresh when the app returns to the foreground. The user independently selects a writable calendar for new blocks.
 
-Creation rechecks permission, destination writability, slot freshness, and conflicts. Each generated event includes an `avvi://plan/<habit-uuid>-<start-epoch>` marker. Before creating an identical event in the selected destination, the adapter checks for that marker. The planner suppresses additional same-day blocks for recognized Avvi events in selected calendars. This is a first idempotency boundary, not full bidirectional reconciliation.
+Creation rechecks permission, destination writability, slot freshness, and conflicts. Each generated event includes a `makeet://plan/<habit-uuid>-<start-epoch>` marker. Before creating an identical event in the selected destination, the adapter checks for that marker. The planner suppresses additional same-day blocks for recognized Makeet events in selected calendars. This is a first idempotency boundary, not full bidirectional reconciliation.
 
-Current limits: calendar selection and destination are device preferences; Avvi does not yet maintain a durable provider-independent planned-session table; deselecting or externally editing/moving marked events can affect detection. Existing events are never silently rescheduled. Direct app-to-provider calendar lifecycle sync remains a next milestone.
+Current limits: calendar selection and destination are device preferences; Makeet does not yet maintain a durable provider-independent planned-session table; deselecting or externally editing/moving marked events can affect detection. Existing events are never silently rescheduled. Direct app-to-provider calendar lifecycle sync remains a next milestone.
 
 Google calendars already configured in system Settings may be exposed through EventKit. This is different from a direct Google sign-in integration, and updates follow the system account's synchronization policy.
 
@@ -63,3 +63,13 @@ Small and medium interactive widgets are provided for both iOS and native macOS.
 Remaining device checks: install both extensions with valid App Group signing; add Home Screen and desktop widgets; increment while the app is closed; reopen and verify; cross midnight; revoke iCloud access; repeat after an offline period. Widget compilation alone does not verify these flows.
 
 Reference: [Adding interactivity to widgets and Live Activities](https://developer.apple.com/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities).
+
+## Push notifications
+
+The iOS and macOS app targets include their platform-specific APNs entitlement. Debug selects development; Release selects production. Signed provisioning profiles must match that environment. Widget extensions do not register independently for push.
+
+`NotificationService` requests alert, sound, and badge permission only from the explicit Connections action. Foreground refresh observes changes made in system Settings and registers already-authorized installations with APNs. Platform delegates receive refreshed tokens and registration failures; tokens stay in memory and are never logged. Notification taps open Today or Planner using a fixed destination allowlist.
+
+The interface distinguishes OS permission, APNs registration, and the pending server connection. A token callback does not prove backend registration or delivery. Provider keys, authenticated device-token ownership, account logout/revocation cleanup, reminder scheduling, and signed-device delivery remain open. This foundation does not automatically schedule or send notifications.
+
+References: [APNs registration](https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns), [notification permission](https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications), [scoped APNs keys](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns).

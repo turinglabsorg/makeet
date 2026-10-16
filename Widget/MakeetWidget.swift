@@ -58,7 +58,7 @@ struct ProgressProvider: TimelineProvider {
 
 struct LogHabitIntent: AppIntent {
     static var title: LocalizedStringResource = "Registra un passo"
-    static var description = IntentDescription("Aggiunge la quantità scelta all’abitudine, senza aprire Avvi.")
+    static var description = IntentDescription("Aggiunge la quantità scelta all’abitudine, senza aprire Makeet.")
     static var openAppWhenRun = false
     @Parameter(title: "Abitudine") var habitID: String
     init() {}
@@ -76,7 +76,7 @@ struct LogHabitIntent: AppIntent {
 
 enum IntentFailure: LocalizedError {
     case missingHabit
-    var errorDescription: String? { "Questa abitudine non è più disponibile. Apri Avvi per aggiornare il widget." }
+    var errorDescription: String? { "Questa abitudine non è più disponibile. Apri Makeet per aggiornare il widget." }
 }
 
 struct ProgressWidgetView: View {
@@ -85,12 +85,12 @@ struct ProgressWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("avvi").font(.system(.headline, design: .default))
+                Text("makeet").font(.system(.headline, design: .default))
                 Spacer()
                 Image(systemName: "leaf").foregroundStyle(Palette.accent)
             }
             if entry.habits.isEmpty {
-                Text(entry.unavailable ? "Apri Avvi per accedere ai tuoi dati." : "Un piccolo passo, oggi.")
+                Text(entry.unavailable ? "Apri Makeet per accedere ai tuoi dati." : "Un piccolo passo, oggi.")
                     .font(.subheadline)
                 Text(entry.unavailable ? "Archivio non disponibile" : "Crea la prima abitudine nell’app.")
                     .font(.caption).foregroundStyle(.secondary)
@@ -119,15 +119,15 @@ struct ProgressWidgetView: View {
         }
         .foregroundStyle(Palette.ink)
         .containerBackground(Palette.paper, for: .widget)
-        .widgetURL(URL(string: "avvi://habit"))
+        .widgetURL(URL(string: "makeet://habit"))
     }
 }
 
-@main struct AvviWidget: Widget {
-    let kind = "AvviProgress"
+@main struct MakeetWidget: Widget {
+    let kind = "MakeetProgress"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ProgressProvider()) { ProgressWidgetView(entry: $0) }
-            .configurationDisplayName("Un passo con Avvi")
+            .configurationDisplayName("Un passo con Makeet")
             .description("I tuoi progressi e un tocco per registrarli.")
             .supportedFamilies([.systemSmall, .systemMedium])
     }

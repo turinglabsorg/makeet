@@ -65,7 +65,7 @@ import Observation
 
     var plannedHabitIDs: Set<UUID> {
         Set(events.compactMap { event in
-            guard let url = event.url, url.scheme == "avvi", url.host == "plan" else { return nil }
+            guard let url = event.url, url.scheme == "makeet", url.host == "plan" else { return nil }
             return UUID(uuidString: String(url.lastPathComponent.prefix(36)))
         })
     }
@@ -76,7 +76,7 @@ import Observation
               let calendar = calendars.first(where: { $0.calendarIdentifier == destinationID }),
               calendar.allowsContentModifications else { throw CalendarFailure.noDestination }
         guard proposal.start > Date() else { throw CalendarFailure.expired }
-        let marker = URL(string: "avvi://plan/\(proposal.id)")!
+        let marker = URL(string: "makeet://plan/\(proposal.id)")!
         let predicate = store.predicateForEvents(withStart: proposal.start, end: proposal.end,
                                                  calendars: [calendar])
         if store.events(matching: predicate).contains(where: { $0.url == marker }) { return }

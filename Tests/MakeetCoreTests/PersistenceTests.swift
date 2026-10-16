@@ -1,6 +1,6 @@
 import XCTest
 import SwiftData
-@testable import AvviPersistence
+@testable import MakeetPersistence
 
 final class PersistenceTests: XCTestCase {
     @MainActor func testAppAndWidgetContextsSeeEveryIncrementAndUndoPersistsAfterReopen() async throws {

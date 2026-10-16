@@ -1,6 +1,6 @@
 import XCTest
 
-final class AvviUITests: XCTestCase {
+final class MakeetUITests: XCTestCase {
     @MainActor func testCreateLogTwiceAndUndoOneRegistration() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing"]
@@ -44,6 +44,8 @@ final class AvviUITests: XCTestCase {
         attach("Trends", app)
         app.tabBars.buttons["Il tuo piano"].tap()
         app.buttons["Connessioni"].tap()
+        XCTAssertTrue(app.staticTexts["notificationPermission"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.alerts.firstMatch.exists)
         XCTAssertTrue(app.staticTexts["iCloud tra dispositivi, Da attivare"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Google diretto, Da integrare"].exists)
         attach("Connections", app)

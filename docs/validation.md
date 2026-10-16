@@ -16,3 +16,17 @@ Validated on 16 October 2026 using Apple Swift 6.4, an iPhone 16 Pro Simulator r
 CloudKit is explicitly disabled in the shipped configuration. Multi-device synchronization, real Google account synchronization, physical-device permission prompts, App Store provisioning, native macOS runtime behavior, and widgets on a Home Screen or Mac desktop have not been validated. They must not be inferred from successful compilation or shared-store integration tests.
 
 The initial calendar integration creates confirmed time blocks and refreshes availability. Moving/canceling existing plans and complete bidirectional provider reconciliation remain product milestones.
+
+## Push foundation verification
+
+- Five Simulator-hosted tests cover no prompt during refresh, explicit consent, refreshed tokens, denied/revoked permission, APNs registration failure/retry, and permission-request errors.
+- The Connections UI scenario confirms the notification permission row exists and no system alert appears on opening the screen.
+- Both platform applications and widget extensions compile with APNs configuration. These unsigned builds do not establish provisioning or APNs delivery.
+- Provider credentials, authenticated device registration, scheduling, and delivery to a signed installation remain unverified.
+
+## Push foundation verification
+
+- Five Simulator-hosted tests cover no permission prompt during refresh, explicit consent, updated tokens, denied/revoked permission, APNs registration failure/retry, and permission-request errors.
+- The Connections UI scenario confirms the notification permission row exists and no system alert appears on opening the screen.
+- Both platform applications and widget extensions compile with the APNs configuration. These unsigned builds do not establish provisioning or APNs delivery.
+- Provider credentials, authenticated device registration, scheduled delivery, and notification presentation on a signed installation have not been validated.

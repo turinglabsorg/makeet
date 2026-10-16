@@ -1,7 +1,7 @@
-name: Avvi
+name: Makeet
 options:
   developmentLanguage: it
-  bundleIdPrefix: org.turinglabs.avvi
+  bundleIdPrefix: org.turinglabs.makeet
   deploymentTarget:
     iOS: '17.0'
     macOS: '14.0'
@@ -14,17 +14,22 @@ settings:
     ENABLE_USER_SCRIPT_SANDBOXING: YES
     ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     GENERATE_INFOPLIST_FILE: YES
-    INFOPLIST_KEY_CFBundleDisplayName: Avvi
-    INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription: Avvi usa i calendari scelti per proporti orari liberi e aggiungere solo i blocchi che confermi.
+    INFOPLIST_KEY_CFBundleDisplayName: Makeet
+    INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription: Makeet usa i calendari scelti per proporti orari liberi e aggiungere solo i blocchi che confermi.
     INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
+  configs:
+    Debug:
+      MAKEET_APNS_ENVIRONMENT: development
+    Release:
+      MAKEET_APNS_ENVIRONMENT: production
 targets:
-  Avvi:
+  Makeet:
     type: application
     platform: iOS
     sources: [App, Core, Shared]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.avvi
+        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet
         TARGETED_DEVICE_FAMILY: '1,2'
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
@@ -34,21 +39,23 @@ targets:
         CloudSyncEnabled: false
         UIBackgroundModes: [remote-notification]
         CFBundleURLTypes:
-          - CFBundleURLName: org.turinglabs.avvi
-            CFBundleURLSchemes: [avvi]
+          - CFBundleURLName: org.turinglabs.makeet
+            CFBundleURLSchemes: [makeet]
     entitlements:
       path: Config/iOS.entitlements
       properties:
-        com.apple.security.application-groups: [group.org.turinglabs.avvi]
+        aps-environment: $(MAKEET_APNS_ENVIRONMENT)
+        com.apple.developer.applesignin: [Default]
+        com.apple.security.application-groups: [group.org.turinglabs.makeet]
     dependencies:
-      - target: AvviWidget
-  AvviWidget:
+      - target: MakeetWidget
+  MakeetWidget:
     type: app-extension
     platform: iOS
     sources: [Widget, Core, Shared]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.avvi.widget
+        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.widget
         SKIP_INSTALL: YES
     info:
       path: Config/iOS-Widget-Info.plist
@@ -59,37 +66,40 @@ targets:
     entitlements:
       path: Config/iOS-Widget.entitlements
       properties:
-        com.apple.security.application-groups: [group.org.turinglabs.avvi]
-  AvviMac:
+        com.apple.security.application-groups: [group.org.turinglabs.makeet]
+  MakeetMac:
     type: application
     platform: macOS
     sources: [App, Core, Shared]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.avvi.mac
+        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.mac
         ENABLE_APP_SANDBOX: YES
     info:
       path: Config/macOS-Info.plist
       properties:
         CloudSyncEnabled: false
         CFBundleURLTypes:
-          - CFBundleURLName: org.turinglabs.avvi
-            CFBundleURLSchemes: [avvi]
+          - CFBundleURLName: org.turinglabs.makeet
+            CFBundleURLSchemes: [makeet]
     entitlements:
       path: Config/macOS.entitlements
       properties:
         com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+        com.apple.developer.aps-environment: $(MAKEET_APNS_ENVIRONMENT)
+        com.apple.developer.applesignin: [Default]
         com.apple.security.personal-information.calendars: true
-        com.apple.security.application-groups: [group.org.turinglabs.avvi]
+        com.apple.security.application-groups: [group.org.turinglabs.makeet]
     dependencies:
-      - target: AvviMacWidget
-  AvviMacWidget:
+      - target: MakeetMacWidget
+  MakeetMacWidget:
     type: app-extension
     platform: macOS
     sources: [Widget, Core, Shared]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.avvi.mac.widget
+        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.mac.widget
         SKIP_INSTALL: YES
         ENABLE_APP_SANDBOX: YES
     info:
@@ -102,40 +112,42 @@ targets:
       path: Config/macOS-Widget.entitlements
       properties:
         com.apple.security.app-sandbox: true
-        com.apple.security.application-groups: [group.org.turinglabs.avvi]
-  AvviCalendarTests:
+        com.apple.security.application-groups: [group.org.turinglabs.makeet]
+  MakeetCalendarTests:
     type: bundle.unit-test
     platform: iOS
     sources: [CalendarTests]
     dependencies:
-      - target: Avvi
+      - target: Makeet
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.avvi.calendartests
-        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Avvi.app/Avvi
+        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.calendartests
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Makeet.app/Makeet
         BUNDLE_LOADER: $(TEST_HOST)
-  AvviUITests:
+  MakeetUITests:
     type: bundle.ui-testing
     platform: iOS
     sources: [UITests]
     dependencies:
-      - target: Avvi
+      - target: Makeet
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.avvi.uitests
-        TEST_TARGET_NAME: Avvi
+        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.uitests
+        TEST_TARGET_NAME: Makeet
 schemes:
-  Avvi:
+  Makeet:
     test:
-      targets: [AvviUITests, AvviCalendarTests]
+      targets: [MakeetUITests, MakeetCalendarTests]
+      commandLineArguments:
+        --ui-testing: true
     build:
       targets:
-        Avvi: all
+        Makeet: all
     run:
       config: Debug
-  AvviMac:
+  MakeetMac:
     build:
       targets:
-        AvviMac: all
+        MakeetMac: all
     run:
       config: Debug

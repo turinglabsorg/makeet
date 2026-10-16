@@ -27,7 +27,7 @@ struct TodayView: View {
                     Label(now.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Locale(identifier: "it_IT"))), systemImage: "sun.max")
                         .font(.subheadline).foregroundStyle(.secondary)
                     Spacer()
-                    Text("AVVI").font(.caption.weight(.bold)).tracking(3)
+                    Text("MAKEET").font(.caption.weight(.bold)).tracking(3)
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Un po’ ogni giorno.").font(.system(.largeTitle, design: .default, weight: .semibold))

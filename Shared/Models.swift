@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 import WidgetKit
 #if SWIFT_PACKAGE
-import AvviCore
+import MakeetCore
 #endif
 
 @Model final class Habit {
@@ -50,8 +50,8 @@ import AvviCore
 }
 
 enum SharedStore {
-    static let group = "group.org.turinglabs.avvi"
-    static let cloudContainer = "iCloud.org.turinglabs.avvi"
+    static let group = "group.org.turinglabs.makeet"
+    static let cloudContainer = "iCloud.org.turinglabs.makeet"
     static var cloudEnabled: Bool { Bundle.main.object(forInfoDictionaryKey: "CloudSyncEnabled") as? Bool == true }
 
     static func makeContainer() throws -> ModelContainer {

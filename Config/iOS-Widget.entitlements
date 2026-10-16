@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.org.turinglabs.avvi</string>
+		<string>group.org.turinglabs.makeet</string>
 	</array>
 </dict>
 </plist>
