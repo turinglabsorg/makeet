@@ -39,7 +39,7 @@ This is a native SwiftUI habit tracker for iOS, with a macOS companion and Widge
 - `project.yml` is the source of truth for the checked-in Xcode project. Regenerate with `xcodegen generate` after target/configuration changes.
 - Apple targets are `Makeet`, `MakeetWidget`, `MakeetMac`, and `MakeetMacWidget`. Minimum deployment targets are iOS 17 and macOS 14. No personal signing team is stored in the project.
 - `swift test --disable-sandbox` runs domain and shared-store persistence tests. The iOS `MakeetUITests` target exercises creation, logging, undo, archive/restore, screens, and integration status.
-- `MakeetCalendarTests` runs only in Simulator with calendar permission. It creates and removes an isolated temporary calendar to verify real event creation, idempotency, and conflict rejection. Never redirect it to personal calendars or remove its physical-device guard.
+- `MakeetCalendarTests` contains notification state tests and a Simulator-only EventKit integration test. The EventKit test requires calendar permission, creates/removes its own temporary calendar, and verifies creation, idempotency, and conflict rejection. Never redirect it to personal calendars or remove its physical-device guard. The test scheme passes `--ui-testing` so its app host uses an in-memory archive.
 - See `docs/validation.md` for tested behavior and unresolved device/cloud boundaries. Update those claims when integration coverage changes.
 
 ## Naming and public information
@@ -47,3 +47,12 @@ This is a native SwiftUI habit tracker for iOS, with a macOS companion and Widge
 - The owner selected Makeet as the definitive product name on 2026-10-16. Use `org.turinglabs.makeet` identifiers, the `makeet` URL scheme, and public repository `turinglabsorg/makeet`. Purchase of `makeet.app` is verified. Its nameservers were migrated to Cloudflare; site/API hosting and email routing are still pending.
 - Public-facing operator branding is Meaningtech. Do not put the owner’s personal name, residential address, personal email/PEC, tax code, or invoicing identifiers into source, website content, screenshots, or public configuration. Legal pages remain unpublished until adequate public operator details are confirmed.
 - `backend/` uses Go, standard HTTP, OIDC verification, and a dedicated SQLite database. Its authentication/session and sync integration tests use generated signed fixtures over actual HTTP and a temporary database. Never add a test-token login bypass to production.
+
+## Backend protocol
+
+- `backend/cmd/makeet` binds `127.0.0.1:8086` by default. Configuration uses `MAKEET_LISTEN`, `MAKEET_DATABASE`, `MAKEET_APPLE_CLIENT_IDS`, and `MAKEET_GOOGLE_CLIENT_IDS`. Empty provider audiences disable that provider. Keep provider signing keys in hush.
+- Public endpoints are `GET /healthz`, `GET /v1/config`, and `POST /v1/auth/challenges`, `/v1/auth/exchange`, `/v1/auth/refresh`. Bearer-authenticated endpoints are `POST /v1/auth/logout`, `GET /v1/me`, `DELETE /v1/me`, and `POST /v1/sync`.
+- Identity ownership uses the verified provider/subject pair, never email matching. Challenges expire after five minutes and are consumed once. Access tokens expire after 15 minutes; rotating refresh tokens share a fixed 30-day session expiry. Replayed refresh tokens revoke the session. Persist token hashes only.
+- SQLite tables are `users`, `identities`, `challenges`, `sessions`, `access_tokens`, `used_refresh`, `records`, `changes`, and `batches`. User deletion cascades through account data, but Apple provider-grant revocation remains a separate unfinished requirement.
+- Sync mutations accept at most 100 habit/activity records and use per-account UUID mutation IDs, atomic revision checks, tombstones, and cached retry responses. Normalize UUIDs and validate activity parents within the same account. Pulls paginate 200 changes with a cursor and `has_more`. Preserve independent activity UUIDs; do not overwrite daily counters.
+- Auth rate limits currently use the socket peer address. Finalize trusted relay client-IP handling before public registration. The service is tested but not deployed, and the native app does not use these account endpoints yet.
