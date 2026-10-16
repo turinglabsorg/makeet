@@ -8,6 +8,10 @@ Avvi starts from the clarity of a habit grid and adds timestamped quantities, de
 
 Screenshots show sample data.
 
+## Product target
+
+Avvi is intended for public use with open self-service registration and private data for each account. When a backend is needed, the preferred host is the owner's Mac Pro. The current foundation has no account service or live registration endpoint; these requirements guide the next implementation stage. See [the account and synchronization requirements](docs/integrations.md#public-account-architecture-requirements).
+
 ## Current foundation
 
 - Create daily habits with a target, unit, increment, preferred hour, and session duration.
@@ -24,6 +28,8 @@ Screenshots show sample data.
 | Integration | State |
 | --- | --- |
 | Offline habit persistence | Implemented; tested across separate contexts and store reopening |
+| Public registration and accounts | Required for the public product; not implemented yet |
+| Account-based synchronization | Next implementation stage; no server deployed |
 | App/widget storage | App Group configuration and shared SwiftData schema implemented |
 | EventKit calendars | Availability reading, change refresh, calendar selection, conflict recheck, confirmed event creation implemented; validated using an isolated Simulator calendar |
 | Google through system calendars | Available through EventKit when the Google account is configured in device settings; actual provider synchronization belongs to the OS |

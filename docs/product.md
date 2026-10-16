@@ -4,6 +4,14 @@
 
 Help people build sustainable daily habits with a clear visual history and a schedule that adapts to real availability. Everyday is a reference for immediate visual comprehension, not a source of copied interface assets or branding.
 
+## Public audience and accounts
+
+Avvi is intended to be a publicly available product. Anyone must be able to register through self-service sign-up without an invitation or an administrator-created account. Each account has its own private habits, activity history, statistics, calendar connections, and assistant context.
+
+The current native foundation stores data locally and has no registration service. Public sign-up, account management, and account-based synchronization are the next implementation requirements; they are not live features yet.
+
+If server infrastructure is required, the owner's Mac Pro is the preferred host. The Avvi service and its persistent data must remain isolated from other projects on that machine.
+
 ## A richer completion model
 
 A habit owns a daily target, measurement unit, logging increment, home time zone, preferred hour, and session duration. Each activity records its own identifier, habit identifier, positive quantity, timestamp, and source. Completion is derived from the sum of that day's activity quantities. A target of one represents a conventional yes/no habit without requiring a separate completion flag.
@@ -28,12 +36,13 @@ Calendar access is optional. Without it, proposals explicitly say availability i
 
 ## Next product milestones
 
-1. Activate and verify iCloud on an iPhone and a Mac using the owner's Apple developer configuration.
-2. Validate widget increments against the foreground app and after relaunch on each platform.
-3. Complete calendar lifecycle reconciliation: move, cancel, recurrence, external edits, stable mappings, provider failures, and time-zone travel policies.
-4. Add direct Google OAuth and incremental synchronization for accounts not configured on the device.
-5. Add effective-dated goals, selected weekdays, weekly targets, pause/rest days, historical entry editing, and export.
-6. Expand insights to weekday comparisons, trends against previous periods, goal consistency, and user-approved adaptive preferences.
-7. Add notification controls and opt-in background assistance with a visible activity history.
+1. Implement open self-service registration, login/logout, account management, and per-account data isolation. Use the Mac Pro for the backend when needed.
+2. Implement account-based synchronization and safe local-cache migration across iPhone, Mac, and widgets. Decide the role of the prepared CloudKit path before enabling another sync authority.
+3. Validate widget increments against the foreground app and after relaunch on each platform.
+4. Complete calendar lifecycle reconciliation: move, cancel, recurrence, external edits, stable mappings, provider failures, and time-zone travel policies.
+5. Add direct Google OAuth and incremental synchronization for accounts not configured on the device.
+6. Add effective-dated goals, selected weekdays, weekly targets, pause/rest days, historical entry editing, and export.
+7. Expand insights to weekday comparisons, trends against previous periods, goal consistency, and user-approved adaptive preferences.
+8. Add notification controls and opt-in background assistance with a visible activity history.
 
 The first release must state actual sync freshness and failures. It must not promise instantaneous delivery from iCloud or WidgetKit scheduling.

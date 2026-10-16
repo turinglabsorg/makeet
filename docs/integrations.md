@@ -1,5 +1,17 @@
 # Storage, calendars, and widgets
 
+## Public account architecture requirements
+
+The target product supports open self-service registration and authenticated account-based synchronization. The current implementation has no account backend, public registration endpoint, or deployed server. When server infrastructure is required, use the owner's Mac Pro with an Avvi-specific service, database, and persistent storage.
+
+The shared account service should be the authoritative synchronization boundary for the public product. SwiftData remains the on-device store used by the app and its widget extension. Before enabling CloudKit alongside a backend, define one authority and an explicit adapter or migration strategy rather than allowing two independent writers to synchronize the same records differently.
+
+Every remotely stored habit, activity, calendar connection, and planned session must belong to an authenticated account. Determine ownership from the server session and enforce it for reads, writes, sync cursors, and background jobs. A client-supplied record UUID or user identifier must not grant access to another user's data. Calendar credentials and assistant context follow the same account boundary.
+
+Account switching and logout must also isolate the local App Group store, widget snapshots, pending writes, and calendar connection state. The current account-free local archive needs an explicit one-time import decision when registration is introduced. A successful sign-in must not silently upload a different person's previous local archive.
+
+These are implementation requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing foundation.
+
 ## Sources of truth
 
 Habit definitions and timestamped activity records are authoritative in SwiftData. Calendar events describe planned sessions only. A calendar event ending, moving, or being deleted must never infer activity completion.

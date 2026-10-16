@@ -13,6 +13,15 @@ This is a native SwiftUI habit tracker for iOS, with a macOS companion and Widge
 - Calendar writes require a visible user confirmation and must be idempotent.
 - All documentation and code are in English. The initial app interface is Italian.
 
+## Public product and hosting requirements
+
+- Avvi is intended for public use with open self-service registration. Do not impose invitation-only access or an owner-only account model.
+- Each user's habits, activities, statistics, calendar connections, credentials, and assistant context are private to that account. Public registration does not make personal data public.
+- When a backend is needed, use the owner's Mac Pro as the preferred server. Keep Avvi's service, database, persistent storage, and configuration isolated from other projects on that host.
+- Account-based synchronization is the target for the public product. The existing local SwiftData store and disabled CloudKit path are the current foundation, not an implemented public account service. Avoid independent competing sync authorities.
+- Before adding account switching, partition or replace local app/widget stores by account and prevent the next session from seeing the previous user's cached data. Derive server-side record ownership from the authenticated session.
+- Open registration and the Mac Pro deployment are requirements, not completed capabilities. Keep README and product status accurate until they are implemented and verified.
+
 ## Architecture and current capabilities
 
 - `Core/HabitEngine.swift` derives daily quantities and streaks from timestamped activity entries using the habit's stored time zone. Quantities can exceed the target; only the visual fraction is capped. An unfinished today preserves yesterday's current streak.
