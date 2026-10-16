@@ -39,3 +39,7 @@ The embedded Go site passes HTTP integration tests for all five languages and pa
 The dedicated persistent Mac Pro process serves the public website and API through valid HTTPS at `makeet.app` and `api.makeet.app`. Public health returns `ok`; provider configuration returns an empty list, so public sign-in/registration is not enabled. SQLite uses a private directory and 0600 database permissions. The website labels development screenshots and unfinished integrations. Legal pages return 503/noindex until launch requirements are met.
 
 The iOS App Store Connect record exists with version 1.0 in preparation. No TestFlight upload, App Review submission or store publication is verified by this infrastructure work.
+
+## Apple account lifecycle
+
+Go HTTP/database integration tests verify authorization-code identity binding, encrypted grant custody, rejection under the wrong account/audience, a failed provider revocation preserving the account and records, and successful revocation followed by complete deletion. Additional checks reject altered ciphertext, invalid signing/encryption configuration and provider redirects that could disclose credentials. Existing identity/session/sync integration tests still pass under the race detector, and vet passes. These tests use generated signing fixtures; real Apple login/revocation is not yet verified.

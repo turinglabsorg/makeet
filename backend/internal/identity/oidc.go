@@ -10,8 +10,9 @@ import (
 )
 
 type Identity struct {
-	Subject string
-	Email   string
+	Subject  string
+	Audience string
+	Email    string
 }
 type Verifier interface {
 	Verify(context.Context, string, string) (Identity, error)
@@ -43,7 +44,10 @@ func (p *Provider) Verify(ctx context.Context, raw, nonce string) (Identity, err
 		if err := token.Claims(&claims); err != nil {
 			continue
 		}
-		return Identity{Subject: token.Subject, Email: claims.Email}, nil
+		if len(token.Audience) != 1 {
+			continue
+		}
+		return Identity{Subject: token.Subject, Email: claims.Email, Audience: token.Audience[0]}, nil
 	}
 	return Identity{}, errors.New("invalid identity token")
 }

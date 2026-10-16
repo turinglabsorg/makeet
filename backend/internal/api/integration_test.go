@@ -24,6 +24,7 @@ type fixture struct {
 	db     *sql.DB
 	server *httptest.Server
 	issuer *testidentity.Issuer
+	apple  *testidentity.Apple
 	now    time.Time
 	path   string
 }
@@ -43,8 +44,9 @@ func setup(t *testing.T) *fixture {
 		t.Fatal(err)
 	}
 	f.db = db
+	f.apple = testidentity.NewApple(t)
 	provider := identity.New(context.Background(), f.issuer.Server.URL, f.issuer.Server.URL, []string{"native-client"})
-	f.server = httptest.NewServer(api.New(db, api.Config{Providers: map[string]identity.Verifier{"google": provider, "apple": provider}, Clock: func() time.Time { return f.now }}).Handler())
+	f.server = httptest.NewServer(api.New(db, api.Config{Apple: f.apple.Client, Providers: map[string]identity.Verifier{"google": provider, "apple": provider}, Clock: func() time.Time { return f.now }}).Handler())
 	t.Cleanup(func() { f.server.Close(); f.db.Close() })
 	return f
 }
@@ -82,7 +84,8 @@ func (f *fixture) login(provider, subject string) session {
 	f.t.Helper()
 	id, nonce := f.challenge(provider)
 	var s session
-	json.Unmarshal(f.request("POST", "/v1/auth/exchange", "", map[string]string{"provider": provider, "challenge_id": id, "id_token": f.issuer.Token(f.t, subject, "native-client", nonce, nil)}, 200), &s)
+	token := f.issuer.Token(f.t, subject, "native-client", nonce, nil)
+	json.Unmarshal(f.request("POST", "/v1/auth/exchange", "", map[string]string{"provider": provider, "challenge_id": id, "id_token": token, "authorization_code": token}, 200), &s)
 	if s.Access == "" || s.Refresh == "" || s.User.ID == "" {
 		f.t.Fatal("missing session")
 	}
@@ -230,4 +233,72 @@ func TestValidationAndClosedProvider(t *testing.T) {
 	invalid := habit(uuid.NewString(), 0)
 	invalid.Data = json.RawMessage(`{"name":"x","target":-1}`)
 	f.request("POST", "/v1/sync", s.Access, api.SyncRequest{MutationID: uuid.NewString(), Changes: []api.Record{invalid}}, 400)
+}
+
+func TestAppleGrantEncryptionBindingAndDeletion(t *testing.T) {
+	f := setup(t)
+	id, nonce := f.challenge("apple")
+	identityToken := f.issuer.Token(t, "apple-user", "native-client", nonce, nil)
+	otherToken := f.issuer.Token(t, "another-user", "native-client", nonce, nil)
+	body := map[string]string{"provider": "apple", "challenge_id": id, "id_token": identityToken}
+	f.request("POST", "/v1/auth/exchange", "", body, 401)
+	body["authorization_code"] = otherToken
+	f.request("POST", "/v1/auth/exchange", "", body, 401)
+	body["authorization_code"] = identityToken
+	var s session
+	json.Unmarshal(f.request("POST", "/v1/auth/exchange", "", body, 200), &s)
+	var sealed []byte
+	var audience string
+	if err := f.db.QueryRow("SELECT audience,token FROM provider_grants WHERE user_id=?", s.User.ID).Scan(&audience, &sealed); err != nil {
+		t.Fatal(err)
+	}
+	if bytes.Contains(sealed, []byte("fixture-apple-refresh")) {
+		t.Fatal("provider token stored in plaintext")
+	}
+	if _, err := f.apple.Client.Open("another-account", audience, sealed); err == nil {
+		t.Fatal("ciphertext usable by another account")
+	}
+	if _, err := f.apple.Client.Open(s.User.ID, "another-client", sealed); err == nil {
+		t.Fatal("ciphertext usable for another client")
+	}
+	f.sync(s, 0, []api.Record{habit(uuid.NewString(), 0)})
+	f.apple.RevokeFailure.Store(true)
+	f.request("DELETE", "/v1/me", s.Access, map[string]string{"confirmation": "DELETE"}, 503)
+	f.request("GET", "/v1/me", s.Access, nil, 200)
+	if result := f.sync(s, 0, nil); len(result.Changes) != 1 {
+		t.Fatal("failed revocation lost account data")
+	}
+	f.apple.RevokeFailure.Store(false)
+	f.request("DELETE", "/v1/me", s.Access, map[string]string{"confirmation": "DELETE"}, 204)
+	if f.apple.Revocations.Load() != 1 {
+		t.Fatal("provider authorization was not revoked")
+	}
+	f.request("GET", "/v1/me", s.Access, nil, 401)
+	for _, table := range []string{"users", "identities", "provider_grants", "sessions", "records", "changes", "batches"} {
+		var count int
+		if err := f.db.QueryRow("SELECT COUNT(*) FROM " + table).Scan(&count); err != nil {
+			t.Fatal(err)
+		}
+		if count != 0 {
+			t.Fatalf("retained %s after deletion", table)
+		}
+	}
+}
+
+func TestAppleDisabledWithoutRevocationConfiguration(t *testing.T) {
+	f := setup(t)
+	provider := identity.New(context.Background(), f.issuer.Server.URL, f.issuer.Server.URL, []string{"native-client"})
+	server := httptest.NewServer(api.New(f.db, api.Config{Providers: map[string]identity.Verifier{"apple": provider}}).Handler())
+	defer server.Close()
+	f.server.Close()
+	f.server = server
+	var config struct{ Providers []string }
+	if err := json.Unmarshal(f.request("GET", "/v1/config", "", nil, 200), &config); err != nil {
+		t.Fatal(err)
+	}
+	if len(config.Providers) != 0 {
+		t.Fatal("Apple advertised without revocation configuration")
+	}
+	f.request("POST", "/v1/auth/challenges", "", map[string]string{"provider": "apple"}, 503)
+	f.request("POST", "/v1/auth/exchange", "", map[string]string{"provider": "apple"}, 503)
 }

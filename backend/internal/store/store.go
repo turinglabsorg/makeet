@@ -52,5 +52,6 @@ CREATE TABLE IF NOT EXISTS records(user_id TEXT NOT NULL REFERENCES users(id) ON
 CREATE TABLE IF NOT EXISTS changes(sequence INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, kind TEXT NOT NULL, id TEXT NOT NULL, revision INTEGER NOT NULL, deleted INTEGER NOT NULL, data TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS changes_user_sequence ON changes(user_id,sequence);
 CREATE TABLE IF NOT EXISTS batches(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, id TEXT NOT NULL, request_hash TEXT NOT NULL, response TEXT NOT NULL, PRIMARY KEY(user_id,id));
-PRAGMA user_version=1;
+CREATE TABLE IF NOT EXISTS provider_grants(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, provider TEXT NOT NULL, audience TEXT NOT NULL, token BLOB NOT NULL, updated_at INTEGER NOT NULL, PRIMARY KEY(user_id,provider,audience));
+PRAGMA user_version=2;
 `

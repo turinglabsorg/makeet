@@ -18,11 +18,13 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/turinglabsorg/makeet/backend/internal/apple"
 	"github.com/turinglabsorg/makeet/backend/internal/identity"
 )
 
 type Config struct {
 	Providers map[string]identity.Verifier
+	Apple     *apple.Client
 	Site      http.Handler
 	Clock     func() time.Time
 }
@@ -66,7 +68,7 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("GET /v1/config", func(w http.ResponseWriter, r *http.Request) {
 		providers := []string{}
 		for _, p := range []string{"apple", "google"} {
-			if s.cfg.Providers[p] != nil {
+			if s.providerAvailable(p) {
 				providers = append(providers, p)
 			}
 		}
@@ -177,7 +179,7 @@ func (s *Server) challenge(w http.ResponseWriter, r *http.Request) {
 	if !decode(w, r, &req) {
 		return
 	}
-	if s.cfg.Providers[req.Provider] == nil {
+	if !s.providerAvailable(req.Provider) {
 		fail(w, 503, "provider_not_configured")
 		return
 	}
@@ -211,15 +213,16 @@ func (s *Server) challenge(w http.ResponseWriter, r *http.Request) {
 }
 func (s *Server) exchange(w http.ResponseWriter, r *http.Request) {
 	var req struct {
-		Provider    string `json:"provider"`
-		ChallengeID string `json:"challenge_id"`
-		IDToken     string `json:"id_token"`
+		Provider          string `json:"provider"`
+		ChallengeID       string `json:"challenge_id"`
+		IDToken           string `json:"id_token"`
+		AuthorizationCode string `json:"authorization_code"`
 	}
 	if !decode(w, r, &req) {
 		return
 	}
 	verifier := s.cfg.Providers[req.Provider]
-	if verifier == nil {
+	if verifier == nil || (req.Provider == "apple" && s.cfg.Apple == nil) {
 		fail(w, 503, "provider_not_configured")
 		return
 	}
@@ -251,6 +254,18 @@ func (s *Server) exchange(w http.ResponseWriter, r *http.Request) {
 		fail(w, 401, "invalid_challenge")
 		return
 	}
+	var providerToken string
+	if req.Provider == "apple" {
+		providerToken, err = s.cfg.Apple.Exchange(r.Context(), req.AuthorizationCode, nonce, who, verifier)
+		if err != nil {
+			if errors.Is(err, apple.ErrRejected) {
+				fail(w, 401, "invalid_authorization")
+			} else {
+				fail(w, 503, "provider_unavailable")
+			}
+			return
+		}
+	}
 	u := user{Email: who.Email}
 	err = tx.QueryRowContext(r.Context(), "SELECT user_id FROM identities WHERE provider=? AND subject=?", req.Provider, who.Subject).Scan(&u.ID)
 	if errors.Is(err, sql.ErrNoRows) {
@@ -268,6 +283,17 @@ func (s *Server) exchange(w http.ResponseWriter, r *http.Request) {
 		return
 	} else {
 		if err = tx.QueryRowContext(r.Context(), "SELECT email FROM users WHERE id=?", u.ID).Scan(&u.Email); err != nil {
+			internal(w, err)
+			return
+		}
+	}
+	if providerToken != "" {
+		sealed, err := s.cfg.Apple.Seal(u.ID, who.Audience, providerToken)
+		if err != nil {
+			internal(w, err)
+			return
+		}
+		if _, err = tx.ExecContext(r.Context(), "INSERT INTO provider_grants VALUES(?,?,?,?,?) ON CONFLICT(user_id,provider,audience) DO UPDATE SET token=excluded.token,updated_at=excluded.updated_at", u.ID, "apple", who.Audience, sealed, s.cfg.Clock().Unix()); err != nil {
 			internal(w, err)
 			return
 		}
@@ -396,9 +422,72 @@ func (s *Server) deleteAccount(w http.ResponseWriter, r *http.Request, p princip
 		fail(w, 400, "confirmation_required")
 		return
 	}
-	if _, err := s.db.ExecContext(r.Context(), "DELETE FROM users WHERE id=?", p.UserID); err != nil {
+	tx, err := s.db.BeginTx(r.Context(), nil)
+	if err != nil {
+		internal(w, err)
+		return
+	}
+	defer tx.Rollback()
+	if err := s.revokeApple(r.Context(), tx, p.UserID); err != nil {
+		fail(w, 503, "provider_revocation_unavailable")
+		return
+	}
+	if _, err := tx.ExecContext(r.Context(), "DELETE FROM users WHERE id=?", p.UserID); err != nil {
+		internal(w, err)
+		return
+	}
+	if err := tx.Commit(); err != nil {
 		internal(w, err)
 		return
 	}
 	w.WriteHeader(204)
+}
+
+func (s *Server) revokeApple(ctx context.Context, tx *sql.Tx, userID string) error {
+	rows, err := tx.QueryContext(ctx, "SELECT audience,token FROM provider_grants WHERE user_id=? AND provider='apple'", userID)
+	if err != nil {
+		return err
+	}
+	type grant struct {
+		audience string
+		token    []byte
+	}
+	grants := []grant{}
+	for rows.Next() {
+		var g grant
+		if err := rows.Scan(&g.audience, &g.token); err != nil {
+			rows.Close()
+			return err
+		}
+		grants = append(grants, g)
+	}
+	err = rows.Err()
+	rows.Close()
+	if err != nil {
+		return err
+	}
+	for _, g := range grants {
+		if s.cfg.Apple == nil {
+			return apple.ErrUnavailable
+		}
+		token, err := s.cfg.Apple.Open(userID, g.audience, g.token)
+		if err != nil {
+			return err
+		}
+		if err := s.cfg.Apple.Revoke(ctx, g.audience, token); err != nil {
+			return err
+		}
+	}
+	var identities int
+	if err := tx.QueryRowContext(ctx, "SELECT COUNT(*) FROM identities WHERE user_id=? AND provider='apple'", userID).Scan(&identities); err != nil {
+		return err
+	}
+	if identities > 0 && len(grants) == 0 {
+		return apple.ErrUnavailable
+	}
+	return nil
+}
+
+func (s *Server) providerAvailable(name string) bool {
+	return s.cfg.Providers[name] != nil && (name != "apple" || s.cfg.Apple != nil)
 }

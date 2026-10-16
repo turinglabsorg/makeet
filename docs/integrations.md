@@ -10,7 +10,7 @@ Every remotely stored habit, activity, calendar connection, and planned session 
 
 Account switching and logout must also isolate the local App Group store, widget snapshots, pending writes, and calendar connection state. The current account-free local archive needs an explicit one-time import decision when registration is introduced. A successful sign-in must not silently upload a different person's previous local archive.
 
-Account-scoped native caches, Keychain sessions, provider provisioning, Apple grant revocation, and production account configuration remain implementation requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing native foundation. See the [backend protocol](../backend/README.md).
+Account-scoped native caches, Keychain sessions, provider provisioning, live Apple authorization/revocation verification, and production account configuration remain implementation requirements. The current local store, EventKit integration, and prepared CloudKit configuration below describe the existing native foundation. See the [backend protocol](../backend/README.md).
 
 ## Sources of truth
 

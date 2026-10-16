@@ -2,6 +2,9 @@ package main
 
 import (
 	"context"
+	"encoding/base64"
+	"encoding/hex"
+	"errors"
 	"log/slog"
 	"net/http"
 	"os"
@@ -11,6 +14,7 @@ import (
 	"time"
 
 	"github.com/turinglabsorg/makeet/backend/internal/api"
+	"github.com/turinglabsorg/makeet/backend/internal/apple"
 	"github.com/turinglabsorg/makeet/backend/internal/identity"
 	"github.com/turinglabsorg/makeet/backend/internal/site"
 	"github.com/turinglabsorg/makeet/backend/internal/store"
@@ -40,7 +44,18 @@ func main() {
 			providers[p.name] = identity.New(ctx, p.issuer, p.keys, strings.Split(ids, ","))
 		}
 	}
-	handler := api.New(db, api.Config{Providers: providers, Site: site.New()}).Handler()
+	var appleClient *apple.Client
+	if providers["apple"] != nil {
+		encryption, decodeErr := providerKey(os.Getenv("MAKEET_PROVIDER_ENCRYPTION_KEY"))
+		if decodeErr == nil {
+			appleClient, err = apple.New(apple.Config{TeamID: os.Getenv("MAKEET_APPLE_TEAM_ID"), KeyID: os.Getenv("MAKEET_APPLE_KEY_ID"), PrivateKey: []byte(os.Getenv("MAKEET_APPLE_SIGNING_KEY")), EncryptionKey: encryption})
+		}
+		if decodeErr != nil || err != nil || appleClient == nil {
+			slog.Error("Apple sign-in requires signing and provider encryption configuration")
+			os.Exit(1)
+		}
+	}
+	handler := api.New(db, api.Config{Providers: providers, Apple: appleClient, Site: site.New()}).Handler()
 	server := &http.Server{Addr: env("MAKEET_LISTEN", "127.0.0.1:8086"), Handler: handler, ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 << 10}
 	go func() {
 		<-ctx.Done()
@@ -53,4 +68,14 @@ func main() {
 		slog.Error("server stopped")
 		os.Exit(1)
 	}
+}
+
+func providerKey(raw string) ([]byte, error) {
+	for _, decode := range []func(string) ([]byte, error){hex.DecodeString, base64.StdEncoding.DecodeString, base64.RawURLEncoding.DecodeString} {
+		key, err := decode(raw)
+		if err == nil && len(key) == 32 {
+			return key, nil
+		}
+	}
+	return nil, errors.New("invalid provider encryption key")
 }
