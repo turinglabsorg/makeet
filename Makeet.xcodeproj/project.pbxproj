@@ -85,10 +85,12 @@
 		BFE440E790B456ED00710B65 /* CalendarServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6018989EDED05E750152A82 /* CalendarServiceTests.swift */; };
 		C1E8A2E3FFD77DF86C9D2308 /* MakeetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88E138CB5413197569EB2B /* MakeetApp.swift */; };
 		C2839F8A75A3E9F37772C178 /* MakeetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */; };
+		C8F04C3F1D141F2FCA35F742 /* ArchiveHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233EDE5EB4E5B5E75B8BB1A /* ArchiveHost.swift */; };
 		CAAE015118968EC4A6F27D1C /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D19613A3934E9695BEBD056 /* TodayView.swift */; };
 		CC221462B1773B2CB69D776F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
 		D3ACC2E9BE7DF82CF7A163A8 /* LanguageSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E4074312F5324EA3A7032 /* LanguageSettingsSection.swift */; };
 		D7F2D0032F8EB7CF00DBC923 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6F56AC816972AAE9EF27 /* AccountAPI.swift */; };
+		DB1A01830FDD7AABE9A87CB8 /* ArchiveHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233EDE5EB4E5B5E75B8BB1A /* ArchiveHost.swift */; };
 		DB75E18DDAD985DA9AC831CE /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
 		DE80855BC6F0858F7E07684A /* AccountSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA637E491A80C570F4A8E022 /* AccountSyncService.swift */; };
 		E0E6FF3E735D94A92498CB6B /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5930B98D9E60B07A35574CB4 /* GoogleSignIn */; };
@@ -161,6 +163,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1233EDE5EB4E5B5E75B8BB1A /* ArchiveHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveHost.swift; sourceTree = "<group>"; };
 		1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MakeetMacWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncLedger.swift; sourceTree = "<group>"; };
 		2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEngine.swift; sourceTree = "<group>"; };
@@ -276,6 +279,7 @@
 				5862C45C954D1F1334C025BE /* AccountSettingsSection.swift */,
 				BA637E491A80C570F4A8E022 /* AccountSyncService.swift */,
 				AE86BE058455F79D120E8E84 /* AddHabitView.swift */,
+				1233EDE5EB4E5B5E75B8BB1A /* ArchiveHost.swift */,
 				558A646774440548F9D07CAB /* Assets.xcassets */,
 				7172A1ED536485A0658060A7 /* CalendarService.swift */,
 				F54307EA0F7582984D4E75CB /* DevicePushService.swift */,
@@ -584,6 +588,7 @@
 				DE80855BC6F0858F7E07684A /* AccountSyncService.swift in Sources */,
 				3A064D9F88E2E1F67952A3A4 /* AddHabitView.swift in Sources */,
 				EB3731670669E60AFD50D493 /* AppLanguage.swift in Sources */,
+				C8F04C3F1D141F2FCA35F742 /* ArchiveHost.swift in Sources */,
 				949AEF9FFE3520FA77E66FF6 /* CalendarService.swift in Sources */,
 				028B625D2593B68D0388AB19 /* DevicePushService.swift in Sources */,
 				1FEEB150350CCFAA86D628A0 /* HabitAppearance.swift in Sources */,
@@ -669,6 +674,7 @@
 				88159AB621193686E8E5D1E9 /* AccountSyncService.swift in Sources */,
 				9A40F60A674C09C16A6F4326 /* AddHabitView.swift in Sources */,
 				A38972BA976F2AF7FCB2CE1D /* AppLanguage.swift in Sources */,
+				DB1A01830FDD7AABE9A87CB8 /* ArchiveHost.swift in Sources */,
 				7C57FCB7D3CA755E833C13D8 /* CalendarService.swift in Sources */,
 				06785B2325FF3E1CC3FD0937 /* DevicePushService.swift in Sources */,
 				3B980483D1A59B0B563485A4 /* HabitAppearance.swift in Sources */,
@@ -788,7 +794,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -879,7 +885,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

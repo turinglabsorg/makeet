@@ -26,7 +26,7 @@ import GoogleSignIn
     var body: some Scene {
         WindowGroup {
             if let container = account.container {
-                Group {
+                ArchiveHost(container: container) {
                     if onboardingRequired {
                         OnboardingView {
                             do { try account.chooseLocalMode(); onboardingVersion = 1 }
@@ -35,7 +35,7 @@ import GoogleSignIn
                     } else {
                         RootView()
                     }
-                }.id(account.scope.key + language).modelContainer(container).tint(Palette.accent)
+                }.id(language).tint(Palette.accent)
                     .environment(\.locale, AppLanguage.locale)
                     .environment(NotificationService.shared)
                     .environment(account)
