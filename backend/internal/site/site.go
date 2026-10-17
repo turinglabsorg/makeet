@@ -22,14 +22,20 @@ type Copy struct {
 	Features                                                                                                                                                                                                                             []Section
 	Questions                                                                                                                                                                                                                            []Section
 	FAQ                                                                                                                                                                                                                                  string
+	Policy                                                                                                                                                                                                                               LegalCopy
 }
 type page struct {
 	Copy
-	Lang, Path, Title          string
-	Home, Help, Legal, Missing bool
+	Lang, Path, Title                             string
+	Home, Help, Legal, Missing                    bool
+	PolicyReady, IsPrivacy                        bool
+	ControllerLine, HostingCountry, DocumentIntro string
+	DocumentSections                              []Section
 }
 
-func New() http.Handler {
+func New() http.Handler { return WithConfig(Config{}) }
+
+func WithConfig(cfg Config) http.Handler {
 	t := template.Must(template.New("page.html").Funcs(template.FuncMap{"inc": func(i int) int { return i + 1 }, "languages": func() []map[string]string {
 		return []map[string]string{{"Code": "it", "Name": "Italiano"}, {"Code": "en", "Name": "English"}, {"Code": "fr", "Name": "Français"}, {"Code": "de", "Name": "Deutsch"}, {"Code": "es", "Name": "Español"}}
 	}, "marks": func() []int {
@@ -106,10 +112,31 @@ func New() http.Handler {
 			p.Title = copy.Support + " — Makeet"
 		case "privacy", "terms", "delete-account":
 			p.Legal = true
-			p.Title = copy.LegalStatus + " — Makeet"
-			status = 503
-			w.Header().Set("X-Robots-Tag", "noindex")
-			w.Header().Set("Retry-After", "86400")
+			p.PolicyReady = cfg.Ready()
+			if p.PolicyReady {
+				switch path {
+				case "privacy":
+					p.IsPrivacy = true
+					p.ControllerLine = cfg.ControllerLine
+					p.HostingCountry = hostingCountry(cfg.HostingCountry, lang)
+					p.Title = copy.Privacy
+					p.DocumentIntro = copy.Policy.PrivacyIntro
+					p.DocumentSections = copy.Policy.PrivacySections
+				case "terms":
+					p.Title = copy.Terms
+					p.DocumentIntro = copy.Policy.TermsIntro
+					p.DocumentSections = copy.Policy.TermsSections
+				case "delete-account":
+					p.Title = copy.Deletion
+					p.DocumentIntro = copy.Policy.DeletionIntro
+					p.DocumentSections = copy.Policy.DeletionSections
+				}
+			} else {
+				p.Title = copy.LegalStatus + " — Makeet"
+				status = 503
+				w.Header().Set("X-Robots-Tag", "noindex")
+				w.Header().Set("Retry-After", "86400")
+			}
 		default:
 			p.Missing = true
 			p.Title = copy.NotFound + " — Makeet"

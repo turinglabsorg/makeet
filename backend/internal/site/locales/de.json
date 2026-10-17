@@ -50,5 +50,95 @@
       "Title": "Welche Sprachen werden unterstützt?",
       "Body": "App und Widgets unterstützen Deutsch, Englisch, Italienisch, Französisch und Spanisch. Die Namen deiner Gewohnheiten bleiben so, wie du sie schreibst."
     }
-  ]
+  ],
+  "Policy": {
+    "Updated": "Aktualisiert am 16. Oktober 2026",
+    "PrivacyIntro": "Diese Hinweise beschreiben die Datenverarbeitung in der Makeet-App, im Kontodienst, auf der Website und beim Support. Während der Entwicklung werden Kontofunktionen nach Dienstprüfungen freigeschaltet. Das lokale Archiv funktioniert ohne Konto.",
+    "ControllerTitle": "Verantwortlicher",
+    "HostingTitle": "Land des primären Kontoservers",
+    "PrivacySections": [
+      {
+        "Title": "Daten und Zwecke",
+        "Body": "Ohne Anmeldung bleiben Gewohnheiten, Mengen, Aktivitätszeiten, Statistiken und Planung im App-Archiv auf deinem Gerät. Mit Konto speichern wir die Anbieterkennung, die von Apple oder Google übermittelte E-Mail-Adresse sowie synchronisierte Gewohnheiten und Aktivitäten: Namen, Symbole, Ziele, Einheiten, Zeiten und Zeitzonen. Dies dient deinem privaten Archiv und der Synchronisierung zwischen Geräten. Dein Apple- oder Google-Passwort erhalten wir nicht."
+      },
+      {
+        "Title": "Kalender und Planung",
+        "Body": "Kalenderzugriff ist freiwillig. Die App liest nur die ausgewählten Gerätekalender zur Ermittlung freier Zeiten und schreibt Termine nach deiner Bestätigung. Termine, Teilnehmer und Kalenderzugangsdaten werden nicht an das Makeet-Backend gesendet. Der auf dem Gerät eingerichtete Kalenderanbieter kann Termine gemäß seinen Einstellungen synchronisieren. Die Planung erfolgt auf dem Gerät anhand von Gewohnheitseinstellungen und bisherigen Erfassungszeiten, ohne externen KI-Dienst. Eine direkte Google-Calendar-Verbindung ist derzeit nicht verfügbar."
+      },
+      {
+        "Title": "Benachrichtigungen",
+        "Body": "Benachrichtigungen benötigen die Geräteerlaubnis. Bei Anmeldung speichert der Dienst eine Installationskennung, ein verschlüsseltes Apple-Push-Token, Sprache, Zeitzone und die freiwillige Erinnerungszeit. Anhand des synchronisierten Fortschritts entscheidet er, ob eine tägliche Erinnerung nötig ist. Mitteilungen enthalten allgemeinen Text, keine Namen oder Mengen deiner Gewohnheiten. Versandversuche, Apples Annahme und der Empfang beim Anzeigen in der App oder Öffnen der Mitteilung werden erfasst. Erinnerungen lassen sich in der App, Mitteilungen in den Geräteeinstellungen deaktivieren."
+      },
+      {
+        "Title": "Rechtsgrundlagen und Wahlmöglichkeiten",
+        "Body": "Konto, Synchronisierung und angeforderter Support dienen der Erfüllung des gewünschten Dienstes (Art. 6 Abs. 1 b DSGVO). Freiwilliger Kalenderzugriff und Mitteilungen folgen deiner Wahl und den Geräteberechtigungen; soweit eine Einwilligung die Rechtsgrundlage bildet, ist sie jederzeit widerrufbar (Art. 6 Abs. 1 a). Sicherheit, Missbrauchsvermeidung und notwendiger technischer Betrieb beruhen auf berechtigten Interessen (Art. 6 Abs. 1 f); du kannst widersprechen. Ohne Identitätsdaten können wir kein Konto erstellen; das lokale Archiv bleibt nutzbar. Freiwillige Berechtigungen sind für die lokale Erfassung nicht erforderlich."
+      },
+      {
+        "Title": "Dienstleister und internationale Verarbeitung",
+        "Body": "Cloudflare bietet HTTPS-Schutz und E-Mail-Weiterleitung; DigitalOcean betreibt den Datenverkehrsrelay. Apple stellt Anmeldung und Push-Zustellung bereit. Google stellt Anmeldung bereit und verarbeitet Support-E-Mails. Diese Dienste erhalten die jeweils erforderlichen Informationen und können sie außerhalb des Europäischen Wirtschaftsraums, auch in den USA, verarbeiten. Cloudflare beschreibt Data Privacy Framework und Standardvertragsklauseln im DPA; Apple und Google erläutern ihre Garantien in den unten verlinkten Hinweisen. Informationen zu anwendbaren Garantien erhältst du über support@makeet.app. Wir verkaufen keine personenbezogenen Daten, verwenden keine Werbetracker und teilen keine Gewohnheiten für Werbung."
+      },
+      {
+        "Title": "Speicherdauer und Löschung",
+        "Body": "Synchronisierte Daten und Versionsverläufe bleiben bis zur Kontolöschung gespeichert. Eine erfolgreiche Löschung entfernt Kontodaten und aktive Sitzungen aus dem Dienst; die Apple-Autorisierung wird vorher widerrufen. Scheitert der Widerruf, wird die Löschung nicht als abgeschlossen gemeldet und kann wiederholt werden. Sitzungen laufen binnen 30 Tagen, Zugriffstoken binnen 15 Minuten ab. Push-Protokolle bleiben bis zu 30 Tage gespeichert. Zugriffsbeschränkte Sicherungen rotieren binnen 30 Tagen. Support-Nachrichten bleiben zur Bearbeitung und für nötige gesetzliche Pflichten erhalten; Sicherheitsprotokolle nur solange für Schutz und Untersuchungen nötig. Separate lokale Archive, Kalendertermine und Offline-Kopien anderer Geräte werden durch Kontolöschung nicht entfernt."
+      },
+      {
+        "Title": "Sicherheit und lokaler Speicher",
+        "Body": "Verbindungen verwenden HTTPS. Archive sind nach Nutzer getrennt; Sitzungstoken liegen im gerätegebundenen Schlüsselbund, Push- und Anbietertoken sind auf dem Server verschlüsselt. Synchronisierte Gewohnheiten werden vom Backend verarbeitet und sind nicht Ende-zu-Ende-verschlüsselt. App und Widgets verwenden lokalen Speicher. Die Website hat keine Werbe- oder Analyseskripte; die Infrastruktur kann notwendige Sicherheitsmechanismen verwenden."
+      },
+      {
+        "Title": "Rechte und Kontakt",
+        "Body": "Schreibe an support@makeet.app für Auskunft, Berichtigung, Löschung, Einschränkung, Übertragbarkeit oder Widerspruch, soweit anwendbar. Eine angemessene Identitätsprüfung kann nötig sein. Einwilligung kann ohne Auswirkung auf vorherige rechtmäßige Verarbeitung widerrufen werden. Du kannst dich bei deiner Datenschutzbehörde beschweren, darunter dem italienischen Garante. Die Kontolöschung findest du unter Verbindungen > Konto. Planungsvorschläge treffen keine automatisierten Entscheidungen mit rechtlicher oder ähnlich erheblicher Wirkung."
+      },
+      {
+        "Title": "Änderungen",
+        "Body": "Bei Änderungen der Verarbeitung aktualisieren wir diese Hinweise und das Datum. Wesentliche Änderungen werden auch in der App mitgeteilt. Wurden Daten eines Kindes ohne erforderliche Erlaubnis übermittelt, kontaktiere den Support zur Prüfung und Löschung."
+      }
+    ],
+    "TermsIntro": "Meaningtech bietet Makeet zur persönlichen Gewohnheitserfassung an. Diese Bedingungen gelten für App und Kontodienst. Die aktuelle Version ist in Entwicklung; die Website bietet noch keinen App-Store-Download.",
+    "TermsSections": [
+      {
+        "Title": "Archiv und Konto",
+        "Body": "Das lokale Archiv funktioniert ohne Anmeldung. Private Synchronisierung erfordert Apple oder Google. Schütze den Zugang zu deinem Identitätsanbieter. Unterschiedliche Anbieter können separate Konten erzeugen; Konten werden nicht automatisch anhand der E-Mail-Adresse zusammengeführt."
+      },
+      {
+        "Title": "Erfassung und Planung",
+        "Body": "Du bestimmst Ziele, Mengen, Korrekturen und Erinnerungen. Kalenderblöcke erledigen keine Gewohnheit. Prüfe Vorschläge und bestätige Kalendereinträge. Verfügbarkeiten können sich zwischen Vorschlag und Bestätigung ändern; kontrolliere deine Termine."
+      },
+      {
+        "Title": "Synchronisierung und Verfügbarkeit",
+        "Body": "Synchronisierung benötigt eine Verbindung und gültige Sitzung. Offline-Änderungen warten auf die nächste Verbindung. Bei Konflikten fragt die App nach der gewünschten Version. Mitteilungen und Widgets hängen vom Betriebssystem ab; eine genaue Zustellzeit ist nicht garantiert. Funktionen können sich während der Entwicklung ändern; wesentliche Änderungen teilen wir in App oder Website mit."
+      },
+      {
+        "Title": "Zulässige Nutzung",
+        "Body": "Nutze den Dienst rechtmäßig, achte die Privatsphäre anderer und versuche nicht, fremde Konten zu öffnen, Sicherheit zu umgehen oder den Dienst zu stören. Wir können Zugriffe zur Prüfung von Missbrauch oder zum Nutzerschutz einschränken. Deine Gewohnheitsinhalte bleiben deine."
+      },
+      {
+        "Title": "Makeet verlassen",
+        "Body": "Abmelden oder Löschen ist unter Verbindungen > Konto möglich. Lösch- und Datenschutzanfragen gehen auch an support@makeet.app. Bestehende Termine und unabhängige lokale Archive werden nicht automatisch entfernt. Datenverarbeitung und Speicherdauer stehen in den Datenschutzhinweisen."
+      },
+      {
+        "Title": "Kontakt und Rechte",
+        "Body": "Kontaktiere Meaningtech unter support@makeet.app. Zwingende Verbraucher- und Datenschutzrechte bleiben unberührt. Diese Entwicklungsversion bietet keine kostenpflichtigen Pläne oder Abonnements. Künftige kostenpflichtige Angebote zeigen Preise und Bedingungen vor einem Kauf."
+      }
+    ],
+    "DeletionIntro": "Lösche dein Makeet-Konto in der App oder kontaktiere den Support, wenn du dich nicht anmelden kannst. Abmelden allein löscht das Konto nicht.",
+    "DeletionSections": [
+      {
+        "Title": "In der App",
+        "Body": "Öffne Verbindungen, dann Konto, wähle Konto löschen und bestätige. Eine Verbindung ist erforderlich. Die App bestätigt erst nach Löschung im Dienst. Scheitert der Widerruf der Apple-Autorisierung, versuche es erneut, wenn der Dienst verfügbar ist."
+      },
+      {
+        "Title": "Gelöschte Daten",
+        "Body": "Die erfolgreiche Löschung entfernt das Anbieter-verknüpfte Konto, synchronisierte Gewohnheiten und Aktivitäten, Sitzungen und Push-Registrierungen aus dem Dienst. Das aktive Gerät bereinigt sein Kontoarchiv. Zugriffsbeschränkte Sicherungen rotieren binnen 30 Tagen. Offline-Geräte können Kopien bis zum Öffnen oder Löschen behalten."
+      },
+      {
+        "Title": "Separate Inhalte",
+        "Body": "Das lokale Archiv ohne Konto und bereits erstellte Kalendertermine sind getrennt. Lösche lokale Gewohnheiten oder Kalendertermine zusätzlich, falls gewünscht. Die Makeet-Löschung löscht dein Apple- oder Google-Konto nicht."
+      },
+      {
+        "Title": "Ohne Kontozugriff",
+        "Body": "Bitte support@makeet.app um Kontolöschung und nenne den Anmeldeanbieter. Sende keine Passwörter oder Token. Eine angemessene Eigentumsprüfung kann erforderlich sein. Rechte und Speicherdauer stehen in den Datenschutzhinweisen."
+      }
+    ]
+  }
 }

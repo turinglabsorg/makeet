@@ -50,5 +50,95 @@
       "Title": "¿Qué idiomas admite?",
       "Body": "La app y los widgets admiten español, inglés, italiano, francés y alemán. Los nombres de tus hábitos se conservan tal como los escribes."
     }
-  ]
+  ],
+  "Policy": {
+    "Updated": "Actualizado el 16 de octubre de 2026",
+    "PrivacyIntro": "Este aviso describe cómo Makeet trata datos en la app, el servicio de cuentas, el sitio y soporte. Durante el desarrollo, las cuentas se habilitan tras verificar el servicio. Puedes usar el archivo local sin cuenta.",
+    "ControllerTitle": "Responsable del tratamiento",
+    "HostingTitle": "País del servidor principal de cuentas",
+    "PrivacySections": [
+      {
+        "Title": "Datos y finalidades",
+        "Body": "Sin iniciar sesión, hábitos, cantidades, horarios, estadísticas y planificación permanecen en el archivo de la app en tu dispositivo. Con una cuenta, guardamos el identificador del proveedor, el correo facilitado por Apple o Google y los hábitos y actividades que sincronizas: nombres, iconos, objetivos, unidades, horas y zonas horarias. Sirven para tu archivo privado y la sincronización entre dispositivos. No recibimos tu contraseña de Apple o Google."
+      },
+      {
+        "Title": "Calendarios y planificación",
+        "Body": "El acceso a calendarios es opcional. La app lee solo los calendarios del dispositivo que eliges para calcular disponibilidad y escribe eventos tras tu confirmación. Eventos, participantes y credenciales no se envían al backend de Makeet. El proveedor configurado en el dispositivo puede sincronizar eventos según sus ajustes. El planificador funciona en el dispositivo con tus hábitos y horarios anteriores, sin servicios externos de IA. La conexión directa con Google Calendar todavía no está disponible."
+      },
+      {
+        "Title": "Notificaciones",
+        "Body": "Las notificaciones requieren permiso del dispositivo. Tras iniciar sesión, el servicio guarda un identificador de instalación, un token push de Apple cifrado, idioma, zona horaria y la hora opcional del recordatorio. Usa el progreso sincronizado para decidir si hace falta un recordatorio diario. Los avisos son genéricos, sin nombres ni cantidades de hábitos. Se registran intentos, aceptación de Apple y recepción cuando la app ve la notificación o la abres. Puedes desactivar recordatorios en la app o notificaciones en los ajustes del dispositivo."
+      },
+      {
+        "Title": "Bases jurídicas y decisiones",
+        "Body": "Cuenta, sincronización y soporte solicitado son necesarios para prestar el servicio pedido (artículo 6.1.b del RGPD). Calendarios y notificaciones opcionales siguen tu elección y los permisos del dispositivo; cuando la base sea el consentimiento, puedes retirarlo en cualquier momento (artículo 6.1.a). Seguridad, prevención de abusos y operación técnica esencial se basan en intereses legítimos (artículo 6.1.f), a los que puedes oponerte. Sin datos de identidad no podemos crear la cuenta, pero sigue disponible el archivo local. Los permisos opcionales no son necesarios para registrar hábitos locales."
+      },
+      {
+        "Title": "Proveedores y transferencias internacionales",
+        "Body": "Cloudflare presta protección HTTPS y reenvío de correo; DigitalOcean aloja el relay de tráfico. Apple facilita inicio de sesión y entrega push. Google facilita inicio de sesión y trata el correo de soporte. Estos servicios reciben datos necesarios para sus funciones y pueden tratarlos fuera del Espacio Económico Europeo, incluidos Estados Unidos. Cloudflare describe el Data Privacy Framework y las cláusulas contractuales tipo en su DPA; Apple y Google explican sus garantías en las políticas enlazadas abajo. Solicita información sobre las garantías aplicables a support@makeet.app. No vendemos datos ni usamos rastreadores publicitarios, ni compartimos hábitos para publicidad."
+      },
+      {
+        "Title": "Conservación y eliminación",
+        "Body": "Los datos sincronizados y su historial de revisiones se conservan hasta eliminar la cuenta. La eliminación correcta retira datos y sesiones activas del servicio; la autorización de Apple se revoca antes de confirmar. Si falla la revocación, no se informa que haya finalizado y puedes reintentar. Las sesiones caducan en un máximo de 30 días y los tokens de acceso en 15 minutos. Los registros push se guardan hasta 30 días. Las copias de seguridad restringidas se renuevan en 30 días. El correo de soporte se conserva para resolver solicitudes y cumplir obligaciones legales; los registros de seguridad solo mientras sean necesarios para protección e investigación. Eliminar la cuenta no borra archivos locales separados, eventos de calendario ni copias sin conexión en otros dispositivos."
+      },
+      {
+        "Title": "Seguridad y almacenamiento local",
+        "Body": "Las conexiones usan HTTPS. Los archivos están separados por usuario; los tokens de sesión usan el llavero del dispositivo y los tokens push y del proveedor se cifran en el servidor. El backend procesa los hábitos sincronizados y no hay cifrado de extremo a extremo. App y widgets usan almacenamiento local. El sitio no tiene scripts publicitarios ni de análisis; la infraestructura puede usar mecanismos esenciales de seguridad."
+      },
+      {
+        "Title": "Derechos y contacto",
+        "Body": "Escribe a support@makeet.app para acceso, rectificación, eliminación, limitación, portabilidad u oposición cuando proceda. Podemos necesitar una verificación proporcionada de identidad. Retirar el consentimiento no afecta a tratamientos anteriores lícitos. Puedes reclamar ante tu autoridad de protección de datos, incluido el Garante italiano. La eliminación está en Conexiones > Cuenta. Las propuestas de planificación no toman decisiones automatizadas con efectos jurídicos o similares significativos."
+      },
+      {
+        "Title": "Cambios",
+        "Body": "Actualizamos este aviso cuando cambia el tratamiento, indicando la fecha. Los cambios importantes se comunicarán también en la app. Si un menor ha facilitado datos sin autorización adecuada, contacta con soporte para revisarlos y eliminarlos."
+      }
+    ],
+    "TermsIntro": "Meaningtech ofrece Makeet para el seguimiento personal de hábitos. Estas condiciones se aplican a la app y al servicio de cuentas. La versión actual está en desarrollo; el sitio todavía no ofrece descarga en App Store.",
+    "TermsSections": [
+      {
+        "Title": "Archivo y cuenta",
+        "Body": "El archivo local funciona sin sesión. La sincronización privada requiere Apple o Google. Protege el acceso a tu proveedor de identidad. Distintos proveedores pueden crear cuentas separadas; no se unen automáticamente por correo."
+      },
+      {
+        "Title": "Registro y planificación",
+        "Body": "Controlas objetivos, cantidades, correcciones y recordatorios. Los bloques del calendario no completan hábitos. Revisa las propuestas y confirma las escrituras. La disponibilidad puede cambiar entre propuesta y confirmación; comprueba los eventos en tu calendario."
+      },
+      {
+        "Title": "Sincronización y disponibilidad",
+        "Body": "Se requiere conexión y sesión válida. Los cambios sin conexión esperan a la reconexión. Ante conflictos, la app pregunta qué versión conservar. Notificaciones y widgets dependen del sistema y no garantizan una hora exacta. Las funciones pueden cambiar durante el desarrollo; los cambios importantes se anuncian en la app o el sitio."
+      },
+      {
+        "Title": "Uso aceptable",
+        "Body": "Usa el servicio legalmente, respeta la privacidad y no intentes acceder a otras cuentas, eludir la seguridad o interrumpir el servicio. Podemos restringir accesos para investigar abusos o proteger usuarios. El contenido de tus hábitos sigue siendo tuyo."
+      },
+      {
+        "Title": "Dejar Makeet",
+        "Body": "Cierra sesión o elimina la cuenta en Conexiones > Cuenta. También puedes enviar solicitudes de eliminación y privacidad a support@makeet.app. Eventos existentes y archivos locales independientes no se borran automáticamente. Consulta el aviso de privacidad para tratamiento y conservación."
+      },
+      {
+        "Title": "Contacto y derechos",
+        "Body": "Contacta con Meaningtech en support@makeet.app. Estas condiciones no limitan derechos imperativos de consumidores o protección de datos. Esta versión de desarrollo no ofrece planes de pago ni suscripciones. Cualquier oferta futura de pago mostrará precio y condiciones antes de comprar."
+      }
+    ],
+    "DeletionIntro": "Elimina tu cuenta Makeet en la app o contacta con soporte si no puedes acceder. Cerrar sesión no elimina la cuenta.",
+    "DeletionSections": [
+      {
+        "Title": "En la app",
+        "Body": "Abre Conexiones, busca Cuenta, elige Eliminar cuenta y confirma. Necesitas conexión. La app confirma tras la eliminación en el servicio; si no puede revocarse la autorización Apple, reintenta cuando esté disponible."
+      },
+      {
+        "Title": "Datos eliminados",
+        "Body": "La eliminación correcta retira del servicio la cuenta vinculada al proveedor, hábitos y actividades sincronizadas, sesiones y registros push. El dispositivo activo limpia su archivo de cuenta. Las copias restringidas se renuevan en 30 días. Otros dispositivos sin conexión pueden conservar copias hasta abrirse o borrarse."
+      },
+      {
+        "Title": "Elementos separados",
+        "Body": "El archivo local sin cuenta y los eventos ya creados son independientes. Elimina también hábitos locales o eventos si deseas borrarlos. Eliminar Makeet no elimina tu cuenta Apple o Google."
+      },
+      {
+        "Title": "Sin acceso a la cuenta",
+        "Body": "Escribe a support@makeet.app solicitando la eliminación e indicando el proveedor de acceso. No envíes contraseñas ni tokens. Soporte puede pedir verificación proporcionada de titularidad. Los derechos y plazos están en el aviso de privacidad."
+      }
+    ]
+  }
 }

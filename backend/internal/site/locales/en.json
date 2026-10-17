@@ -50,5 +50,95 @@
       "Title": "Which languages does it support?",
       "Body": "The app and widgets support English, Italian, French, German and Spanish. Your own habit names stay exactly as you write them."
     }
-  ]
+  ],
+  "Policy": {
+    "Updated": "Updated 16 October 2026",
+    "PrivacyIntro": "This notice explains how Makeet handles information in the app, account service, website and support. During development, account features become available only after service checks. You can use the local archive without an account.",
+    "ControllerTitle": "Who is responsible",
+    "HostingTitle": "Country of the primary account server",
+    "PrivacySections": [
+      {
+        "Title": "Information and purposes",
+        "Body": "Without sign-in, habits, quantities, activity times, statistics and planning stay in the app archive on your device. With an account, we store your provider identifier, email supplied by Apple or Google, and habits and activity entries you synchronize, including names, icons, targets, units, times and time zones. We use these to provide your private archive and sync across your devices. We do not receive your Apple or Google password."
+      },
+      {
+        "Title": "Calendars and planning",
+        "Body": "Calendar access is optional. The app reads only the device calendars you select to calculate availability, and writes an event only after your confirmation. Calendar events, attendees and calendar credentials are not uploaded to the Makeet backend. The calendar provider configured on your device may synchronize events under its own settings. The planner runs on the device using habit settings and past logging times; no external AI service receives this information. A direct Google Calendar connection is not currently provided."
+      },
+      {
+        "Title": "Notifications",
+        "Body": "Notifications require device permission. When signed in, the service stores an installation identifier, an encrypted Apple push token, language, time zone and your optional reminder time. It uses synchronized progress to decide whether a daily reminder is needed. Alerts contain generic text, not habit names or quantities. The service records sending attempts, Apple acceptance and a receipt when the app sees or you open a notification. You can disable reminders in the app or notifications in device settings."
+      },
+      {
+        "Title": "Legal grounds and choices",
+        "Body": "Providing accounts, synchronization and requested support is necessary to perform the service you request (GDPR Article 6(1)(b)). Optional calendar access and notifications are used following your choice and device permission; where consent is the legal basis, you may withdraw it at any time (Article 6(1)(a)). Security, abuse prevention and essential technical operation rely on legitimate interests (Article 6(1)(f)); you may object. Without identity information, we cannot create an account, but the local archive remains available. Optional permissions are not required for local habit tracking."
+      },
+      {
+        "Title": "Service providers and international processing",
+        "Body": "Cloudflare provides HTTPS protection and email routing; DigitalOcean hosts the traffic relay. Apple provides sign-in and push delivery. Google provides sign-in and processes support email. These services receive information needed for their respective roles, and may process it outside the European Economic Area, including the United States. Cloudflare describes the Data Privacy Framework and Standard Contractual Clauses in its DPA; Apple and Google describe their transfer safeguards in the policies linked below. Contact support@makeet.app for information about applicable safeguards. We do not sell personal data, use advertising trackers, or share habits for advertising."
+      },
+      {
+        "Title": "Retention and deletion",
+        "Body": "Synchronized data and revision history are retained until account deletion. Successful account deletion removes account data and active sessions from the service; Apple authorization is revoked before deletion is confirmed. If provider revocation fails, deletion is not reported as complete and can be retried. Session authorization expires within 30 days; access tokens within 15 minutes. Push delivery records are retained for up to 30 days. Restricted backups rotate within 30 days. Support messages are retained for resolving the request and any necessary legal obligations; security records only while needed for protection and investigation. Removing a server account does not erase a separate local archive, existing calendar events or another device’s offline copy."
+      },
+      {
+        "Title": "Security and local storage",
+        "Body": "Connections use HTTPS. Account stores are separated by user; service tokens use device-only Keychain storage and push/provider tokens are encrypted on the server. Synchronized habit data is processed by the backend and is not end-to-end encrypted. The app and widgets use local storage for their functions. The website has no advertising or analytics scripts; infrastructure may use essential security mechanisms."
+      },
+      {
+        "Title": "Your rights and contact",
+        "Body": "Write to support@makeet.app to request access, correction, deletion, restriction, portability, or to object to processing where applicable. We may need proportionate identity verification. You may withdraw consent without affecting earlier lawful processing and lodge a complaint with your data protection authority, including the Italian Garante. In-app account deletion is available under Connections > Account. Planning suggestions do not make legal or similarly significant automated decisions about you."
+      },
+      {
+        "Title": "Changes",
+        "Body": "We update this notice when processing changes and show the updated date. Material changes will also be communicated in the app. If you believe a child has supplied information without appropriate authorization, contact support for review and removal."
+      }
+    ],
+    "TermsIntro": "Meaningtech provides Makeet for personal habit tracking. These terms apply to use of the app and account service. The current version is in development; the website does not yet offer an App Store download.",
+    "TermsSections": [
+      {
+        "Title": "Your archive and account",
+        "Body": "You may use a local archive without signing in. Apple or Google sign-in is required for private account synchronization. Keep access to your identity provider secure. Signing in with different providers may create separate accounts; accounts are not automatically merged by email."
+      },
+      {
+        "Title": "Logging and planning",
+        "Body": "You control habit targets, quantities, corrections and reminders. Calendar blocks do not mark a habit complete. Review scheduling proposals and confirm calendar writes. Availability may change between planning and confirmation; review events in your calendar."
+      },
+      {
+        "Title": "Synchronization and availability",
+        "Body": "Sync requires a connection and a valid session. Offline changes wait for the app to reconnect. If changes conflict, the app asks which version to keep. Notifications and widget updates depend on the operating system and are not guaranteed at an exact time. Features may change during development; significant changes are communicated in the app or on this site."
+      },
+      {
+        "Title": "Acceptable use",
+        "Body": "Use the service lawfully, respect other people’s privacy and do not try to access another account, bypass security or disrupt the service. We may restrict access needed to investigate abuse or protect users. Your habit content remains yours."
+      },
+      {
+        "Title": "Leaving Makeet",
+        "Body": "You can sign out or delete your account from Connections > Account. Deletion and privacy requests can also be sent to support@makeet.app. Existing calendar events and independent local archives are not automatically removed. See the privacy notice for data handling and retention."
+      },
+      {
+        "Title": "Contact and applicable rights",
+        "Body": "Contact Meaningtech at support@makeet.app. These terms do not limit mandatory consumer or data protection rights. No paid plan or subscription is offered by this development version. Any future paid offering will disclose its price and conditions before purchase."
+      }
+    ],
+    "DeletionIntro": "Delete your Makeet account from the app, or contact support if you cannot access it. Signing out alone does not delete the account.",
+    "DeletionSections": [
+      {
+        "Title": "In the app",
+        "Body": "Open Connections, find Account, choose Delete account and confirm. A connection is required. The app confirms only after the service has deleted the account; if Apple authorization cannot be revoked, retry when the service is available."
+      },
+      {
+        "Title": "What is removed",
+        "Body": "Successful deletion removes your provider-linked account, synchronized habits and activity records, sessions and push registrations from the service. The active device clears its account archive. Restricted backup copies rotate within 30 days. Other offline devices may retain their cached copies until opened or erased."
+      },
+      {
+        "Title": "What stays separate",
+        "Body": "A local archive used without an account and calendar events already created are separate. Delete local habits or remove events in your calendar if you also want to erase them. Deleting Makeet does not delete your Apple or Google account."
+      },
+      {
+        "Title": "If you cannot sign in",
+        "Body": "Write to support@makeet.app requesting Makeet account deletion and identify the sign-in provider. Do not send passwords or tokens. Support may request a proportionate verification of ownership. Privacy rights and retention details are described in the privacy notice."
+      }
+    ]
+  }
 }

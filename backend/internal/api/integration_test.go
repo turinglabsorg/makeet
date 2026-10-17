@@ -25,6 +25,8 @@ type fixture struct {
 	server *httptest.Server
 	issuer *testidentity.Issuer
 	apple  *testidentity.Apple
+	push   *testidentity.Push
+	api    *api.Server
 	now    time.Time
 	path   string
 }
@@ -37,6 +39,10 @@ type session struct {
 }
 
 func setup(t *testing.T) *fixture {
+	return setupRelay(t, false)
+}
+
+func setupRelay(t *testing.T, trusted bool) *fixture {
 	t.Helper()
 	f := &fixture{t: t, issuer: testidentity.New(t), now: time.Now(), path: filepath.Join(t.TempDir(), "makeet.sqlite")}
 	db, err := store.Open(f.path)
@@ -45,8 +51,10 @@ func setup(t *testing.T) *fixture {
 	}
 	f.db = db
 	f.apple = testidentity.NewApple(t)
+	f.push = testidentity.NewPush(t)
 	provider := identity.New(context.Background(), f.issuer.Server.URL, f.issuer.Server.URL, []string{"native-client"})
-	f.server = httptest.NewServer(api.New(db, api.Config{Apple: f.apple.Client, Providers: map[string]identity.Verifier{"google": provider, "apple": provider}, Clock: func() time.Time { return f.now }}).Handler())
+	f.api = api.New(db, api.Config{Apple: f.apple.Client, Push: f.push.Client, Providers: map[string]identity.Verifier{"google": provider, "apple": provider}, Clock: func() time.Time { return f.now }, TrustRelay: trusted})
+	f.server = httptest.NewServer(f.api.Handler())
 	t.Cleanup(func() { f.server.Close(); f.db.Close() })
 	return f
 }

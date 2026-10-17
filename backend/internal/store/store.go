@@ -53,5 +53,15 @@ CREATE TABLE IF NOT EXISTS changes(sequence INTEGER PRIMARY KEY AUTOINCREMENT, u
 CREATE INDEX IF NOT EXISTS changes_user_sequence ON changes(user_id,sequence);
 CREATE TABLE IF NOT EXISTS batches(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, id TEXT NOT NULL, request_hash TEXT NOT NULL, response TEXT NOT NULL, PRIMARY KEY(user_id,id));
 CREATE TABLE IF NOT EXISTS provider_grants(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, provider TEXT NOT NULL, audience TEXT NOT NULL, token BLOB NOT NULL, updated_at INTEGER NOT NULL, PRIMARY KEY(user_id,provider,audience));
-PRAGMA user_version=2;
+CREATE TABLE IF NOT EXISTS devices(id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, session_id TEXT NOT NULL REFERENCES sessions(id) ON DELETE CASCADE, installation_hash TEXT NOT NULL, token BLOB NOT NULL, token_hash TEXT NOT NULL, topic TEXT NOT NULL, environment TEXT NOT NULL, language TEXT NOT NULL, time_zone TEXT NOT NULL, reminders_enabled INTEGER NOT NULL, reminder_hour INTEGER NOT NULL, reminder_minute INTEGER NOT NULL, updated_at INTEGER NOT NULL, UNIQUE(token_hash,topic,environment));
+CREATE INDEX IF NOT EXISTS devices_user ON devices(user_id);
+CREATE INDEX IF NOT EXISTS devices_session ON devices(session_id);
+CREATE INDEX IF NOT EXISTS devices_reminders ON devices(session_id) WHERE reminders_enabled=1;
+CREATE TABLE IF NOT EXISTS push_messages(id TEXT PRIMARY KEY, device_id TEXT NOT NULL REFERENCES devices(id) ON DELETE CASCADE, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, kind TEXT NOT NULL, day TEXT NOT NULL DEFAULT '', created_at INTEGER NOT NULL, accepted_at INTEGER NOT NULL DEFAULT 0, confirmed_at INTEGER NOT NULL DEFAULT 0, next_attempt INTEGER NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, status TEXT NOT NULL DEFAULT 'pending');
+CREATE INDEX IF NOT EXISTS push_due ON push_messages(status,next_attempt);
+CREATE INDEX IF NOT EXISTS push_device ON push_messages(device_id,created_at);
+CREATE INDEX IF NOT EXISTS push_expiry ON push_messages(created_at);
+CREATE UNIQUE INDEX IF NOT EXISTS push_reminder_day ON push_messages(device_id,day) WHERE kind='reminder';
+CREATE INDEX IF NOT EXISTS activity_day ON records(user_id,kind,deleted,json_extract(data,'$.habit_id'),unixepoch(json_extract(data,'$.timestamp')));
+PRAGMA user_version=3;
 `

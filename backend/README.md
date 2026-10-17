@@ -4,7 +4,7 @@ Custom Go HTTP service with SQLite storage. Apple and Google provide identity; M
 
 ## Status
 
-The HTTP service and embedded pre-release website are deployed on the dedicated Mac Pro service, behind HTTPS at `makeet.app` and `api.makeet.app`. Authentication providers remain disabled in that deployment. Integration tests also run locally. The native app includes the account/session/sync adapter, while the deployed service still disables public registration. Provider clients, live Apple authorization/revocation verification, signed-device and multi-device validation, and production account configuration must be completed before public registration.
+The HTTP service and embedded pre-release website are deployed on the dedicated Mac Pro service, behind HTTPS at `makeet.app` and `api.makeet.app`. Apple iOS and Google providers are enabled for live validation; Google consent is External / In production. Integration tests also run locally. The native app includes the account/session/sync adapter, and public Apple iOS account access is enabled for validation. Live Apple authorization/revocation, signed-device and multi-device validation remain release checks.
 
 ## Run
 
@@ -29,6 +29,13 @@ Configuration:
 | `MAKEET_APPLE_KEY_ID` | empty | Public Sign in with Apple signing-key identifier |
 | `MAKEET_APPLE_SIGNING_KEY` | empty | PKCS#8 P-256 signing key, injected through hush |
 | `MAKEET_PROVIDER_ENCRYPTION_KEY` | empty | Hex or base64-encoded 32-byte AES key, injected through hush |
+| `MAKEET_APNS_TEAM_ID`, `MAKEET_APNS_KEY_ID` | empty | Public APNs signing identifiers |
+| `MAKEET_APNS_KEY` | empty | PKCS#8 P-256 APNs key injected through hush |
+| `MAKEET_APNS_ENVIRONMENT` | empty | `development` or `production`; requires matching key/provisioning |
+| `MAKEET_APNS_TOPICS` | empty | Explicit comma-separated bundle IDs allowed for push |
+| `MAKEET_PRIVACY_CONTROLLER` | empty | Approved controller line, private runtime config, privacy route only |
+| `MAKEET_HOSTING_COUNTRY` | empty | Primary hosting country code; required before enabling accounts |
+| `MAKEET_TRUST_RELAY` | false | Accept stamped client IP only from a loopback relay; origin must enforce Cloudflare ingress |
 
 Unconfigured providers reject authentication. Public client IDs are not secrets. Keep signing keys/provider secrets in hush, never source control. Do not add fixture issuers or development-token bypasses to runtime configuration.
 
@@ -56,6 +63,9 @@ Routes:
 | GET | `/v1/me` | Bearer access token |
 | DELETE | `/v1/me` | Bearer token and `{"confirmation":"DELETE"}` |
 | POST | `/v1/sync` | Bearer access token |
+| PUT / DELETE | `/v1/devices/{id}` | Bearer token and installation proof |
+| POST | `/v1/devices/{id}/test` | Bearer token, installation proof and stable message UUID |
+| POST | `/v1/devices/{id}/receipts` | Bearer token, installation proof and received message UUID |
 
 Account deletion first revokes each stored Apple authorization through Apple's token revocation endpoint, then atomically deletes identities, encrypted provider grants, sessions, access-token hashes, habits, activities, changes, and cached mutation responses. A provider failure returns 503 and preserves the account and data for a retry; the app must not report deletion as complete. These database lifecycle operations are serialized so a simultaneous login cannot insert an unrevoked grant between revocation and deletion.
 
@@ -79,12 +89,20 @@ Quantitative logging uses a new UUID per activity, so simultaneous independent l
 
 Tests use generated RSA keys, a real local JWKS HTTP server, signed JWTs, an actual API HTTP server, and temporary on-disk SQLite databases. Coverage includes signature/audience/issuer/nonce/expiry rejection, challenge replay, account separation, refresh replay revocation, logout, access/session expiry, atomic conflicts, idempotent retries, tombstones, pagination, durability, and deletion cascades. `go test -race ./...` passes.
 
-HTTP requests have body/header/time limits; authentication routes are rate-limited using the socket peer IP. Do not trust arbitrary forwarded headers. Behind a shared relay the socket-peer limit is shared by callers, so trusted client-IP routing/rate limits must be finalized before opening registration. Live provider authorization/revocation verification, backup/restore drills, legal publication, native account isolation, and multi-device sync remain release requirements.
+HTTP requests have body/header/time limits. Auth routes permit 30 requests per minute per client address. Explicit trusted-relay mode accepts `X-Makeet-Client-IP` only from a loopback peer. The Makeet-only ingress module requires a Cloudflare network peer, validates one `CF-Connecting-IP`, strips spoofed forwarding headers and stamps the address. Direct origin access to Makeet returns 403; unrelated hosts retain their original relay behavior. Never enable relay trust behind an unvalidated public origin. Live provider/revocation and multi-device verification remain release checks.
 
 ## Embedded website
 
 `internal/site` embeds its templates, CSS, native screenshot, app icon and five translation catalogs into the Go executable. The site serves language-specific home/support pages, preserves the current page when changing language, and uses native details controls for the language menu and FAQs. It has no third-party scripts, font requests, analytics or sign-up form.
 
-Legal/account-deletion routes return HTTP 503, `Retry-After` and `X-Robots-Tag: noindex` while public registration is unavailable. Replace that explicit pre-release state with complete policies and verified deletion instructions before enabling accounts. The site does not invent legal operator details.
+Legal pages are published only with complete runtime controller/hosting configuration. Incomplete configuration returns 503/noindex and prevents the process from enabling accounts. The controller line is excluded from source and all non-privacy routes. Cloudflare email obfuscation is disabled on this zone so public support links work with the strict script-free CSP.
 
 HTTP integration tests exercise all page/language combinations, security headers, language navigation/negotiation, unavailable legal content, assets, missing routes, HEAD, and rejected write methods.
+
+## Push and backup operations
+
+Device tokens are AES-GCM encrypted with account/device/topic/environment binding. A random installation secret is hashed on the server; a device-only Keychain item stores it on the client. Device ownership derives from the current session. Logout removes registrations, invalid sessions cannot send, and account/token transfers remove old delivery records.
+
+The APNs sender uses cached ES256 assertions and fixed Apple endpoints. Pending messages retry at most five times within ten minutes; rejection removes only the matching old token, preserving concurrent refreshes. Explicit test UUIDs are idempotent, with one new test per minute per device. Apple acceptance and app-confirmed receipt are separate states. Daily reminders default off, respect the selected time zone, skip fully completed synchronized habits and deduplicate each device/local day. Delivery history expires after 30 days.
+
+`ops/backup.py` creates online SQLite snapshots, checks integrity and rotates restricted backups within 30 days. The deployment runs an isolated daily launchd job and passed a restore integrity/foreign-key/table-count drill. Keep rollback binaries and private runtime configuration outside source control. Production APNs credentials and live device delivery are not yet verified.

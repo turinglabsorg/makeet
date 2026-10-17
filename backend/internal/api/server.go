@@ -20,13 +20,16 @@ import (
 	"github.com/google/uuid"
 	"github.com/turinglabsorg/makeet/backend/internal/apple"
 	"github.com/turinglabsorg/makeet/backend/internal/identity"
+	"github.com/turinglabsorg/makeet/backend/internal/push"
 )
 
 type Config struct {
-	Providers map[string]identity.Verifier
-	Apple     *apple.Client
-	Site      http.Handler
-	Clock     func() time.Time
+	Providers  map[string]identity.Verifier
+	Apple      *apple.Client
+	Push       *push.Client
+	Site       http.Handler
+	Clock      func() time.Time
+	TrustRelay bool
 }
 type Server struct {
 	db     *sql.DB
@@ -81,6 +84,10 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("GET /v1/me", s.auth(s.me))
 	mux.HandleFunc("DELETE /v1/me", s.auth(s.deleteAccount))
 	mux.HandleFunc("POST /v1/sync", s.auth(s.syncRecords))
+	mux.HandleFunc("PUT /v1/devices/{id}", s.auth(s.registerDevice))
+	mux.HandleFunc("DELETE /v1/devices/{id}", s.auth(s.removeDevice))
+	mux.HandleFunc("POST /v1/devices/{id}/test", s.auth(s.testPush))
+	mux.HandleFunc("POST /v1/devices/{id}/receipts", s.auth(s.confirmPush))
 	if s.cfg.Site != nil {
 		mux.Handle("/", s.cfg.Site)
 	}
@@ -91,7 +98,7 @@ func (s *Server) Handler() http.Handler {
 		if strings.HasPrefix(r.URL.Path, "/v1/") {
 			w.Header().Set("Cache-Control", "no-store")
 		}
-		if strings.HasPrefix(r.URL.Path, "/v1/auth/") && !s.allow(r.RemoteAddr) {
+		if strings.HasPrefix(r.URL.Path, "/v1/auth/") && !s.allow(s.clientAddress(r)) {
 			w.Header().Set("Retry-After", "60")
 			fail(w, 429, "rate_limited")
 			return
@@ -104,6 +111,19 @@ func (s *Server) Handler() http.Handler {
 		}()
 		mux.ServeHTTP(w, r)
 	})
+}
+func (s *Server) clientAddress(r *http.Request) string {
+	host, _, err := net.SplitHostPort(r.RemoteAddr)
+	if err != nil {
+		return r.RemoteAddr
+	}
+	peer := net.ParseIP(host)
+	if s.cfg.TrustRelay && peer != nil && peer.IsLoopback() {
+		if client := net.ParseIP(r.Header.Get("X-Makeet-Client-IP")); client != nil {
+			return client.String()
+		}
+	}
+	return r.RemoteAddr
 }
 func (s *Server) allow(remote string) bool {
 	host, _, err := net.SplitHostPort(remote)
@@ -405,6 +425,10 @@ func (s *Server) me(w http.ResponseWriter, r *http.Request, p principal) {
 	respond(w, 200, u)
 }
 func (s *Server) logout(w http.ResponseWriter, r *http.Request, p principal) {
+	if _, err := s.db.ExecContext(r.Context(), "DELETE FROM devices WHERE session_id=? AND user_id=?", p.SessionID, p.UserID); err != nil {
+		internal(w, err)
+		return
+	}
 	if _, err := s.db.ExecContext(r.Context(), "UPDATE sessions SET revoked=1 WHERE id=? AND user_id=?", p.SessionID, p.UserID); err != nil {
 		internal(w, err)
 		return
