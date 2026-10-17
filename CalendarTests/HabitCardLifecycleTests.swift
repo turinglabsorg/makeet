@@ -54,25 +54,34 @@ import XCTest
         return container
     }
 
-    func testCardCanFinishLayoutAfterItsArchiveIsReleased() throws {
-        var container: ModelContainer? = try ModelContainer(for: Habit.self, Activity.self,
-            configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-        weak var oldArchive = container
-        let habit = Habit(name: "Layout regression", symbol: "drop", colorIndex: 1,
-                          target: 8, step: 1, unit: "glasses")
-        container!.mainContext.insert(habit)
-        let activity = Activity(habitID: habit.id, amount: 3)
-        container!.mainContext.insert(activity)
-        try container!.mainContext.save()
-        let card = HabitCard(habit: habit, activities: [activity], now: Date(),
-                             decrement: {}, increment: {})
-        container = nil
-        XCTAssertNil(oldArchive)
+    func testCardCanFinishLayoutAfterItsArchiveIsReleased() async throws {
+        let (card, oldArchive) = try detachedCardFixture()
+        let released = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            oldArchive.value == nil
+        }, object: nil)
+        await fulfillment(of: [released], timeout: 2)
+        XCTAssertNil(oldArchive.value)
 
         let renderer = ImageRenderer(content: NavigationStack {
             card.frame(width: 390).padding()
         }.frame(width: 430, height: 420))
         XCTAssertNotNil(renderer.uiImage)
+    }
+
+    @inline(never) private func detachedCardFixture() throws -> (HabitCard, WeakArchive) {
+        try autoreleasepool {
+            let container = try ModelContainer(for: Habit.self, Activity.self,
+                configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+            container.mainContext.autosaveEnabled = false
+            let habit = Habit(name: "Layout regression", symbol: "drop", colorIndex: 1,
+                              target: 8, step: 1, unit: "glasses")
+            container.mainContext.insert(habit)
+            let activity = Activity(habitID: habit.id, amount: 3)
+            container.mainContext.insert(activity)
+            try container.mainContext.save()
+            return (HabitCard(habit: habit, activities: [activity], now: Date(),
+                              decrement: {}, increment: {}), WeakArchive(container))
+        }
     }
 }
 

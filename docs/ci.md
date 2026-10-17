@@ -29,3 +29,5 @@ The native apps and pinned sign-in dependencies use Apple operating-system netwo
 ## Release evidence
 
 A successful local archive is not a TestFlight upload. Record the cloud build number, completed test action, processed App Store Connect build and internal TestFlight availability when each is verified. Retain release archives and dSYMs beyond the provider's artifact-retention period so field crashes can be symbolicated.
+
+On 2026-10-17, cloud build 2 completed the required iOS27 test and archive actions. Its processed TestFlight build 0.1.0 (2) is available with Testing status in Makeet Internal, and the sole owner's tester status is Invited. Its one-time export questionnaire was completed using the native binary's OS-only encryption classification; later builds carry the Info declaration and localized notes. Cloud build 3 was withheld after its detached-card fixture release assertion failed. The test gate remains required.
