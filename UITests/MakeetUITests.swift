@@ -19,6 +19,8 @@ final class MakeetUITests: XCTestCase {
         app.buttons["Preferisco continuare senza account"].tap()
         attach("Onboarding local choice", app)
         app.buttons["onboardingLocal"].tap()
+        XCTAssertTrue(app.buttons["onboardingFinish"].waitForExistence(timeout: 5))
+        app.buttons["onboardingFinish"].tap()
         XCTAssertTrue(app.tabBars.buttons["Oggi"].waitForExistence(timeout: 5))
         app.terminate()
         app.launchArguments = ["--ui-testing", "--onboarding", "--preserve-onboarding", "-AppleLanguages", "(it)"]
@@ -45,6 +47,12 @@ final class MakeetUITests: XCTestCase {
             XCTAssertTrue(app.buttons["onboardingAccountChoice"].exists)
             XCTAssertTrue(app.buttons["onboardingLocalChoice"].isHittable)
             attach("Storage choice \(language)", app)
+            app.buttons["onboardingAccountChoice"].tap()
+            app.buttons["onboardingAccount"].tap()
+            XCTAssertTrue(app.buttons["googleSignIn"].waitForExistence(timeout: 5))
+            XCTAssertGreaterThan(app.buttons["googleSignIn"].frame.width, 280)
+            XCTAssertEqual(app.buttons["googleSignIn"].frame.width, app.buttons["appleSignIn"].frame.width, accuracy: 1)
+            attach("Account choice \(language)", app)
             app.terminate()
         }
     }
@@ -148,11 +156,12 @@ final class MakeetUITests: XCTestCase {
         attach("Trends", app)
         app.tabBars.buttons["Il tuo piano"].tap()
         app.buttons["Connessioni"].tap()
-        XCTAssertTrue(app.staticTexts["notificationPermission"].waitForExistence(timeout: 5))
         XCTAssertFalse(app.alerts.firstMatch.exists)
         XCTAssertTrue(app.staticTexts["Account Makeet"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["I progressi restano su questo dispositivo finché non accedi."].exists)
         XCTAssertFalse(app.buttons["Elimina account"].exists)
+        if !app.staticTexts["notificationPermission"].exists { app.swipeUp() }
+        XCTAssertTrue(app.staticTexts["notificationPermission"].waitForExistence(timeout: 5))
         attach("Connections", app)
     }
 

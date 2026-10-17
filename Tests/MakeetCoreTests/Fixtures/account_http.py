@@ -3,7 +3,8 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-counts = {"refresh": 0, "sync": 0, "delete": 0, "push": 0}
+counts = {"refresh": 0, "sync": 0, "delete": 0, "push": 0, "profile": 0}
+profile = {"name": "", "image": None, "revision": 0}
 lock = threading.Lock()
 
 
@@ -20,7 +21,10 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def do_GET(self):
-        if self.path == "/counts":
+        if self.path == "/v1/me/profile" and self.headers.get("Authorization") == "Bearer fixture-next":
+            with lock:
+                self.reply(200, profile)
+        elif self.path == "/counts":
             with lock:
                 self.reply(200, counts)
         else:
@@ -72,6 +76,15 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_PUT(self):
         body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
+        if self.path == "/v1/me/profile" and self.headers.get("Authorization") == "Bearer fixture-next":
+            with lock:
+                if body.get("revision") != profile["revision"]:
+                    self.reply(409, {"error": "profile_conflict"})
+                    return
+                profile.update(name=body["name"], image=body.get("image"), revision=profile["revision"] + 1)
+                counts["profile"] += 1
+                self.reply(200, profile)
+            return
         if not self.path.startswith("/v1/devices/") or self.headers.get("Authorization") != "Bearer fixture-next":
             self.reply(401, {"error": "unauthorized"})
             return

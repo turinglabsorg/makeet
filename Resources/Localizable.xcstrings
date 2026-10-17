@@ -9606,6 +9606,1128 @@
           }
         }
       }
+    },
+    "Le abitudini che vuoi, nel ritmo della tua giornata.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le abitudini che vuoi, nel ritmo della tua giornata."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The habits you want, at your own pace."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les habitudes qui vous ressemblent, à votre rythme."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Gewohnheiten, in deinem Rhythmus."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los hábitos que quieres, a tu propio ritmo."
+          }
+        }
+      }
+    },
+    "Un esempio della tua giornata": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un esempio della tua giornata"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A glimpse of your day"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un aperçu de votre journée"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So könnte dein Tag aussehen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un ejemplo de tu día"
+          }
+        }
+      }
+    },
+    "Conta i progressi. Trova il tuo momento.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta i progressi. Trova il tuo momento."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress. Find your moment."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suivez vos progrès. Trouvez votre moment."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zähle deine Fortschritte. Finde deinen Moment."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registra tu progreso. Encuentra tu momento."
+          }
+        }
+      }
+    },
+    "Con un account li ritrovi anche su un nuovo dispositivo. Oppure puoi iniziare solo qui.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con un account li ritrovi anche su un nuovo dispositivo. Oppure puoi iniziare solo qui."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An account keeps your progress with you, even on a new device. Or you can start just here."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec un compte, retrouvez vos progrès même sur un nouvel appareil. Ou commencez simplement ici."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit einem Konto bleiben deine Fortschritte auch auf einem neuen Gerät bei dir. Oder du startest nur hier."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con una cuenta, conservas tu progreso incluso en un dispositivo nuevo. O puedes empezar solo aquí."
+          }
+        }
+      }
+    },
+    "Il tuo archivio privato, salvato e sincronizzato. Accedi con Apple o Google.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo archivio privato, salvato e sincronizzato. Accedi con Apple o Google."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your private archive, saved and synced. Sign in with Apple or Google."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre archive privée, sauvegardée et synchronisée. Connectez-vous avec Apple ou Google."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein privates Archiv, gespeichert und synchronisiert. Melde dich mit Apple oder Google an."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu archivo privado, guardado y sincronizado. Entra con Apple o Google."
+          }
+        }
+      }
+    },
+    "Nessuna registrazione. I progressi restano qui: potrai accedere quando vuoi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna registrazione. I progressi restano qui: potrai accedere quando vuoi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No sign-up. Your progress stays here. You can sign in whenever you like."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans inscription. Vos progrès restent ici. Vous pourrez vous connecter quand vous voulez."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohne Registrierung. Deine Fortschritte bleiben hier. Du kannst dich jederzeit anmelden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin registro. Tu progreso se queda aquí. Puedes iniciar sesión cuando quieras."
+          }
+        }
+      }
+    },
+    "Senza account, rimuovere l’app o perdere il dispositivo può far perdere i progressi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senza account, rimuovere l’app o perdere il dispositivo può far perdere i progressi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without an account, deleting the app or losing your device can mean losing your progress."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans compte, supprimer l’app ou perdre votre appareil peut entraîner la perte de vos progrès."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohne Konto können deine Fortschritte verloren gehen, wenn du die App löschst oder dein Gerät verlierst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin cuenta, borrar la app o perder el dispositivo puede suponer perder tu progreso."
+          }
+        }
+      }
+    },
+    "La scelta è tua. Calendario e notifiche si attivano solo quando vuoi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La scelta è tua. Calendario e notifiche si attivano solo quando vuoi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It’s your choice. Connect your calendar and notifications when you’re ready."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À vous de choisir. Activez le calendrier et les notifications quand vous voulez."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du entscheidest. Kalender und Mitteilungen aktivierst du, wenn du möchtest."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tú eliges. Activa el calendario y las notificaciones cuando quieras."
+          }
+        }
+      }
+    },
+    "È il tuo primo accesso? Creiamo il tuo account. Sei già dei nostri? Ritrovi i tuoi progressi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "È il tuo primo accesso? Creiamo il tuo account. Sei già dei nostri? Ritrovi i tuoi progressi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New here? We’ll create your account. Coming back? Pick up where you left off."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Première visite ? Nous créons votre compte. Déjà inscrit ? Retrouvez vos progrès."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neu hier? Wir erstellen dein Konto. Schon dabei? Mach mit deinen Fortschritten weiter."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Es tu primera vez? Creamos tu cuenta. ¿Ya tienes una? Recupera tu progreso."
+          }
+        }
+      }
+    },
+    "Nessuna nuova password. Nessun profilo pubblico.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna nuova password. Nessun profilo pubblico."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No new password. No public profile."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de nouveau mot de passe. Pas de profil public."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein neues Passwort. Kein öffentliches Profil."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin nueva contraseña. Sin perfil público."
+          }
+        }
+      }
+    },
+    "Hai già abitudini sul dispositivo? Dopo l’accesso decidi tu se importarle.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai già abitudini sul dispositivo? Dopo l’accesso decidi tu se importarle."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Already have habits on this device? You decide whether to import them after signing in."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez déjà des habitudes sur cet appareil ? Après la connexion, vous choisissez de les importer ou non."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schon Gewohnheiten auf diesem Gerät? Nach der Anmeldung entscheidest du, ob du sie importierst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Ya tienes hábitos en este dispositivo? Después de entrar decides si quieres importarlos."
+          }
+        }
+      }
+    },
+    "Aggiungi il tuo tocco": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi il tuo tocco"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make it yours"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutez votre touche"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mach es zu deinem"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dale tu toque"
+          }
+        }
+      }
+    },
+    "Partiamo da una cosa semplice.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partiamo da una cosa semplice."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Let’s start with something simple."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commençons par une chose simple."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fangen wir mit etwas Einfachem an."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empecemos por algo sencillo."
+          }
+        }
+      }
+    },
+    "Scegli la prima abitudine e quanto vuoi fare. Puoi cambiare tutto, un passo alla volta.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli la prima abitudine e quanto vuoi fare. Puoi cambiare tutto, un passo alla volta."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your first habit and how much you want to do. You can change anything as you go."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez votre première habitude et la quantité souhaitée. Vous pourrez tout ajuster, pas à pas."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle deine erste Gewohnheit und dein Ziel. Du kannst alles Schritt für Schritt anpassen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige tu primer hábito y cuánto quieres hacer. Puedes cambiarlo todo, paso a paso."
+          }
+        }
+      }
+    },
+    "Aggiungi una quantità, correggila con meno.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi una quantità, correggila con meno."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add a quantity. Use minus to adjust it."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutez une quantité, ajustez-la avec moins."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Füge eine Menge hinzu, passe sie mit Minus an."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade una cantidad y ajústala con menos."
+          }
+        }
+      }
+    },
+    "Guarda come cresci, giorno dopo giorno.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guarda come cresci, giorno dopo giorno."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See your progress, day after day."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Découvrez vos progrès, jour après jour."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sieh deine Fortschritte, Tag für Tag."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mira cómo avanzas, día a día."
+          }
+        }
+      }
+    },
+    "Collega il calendario quando sei pronto.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collega il calendario quando sei pronto."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your calendar when you’re ready."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectez votre calendrier quand vous le souhaitez."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde deinen Kalender, wenn du bereit bist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecta tu calendario cuando quieras."
+          }
+        }
+      }
+    },
+    "Entra in Makeet": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entra in Makeet"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Let’s begin"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C’est parti"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los geht’s"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar"
+          }
+        }
+      }
+    },
+    "Continua": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weiter"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
+          }
+        }
+      }
+    },
+    "Foto profilo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foto profilo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile photo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photo de profil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profilfoto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foto de perfil"
+          }
+        }
+      }
+    },
+    "Account privato": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account privato"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Private account"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte privé"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privates Konto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta privada"
+          }
+        }
+      }
+    },
+    "Scegli una foto": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli una foto"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a photo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisir une photo"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foto auswählen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir una foto"
+          }
+        }
+      }
+    },
+    "Rimuovi foto": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuovi foto"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove photo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirer la photo"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foto entfernen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar foto"
+          }
+        }
+      }
+    },
+    "Come ti chiami?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Come ti chiami?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What’s your name?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comment vous appelez-vous ?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wie heißt du?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Cómo te llamas?"
+          }
+        }
+      }
+    },
+    "Il tuo nome": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo nome"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your name"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre nom"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Name"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu nombre"
+          }
+        }
+      }
+    },
+    "Nome e foto sono visibili solo a te e vengono salvati nel tuo account.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome e foto sono visibili solo a te e vengono salvati nel tuo account."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your name and photo are visible only to you and saved in your account."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre nom et votre photo sont visibles uniquement par vous et sont enregistrés dans votre compte."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Name und Foto sind nur für dich sichtbar und werden in deinem Konto gespeichert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu nombre y tu foto solo son visibles para ti y se guardan en tu cuenta."
+          }
+        }
+      }
+    },
+    "Il tuo profilo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo profilo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your profile"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre profil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Profil"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu perfil"
+          }
+        }
+      }
+    },
+    "Salva": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speichern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        }
+      }
+    },
+    "Non riesco a usare questa foto. Scegli un’altra immagine.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non riesco a usare questa foto. Scegli un’altra immagine."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This photo couldn’t be used. Choose another image."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette photo ne peut pas être utilisée. Choisissez une autre image."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Foto kann nicht verwendet werden. Wähle ein anderes Bild."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha podido usar esta foto. Elige otra imagen."
+          }
+        }
+      }
+    },
+    "Modifica profilo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica profilo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit profile"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier le profil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil bearbeiten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar perfil"
+          }
+        }
+      }
+    },
+    "Continua con Google": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua con Google"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue with Google"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer avec Google"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weiter mit Google"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar con Google"
+          }
+        }
+      }
+    },
+    "Il profilo è cambiato su un altro dispositivo. Riapri la modifica per caricare la versione aggiornata.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il profilo è cambiato su un altro dispositivo. Riapri la modifica per caricare la versione aggiornata."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your profile changed on another device. Reopen the editor to load the latest version."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre profil a été modifié sur un autre appareil. Rouvrez l’éditeur pour charger la dernière version."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Profil wurde auf einem anderen Gerät geändert. Öffne die Bearbeitung erneut, um die aktuelle Version zu laden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu perfil ha cambiado en otro dispositivo. Vuelve a abrir el editor para cargar la última versión."
+          }
+        }
+      }
+    },
+    "Profilo non salvato. Controlla la connessione e riprova.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profilo non salvato. Controlla la connessione e riprova."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile not saved. Check your connection and try again."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil non enregistré. Vérifiez votre connexion et réessayez."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil nicht gespeichert. Prüfe deine Verbindung und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha guardado el perfil. Comprueba la conexión y vuelve a intentarlo."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		028B625D2593B68D0388AB19 /* DevicePushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54307EA0F7582984D4E75CB /* DevicePushService.swift */; };
 		06785B2325FF3E1CC3FD0937 /* DevicePushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54307EA0F7582984D4E75CB /* DevicePushService.swift */; };
+		08F823D3C1ACC8BF681B4460 /* GoogleSignIn-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22A42246CBFF0CA2BC76BC0C /* GoogleSignIn-LICENSE.txt */; };
 		0FFBD930394A500771AF5D0F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
 		1060C7105D61195F8A94166B /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */; };
 		126D348AB9E09E04DD3F4377 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7EC58729B9AAEDEC8E3CC /* AppLanguage.swift */; };
@@ -18,8 +19,10 @@
 		1694814712EE81C4A6D9B0B2 /* SyncProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C1B1BF09D661A799600760 /* SyncProtocol.swift */; };
 		16E64DD6361356B7EDEDD311 /* LanguageSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E4074312F5324EA3A7032 /* LanguageSettingsSection.swift */; };
 		17C3BBB04EB1D09145D7CAD8 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
+		18D219E801162214A3B88C87 /* AccountProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A573FC39844A3208A74A9 /* AccountProfile.swift */; };
 		19B5855F05E67B6CC15A3324 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
 		1CCB8D22B9A47BE48B84C99C /* SyncLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */; };
+		1D26E51D53F6568706341D54 /* AccountProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A573FC39844A3208A74A9 /* AccountProfile.swift */; };
 		1E482DB553A8F4F93BE8B738 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FC9984242CC6634D72E864 /* TrendsView.swift */; };
 		1EBF1B2B807CEC44BC386E40 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
 		1FEEB150350CCFAA86D628A0 /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
@@ -27,7 +30,9 @@
 		21AFC0ED02E6039533B2666B /* MakeetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */; };
 		2A28237498A0883958760320 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */; };
 		2B06E5E2BE2592FEB202E532 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8EF339792D048E778065CEF1 /* Localizable.xcstrings */; };
+		2BE8BBE9D152E9B794B44FDD /* GoogleSignIn-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22A42246CBFF0CA2BC76BC0C /* GoogleSignIn-LICENSE.txt */; };
 		32647B824BE6D8D4A05C619D /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
+		330F30F025D57A0007F962BB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3438229D003EE9AF7A8B2 /* ProfileView.swift */; };
 		39390FF77713B09E40D3EBEC /* SyncLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */; };
 		3A064D9F88E2E1F67952A3A4 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE86BE058455F79D120E8E84 /* AddHabitView.swift */; };
 		3A2DD2C00491DD9C32D5228F /* PushProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFC48EE084F27F808031383 /* PushProtocol.swift */; };
@@ -35,10 +40,15 @@
 		3B980483D1A59B0B563485A4 /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
 		4422F67AAD6F1B59756C0DFC /* MakeetWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C47E134F5207238BA1DB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
+		557C36094FB9629122623E7B /* GoogleSignIn-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22A42246CBFF0CA2BC76BC0C /* GoogleSignIn-LICENSE.txt */; };
+		57F315172CB6676E8094B7B8 /* GoogleSignIn-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22A42246CBFF0CA2BC76BC0C /* GoogleSignIn-LICENSE.txt */; };
 		59ACF6135E38F47E96137DE4 /* PhysicalAccountSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FEA19B6EFAB632F2280FC7 /* PhysicalAccountSmokeTests.swift */; };
+		5B11E4B48004328A9EF9555A /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13A6599DBDC41E5938199A9 /* ProfileImage.swift */; };
+		5D9332690B210C25A7E5E4AC /* AccountProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461457EE4090E184872D06 /* AccountProfileService.swift */; };
 		6136199EC43798B4DCF3CA25 /* SyncLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */; };
 		67A34CADEDA12963147B55C9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8EF339792D048E778065CEF1 /* Localizable.xcstrings */; };
 		67F39417114D21C6059641DB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38656D5077BD3D7F72E7A82D /* Theme.swift */; };
+		6C4C8471D138604DBAD0098C /* ProfilePresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5C729CE3D4513FC2DCFAB5 /* ProfilePresentationTests.swift */; };
 		6CD9EDCC8C15C72F7C140CC1 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
 		6DCCD27ED078E4DBDD5D0209 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */; };
 		6E83CA73AD3980850EA7B52A /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FC9984242CC6634D72E864 /* TrendsView.swift */; };
@@ -62,9 +72,11 @@
 		9780B4235732FCCA858F49A2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 287462D97D0BA5E9E6CD2F2E /* GoogleSignIn */; };
 		9A40F60A674C09C16A6F4326 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE86BE058455F79D120E8E84 /* AddHabitView.swift */; };
 		9C11C1E594C8E9238E63C9CE /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */; };
+		9CC14A974858D9D519F102A0 /* AccountProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A573FC39844A3208A74A9 /* AccountProfile.swift */; };
 		9CE293B73B2B6D98E014B79A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
 		9F8C2B672FAAE98B83AD6E31 /* AccountSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5862C45C954D1F1334C025BE /* AccountSettingsSection.swift */; };
 		A106D36F9DE6DF76DF7EE86E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B22EB7A80A226C27F1732 /* OnboardingView.swift */; };
+		A1524BF13A1077BE8FCBB561 /* AccountProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461457EE4090E184872D06 /* AccountProfileService.swift */; };
 		A38972BA976F2AF7FCB2CE1D /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7EC58729B9AAEDEC8E3CC /* AppLanguage.swift */; };
 		A38C92304E74DAD11FBDEEFD /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D19613A3934E9695BEBD056 /* TodayView.swift */; };
 		A64933F55DA21C52051EEA7E /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C872F78FF7A870B27ED9D86 /* PlannerView.swift */; };
@@ -75,6 +87,7 @@
 		B1D9CC7ADED5DE670F23EA9E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
 		B3504A3E26C69B6201EC4B75 /* SyncProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C1B1BF09D661A799600760 /* SyncProtocol.swift */; };
 		B35E9123676DBB2E7D4398D4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD5A21DD54C084FC1612C0 /* Models.swift */; };
+		B39350AA4F4D6F9EB6D24A64 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13A6599DBDC41E5938199A9 /* ProfileImage.swift */; };
 		B49E754A6728B4DEA2B6A3C2 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C6F56AC816972AAE9EF27 /* AccountAPI.swift */; };
 		B4D7CB66509D4E610E60897C /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
 		B706826B0828B5B5DAED68A2 /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
@@ -83,6 +96,7 @@
 		BA50BD9CB93D3B50073154BB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8EF339792D048E778065CEF1 /* Localizable.xcstrings */; };
 		BC286D1AFCBA1811C23E1DEE /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
 		BFE440E790B456ED00710B65 /* CalendarServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6018989EDED05E750152A82 /* CalendarServiceTests.swift */; };
+		C14D1DCB03608FE1E89205FB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3438229D003EE9AF7A8B2 /* ProfileView.swift */; };
 		C1E8A2E3FFD77DF86C9D2308 /* MakeetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88E138CB5413197569EB2B /* MakeetApp.swift */; };
 		C2839F8A75A3E9F37772C178 /* MakeetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */; };
 		C8F04C3F1D141F2FCA35F742 /* ArchiveHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233EDE5EB4E5B5E75B8BB1A /* ArchiveHost.swift */; };
@@ -97,6 +111,7 @@
 		EA0112147AB371A401DFC32C /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
 		EAFE12CD98745B0A1DE5D346 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C1FE5B4CD4748D63459CFD /* NotificationService.swift */; };
 		EB3731670669E60AFD50D493 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7EC58729B9AAEDEC8E3CC /* AppLanguage.swift */; };
+		EEE613CE46E2656BCF64FCDF /* AccountProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A573FC39844A3208A74A9 /* AccountProfile.swift */; };
 		F388D421AF6A67E5536124E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A646774440548F9D07CAB /* Assets.xcassets */; };
 		F5E7A0CA22B50BB98EC1832B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565655381A18FD725549CD7 /* AccountManager.swift */; };
 		F931044D6ABED40DA3A5C688 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7EC58729B9AAEDEC8E3CC /* AppLanguage.swift */; };
@@ -164,11 +179,14 @@
 
 /* Begin PBXFileReference section */
 		1233EDE5EB4E5B5E75B8BB1A /* ArchiveHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveHost.swift; sourceTree = "<group>"; };
+		140A573FC39844A3208A74A9 /* AccountProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfile.swift; sourceTree = "<group>"; };
 		1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MakeetMacWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncLedger.swift; sourceTree = "<group>"; };
+		22A42246CBFF0CA2BC76BC0C /* GoogleSignIn-LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "GoogleSignIn-LICENSE.txt"; sourceTree = "<group>"; };
 		2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEngine.swift; sourceTree = "<group>"; };
 		27EAF38905E863D2D6ED17D8 /* MakeetCalendarTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MakeetCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38656D5077BD3D7F72E7A82D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		3AC3438229D003EE9AF7A8B2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		4565655381A18FD725549CD7 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		481E4074312F5324EA3A7032 /* LanguageSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettingsSection.swift; sourceTree = "<group>"; };
@@ -193,10 +211,12 @@
 		A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetWidget.swift; sourceTree = "<group>"; };
 		A4FC9984242CC6634D72E864 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
 		A54ED3EA62009446C32C0EB7 /* KeychainSessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSessionStorage.swift; sourceTree = "<group>"; };
+		AA5C729CE3D4513FC2DCFAB5 /* ProfilePresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresentationTests.swift; sourceTree = "<group>"; };
 		AC88E138CB5413197569EB2B /* MakeetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetApp.swift; sourceTree = "<group>"; };
 		AE86BE058455F79D120E8E84 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEngine.swift; sourceTree = "<group>"; };
 		BA637E491A80C570F4A8E022 /* AccountSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSyncService.swift; sourceTree = "<group>"; };
+		C13A6599DBDC41E5938199A9 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		C7FEA19B6EFAB632F2280FC7 /* PhysicalAccountSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAccountSmokeTests.swift; sourceTree = "<group>"; };
 		CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE16E79D0337524029F11416 /* HabitAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitAppearance.swift; sourceTree = "<group>"; };
@@ -205,6 +225,7 @@
 		E6018989EDED05E750152A82 /* CalendarServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarServiceTests.swift; sourceTree = "<group>"; };
 		F1BD5A21DD54C084FC1612C0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F54307EA0F7582984D4E75CB /* DevicePushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePushService.swift; sourceTree = "<group>"; };
+		F6461457EE4090E184872D06 /* AccountProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +266,7 @@
 		160AA0F0184844580A1AD221 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				22A42246CBFF0CA2BC76BC0C /* GoogleSignIn-LICENSE.txt */,
 				3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */,
 				8EF339792D048E778065CEF1 /* Localizable.xcstrings */,
 			);
@@ -276,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				4565655381A18FD725549CD7 /* AccountManager.swift */,
+				F6461457EE4090E184872D06 /* AccountProfileService.swift */,
 				5862C45C954D1F1334C025BE /* AccountSettingsSection.swift */,
 				BA637E491A80C570F4A8E022 /* AccountSyncService.swift */,
 				AE86BE058455F79D120E8E84 /* AddHabitView.swift */,
@@ -288,6 +311,8 @@
 				72C1FE5B4CD4748D63459CFD /* NotificationService.swift */,
 				561B22EB7A80A226C27F1732 /* OnboardingView.swift */,
 				8C872F78FF7A870B27ED9D86 /* PlannerView.swift */,
+				C13A6599DBDC41E5938199A9 /* ProfileImage.swift */,
+				3AC3438229D003EE9AF7A8B2 /* ProfileView.swift */,
 				5D19613A3934E9695BEBD056 /* TodayView.swift */,
 				A4FC9984242CC6634D72E864 /* TrendsView.swift */,
 			);
@@ -300,6 +325,7 @@
 				E6018989EDED05E750152A82 /* CalendarServiceTests.swift */,
 				4935E5FEF5178CF7CC62BA78 /* HabitCardLifecycleTests.swift */,
 				6AC40D62AA1B02A6298DB7A7 /* NotificationServiceTests.swift */,
+				AA5C729CE3D4513FC2DCFAB5 /* ProfilePresentationTests.swift */,
 			);
 			path = CalendarTests;
 			sourceTree = "<group>";
@@ -341,6 +367,7 @@
 		DBD74CFBD7B7617736942C24 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				140A573FC39844A3208A74A9 /* AccountProfile.swift */,
 				2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */,
 				B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */,
 				202A73778E6DCD7A7F3B5B98 /* SyncLedger.swift */,
@@ -538,6 +565,7 @@
 			files = (
 				F388D421AF6A67E5536124E0 /* Assets.xcassets in Resources */,
 				9CE293B73B2B6D98E014B79A /* Assets.xcassets in Resources */,
+				557C36094FB9629122623E7B /* GoogleSignIn-LICENSE.txt in Resources */,
 				9C11C1E594C8E9238E63C9CE /* InfoPlist.xcstrings in Resources */,
 				BA50BD9CB93D3B50073154BB /* Localizable.xcstrings in Resources */,
 			);
@@ -548,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BD66E489931C3803874CBA6 /* Assets.xcassets in Resources */,
+				08F823D3C1ACC8BF681B4460 /* GoogleSignIn-LICENSE.txt in Resources */,
 				2A28237498A0883958760320 /* InfoPlist.xcstrings in Resources */,
 				67A34CADEDA12963147B55C9 /* Localizable.xcstrings in Resources */,
 			);
@@ -559,6 +588,7 @@
 			files = (
 				AFB66B1B92B85ABCE75654B1 /* Assets.xcassets in Resources */,
 				83D54E428915496D6072D5F2 /* Assets.xcassets in Resources */,
+				2BE8BBE9D152E9B794B44FDD /* GoogleSignIn-LICENSE.txt in Resources */,
 				82E07E71B5483AA377F04167 /* InfoPlist.xcstrings in Resources */,
 				2B06E5E2BE2592FEB202E532 /* Localizable.xcstrings in Resources */,
 			);
@@ -569,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C47E134F5207238BA1DB834 /* Assets.xcassets in Resources */,
+				57F315172CB6676E8094B7B8 /* GoogleSignIn-LICENSE.txt in Resources */,
 				1060C7105D61195F8A94166B /* InfoPlist.xcstrings in Resources */,
 				12F2084A611CA3345CF1F7D4 /* Localizable.xcstrings in Resources */,
 			);
@@ -583,6 +614,8 @@
 			files = (
 				D7F2D0032F8EB7CF00DBC923 /* AccountAPI.swift in Sources */,
 				F5E7A0CA22B50BB98EC1832B /* AccountManager.swift in Sources */,
+				1D26E51D53F6568706341D54 /* AccountProfile.swift in Sources */,
+				A1524BF13A1077BE8FCBB561 /* AccountProfileService.swift in Sources */,
 				9F8C2B672FAAE98B83AD6E31 /* AccountSettingsSection.swift in Sources */,
 				FA804BDD6FA9E9D291C12ED0 /* AccountStore.swift in Sources */,
 				DE80855BC6F0858F7E07684A /* AccountSyncService.swift in Sources */,
@@ -600,6 +633,8 @@
 				8ED934EE2B4E4DBAC97F45EC /* NotificationService.swift in Sources */,
 				78E35139819661C318EC2DEA /* OnboardingView.swift in Sources */,
 				A64933F55DA21C52051EEA7E /* PlannerView.swift in Sources */,
+				B39350AA4F4D6F9EB6D24A64 /* ProfileImage.swift in Sources */,
+				330F30F025D57A0007F962BB /* ProfileView.swift in Sources */,
 				A6ADAD50750B48956698D3F8 /* PushProtocol.swift in Sources */,
 				745656F6F7D42075CA28EBAA /* ScheduleEngine.swift in Sources */,
 				1CCB8D22B9A47BE48B84C99C /* SyncLedger.swift in Sources */,
@@ -626,6 +661,7 @@
 				BFE440E790B456ED00710B65 /* CalendarServiceTests.swift in Sources */,
 				20A81E8853102B8BCCB557B6 /* HabitCardLifecycleTests.swift in Sources */,
 				6F7FC3F089A3D506A3F9A328 /* NotificationServiceTests.swift in Sources */,
+				6C4C8471D138604DBAD0098C /* ProfilePresentationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEE613CE46E2656BCF64FCDF /* AccountProfile.swift in Sources */,
 				EA0112147AB371A401DFC32C /* AccountStore.swift in Sources */,
 				F931044D6ABED40DA3A5C688 /* AppLanguage.swift in Sources */,
 				B4D7CB66509D4E610E60897C /* HabitAppearance.swift in Sources */,
@@ -650,6 +687,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CC14A974858D9D519F102A0 /* AccountProfile.swift in Sources */,
 				DB75E18DDAD985DA9AC831CE /* AccountStore.swift in Sources */,
 				126D348AB9E09E04DD3F4377 /* AppLanguage.swift in Sources */,
 				B706826B0828B5B5DAED68A2 /* HabitAppearance.swift in Sources */,
@@ -669,6 +707,8 @@
 			files = (
 				B49E754A6728B4DEA2B6A3C2 /* AccountAPI.swift in Sources */,
 				BA36FC0EC8DF842B53D39DE5 /* AccountManager.swift in Sources */,
+				18D219E801162214A3B88C87 /* AccountProfile.swift in Sources */,
+				5D9332690B210C25A7E5E4AC /* AccountProfileService.swift in Sources */,
 				FD870906C82EB7F6353F7B7F /* AccountSettingsSection.swift in Sources */,
 				88C5B82C5831534D6985800E /* AccountStore.swift in Sources */,
 				88159AB621193686E8E5D1E9 /* AccountSyncService.swift in Sources */,
@@ -686,6 +726,8 @@
 				EAFE12CD98745B0A1DE5D346 /* NotificationService.swift in Sources */,
 				A106D36F9DE6DF76DF7EE86E /* OnboardingView.swift in Sources */,
 				1616B8A0CDEED2B989E4127E /* PlannerView.swift in Sources */,
+				5B11E4B48004328A9EF9555A /* ProfileImage.swift in Sources */,
+				C14D1DCB03608FE1E89205FB /* ProfileView.swift in Sources */,
 				3A2DD2C00491DD9C32D5228F /* PushProtocol.swift in Sources */,
 				17C3BBB04EB1D09145D7CAD8 /* ScheduleEngine.swift in Sources */,
 				8230FABE87838CE8F49A7DDC /* SyncLedger.swift in Sources */,
@@ -794,7 +836,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -885,7 +927,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

@@ -162,8 +162,8 @@ struct ConnectionsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                LanguageSettingsSection()
                 AccountSettingsSection()
+                LanguageSettingsSection()
                 NotificationSettingsSection()
                 Section {
                     LabeledContent(String(localized: "Calendari di sistema", bundle: AppLanguage.bundle, locale: AppLanguage.locale), value: calendar.authorized ? String(localized: "Collegati", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Non collegati", bundle: AppLanguage.bundle, locale: AppLanguage.locale))

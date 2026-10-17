@@ -1,16 +1,21 @@
 import AuthenticationServices
 import SwiftUI
-import GoogleSignInSwift
 
 struct AccountSettingsSection: View {
     @Environment(AccountManager.self) private var account
     @State private var deleting = false
     @State private var importing = false
+    @State private var editingProfile = false
 
     var body: some View {
         Section {
             if let user = account.user {
-                if !user.email.isEmpty { Text(user.email).textSelection(.enabled) }
+                ProfileIdentityHeader(profile: account.profile?.value ?? AccountProfile(), email: user.email)
+                Button {
+                    editingProfile = true
+                } label: {
+                    Label(String(localized: "Modifica profilo", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "person.crop.circle.badge.pencil")
+                }.accessibilityIdentifier("editProfile")
                 if let sync = account.sync {
                     if sync.syncing { ProgressView(String(localized: "Sincronizzazione in corso", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
                     else if let last = sync.lastSuccess {
@@ -34,8 +39,10 @@ struct AccountSettingsSection: View {
                 Button(String(localized: "Esci dall’account", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await account.logout() } }
                 Button(String(localized: "Elimina account", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .destructive) { deleting = true }
             } else {
+                Label(String(localized: "Accedi per sincronizzare", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "checkmark.icloud")
+                    .font(.title3.weight(.semibold)).foregroundStyle(Palette.ink).padding(.top, 8)
                 Text(String(localized: "I progressi restano su questo dispositivo finché non accedi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-                    .font(.subheadline).foregroundStyle(.secondary)
+                    .font(.subheadline).foregroundStyle(Palette.ink.opacity(0.72))
                 AccountSignInButtons()
                 if account.providers.isEmpty {
                     Text(String(localized: "Gli accessi Apple e Google saranno attivati al completamento della configurazione del servizio.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
@@ -49,6 +56,9 @@ struct AccountSettingsSection: View {
         } header: { Text(String(localized: "Account Makeet", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
         footer: { Text(String(localized: "Ogni account ha un archivio separato. Accedere non carica automaticamente i dati locali o dimostrativi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
         .disabled(account.working)
+        .sheet(isPresented: $editingProfile) {
+            if let profile = account.profile { ProfileEditorView(service: profile) }
+        }
         .confirmationDialog(String(localized: "Eliminare l’account Makeet?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $deleting, titleVisibility: .visible) {
             Button(String(localized: "Elimina account e dati", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .destructive) { Task { await account.deleteAccount() } }
             Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}
@@ -77,17 +87,28 @@ struct AccountSignInButtons: View {
     @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         VStack(spacing: 12) {
-            if account.providers.contains("apple") {
+            if account.providers.contains("apple") || account.user == nil {
                 SignInWithAppleButton(.continue, onRequest: account.prepareApple) { result in
                     Task { await account.completeApple(result) }
                 }
                 .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-                .frame(height: 50).disabled(account.appleChallenge == nil || account.working)
+                .frame(height: 54).clipShape(RoundedRectangle(cornerRadius: 15))
+                .disabled(account.appleChallenge == nil || account.working)
                 .accessibilityIdentifier("appleSignIn")
             }
-            if account.providers.contains("google"), account.googleConfigured {
-                GoogleSignInButton { Task { await account.signInGoogle() } }
-                    .frame(height: 50).disabled(account.working).accessibilityIdentifier("googleSignIn")
+            if account.googleConfigured {
+                Button { Task { await account.signInGoogle() } } label: {
+                    HStack(spacing: 12) {
+                        Image("GoogleMark").resizable().interpolation(.high).frame(width: 20, height: 20)
+                        Text(String(localized: "Continua con Google", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                            .font(.system(size: 17, weight: .medium)).foregroundStyle(colorScheme == .dark ? .white : Color(red: 0.12, green: 0.12, blue: 0.12))
+                    }.frame(maxWidth: .infinity, minHeight: 54)
+                        .background(colorScheme == .dark ? Color(red: 0.075, green: 0.075, blue: 0.075) : .white, in: RoundedRectangle(cornerRadius: 15))
+                        .overlay(RoundedRectangle(cornerRadius: 15).strokeBorder(Color.gray.opacity(0.55), lineWidth: 1))
+                        .contentShape(RoundedRectangle(cornerRadius: 15))
+                }.buttonStyle(.plain)
+                    .disabled(account.working || !account.providers.contains("google"))
+                    .accessibilityIdentifier("googleSignIn")
             }
             if account.working { ProgressView() }
         }

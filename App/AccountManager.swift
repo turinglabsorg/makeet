@@ -13,6 +13,7 @@ import GoogleSignIn
     private(set) var appleChallenge: AccountChallenge?
     private(set) var sync: AccountSyncService?
     private(set) var push: DevicePushService?
+    private(set) var profile: AccountProfileService?
     private(set) var working = false
     private(set) var checkingService = false
     private(set) var startupError: String?
@@ -65,6 +66,7 @@ import GoogleSignIn
             await refreshAppleChallenge()
         } catch { message = String(localized: "Connessione al servizio non disponibile. Puoi continuare sul dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
         await sync?.synchronize()
+        await profile?.refresh()
     }
 
     func refreshAppleChallenge() async {
@@ -81,7 +83,7 @@ import GoogleSignIn
     func prepareApple(_ request: ASAuthorizationAppleIDRequest) {
         requestedChallenge = appleChallenge
         request.nonce = appleChallenge?.nonce
-        request.requestedScopes = [.email]
+        request.requestedScopes = [.email, .fullName]
         appleChallenge = nil; working = true
     }
 
@@ -98,6 +100,8 @@ import GoogleSignIn
             }
             let user = try await api.exchange(provider: "apple", challenge: challenge, token: token, code: code)
             try activate(user)
+            let name = credentials.fullName.map { PersonNameComponentsFormatter().string(from: $0) }
+            await profile?.importProvider(name: name)
             await sync?.synchronize()
         } catch {
             if (error as? ASAuthorizationError)?.code != .canceled {
@@ -141,6 +145,8 @@ import GoogleSignIn
             guard let token = result.user.idToken?.tokenString else { throw AccountAPIError.invalidResponse }
             let user = try await api.exchange(provider: "google", challenge: challenge, token: token)
             try activate(user)
+            await profile?.importProvider(name: result.user.profile?.name,
+                                          imageURL: result.user.profile?.hasImage == true ? result.user.profile?.imageURL(withDimension: 320) : nil)
             await sync?.synchronize()
         } catch {
             if (error as NSError).domain != kGIDSignInErrorDomain || (error as NSError).code != -5 {
@@ -163,7 +169,7 @@ import GoogleSignIn
         var pendingDeletion = UserDefaults.standard.stringArray(forKey: "deletedAccountCaches") ?? []
         if !pendingDeletion.contains(user.id.uuidString) { pendingDeletion.append(user.id.uuidString) }
         UserDefaults.standard.set(pendingDeletion, forKey: "deletedAccountCaches")
-        sync?.stop(); push?.stop()
+        sync?.stop(); push?.stop(); profile?.stop()
         do {
             try await api.clearLocal()
             try WidgetAccountScope.activate(nil)
@@ -174,13 +180,15 @@ import GoogleSignIn
             }
             let ledgerURL = try AccountStoreLocation().ledgerURL(for: user.id)
             try AccountCoding.encoder().encode(SyncLedger()).write(to: ledgerURL, options: .atomic)
+            let photoURL = try AccountStoreLocation().directory(for: user.id).appendingPathComponent("profile.json")
+            if FileManager.default.fileExists(atPath: photoURL.path) { try FileManager.default.removeItem(at: photoURL) }
             UserDefaults.standard.removeObject(forKey: scope.key + ".calendarSources")
             UserDefaults.standard.removeObject(forKey: scope.key + ".calendarDestination")
             for suffix in [".enabled", ".hour", ".minute"] {
                 UserDefaults.standard.removeObject(forKey: "account-" + user.id.uuidString + ".push" + suffix)
             }
         } catch { message = String(localized: "Account eliminato dal servizio. La pulizia dell’archivio su questo dispositivo richiede un nuovo avvio.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
-        self.user = nil; sync = nil; push = nil; scope = .local; container = fallback
+        self.user = nil; sync = nil; push = nil; profile = nil; scope = .local; container = fallback
         await start()
     }
 
@@ -201,14 +209,15 @@ import GoogleSignIn
         let next = try AccountStoreLocation().container(for: user.id)
         let service = try AccountSyncService(userID: user.id, context: next.mainContext, api: api)
         let devicePush = try DevicePushService(api: api, userID: user.id)
-        sync?.stop(); push?.stop(); try WidgetAccountScope.activate(nil)
-        self.user = user; scope = .account(user.id); container = next; sync = service; push = devicePush; message = nil
+        let accountProfile = try AccountProfileService(userID: user.id, api: api)
+        sync?.stop(); push?.stop(); profile?.stop(); try WidgetAccountScope.activate(nil)
+        self.user = user; scope = .account(user.id); container = next; sync = service; push = devicePush; profile = accountProfile; message = nil
         try WidgetAccountScope.activate(scope)
     }
 
     private func returnToLocal() throws {
         let local = try SharedStore.makeContainer()
-        sync?.stop(); push?.stop(); try WidgetAccountScope.activate(nil)
-        user = nil; sync = nil; push = nil; scope = .local; container = local
+        sync?.stop(); push?.stop(); profile?.stop(); try WidgetAccountScope.activate(nil)
+        user = nil; sync = nil; push = nil; profile = nil; scope = .local; container = local
     }
 }

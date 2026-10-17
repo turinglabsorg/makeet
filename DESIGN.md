@@ -34,4 +34,13 @@ Use the same warm canvas, forest ink and native system sans typography. The home
 
 ## First-run onboarding
 
-A two-step, native onboarding introduces quantities, statistics and confirmed calendar planning, then asks where progress should live. The account and local-only choices start unselected. Account mode shows Apple/Google access with policy links and honest errors; local mode requires an explicit continue action and explains the absence of cross-device sync. Language is available from the first screen. Calendar and notification permission requests are deferred until a user chooses their respective features. Preserve existing archives and do not upload demo or local data implicitly.
+A guided native onboarding opens with a clearly labeled miniature day preview, then asks where progress should live. A three-segment progress line and a persistent bottom action make the route visible. Short explanations introduce quantities, statistics and confirmed calendar planning. The account and local-only choices start unselected. Account mode shows Apple/Google access with policy links and honest errors; local mode requires an explicit continue action and explains the absence of cross-device sync. Language is available from the first screen. Calendar and notification permission requests are deferred until a user chooses their respective features. Preserve existing archives and do not upload demo or local data implicitly.
+
+
+## Identity and profile
+
+Version2 of onboarding is shown once after updating as well as on a fresh install; it preserves archives, language and active sessions. Welcome, explicit account/local choice, provider access and a final first-habit guide use a shared 520-point content column, generous spacing, 26-point preview cards and 56-point bottom actions. Existing authenticated users retain their session and move from welcome to the final guide. Keep the current onboarding step outside the archive identity boundary so successful authentication does not restart the guide.
+
+Apple and Google access share equal width, 54-point height and a 15-point corner radius. Google uses its unmodified official multicolor mark with a neutral light/dark surface and a five-language Continue with Google label; its authorization browser remains provider-owned. The Google mark is distributed under the pinned SDK's Apache2 license in Resources/GoogleSignIn-LICENSE.txt.
+
+An authenticated account opens with a centered circular photo, display name, email and a private-account label. The same photo appears in Today's Account button. Initials or a person symbol are an explicit fallback when no image exists. The editor uses the system photo picker, a name field and explicit Save; no broad photo-library permission prompt is required. Google profile images are imported only for an empty Makeet profile. Apple does not supply an image; the owner can choose one. All profile data remains private to the account.

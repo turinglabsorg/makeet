@@ -36,6 +36,7 @@ PRAGMA foreign_keys=ON;
 PRAGMA journal_mode=WAL;
 PRAGMA busy_timeout=5000;
 CREATE TABLE IF NOT EXISTS users(id TEXT PRIMARY KEY, email TEXT NOT NULL, created_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS profiles(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, name TEXT NOT NULL, image BLOB, revision INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS identities(provider TEXT NOT NULL, subject TEXT NOT NULL, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, PRIMARY KEY(provider,subject));
 CREATE TABLE IF NOT EXISTS challenges(id TEXT PRIMARY KEY, provider TEXT NOT NULL, nonce TEXT NOT NULL, expires_at INTEGER NOT NULL);
 CREATE INDEX IF NOT EXISTS challenges_expiry ON challenges(expires_at);
@@ -63,5 +64,5 @@ CREATE INDEX IF NOT EXISTS push_device ON push_messages(device_id,created_at);
 CREATE INDEX IF NOT EXISTS push_expiry ON push_messages(created_at);
 CREATE UNIQUE INDEX IF NOT EXISTS push_reminder_day ON push_messages(device_id,day) WHERE kind='reminder';
 CREATE INDEX IF NOT EXISTS activity_day ON records(user_id,kind,deleted,json_extract(data,'$.habit_id'),unixepoch(json_extract(data,'$.timestamp')));
-PRAGMA user_version=3;
+PRAGMA user_version=4;
 `

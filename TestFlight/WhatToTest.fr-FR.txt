@@ -1,3 +1,1 @@
-Vérifiez la stabilité après la connexion avec Apple ou Google et lors du passage entre un compte et le mode local. La correction du changement d'archive est couverte par des tests sous iOS 27 ; la vérification sur appareil reste nécessaire.
-
-Essayez le parcours initial, le choix de langue, les icônes et émojis, le bouton moins à gauche et plus à droite, les statistiques et les créneaux confirmés dans le calendrier. La synchronisation entre appareils et la réception des notifications push restent à vérifier.
+Nouvel accueil guidé : présentation, choix explicite entre compte et appareil, connexion et première habitude. Il apparaît aussi une fois après la mise à jour, sans perdre votre compte ni vos progrès. Apple et Google ont des boutons de même taille. Le compte affiche votre photo et votre nom, modifiables. Le premier accès Google importe le profil uniquement si Makeet n’en a pas ; avec Apple, choisissez votre photo. Vérifiez le retour de connexion et la langue.

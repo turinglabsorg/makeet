@@ -10,7 +10,7 @@ Screenshots show sample data.
 
 ## Product target
 
-Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). The native account adapter uses Keychain sessions, separate account archives and durable retry/conflict handling. Apple iOS and Google providers are enabled for live validation. An Apple exchange, session restoration and account settings with a successful empty sync were verified on a physical iPhone; fresh callback, Google and multi-device progress checks remain release requirements. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
+Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). The native account adapter uses Keychain sessions, separate account archives and durable retry/conflict handling. Apple iOS and Google providers are enabled for live validation. An Apple exchange, session restoration and account settings with a successful empty sync were verified on a physical iPhone; the owner also confirmed a fresh Apple sign-in succeeds in TestFlight. Google and multi-device progress checks remain release requirements. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
 
 ## Current foundation
 
@@ -21,7 +21,10 @@ Makeet is intended for public use with open self-service registration and privat
 - Connect device calendars through EventKit, select availability sources and a writable destination, and review each proposed event before creating it. Planned events never mark habits as complete.
 - Use interactive small and medium WidgetKit extensions for iOS and native macOS, backed by the same on-device SwiftData store.
 - Archive and restore habits while retaining their history.
-- Choose Apple/Google account storage or local-only storage in a five-language onboarding, with no preselected option or automatic upload. Calendar and notification permissions remain optional. Demo data is an explicit, labeled choice.
+- Follow a five-language welcome that explains progress and asks explicitly between an Apple/Google account and local storage. No option is preselected and no local archive uploads automatically. Calendar and notification permissions remain optional.
+- Personalize a private account profile with a display name and photo, shown in Account and Today. Choose a photo with the system picker; a first Google sign-in can import a profile when Makeet has none. Profile revisions prevent silent overwrites between devices. Demo data remains an explicit, labeled choice.
+
+<img src="docs/images/onboarding.png" width="240" alt="Guided Makeet welcome with an illustrative day"> <img src="docs/images/account-choice.png" width="240" alt="Explicit choice between a private Makeet account and local storage">
 
 ## Integration status
 

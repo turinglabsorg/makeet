@@ -11,6 +11,7 @@ import GoogleSignIn
     @State private var account = AccountManager()
     @AppStorage(AppLanguage.preferenceKey, store: AppLanguage.defaults) private var language = "system"
     @AppStorage("onboardingVersion") private var onboardingVersion = 0
+    @State private var onboardingStep = 0
 
     init() {
         if ProcessInfo.processInfo.arguments.contains("--ui-testing"),
@@ -28,8 +29,8 @@ import GoogleSignIn
             if let container = account.container {
                 ArchiveHost(container: container) {
                     if onboardingRequired {
-                        OnboardingView {
-                            do { try account.chooseLocalMode(); onboardingVersion = 1 }
+                        OnboardingView(step: $onboardingStep) {
+                            do { try account.chooseLocalMode(); onboardingVersion = 2 }
                             catch { account.message = String(localized: "Archivio non disponibile", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
                         }
                     } else {
@@ -40,9 +41,6 @@ import GoogleSignIn
                     .environment(NotificationService.shared)
                     .environment(account)
                     .onOpenURL { url in _ = GIDSignIn.sharedInstance.handle(url) }
-                    .onChange(of: account.user?.id, initial: true) { _, value in
-                        if value != nil { onboardingVersion = 1 }
-                    }
             } else {
                 ContentUnavailableView(String(localized: "Archivio non disponibile", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "externaldrive.badge.exclamationmark",
                                        description: Text(account.startupError ?? String(localized: "Riapri l’app per riprovare.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)))
@@ -55,7 +53,7 @@ import GoogleSignIn
     private var onboardingRequired: Bool {
         let args = ProcessInfo.processInfo.arguments
         if args.contains("--ui-testing") && !args.contains("--onboarding") { return false }
-        return onboardingVersion < 1 && account.user == nil
+        return onboardingVersion < 2
     }
 }
 
@@ -107,6 +105,7 @@ struct RootView: View {
             if value == .active {
                 calendar?.refresh()
                 Task { await account.sync?.synchronize() }
+                Task { await account.profile?.refresh() }
                 if !ProcessInfo.processInfo.arguments.contains("--ui-testing") { Task { await notifications.refresh() } }
             }
         }

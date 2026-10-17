@@ -52,14 +52,14 @@
     }
   ],
   "Policy": {
-    "Updated": "Aggiornato il 16 ottobre 2026",
+    "Updated": "Aggiornato il 17 ottobre 2026",
     "PrivacyIntro": "Questa informativa descrive il trattamento dei dati nell’app Makeet, nel servizio account, sul sito e nell’assistenza. Durante lo sviluppo, le funzioni account vengono rese disponibili dopo le verifiche del servizio. Puoi usare l’archivio locale senza account.",
     "ControllerTitle": "Chi è il titolare",
     "HostingTitle": "Paese del server principale degli account",
     "PrivacySections": [
       {
         "Title": "Dati e finalità",
-        "Body": "Senza accesso, abitudini, quantità, orari delle attività, statistiche e pianificazione restano nell’archivio dell’app sul dispositivo. Con un account conserviamo l’identificativo del provider, l’email fornita da Apple o Google e le abitudini e attività che sincronizzi, inclusi nomi, icone, obiettivi, unità, orari e fusi orari. Li usiamo per fornire il tuo archivio privato e sincronizzare i dispositivi. Non riceviamo la password Apple o Google."
+        "Body": "Senza accesso, abitudini, quantità, orari delle attività, statistiche e pianificazione restano nell’archivio dell’app sul dispositivo. Con un account conserviamo l’identificativo del provider, l’email fornita da Apple o Google e le abitudini e attività che sincronizzi, inclusi nomi, icone, obiettivi, unità, orari e fusi orari. Li usiamo per fornire il tuo archivio privato e sincronizzare i dispositivi. Non riceviamo la password Apple o Google. Puoi aggiungere un nome e una foto profilo privati, sincronizzati con il tuo account. Al primo accesso Google possiamo usare nome e immagine forniti da Google; Apple non fornisce una foto. Puoi cambiarla o rimuoverla. Il selettore di sistema legge solo l’immagine scelta, che ridimensioniamo rimuovendo i metadati prima di salvarla. Il profilo non è pubblico e viene eliminato con l’account."
       },
       {
         "Title": "Calendari e pianificazione",

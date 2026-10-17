@@ -65,6 +65,16 @@ public actor AccountAPI {
         let data = try await authenticated("POST", "/v1/sync", body: AccountCoding.encoder().encode(request))
         return try AccountCoding.decoder().decode(SyncResponse.self, from: data)
     }
+    public func profile(userID: UUID) async throws -> AccountProfile {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        let data = try await authenticated("GET", "/v1/me/profile")
+        return try AccountCoding.decoder().decode(AccountProfile.self, from: data)
+    }
+    public func updateProfile(_ profile: AccountProfile, userID: UUID) async throws -> AccountProfile {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        let data = try await authenticated("PUT", "/v1/me/profile", body: AccountCoding.encoder().encode(profile))
+        return try AccountCoding.decoder().decode(AccountProfile.self, from: data)
+    }
     public func logout() async throws -> Bool {
         var revoked = false
         do { _ = try await authenticated("POST", "/v1/auth/logout"); revoked = true } catch {}

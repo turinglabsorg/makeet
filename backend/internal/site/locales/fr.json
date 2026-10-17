@@ -52,14 +52,14 @@
     }
   ],
   "Policy": {
-    "Updated": "Mis à jour le 16 octobre 2026",
+    "Updated": "Mis à jour le 17 octobre 2026",
     "PrivacyIntro": "Cette notice décrit les données traitées par l’app Makeet, le service de compte, le site et l’assistance. Pendant le développement, les comptes sont activés après les vérifications du service. L’archive locale fonctionne sans compte.",
     "ControllerTitle": "Responsable du traitement",
     "HostingTitle": "Pays du serveur principal des comptes",
     "PrivacySections": [
       {
         "Title": "Données et finalités",
-        "Body": "Sans connexion, habitudes, quantités, horaires, statistiques et planification restent dans l’archive de l’app sur l’appareil. Avec un compte, nous conservons l’identifiant du fournisseur, l’adresse email fournie par Apple ou Google et les habitudes et activités synchronisées : noms, icônes, objectifs, unités, heures et fuseaux horaires. Ces données servent à votre archive privée et à la synchronisation entre appareils. Nous ne recevons pas votre mot de passe Apple ou Google."
+        "Body": "Sans connexion, habitudes, quantités, horaires, statistiques et planification restent dans l’archive de l’app sur l’appareil. Avec un compte, nous conservons l’identifiant du fournisseur, l’adresse email fournie par Apple ou Google et les habitudes et activités synchronisées : noms, icônes, objectifs, unités, heures et fuseaux horaires. Ces données servent à votre archive privée et à la synchronisation entre appareils. Nous ne recevons pas votre mot de passe Apple ou Google. Vous pouvez ajouter un nom et une photo de profil privés, synchronisés avec votre compte. À la première connexion Google, nous pouvons utiliser le nom et l’image fournis par Google ; Apple ne fournit pas de photo. Vous pouvez la modifier ou la retirer. Le sélecteur système ne lit que l’image choisie, redimensionnée et privée de métadonnées avant son enregistrement. Le profil n’est pas public et est supprimé avec le compte."
       },
       {
         "Title": "Calendriers et planification",

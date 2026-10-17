@@ -1,3 +1,1 @@
-Verifica la stabilità dopo l'accesso con Apple o Google e passando tra account e modalità locale. La correzione del cambio di archivio è coperta da test su iOS 27; la conferma sul dispositivo resta da completare.
-
-Prova l'onboarding, la scelta della lingua, icone ed emoji, i pulsanti meno a sinistra e più a destra, le statistiche e i blocchi calendario confermati. La sincronizzazione tra dispositivi e la ricezione delle notifiche push sono ancora in verifica.
+Nuovo primo avvio guidato: presentazione, scelta esplicita tra account e dispositivo, accesso e guida alla prima abitudine. La guida compare una volta anche dopo l’aggiornamento, conservando account e progressi. I pulsanti Apple e Google hanno lo stesso spazio. In Account trovi foto e nome: puoi modificarli e scegliere o rimuovere una foto. Al primo accesso Google importiamo il profilo se Makeet non ne ha già uno; con Apple puoi scegliere la tua foto. Verifica anche il ritorno dall’accesso e la lingua.

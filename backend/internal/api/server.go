@@ -82,6 +82,8 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("POST /v1/auth/refresh", s.refresh)
 	mux.HandleFunc("POST /v1/auth/logout", s.auth(s.logout))
 	mux.HandleFunc("GET /v1/me", s.auth(s.me))
+	mux.HandleFunc("GET /v1/me/profile", s.auth(s.getProfile))
+	mux.HandleFunc("PUT /v1/me/profile", s.auth(s.updateProfile))
 	mux.HandleFunc("DELETE /v1/me", s.auth(s.deleteAccount))
 	mux.HandleFunc("POST /v1/sync", s.auth(s.syncRecords))
 	mux.HandleFunc("PUT /v1/devices/{id}", s.auth(s.registerDevice))

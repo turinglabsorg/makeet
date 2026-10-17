@@ -103,3 +103,17 @@ The detached-card fixture creates its archive in a non-inlined autorelease pool 
 ## First internal TestFlight delivery (2026-10-17)
 
 Cloud build 2 passed its required iOS27 test action and archive action. After its one-time export questionnaire was completed, processed TestFlight build 0.1.0 (2) became available with Testing status in the owner-only internal group. The sole tester shows Invited. This build contains the ArchiveHost correction; a fresh physical Apple confirmation remains to be checked by the owner. The later build 3 was not distributed because its detached-card fixture release assertion failed. The fixture repair preserves the assertion and the required CI test gate.
+
+
+## Guided welcome and private profile
+
+The owner confirmed successful installation and fresh Apple authentication on TestFlight0.1.0(2), without the reported crash. Cloud4 then passed its required iOS27 tests, archive and automatic internal TestFlight postaction for8336a82.
+
+Onboarding version2 introduces a labeled day preview, explicit account/local choice, balanced provider buttons and a final guide. Completion remains explicit and language persists; an update presents the guide once while retaining any existing session and archives. The step survives container replacement. Profile photos/names are private account data, imported from Google only for an empty profile or chosen through the system photo picker. Client downsampling and server JPEG reencoding remove metadata.
+
+HTTP/database race tests cover ownership, a second session reading the same profile, stale revision rejection, photo removal, invalid image/name rejection and deletion cascade. The native account-client HTTP fixture verifies photo bytes, revision conflicts and account guards;34 package tests pass. iOS27 UI tests pass in all five languages for the onboarding/account choice/provider button widths and local completion/persistence. Native tests verify image bounds/metadata removal and account cache isolation; both original archive-lifetime regressions still pass. Actual edits and photo receipt on multiple signed devices remain to be checked.
+
+
+The complete local iOS27 scheme passed every native test and all UI flows except the original Connections test's assumption that notification status was initially onscreen. The test now scrolls after checking the account summary, matching the taller account presentation. That corrected UI check and both profile tests pass in ProfileFinalChecks.xcresult; the final macOS build succeeds. Five-language compiler coverage validates294 extracted keys against313 catalog entries. Existing Simulator/permission guards remain unchanged; no required test was disabled to distribute the change.
+
+The profile backend is deployed with schema4 and a verified backup/rollback binary. Local/public health returns200, anonymous profile requests return401, and all15 public policy routes return200 with the profile notice translated in all five languages. The existing runtime identity configuration and credentials were preserved. User-created profile updates on a signed device remain a device check.

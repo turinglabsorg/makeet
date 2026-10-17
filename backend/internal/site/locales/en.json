@@ -52,14 +52,14 @@
     }
   ],
   "Policy": {
-    "Updated": "Updated 16 October 2026",
+    "Updated": "Updated 17 October 2026",
     "PrivacyIntro": "This notice explains how Makeet handles information in the app, account service, website and support. During development, account features become available only after service checks. You can use the local archive without an account.",
     "ControllerTitle": "Who is responsible",
     "HostingTitle": "Country of the primary account server",
     "PrivacySections": [
       {
         "Title": "Information and purposes",
-        "Body": "Without sign-in, habits, quantities, activity times, statistics and planning stay in the app archive on your device. With an account, we store your provider identifier, email supplied by Apple or Google, and habits and activity entries you synchronize, including names, icons, targets, units, times and time zones. We use these to provide your private archive and sync across your devices. We do not receive your Apple or Google password."
+        "Body": "Without sign-in, habits, quantities, activity times, statistics and planning stay in the app archive on your device. With an account, we store your provider identifier, email supplied by Apple or Google, and habits and activity entries you synchronize, including names, icons, targets, units, times and time zones. We use these to provide your private archive and sync across your devices. We do not receive your Apple or Google password. You can add a private display name and profile photo, synced with your account. On the first Google sign-in we may use the name and image supplied by Google; Apple does not supply a photo. You can change or remove it. The system picker reads only your selected image, which we resize and strip of metadata before storage. The profile is not public and is deleted with the account."
       },
       {
         "Title": "Calendars and planning",

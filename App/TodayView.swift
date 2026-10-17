@@ -88,8 +88,11 @@ struct TodayView: View {
                 Button {
                     settings = SettingsDestination(calendar: CalendarService(scope: account.scope.key))
                 } label: {
-                    Label(account.user == nil ? String(localized: "Accedi", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Account", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "person.crop.circle")
-                        .labelStyle(.titleAndIcon)
+                    HStack(spacing: 7) {
+                        if account.user != nil { ProfileAvatar(profile: account.profile?.value ?? AccountProfile(), size: 30) }
+                        else { Image(systemName: "person.crop.circle") }
+                        Text(account.user == nil ? String(localized: "Accedi", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Account", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                    }
                 }.accessibilityIdentifier("accountSettings")
             }
             ToolbarItem {

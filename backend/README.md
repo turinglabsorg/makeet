@@ -106,3 +106,8 @@ Device tokens are AES-GCM encrypted with account/device/topic/environment bindin
 The APNs sender uses cached ES256 assertions and fixed Apple endpoints. Pending messages retry at most five times within ten minutes; rejection removes only the matching old token, preserving concurrent refreshes. Explicit test UUIDs are idempotent, with one new test per minute per device. Apple acceptance and app-confirmed receipt are separate states. Daily reminders default off, respect the selected time zone, skip fully completed synchronized habits and deduplicate each device/local day. Delivery history expires after 30 days.
 
 `ops/backup.py` creates online SQLite snapshots, checks integrity and rotates restricted backups within 30 days. The deployment runs an isolated daily launchd job and passed a restore integrity/foreign-key/table-count drill. Keep rollback binaries and private runtime configuration outside source control. Production APNs credentials and live device delivery are not yet verified.
+
+
+## Private account profile
+
+Schema4 adds an account-owned `profiles` row with a display name, normalized photo and revision. Authenticated `GET /v1/me/profile` returns the current private profile; `PUT /v1/me/profile` saves `{name,image,revision}`, where image is base64 JPEG/PNG or null. Names are limited to80 Unicode characters without controls; input photos are limited to128KiB and512pixels per side, decoded and reencoded as JPEG without metadata. The server never fetches image URLs. Stale revisions return409 `profile_conflict`; successful writes increment the revision. There is no public profile route or user-selectable owner. Account deletion cascades to the profile.

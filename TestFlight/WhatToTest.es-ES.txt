@@ -1,3 +1,1 @@
-Comprueba la estabilidad después de iniciar sesión con Apple o Google y al cambiar entre una cuenta y el modo local. La corrección del cambio de archivo está cubierta por pruebas en iOS 27; falta comprobarla en el dispositivo.
-
-Prueba la introducción, la selección de idioma, los iconos y emojis, menos a la izquierda y más a la derecha, las estadísticas y los bloques de calendario confirmados. La sincronización entre dispositivos y la recepción de notificaciones push siguen en verificación.
+Nuevo inicio guiado: presentación, elección explícita entre cuenta y dispositivo, acceso y primer hábito. Aparece una vez también tras actualizar, conservando cuenta y progreso. Los botones de Apple y Google tienen el mismo tamaño. En Cuenta puedes editar nombre y foto, elegir otra o quitarla. En el primer acceso con Google importamos el perfil solo si Makeet no tiene uno; con Apple puedes elegir tu foto. Comprueba también el regreso del acceso y el idioma.

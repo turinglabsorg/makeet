@@ -121,4 +121,20 @@ final class AccountAPITests: XCTestCase, @unchecked Sendable {
         let (data, _) = try await URLSession.shared.data(from: url.appendingPathComponent("counts"))
         XCTAssertEqual(try JSONDecoder().decode([String: Int].self, from: data)["push"], 1)
     }
+    func testProfileWirePhotoAndRevisionStayBoundToCurrentAccount() async throws {
+        let (_, url) = try server()
+        let api = try AccountAPI(baseURL: url, storage: TestSessionStorage(StoredSession(tokens: try tokens("fixture-next"))))
+        let draft = AccountProfile(name: "Alex Morgan", image: Data([1, 2, 3]))
+        do { _ = try await api.updateProfile(draft, userID: UUID()); XCTFail("Wrong account changed profile") }
+        catch AccountAPIError.signedOut {}
+        let saved = try await api.updateProfile(draft, userID: accountID)
+        XCTAssertEqual(saved.revision, 1); XCTAssertEqual(saved.image, draft.image)
+        XCTAssertEqual(saved.initials, "AM")
+        let loaded = try await api.profile(userID: accountID)
+        XCTAssertEqual(loaded, saved)
+        do { _ = try await api.updateProfile(draft, userID: accountID); XCTFail("Stale revision accepted") }
+        catch AccountAPIError.response(409, let error) { XCTAssertEqual(error, "profile_conflict") }
+        let (data, _) = try await URLSession.shared.data(from: url.appendingPathComponent("counts"))
+        XCTAssertEqual(try JSONDecoder().decode([String: Int].self, from: data)["profile"], 1)
+    }
 }
