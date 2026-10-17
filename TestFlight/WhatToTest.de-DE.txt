@@ -1,0 +1,3 @@
+Prüfe die Stabilität nach der Anmeldung mit Apple oder Google sowie beim Wechsel zwischen einem Konto und dem lokalen Modus. Die Korrektur des Archivwechsels ist durch Tests unter iOS 27 abgedeckt; die Prüfung auf dem Gerät steht noch aus.
+
+Teste die Einführung, Sprachauswahl, Symbole und Emojis, Minus links und Plus rechts, Statistiken und bestätigte Kalenderblöcke. Die Synchronisierung zwischen Geräten und die Zustellung von Push-Mitteilungen werden noch überprüft.

@@ -1,0 +1,3 @@
+Verifica la stabilità dopo l'accesso con Apple o Google e passando tra account e modalità locale. La correzione del cambio di archivio è coperta da test su iOS 27; la conferma sul dispositivo resta da completare.
+
+Prova l'onboarding, la scelta della lingua, icone ed emoji, i pulsanti meno a sinistra e più a destra, le statistiche e i blocchi calendario confermati. La sincronizzazione tra dispositivi e la ricezione delle notifiche push sono ancora in verifica.

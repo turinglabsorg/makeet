@@ -43,6 +43,7 @@ targets:
       path: Config/iOS-Info.plist
       properties:
         CloudSyncEnabled: false
+        ITSAppUsesNonExemptEncryption: false
         GIDClientID: 731972856977-2se8bn3c40ad9lvkbg5didlo2i8vc77n.apps.googleusercontent.com
         GIDServerClientID: 731972856977-opcdpeclv1bs9raeuru6oton77ifig4r.apps.googleusercontent.com
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
@@ -93,6 +94,7 @@ targets:
       path: Config/macOS-Info.plist
       properties:
         CloudSyncEnabled: false
+        ITSAppUsesNonExemptEncryption: false
         GIDClientID: 731972856977-v8qqgo8u1fu4cp5g2c2sqqan7jb1jurb.apps.googleusercontent.com
         GIDServerClientID: 731972856977-opcdpeclv1bs9raeuru6oton77ifig4r.apps.googleusercontent.com
         CFBundleURLTypes:

@@ -1,0 +1,3 @@
+Comprueba la estabilidad después de iniciar sesión con Apple o Google y al cambiar entre una cuenta y el modo local. La corrección del cambio de archivo está cubierta por pruebas en iOS 27; falta comprobarla en el dispositivo.
+
+Prueba la introducción, la selección de idioma, los iconos y emojis, menos a la izquierda y más a la derecha, las estadísticas y los bloques de calendario confirmados. La sincronización entre dispositivos y la recepción de notificaciones push siguen en verificación.

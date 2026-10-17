@@ -36,5 +36,7 @@
 	<string>731972856977-v8qqgo8u1fu4cp5g2c2sqqan7jb1jurb.apps.googleusercontent.com</string>
 	<key>GIDServerClientID</key>
 	<string>731972856977-opcdpeclv1bs9raeuru6oton77ifig4r.apps.googleusercontent.com</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

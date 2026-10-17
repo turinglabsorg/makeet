@@ -1,5 +1,7 @@
 # Validation
 
+The sections below record successive validation stages. The final dated section describes the latest verification and remaining release boundaries.
+
 Validated on 16 October 2026 using Apple Swift 6.4, an iPhone 16 Pro Simulator running iOS 18.5, and the installed macOS SDK.
 
 ## Verified behavior
@@ -89,3 +91,9 @@ A dedicated iPhone16Pro Simulator running iOS27.0 was installed; the physical ph
 `ArchiveIOS27Lifetime.xcresult` passes both lifecycle tests. `Build7IOS27UI.xcresult` passes creation/quantity/decrement/undo/archive, explicit account/local onboarding and persistence, all five onboarding languages and language-selection persistence. iOS device and macOS builds succeed. Build7 is prepared; actual new provider confirmation and TestFlight delivery remain unverified.
 
 The Xcode Cloud post-clone hook executed successfully with the real local SDK/catalog/package commands (33 package tests). The post-xcodebuild hook validates 275 compiler-extracted keys against280 translated keys and supports separate test workers. Cloud setup is in progress; no successful cloud upload or internal TestFlight availability is claimed.
+
+## Complete iOS 27 scheme and cloud bootstrap (2026-10-17)
+
+The complete Makeet scheme passes on iPhone 16 Pro / iOS 27.0: 16 tests passed, no failures, and two deliberate skips. The physical-account smoke test skips Simulator; the isolated EventKit integration skips without calendar authorization. This run includes both archive-lifetime regressions, all notification tests and the full UI suite. It does not establish a new physical Apple confirmation, live Google authentication or APNs delivery.
+
+The first Xcode Cloud build of the archive-lifetime correction succeeded. Logs confirm the actual post-clone catalog/package checks, dependency resolution, iOS compilation, scheme cataloging and post-build compiler-string validation passed. The workflow now has required iOS 27 tests, an App Store Connect archive and owner-only internal TestFlight distribution. A particular TestFlight build must still be verified as processed and available before claiming delivery.

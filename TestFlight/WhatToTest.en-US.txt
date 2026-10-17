@@ -1,0 +1,3 @@
+Check stability after signing in with Apple or Google and switching between an account and local mode. The archive-switch correction is covered by iOS 27 tests; device confirmation is still required.
+
+Try onboarding, language selection, icons and emoji, minus on the left and plus on the right, statistics, and confirmed calendar blocks. Multi-device synchronization and push notification delivery are still being verified.

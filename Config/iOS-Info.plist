@@ -36,6 +36,8 @@
 	<string>731972856977-2se8bn3c40ad9lvkbg5didlo2i8vc77n.apps.googleusercontent.com</string>
 	<key>GIDServerClientID</key>
 	<string>731972856977-opcdpeclv1bs9raeuru6oton77ifig4r.apps.googleusercontent.com</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

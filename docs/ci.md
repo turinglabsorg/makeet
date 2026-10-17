@@ -1,6 +1,6 @@
 # Native CI and TestFlight
 
-Makeet uses repository hooks for Xcode Cloud. Cloud activation and the first uploaded build must be verified in App Store Connect before describing TestFlight delivery as available.
+The Makeet TestFlight workflow is configured in Xcode Cloud. It runs on changes to `main` and permits manual builds of that branch only. Pull-request and tag distribution are disabled. A completed cloud run and a processed build in the internal group are required before describing a particular version as available.
 
 ## Repository checks
 
@@ -10,13 +10,21 @@ Makeet uses repository hooks for Xcode Cloud. Cloud activation and the first upl
 
 The checked-in Xcode project and pinned Swift package resolution are the cloud build inputs. Keep `project.yml` and the generated project consistent. Never enable a production test-token sign-in path for cloud tests.
 
+`TestFlight/WhatToTest.<locale>.txt` supplies tester notes in Italian, English, French, German and Spanish through Apple's native Xcode Cloud import. Keep these focused on current changes, device checks and truthful integration boundaries.
+
 ## Distribution workflow
 
-Configure the Makeet iOS product (`org.turinglabs.makeet`) from the Xcode Cloud navigator, using only `turinglabsorg/makeet` and its `main` branch. Keep pull-request distribution disabled. Use Xcode 27 and an iPhone 16 Pro Simulator running iOS 27 for the test action, followed by an App Store Connect archive action and a successful-build TestFlight internal distribution postaction. The archive uses automatic Apple-managed signing. Xcode Cloud manages monotonically increasing build numbers; its next number must exceed any existing uploaded build for the same version.
+The configured iOS product is `org.turinglabs.makeet`, using `turinglabsorg/makeet`. Xcode 27 is pinned, with a required test action on an iPhone 16 Pro Simulator running iOS 27.0 and an App Store Connect archive action. Internal TestFlight distribution uses the archive only after the required actions succeed. The archive uses automatic Apple-managed signing. Xcode Cloud manages monotonically increasing build numbers; its next number must exceed any existing uploaded build for the same version.
 
 The Makeet scheme includes Simulator UI and archive-lifetime regressions. The physical-only existing-account check skips Simulator. Calendar tests use a disposable fixture calendar and retain their permission/device guards. Provider confirmations, real calendar accounts, Home Screen widgets and actual APNs receipts remain distinct device checks.
 
-Distribute only to the owner's approved internal testing group. Do not add external testers, other repositories, paid plans or broader account permissions as part of routine builds. Repository-access or service-agreement approval is completed at the relevant provider screen. Keep any future explicit credentials in hush; repository hooks do not require an App Store Connect private API key.
+The Makeet Internal group contains only the owner's existing App Store Connect account. The workflow controls build delivery; the group's general automatic-upload option is disabled. Do not add external testers, other repositories, paid plans or broader account permissions as part of routine builds. Repository-access or service-agreement approval is completed at the relevant provider screen. Keep any future explicit credentials in hush; repository hooks do not require an App Store Connect private API key.
+
+The checked-in Xcode Cloud manifest contains product/container identifiers, not credentials. The GitHub app installation predates Makeet and is shared with other projects; do not change its global repository scope while maintaining this workflow.
+
+## Encryption declaration
+
+The native apps and pinned sign-in dependencies use Apple operating-system networking and security facilities, including CommonCrypto hashing. They do not implement independent encryption. Their generated Info plists set `ITSAppUsesNonExemptEncryption` to `false`, following Apple's [encryption declaration guidance](https://developer.apple.com/documentation/bundleresources/information-property-list/itsappusesnonexemptencryption). Reassess the declaration if app or SDK cryptography changes. Backend encryption is separate from the distributed native binary.
 
 ## Release evidence
 

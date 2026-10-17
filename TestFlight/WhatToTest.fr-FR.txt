@@ -1,0 +1,3 @@
+Vérifiez la stabilité après la connexion avec Apple ou Google et lors du passage entre un compte et le mode local. La correction du changement d'archive est couverte par des tests sous iOS 27 ; la vérification sur appareil reste nécessaire.
+
+Essayez le parcours initial, le choix de langue, les icônes et émojis, le bouton moins à gauche et plus à droite, les statistiques et les créneaux confirmés dans le calendrier. La synchronisation entre appareils et la réception des notifications push restent à vérifier.
