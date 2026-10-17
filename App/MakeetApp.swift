@@ -39,6 +39,7 @@ import GoogleSignIn
                     .environment(\.locale, AppLanguage.locale)
                     .environment(NotificationService.shared)
                     .environment(account)
+                    .onOpenURL { url in _ = GIDSignIn.sharedInstance.handle(url) }
                     .onChange(of: account.user?.id, initial: true) { _, value in
                         if value != nil { onboardingVersion = 1 }
                     }
@@ -121,7 +122,6 @@ struct RootView: View {
             }
         }
         .onOpenURL { url in
-            if GIDSignIn.sharedInstance.handle(url) { return }
             if url.host == "habit" { selection = 0 }
             if url.host == "plan" { selection = 2 }
         }
