@@ -1,6 +1,54 @@
 import XCTest
 
 final class MakeetUITests: XCTestCase {
+    @MainActor func testOnboardingRequiresExplicitStorageChoiceAndRemembersLocalMode() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--onboarding", "-AppleLanguages", "(it)"]
+        app.launch()
+        XCTAssertTrue(app.buttons["onboardingContinue"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.alerts.firstMatch.exists)
+        attach("Onboarding welcome", app)
+        app.buttons["onboardingContinue"].tap()
+        XCTAssertTrue(app.buttons["onboardingAccountChoice"].exists)
+        XCTAssertTrue(app.buttons["onboardingLocalChoice"].exists)
+        XCTAssertFalse(app.buttons["onboardingLocal"].exists)
+        app.buttons["onboardingAccountChoice"].tap()
+        XCTAssertFalse(app.tabBars.firstMatch.exists)
+        app.buttons["onboardingAccount"].tap()
+        XCTAssertTrue(app.staticTexts["Accedi per sincronizzare"].waitForExistence(timeout: 5))
+        app.buttons["Preferisco continuare senza account"].tap()
+        attach("Onboarding local choice", app)
+        app.buttons["onboardingLocal"].tap()
+        XCTAssertTrue(app.tabBars.buttons["Oggi"].waitForExistence(timeout: 5))
+        app.terminate()
+        app.launchArguments = ["--ui-testing", "--onboarding", "--preserve-onboarding", "-AppleLanguages", "(it)"]
+        app.launch()
+        XCTAssertTrue(app.tabBars.buttons["Oggi"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["onboardingContinue"].exists)
+    }
+
+    @MainActor func testOnboardingInAllFiveLanguages() {
+        for (language, headline, choice) in [
+            ("it", "Un passo, poi un altro.", "Dove teniamo i tuoi progressi?"),
+            ("en", "One step, then another.", "Where should your progress live?"),
+            ("fr", "Un pas, puis un autre.", "Où conserver vos progrès ?"),
+            ("de", "Ein Schritt, dann der nächste.", "Wo bleiben deine Fortschritte?"),
+            ("es", "Un paso, luego otro.", "¿Dónde guardamos tu progreso?")
+        ] {
+            let app = XCUIApplication()
+            app.launchArguments = ["--ui-testing", "--onboarding", "-AppleLanguages", "(\(language))"]
+            app.launch()
+            XCTAssertTrue(app.staticTexts[headline].waitForExistence(timeout: 5))
+            attach("Welcome \(language)", app)
+            app.buttons["onboardingContinue"].tap()
+            XCTAssertTrue(app.staticTexts[choice].waitForExistence(timeout: 5))
+            XCTAssertTrue(app.buttons["onboardingAccountChoice"].exists)
+            XCTAssertTrue(app.buttons["onboardingLocalChoice"].isHittable)
+            attach("Storage choice \(language)", app)
+            app.terminate()
+        }
+    }
+
     @MainActor func testAccountStatusInFiveLanguages() {
         for (language, plan, connections, heading, local) in [
             ("it", "Il tuo piano", "Connessioni", "Account Makeet", "I progressi restano su questo dispositivo finché non accedi."),
@@ -20,6 +68,31 @@ final class MakeetUITests: XCTestCase {
             attach("Account \(language)", app)
             app.terminate()
         }
+    }
+
+    @MainActor func testLanguageCanBeSelectedInAppAndPersists() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "-AppleLanguages", "(it)"]
+        app.launch()
+        app.buttons["accountSettings"].tap()
+        XCTAssertTrue(app.buttons["appLanguage"].waitForExistence(timeout: 5))
+        app.buttons["appLanguage"].tap()
+        app.buttons["English"].tap()
+        XCTAssertTrue(app.tabBars.buttons["Today"].waitForExistence(timeout: 5))
+        app.buttons["accountSettings"].tap()
+        XCTAssertTrue(app.staticTexts["Makeet account"].waitForExistence(timeout: 5))
+        attach("English selected in app", app)
+        app.terminate()
+        app.launchArguments = ["--ui-testing", "--preserve-language", "-AppleLanguages", "(it)"]
+        app.launch()
+        XCTAssertTrue(app.tabBars.buttons["Today"].waitForExistence(timeout: 5))
+        app.buttons["accountSettings"].tap()
+        app.buttons["appLanguage"].tap()
+        app.buttons["Français"].tap()
+        XCTAssertTrue(app.tabBars.buttons["Aujourd’hui"].waitForExistence(timeout: 5))
+        app.buttons["accountSettings"].tap()
+        XCTAssertTrue(app.staticTexts["Compte Makeet"].waitForExistence(timeout: 5))
+        attach("French selected in app", app)
     }
 
     @MainActor func testCreateLogTwiceAndUndoOneRegistration() {

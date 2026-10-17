@@ -77,6 +77,14 @@ import UserNotifications
         XCTAssertFalse(service.permissionFailed)
         XCTAssertEqual(registrations, 1)
     }
+    func testReceiptCallbackIsDeduplicatedUntilAcknowledged() {
+        let service = NotificationService(client: NotificationClientFixture(), register: {})
+        let id = UUID()
+        service.received(id); service.received(id)
+        XCTAssertEqual(service.pendingReceipts.filter { $0 == id }.count, 1)
+        service.acknowledged(id)
+        XCTAssertFalse(service.pendingReceipts.contains(id))
+    }
 }
 
 @MainActor private final class NotificationClientFixture: NotificationAuthorizationClient {

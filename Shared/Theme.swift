@@ -21,5 +21,5 @@ extension View {
 }
 
 extension Double {
-    var quantityText: String { formatted(.number.precision(.fractionLength(0...1))) }
+    var quantityText: String { formatted(.number.precision(.fractionLength(0...1)).locale(AppLanguage.locale)) }
 }

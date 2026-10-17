@@ -8076,6 +8076,1536 @@
           }
         }
       }
+    },
+    "Ricezione confermata su questo dispositivo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ricezione confermata su questo dispositivo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receipt confirmed on this device"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réception confirmée sur cet appareil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empfang auf diesem Gerät bestätigt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recepción confirmada en este dispositivo"
+          }
+        }
+      }
+    },
+    "Accettata da Apple · ricezione da confermare": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accettata da Apple · ricezione da confermare"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accepted by Apple · receipt unconfirmed"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acceptée par Apple · réception à confirmer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von Apple akzeptiert · Empfang unbestätigt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptada por Apple · recepción por confirmar"
+          }
+        }
+      }
+    },
+    "Collegato al servizio Makeet": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collegato al servizio Makeet"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected to Makeet"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecté à Makeet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit Makeet verbunden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado a Makeet"
+          }
+        }
+      }
+    },
+    "Collegamento da verificare": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collegamento da verificare"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connection unverified"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexion à vérifier"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindung ungeprüft"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexión sin verificar"
+          }
+        }
+      }
+    },
+    "Collegamento notifiche non disponibile. Riprova con una connessione attiva.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collegamento notifiche non disponibile. Riprova con una connessione attiva."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notification connection unavailable. Try again when online."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexion aux notifications indisponible. Réessayez avec une connexion active."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benachrichtigungsverbindung nicht verfügbar. Versuche es mit einer aktiven Verbindung erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexión de notificaciones no disponible. Inténtalo con una conexión activa."
+          }
+        }
+      }
+    },
+    "Invio non riuscito. Riprova il test.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invio non riuscito. Riprova il test."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delivery failed. Try the test again."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de l’envoi. Relancez le test."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senden fehlgeschlagen. Wiederhole den Test."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de envío. Repite la prueba."
+          }
+        }
+      }
+    },
+    "Invio in attesa. Il servizio riproverà automaticamente.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invio in attesa. Il servizio riproverà automaticamente."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delivery pending. The service will retry automatically."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoi en attente. Le service réessaiera automatiquement."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versand ausstehend. Der Dienst versucht es automatisch erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envío pendiente. El servicio lo reintentará automáticamente."
+          }
+        }
+      }
+    },
+    "Test non completato. Attendi un minuto prima di riprovare.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test non completato. Attendi un minuto prima di riprovare."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test incomplete. Wait a minute before trying again."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test incomplet. Attendez une minute avant de réessayer."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test nicht abgeschlossen. Warte eine Minute vor dem nächsten Versuch."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prueba incompleta. Espera un minuto antes de reintentarlo."
+          }
+        }
+      }
+    },
+    "Accedi per collegare le notifiche al tuo account.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accedi per collegare le notifiche al tuo account."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in to connect notifications to your account."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectez-vous pour associer les notifications à votre compte."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melde dich an, um Benachrichtigungen mit deinem Konto zu verbinden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión para conectar las notificaciones a tu cuenta."
+          }
+        }
+      }
+    },
+    "I promemoria sono facoltativi e non contengono nomi o dati delle abitudini. La ricezione viene confermata quando l’app vede o apri la notifica.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I promemoria sono facoltativi e non contengono nomi o dati delle abitudini. La ricezione viene confermata quando l’app vede o apri la notifica."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminders are optional and contain no habit names or data. Receipt is confirmed when the app sees the notification or you open it."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les rappels sont facultatifs et ne contiennent aucun nom ni donnée d’habitude. La réception est confirmée lorsque l’app voit la notification ou que vous l’ouvrez."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erinnerungen sind freiwillig und enthalten keine Namen oder Daten deiner Gewohnheiten. Der Empfang wird bestätigt, wenn die App die Mitteilung sieht oder du sie öffnest."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los recordatorios son opcionales y no contienen nombres ni datos de hábitos. La recepción se confirma cuando la app ve la notificación o la abres."
+          }
+        }
+      }
+    },
+    "Promemoria giornaliero": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Promemoria giornaliero"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily reminder"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rappel quotidien"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tägliche Erinnerung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recordatorio diario"
+          }
+        }
+      }
+    },
+    "Orario del promemoria": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orario del promemoria"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminder time"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heure du rappel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erinnerungszeit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora del recordatorio"
+          }
+        }
+      }
+    },
+    "All’orario scelto, un promemoria se sul servizio risulta almeno un’abitudine da completare. Usa il fuso orario di questo dispositivo.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All’orario scelto, un promemoria se sul servizio risulta almeno un’abitudine da completare. Usa il fuso orario di questo dispositivo."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At your chosen time, a reminder if at least one habit is unfinished on the service. Uses this device’s time zone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À l’heure choisie, un rappel si au moins une habitude reste à compléter sur le service. Utilise le fuseau horaire de cet appareil."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zur gewählten Zeit eine Erinnerung, wenn im Dienst noch eine Gewohnheit offen ist. Es gilt die Zeitzone dieses Geräts."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A la hora elegida, un recordatorio si queda algún hábito por completar en el servicio. Usa la zona horaria de este dispositivo."
+          }
+        }
+      }
+    },
+    "Invia notifica di prova": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invia notifica di prova"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send test notification"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoyer une notification de test"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Testmitteilung senden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar notificación de prueba"
+          }
+        }
+      }
+    },
+    "Informativa privacy": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informativa privacy"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy notice"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notice de confidentialité"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenschutzhinweise"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aviso de privacidad"
+          }
+        }
+      }
+    },
+    "Condizioni d’uso": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Condizioni d’uso"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terms of use"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conditions d’utilisation"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nutzungsbedingungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Condiciones de uso"
+          }
+        }
+      }
+    },
+    "Lingua del dispositivo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lingua del dispositivo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Device language"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langue de l’appareil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerätesprache"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idioma del dispositivo"
+          }
+        }
+      }
+    },
+    "Lingua dell’app": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lingua dell’app"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App language"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langue de l’app"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App-Sprache"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idioma de la app"
+          }
+        }
+      }
+    },
+    "Lingua": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lingua"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langue"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprache"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idioma"
+          }
+        }
+      }
+    },
+    "Accedi": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accedi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se connecter"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anmelden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión"
+          }
+        }
+      }
+    },
+    "Account": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta"
+          }
+        }
+      }
+    },
+    "Scegli come iniziare": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli come iniziare"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose how to start"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez comment commencer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle deinen Start"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige cómo empezar"
+          }
+        }
+      }
+    },
+    "Continua su questo dispositivo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua su questo dispositivo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue on this device"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer sur cet appareil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf diesem Gerät fortfahren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar en este dispositivo"
+          }
+        }
+      }
+    },
+    "Indietro": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indietro"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retour"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zurück"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atrás"
+          }
+        }
+      }
+    },
+    "Un passo, poi un altro.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un passo, poi un altro."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One step, then another."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un pas, puis un autre."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Schritt, dann der nächste."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un paso, luego otro."
+          }
+        }
+      }
+    },
+    "Fai spazio alle abitudini che contano per te. Makeet ti aiuta a registrare quanto fai e a trovare il momento giusto.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fai spazio alle abitudini che contano per te. Makeet ti aiuta a registrare quanto fai e a trovare il momento giusto."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make room for the habits that matter to you. Makeet helps you record how much you do and find the right time."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faites place aux habitudes qui comptent. Makeet vous aide à noter ce que vous faites et à trouver le bon moment."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schaffe Raum für wichtige Gewohnheiten. Makeet hilft dir, Mengen zu erfassen und den passenden Zeitpunkt zu finden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haz espacio para los hábitos que te importan. Makeet te ayuda a registrar cuánto haces y encontrar el momento adecuado."
+          }
+        }
+      }
+    },
+    "Conta ogni piccolo passo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta ogni piccolo passo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count every small step"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comptez chaque petit pas"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeder kleine Schritt zählt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta cada pequeño paso"
+          }
+        }
+      }
+    },
+    "Bicchieri, pagine, minuti: aggiungi le quantità e correggile quando serve.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bicchieri, pagine, minuti: aggiungi le quantità e correggile quando serve."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glasses, pages, minutes: add quantities and correct them when needed."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verres, pages, minutes : ajoutez les quantités et corrigez-les au besoin."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gläser, Seiten, Minuten: Ergänze Mengen und korrigiere sie bei Bedarf."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vasos, páginas, minutos: añade cantidades y corrígelas cuando haga falta."
+          }
+        }
+      }
+    },
+    "Capisci il tuo andamento": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capisci il tuo andamento"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Understand your progress"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprenez vos progrès"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verstehe deinen Fortschritt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entiende tu progreso"
+          }
+        }
+      }
+    },
+    "Ritrova progressi, costanza e orari in cui le abitudini funzionano meglio.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritrova progressi, costanza e orari in cui le abitudini funzionano meglio."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See your progress, consistency and the times that work best for your habits."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retrouvez vos progrès, votre régularité et les moments qui conviennent à vos habitudes."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erkenne Fortschritt, Regelmäßigkeit und passende Zeiten für deine Gewohnheiten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisa tu progreso, constancia y las horas que mejor encajan con tus hábitos."
+          }
+        }
+      }
+    },
+    "Un piano che lascia spazio": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un piano che lascia spazio"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A plan with room to breathe"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un programme qui laisse de la place"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Plan mit Freiraum"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un plan que deja espacio"
+          }
+        }
+      }
+    },
+    "Collega il calendario quando vuoi. Ogni nuovo evento richiede la tua conferma.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collega il calendario quando vuoi. Ogni nuovo evento richiede la tua conferma."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your calendar when you want. Every new event needs your confirmation."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectez votre calendrier quand vous le souhaitez. Chaque nouvel événement demande votre confirmation."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde deinen Kalender, wann du möchtest. Jeder neue Termin benötigt deine Bestätigung."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecta el calendario cuando quieras. Cada evento nuevo necesita tu confirmación."
+          }
+        }
+      }
+    },
+    "Dove teniamo i tuoi progressi?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dove teniamo i tuoi progressi?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where should your progress live?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Où conserver vos progrès ?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wo bleiben deine Fortschritte?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Dónde guardamos tu progreso?"
+          }
+        }
+      }
+    },
+    "Puoi scegliere adesso e accedere anche in seguito.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puoi scegliere adesso e accedere anche in seguito."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose now. You can also sign in later."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez maintenant. Vous pourrez aussi vous connecter plus tard."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle jetzt. Du kannst dich auch später anmelden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige ahora. También puedes iniciar sesión más adelante."
+          }
+        }
+      }
+    },
+    "Con un account": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con un account"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With an account"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec un compte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit einem Konto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con una cuenta"
+          }
+        }
+      }
+    },
+    "Salva i progressi nel tuo account Makeet e sincronizzali tra i tuoi dispositivi. L’accesso usa Apple o Google, senza una nuova password.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva i progressi nel tuo account Makeet e sincronizzali tra i tuoi dispositivi. L’accesso usa Apple o Google, senza una nuova password."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save progress in your Makeet account and sync it across your devices. Sign in with Apple or Google, without a new password."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrez vos progrès dans votre compte Makeet et synchronisez vos appareils. Connectez-vous avec Apple ou Google, sans nouveau mot de passe."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speichere Fortschritte im Makeet-Konto und synchronisiere deine Geräte. Anmeldung mit Apple oder Google, ohne neues Passwort."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guarda el progreso en tu cuenta Makeet y sincronízalo entre dispositivos. Accede con Apple o Google, sin una contraseña nueva."
+          }
+        }
+      }
+    },
+    "Solo su questo dispositivo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo su questo dispositivo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only on this device"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uniquement sur cet appareil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nur auf diesem Gerät"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo en este dispositivo"
+          }
+        }
+      }
+    },
+    "Inizia senza registrarti. Le abitudini restano nell’archivio locale e non vengono caricate nel servizio Makeet. Non si sincronizzano con altri dispositivi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizia senza registrarti. Le abitudini restano nell’archivio locale e non vengono caricate nel servizio Makeet. Non si sincronizzano con altri dispositivi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start without registering. Habits stay in the local archive and are not uploaded to Makeet. They do not sync to other devices."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencez sans inscription. Les habitudes restent dans l’archive locale, sans envoi au service Makeet ni synchronisation avec d’autres appareils."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starte ohne Registrierung. Gewohnheiten bleiben im lokalen Archiv und werden nicht an Makeet übertragen. Sie werden nicht mit anderen Geräten synchronisiert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empieza sin registrarte. Los hábitos permanecen en el archivo local y no se suben a Makeet. No se sincronizan con otros dispositivos."
+          }
+        }
+      }
+    },
+    "Se hai già progressi locali, sceglierai tu se importarli dopo l’accesso. Non carichiamo dati dimostrativi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se hai già progressi locali, sceglierai tu se importarli dopo l’accesso. Non carichiamo dati dimostrativi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you already have local progress, you choose whether to import it after signing in. We do not upload demo data."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si vous avez déjà des progrès locaux, vous choisirez de les importer ou non après connexion. Les données de démonstration ne sont pas envoyées."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vorhandene lokale Fortschritte importierst du nach der Anmeldung nur auf Wunsch. Demodaten werden nicht übertragen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si ya tienes progreso local, elegirás si importarlo después de iniciar sesión. No subimos datos de demostración."
+          }
+        }
+      }
+    },
+    "Puoi passare a un account dalle impostazioni. Proteggi l’archivio locale: rimuovere l’app o perdere il dispositivo può causare la perdita dei progressi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puoi passare a un account dalle impostazioni. Proteggi l’archivio locale: rimuovere l’app o perdere il dispositivo può causare la perdita dei progressi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can switch to an account in settings. Protect your local archive: removing the app or losing the device may cause progress to be lost."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous pourrez passer à un compte dans les réglages. Protégez l’archive locale : supprimer l’app ou perdre l’appareil peut faire perdre vos progrès."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In den Einstellungen kannst du ein Konto nutzen. Schütze dein lokales Archiv: App-Löschung oder Geräteverlust können zum Verlust deiner Fortschritte führen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puedes pasar a una cuenta en ajustes. Protege el archivo local: eliminar la app o perder el dispositivo puede causar la pérdida del progreso."
+          }
+        }
+      }
+    },
+    "Calendario e notifiche restano facoltativi. Li attivi in seguito, con il tuo permesso.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendario e notifiche restano facoltativi. Li attivi in seguito, con il tuo permesso."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendar and notifications are optional. Enable them later, with your permission."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendrier et notifications restent facultatifs. Activez-les plus tard avec votre autorisation."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalender und Mitteilungen bleiben freiwillig. Aktiviere sie später mit deiner Erlaubnis."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendario y notificaciones son opcionales. Actívalos más adelante con tu permiso."
+          }
+        }
+      }
+    },
+    "Continua con un account": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua con un account"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue with an account"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer avec un compte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit einem Konto fortfahren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar con una cuenta"
+          }
+        }
+      }
+    },
+    "Accedi per sincronizzare": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accedi per sincronizzare"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in to sync"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectez-vous pour synchroniser"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zum Synchronisieren anmelden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión para sincronizar"
+          }
+        }
+      }
+    },
+    "Scegli Apple o Google. Usiamo l’identità e l’email fornite per creare il tuo account privato Makeet.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli Apple o Google. Usiamo l’identità e l’email fornite per creare il tuo account privato Makeet."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose Apple or Google. We use the identity and email provided to create your private Makeet account."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez Apple ou Google. L’identité et l’email fournis servent à créer votre compte privé Makeet."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle Apple oder Google. Wir nutzen die übermittelte Identität und E-Mail-Adresse für dein privates Makeet-Konto."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige Apple o Google. Usamos la identidad y el correo facilitados para crear tu cuenta privada Makeet."
+          }
+        }
+      }
+    },
+    "Preferisco continuare senza account": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferisco continuare senza account"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I prefer to continue without an account"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je préfère continuer sans compte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich möchte ohne Konto fortfahren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefiero continuar sin cuenta"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

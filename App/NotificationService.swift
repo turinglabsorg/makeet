@@ -29,6 +29,8 @@ struct SystemNotificationAuthorization: NotificationAuthorizationClient {
     private(set) var deviceToken: Data?
     private(set) var registrationFailed = false
     private(set) var permissionFailed = false
+    private(set) var updateID = UUID()
+    private(set) var pendingReceipts: [UUID] = (UserDefaults.standard.stringArray(forKey: "pushReceipts") ?? []).compactMap(UUID.init(uuidString:))
     var destination: String?
 
     private let client: any NotificationAuthorizationClient
@@ -53,25 +55,26 @@ struct SystemNotificationAuthorization: NotificationAuthorizationClient {
 
     var permissionLabel: String {
         switch authorization {
-        case .authorized: return String(localized: "Consentite")
-        case .provisional: return String(localized: "Consentite con limitazioni")
+        case .authorized: return String(localized: "Consentite", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
+        case .provisional: return String(localized: "Consentite con limitazioni", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
         #if os(iOS)
-        case .ephemeral: return String(localized: "Consentite con limitazioni")
+        case .ephemeral: return String(localized: "Consentite con limitazioni", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
         #endif
-        case .denied: return String(localized: "Non consentite")
-        case .notDetermined: return String(localized: "Da attivare")
-        @unknown default: return String(localized: "Da verificare")
+        case .denied: return String(localized: "Non consentite", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
+        case .notDetermined: return String(localized: "Da attivare", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
+        @unknown default: return String(localized: "Da verificare", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
         }
     }
 
     var deliveryLabel: String {
-        if deviceToken != nil { return String(localized: "Dispositivo registrato · server da collegare") }
-        if registrationFailed { return String(localized: "Registrazione non riuscita") }
-        if isRegistering { return String(localized: "Registrazione in corso") }
-        return String(localized: "Non collegato")
+        if deviceToken != nil { return String(localized: "Dispositivo registrato · server da collegare", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
+        if registrationFailed { return String(localized: "Registrazione non riuscita", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
+        if isRegistering { return String(localized: "Registrazione in corso", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
+        return String(localized: "Non collegato", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
     }
 
     func refresh() async {
+        let previous = authorization
         authorization = await client.authorizationStatus()
         if !authorized {
             deviceToken = nil
@@ -79,6 +82,7 @@ struct SystemNotificationAuthorization: NotificationAuthorizationClient {
         } else if deviceToken == nil && !isRegistering && !registrationFailed {
             registerDevice()
         }
+        if previous != authorization { updateID = UUID() }
     }
 
     func enable() async {
@@ -93,6 +97,7 @@ struct SystemNotificationAuthorization: NotificationAuthorizationClient {
             authorization = await client.authorizationStatus()
         }
         if authorized && deviceToken == nil { registerDevice() }
+        updateID = UUID()
     }
 
     func registered(token: Data) {
@@ -104,12 +109,30 @@ struct SystemNotificationAuthorization: NotificationAuthorizationClient {
         deviceToken = token
         registrationFailed = false
         isRegistering = false
+        updateID = UUID()
     }
 
     func registrationDidFail() {
         deviceToken = nil
         registrationFailed = true
         isRegistering = false
+        updateID = UUID()
+    }
+
+    func received(_ id: UUID) {
+        guard !pendingReceipts.contains(id) else { return }
+        pendingReceipts = Array((pendingReceipts + [id]).suffix(100))
+        persistReceipts()
+    }
+
+    func acknowledged(_ id: UUID) {
+        pendingReceipts.removeAll { $0 == id }
+        persistReceipts()
+    }
+
+    private func persistReceipts() {
+        UserDefaults.standard.set(pendingReceipts.map(\.uuidString), forKey: "pushReceipts")
+        updateID = UUID()
     }
 
     private func registerDevice() {
@@ -132,6 +155,9 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if let raw = notification.request.content.userInfo["notification_id"] as? String, let id = UUID(uuidString: raw) {
+            Task { @MainActor in NotificationService.shared.received(id) }
+        }
         completionHandler([.banner, .list, .sound])
     }
 
@@ -139,7 +165,9 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let destination = response.notification.request.content.userInfo["destination"] as? String
+        let id = (response.notification.request.content.userInfo["notification_id"] as? String).flatMap(UUID.init(uuidString:))
         Task { @MainActor in
+            if let id { NotificationService.shared.received(id) }
             NotificationService.shared.destination = destination == "today" ? "today" : "plan"
             completionHandler()
         }
@@ -183,30 +211,37 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
 
 struct NotificationSettingsSection: View {
     @Environment(NotificationService.self) private var notifications
+    @Environment(AccountManager.self) private var account
     @Environment(\.openURL) private var openURL
 
     var body: some View {
         Section {
-            LabeledContent(String(localized: "Permesso sul dispositivo"), value: notifications.permissionLabel)
+            LabeledContent(String(localized: "Permesso sul dispositivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale), value: notifications.permissionLabel)
                 .accessibilityIdentifier("notificationPermission")
-            LabeledContent(String(localized: "Notifiche dal server"), value: notifications.deliveryLabel)
+            LabeledContent(String(localized: "Notifiche dal server", bundle: AppLanguage.bundle, locale: AppLanguage.locale), value: account.push?.deliveryLabel ?? notifications.deliveryLabel)
             if notifications.authorization == .denied {
-                Button(String(localized: "Apri impostazioni notifiche")) { openSettings() }
+                Button(String(localized: "Apri impostazioni notifiche", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { openSettings() }
             } else if !notifications.authorized || notifications.registrationFailed {
-                Button(notifications.registrationFailed ? String(localized: "Riprova registrazione push") : String(localized: "Attiva notifiche")) {
+                Button(notifications.registrationFailed ? String(localized: "Riprova registrazione push", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Attiva notifiche", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
                     Task { await notifications.enable() }
                 }
                 .disabled(notifications.isRequesting || notifications.isRegistering)
                 .accessibilityIdentifier("enableNotifications")
             } else {
-                Button(String(localized: "Gestisci nelle impostazioni")) { openSettings() }
+                Button(String(localized: "Gestisci nelle impostazioni", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { openSettings() }
             }
             if notifications.permissionFailed {
-                Text(String(localized: "Non è stato possibile richiedere il permesso. Riprova dalle impostazioni del dispositivo."))
+                Text(String(localized: "Non è stato possibile richiedere il permesso. Riprova dalle impostazioni del dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .font(.caption).foregroundStyle(.secondary)
             }
-        } header: { Text(String(localized: "Notifiche")) } footer: {
-            Text(String(localized: "Scegli tu quando consentire le notifiche. L’invio dei promemoria richiede anche il collegamento al servizio Makeet, ancora in configurazione."))
+            if let push = account.push, notifications.authorized {
+                PushPreferencesView(push: push, notifications: notifications)
+            } else if account.user == nil {
+                Text(String(localized: "Accedi per collegare le notifiche al tuo account.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+        } header: { Text(String(localized: "Notifiche", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) } footer: {
+            Text(String(localized: "I promemoria sono facoltativi e non contengono nomi o dati delle abitudini. La ricezione viene confermata quando l’app vede o apri la notifica.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
         }
     }
 
@@ -216,5 +251,29 @@ struct NotificationSettingsSection: View {
         #else
         if let url = URL(string: "x-apple.systempreferences:com.apple.Notifications-Settings.extension") { openURL(url) }
         #endif
+    }
+}
+
+private struct PushPreferencesView: View {
+    @Bindable var push: DevicePushService
+    let notifications: NotificationService
+
+    var body: some View {
+        Toggle(String(localized: "Promemoria giornaliero", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isOn: $push.remindersEnabled)
+            .onChange(of: push.remindersEnabled) { _, _ in Task { await push.reconcile(notifications, force: true) } }
+        if push.remindersEnabled {
+            DatePicker(String(localized: "Orario del promemoria", bundle: AppLanguage.bundle, locale: AppLanguage.locale), selection: $push.reminderTime, displayedComponents: .hourAndMinute)
+                .onChange(of: push.reminderTime) { _, _ in Task { await push.reconcile(notifications, force: true) } }
+            Text(String(localized: "All’orario scelto, un promemoria se sul servizio risulta almeno un’abitudine da completare. Usa il fuso orario di questo dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                .font(.caption).foregroundStyle(.secondary)
+        }
+        Button(String(localized: "Invia notifica di prova", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
+            Task { await push.sendTest(notifications) }
+        }
+        .disabled(push.testing || notifications.deviceToken == nil)
+        .accessibilityIdentifier("testPush")
+        if let message = push.message {
+            Text(message).font(.caption).foregroundStyle(.secondary)
+        }
     }
 }

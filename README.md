@@ -2,7 +2,7 @@
 
 A native, quantitative habit tracker that makes room for habits in your calendar.
 
-Makeet starts from the clarity of a habit grid and adds timestamped quantities, deeper statistics, and an explainable scheduling assistant. The app and widgets support Italian, English, French, German, and Spanish using the device language. iOS 17 and macOS 14 or later are supported.
+Makeet starts from the clarity of a habit grid and adds timestamped quantities, deeper statistics, and an explainable scheduling assistant. The app and widgets support Italian, English, French, German, and Spanish. Choose a language in the app or follow the device language. iOS 17 and macOS 14 or later are supported.
 
 <img src="docs/images/today.png" width="280" alt="Makeet Today screen with labeled demo data"> <img src="docs/images/trends.png" width="280" alt="Makeet quantity trends with demo data">
 
@@ -10,7 +10,7 @@ Screenshots show sample data.
 
 ## Product target
 
-Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). The native account adapter is implemented, with Keychain sessions, separate account archives and durable retry/conflict handling; real provider/device validation is pending and registration is not live. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
+Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). The native account adapter uses Keychain sessions, separate account archives and durable retry/conflict handling. Apple iOS and Google providers are enabled for live validation. An Apple exchange, session restoration and account settings with a successful empty sync were verified on a physical iPhone; fresh callback, Google and multi-device progress checks remain release requirements. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
 
 ## Current foundation
 
@@ -21,17 +21,17 @@ Makeet is intended for public use with open self-service registration and privat
 - Connect device calendars through EventKit, select availability sources and a writable destination, and review each proposed event before creating it. Planned events never mark habits as complete.
 - Use interactive small and medium WidgetKit extensions for iOS and native macOS, backed by the same on-device SwiftData store.
 - Archive and restore habits while retaining their history.
-- Start with an empty account-free archive or explicitly explore labeled demo data.
+- Choose Apple/Google account storage or local-only storage in a five-language onboarding, with no preselected option or automatic upload. Calendar and notification permissions remain optional. Demo data is an explicit, labeled choice.
 
 ## Integration status
 
 | Integration | State |
 | --- | --- |
 | Offline habit persistence | Implemented; tested across separate contexts and store reopening |
-| Public registration and accounts | Go identity/session endpoints and native account adapter implemented; real provider validation pending; not live |
+| Public registration and accounts | Apple iOS and Google providers enabled for live validation |
 | Account-based synchronization | Go sync API and native durable sync adapter implemented/tested; live multi-device validation pending |
 | App/widget storage | App Group configuration and shared SwiftData schema implemented |
-| Push notifications | Native consent, token callbacks, and entitlements implemented; Sandbox provider key provisioned; authenticated server registration and delivery pending |
+| Push notifications | Authenticated encrypted device registration, APNs sender, optional daily reminders and receipts implemented/tested; Sandbox configured; real delivery and production credentials pending |
 | EventKit calendars | Availability reading, change refresh, calendar selection, conflict recheck, confirmed event creation implemented; validated using an isolated Simulator calendar |
 | Google through system calendars | Available through EventKit when the Google account is configured in device settings; actual provider synchronization belongs to the OS |
 | iCloud across devices | CloudKit configuration path prepared; disabled by default; requires Apple capability provisioning and multi-device validation |
@@ -96,4 +96,4 @@ Test permission setup is not a substitute for validating the real user consent s
 
 The Go service embeds a responsive pre-release website in `backend/internal/site/`, with Italian, English, French, German, and Spanish content. It uses system typography and a labeled screenshot of the native app. Support is available at [makeet.app/en/support](https://makeet.app/en/support). No sign-up or download button is shown before those services are ready.
 
-App privacy, terms and account deletion URLs currently return a localized pre-launch notice with HTTP 503 and `noindex`; they are not final legal policies. Complete public operator/contact information and account lifecycle verification remain launch requirements. Apple App Store Connect has a Makeet iOS record, version 1.0 in preparation; this does not mean the app has been submitted or approved.
+Privacy, terms and account deletion instructions are published in five languages. The controller identity is runtime-only and appears exclusively in the privacy notice; primary hosting is in Italy. Daily restricted SQLite backups rotate within 30 days and an isolated restore drill passed. Real account lifecycle verification remains a release requirement. Apple App Store Connect has a Makeet iOS record, version 1.0 in preparation; this does not mean the app has been submitted or approved.

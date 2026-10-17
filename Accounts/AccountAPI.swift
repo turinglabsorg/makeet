@@ -71,6 +71,27 @@ public actor AccountAPI {
         try clearLocal()
         return revoked
     }
+    public func registerPush(id: UUID, userID: UUID, registration: PushRegistration) async throws -> PushRegistrationStatus {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        let data = try await authenticated("PUT", "/v1/devices/" + id.uuidString, body: AccountCoding.encoder().encode(registration))
+        return try AccountCoding.decoder().decode(PushRegistrationStatus.self, from: data)
+    }
+    public func removePush(id: UUID, userID: UUID, secret: String) async throws {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        _ = try await authenticated("DELETE", "/v1/devices/" + id.uuidString,
+                                    body: AccountCoding.encoder().encode(["installation_secret": secret]))
+    }
+    public func testPush(id: UUID, userID: UUID, secret: String, messageID: UUID) async throws -> PushTestStatus {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        let data = try await authenticated("POST", "/v1/devices/" + id.uuidString + "/test",
+            body: AccountCoding.encoder().encode(["installation_secret": secret, "message_id": messageID.uuidString]))
+        return try AccountCoding.decoder().decode(PushTestStatus.self, from: data)
+    }
+    public func confirmPush(id: UUID, userID: UUID, secret: String, messageID: UUID) async throws {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        _ = try await authenticated("POST", "/v1/devices/" + id.uuidString + "/receipts",
+            body: AccountCoding.encoder().encode(["installation_secret": secret, "message_id": messageID.uuidString]))
+    }
     public func deleteAccount() async throws {
         _ = try await authenticated("DELETE", "/v1/me", body: AccountCoding.encoder().encode(["confirmation": "DELETE"]))
     }

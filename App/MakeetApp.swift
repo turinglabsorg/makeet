@@ -9,21 +9,52 @@ import GoogleSignIn
     @NSApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
     #endif
     @State private var account = AccountManager()
+    @AppStorage(AppLanguage.preferenceKey, store: AppLanguage.defaults) private var language = "system"
+    @AppStorage("onboardingVersion") private var onboardingVersion = 0
+
+    init() {
+        if ProcessInfo.processInfo.arguments.contains("--ui-testing"),
+           !ProcessInfo.processInfo.arguments.contains("--preserve-language") {
+            AppLanguage.defaults.set("system", forKey: AppLanguage.preferenceKey)
+        }
+        if ProcessInfo.processInfo.arguments.contains("--onboarding"),
+           !ProcessInfo.processInfo.arguments.contains("--preserve-onboarding") {
+            UserDefaults.standard.set(0, forKey: "onboardingVersion")
+        }
+    }
 
     var body: some Scene {
         WindowGroup {
             if let container = account.container {
-                RootView().id(account.scope.key).modelContainer(container).tint(Palette.accent)
+                Group {
+                    if onboardingRequired {
+                        OnboardingView {
+                            do { try account.chooseLocalMode(); onboardingVersion = 1 }
+                            catch { account.message = String(localized: "Archivio non disponibile", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
+                        }
+                    } else {
+                        RootView()
+                    }
+                }.id(account.scope.key + language).modelContainer(container).tint(Palette.accent)
+                    .environment(\.locale, AppLanguage.locale)
                     .environment(NotificationService.shared)
                     .environment(account)
+                    .onChange(of: account.user?.id, initial: true) { _, value in
+                        if value != nil { onboardingVersion = 1 }
+                    }
             } else {
-                ContentUnavailableView(String(localized: "Archivio non disponibile"), systemImage: "externaldrive.badge.exclamationmark",
-                                       description: Text(account.startupError ?? String(localized: "Riapri l’app per riprovare.")))
+                ContentUnavailableView(String(localized: "Archivio non disponibile", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "externaldrive.badge.exclamationmark",
+                                       description: Text(account.startupError ?? String(localized: "Riapri l’app per riprovare.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)))
             }
         }
         #if os(macOS)
         .defaultSize(width: 540, height: 820)
         #endif
+    }
+    private var onboardingRequired: Bool {
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("--ui-testing") && !args.contains("--onboarding") { return false }
+        return onboardingVersion < 1 && account.user == nil
     }
 }
 
@@ -40,11 +71,11 @@ struct RootView: View {
     var body: some View {
         TabView(selection: $selection) {
             NavigationStack { TodayView(demoMode: $demoMode) }
-                .tabItem { Label(String(localized: "Oggi"), systemImage: "square.grid.2x2") }.tag(0)
+                .tabItem { Label(String(localized: "Oggi", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "square.grid.2x2") }.tag(0)
             NavigationStack { TrendsView() }
-                .tabItem { Label(String(localized: "Andamento"), systemImage: "chart.xyaxis.line") }.tag(1)
+                .tabItem { Label(String(localized: "Andamento", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "chart.xyaxis.line") }.tag(1)
             NavigationStack { if let calendar { PlannerView(calendar: calendar) } }
-                .tabItem { Label(String(localized: "Il tuo piano"), systemImage: "sparkles") }.tag(2)
+                .tabItem { Label(String(localized: "Il tuo piano", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "sparkles") }.tag(2)
         }
         .foregroundStyle(Palette.ink)
         .task {
@@ -61,9 +92,14 @@ struct RootView: View {
                 catch { self.error = error.localizedDescription }
             }
             await account.start()
+            await account.push?.reconcile(notifications)
             while !Task.isCancelled {
                 do { try await Task.sleep(for: .seconds(15)) } catch { break }
-                if phase == .active { await account.sync?.synchronize() }
+                if phase == .active {
+                    await account.refreshAppleChallenge()
+                    await account.sync?.synchronize()
+                    await account.push?.reconcile(notifications)
+                }
             }
         }
         .onChange(of: phase) { _, value in
@@ -79,13 +115,18 @@ struct RootView: View {
                 notifications.destination = nil
             }
         }
+        .task(id: notifications.updateID) {
+            if !ProcessInfo.processInfo.arguments.contains("--ui-testing") {
+                await account.push?.reconcile(notifications)
+            }
+        }
         .onOpenURL { url in
             if GIDSignIn.sharedInstance.handle(url) { return }
             if url.host == "habit" { selection = 0 }
             if url.host == "plan" { selection = 2 }
         }
-        .alert(String(localized: "Operazione non riuscita"), isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
-            Button(String(localized: "OK")) { error = nil }
+        .alert(String(localized: "Operazione non riuscita", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+            Button(String(localized: "OK", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { error = nil }
         } message: { Text(error ?? "") }
     }
 }
@@ -97,9 +138,9 @@ enum DemoData {
         let today = calendar.startOfDay(for: Date())
         let start = calendar.date(byAdding: .day, value: -83, to: today)!
         let habits = [
-            Habit(name: String(localized: "Bere acqua"), symbol: "drop", colorIndex: 1, target: 8, step: 1, unit: String(localized: "bicchieri"), preferredHour: 10, durationMinutes: 5, createdAt: start),
-            Habit(name: String(localized: "Leggere"), symbol: "book.closed", colorIndex: 0, target: 20, step: 5, unit: String(localized: "pagine"), preferredHour: 19, durationMinutes: 20, createdAt: start),
-            Habit(name: String(localized: "Muovermi"), symbol: "figure.walk", colorIndex: 2, target: 30, step: 10, unit: String(localized: "minuti"), preferredHour: 18, durationMinutes: 30, createdAt: start)
+            Habit(name: String(localized: "Bere acqua", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "drop", colorIndex: 1, target: 8, step: 1, unit: String(localized: "bicchieri", bundle: AppLanguage.bundle, locale: AppLanguage.locale), preferredHour: 10, durationMinutes: 5, createdAt: start),
+            Habit(name: String(localized: "Leggere", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "book.closed", colorIndex: 0, target: 20, step: 5, unit: String(localized: "pagine", bundle: AppLanguage.bundle, locale: AppLanguage.locale), preferredHour: 19, durationMinutes: 20, createdAt: start),
+            Habit(name: String(localized: "Muovermi", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "figure.walk", colorIndex: 2, target: 30, step: 10, unit: String(localized: "minuti", bundle: AppLanguage.bundle, locale: AppLanguage.locale), preferredHour: 18, durationMinutes: 30, createdAt: start)
         ]
         for (index, habit) in habits.enumerated() {
             habit.isDemo = true

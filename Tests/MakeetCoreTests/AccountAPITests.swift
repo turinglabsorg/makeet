@@ -100,4 +100,25 @@ final class AccountAPITests: XCTestCase, @unchecked Sendable {
         try await api.clearLocal()
         XCTAssertNil(storage.load())
     }
+    func testPushWireRegistrationReceiptAndAccountGuardOverHTTP() async throws {
+        let (_, url) = try server()
+        let api = try AccountAPI(baseURL: url, storage: TestSessionStorage(StoredSession(tokens: try tokens("fixture-next"))))
+        let id = UUID()
+        let registration = PushRegistration(installationSecret: "fixture-installation", token: "abcdef",
+            topic: "org.turinglabs.makeet", environment: "development", language: "it", timeZone: "Europe/Rome",
+            remindersEnabled: true, reminderHour: 19, reminderMinute: 30)
+        do {
+            _ = try await api.registerPush(id: id, userID: UUID(), registration: registration)
+            XCTFail("Old account registered a device")
+        } catch AccountAPIError.signedOut {}
+        let status = try await api.registerPush(id: id, userID: accountID, registration: registration)
+        XCTAssertTrue(status.registered); XCTAssertEqual(status.acceptedAt, 123); XCTAssertEqual(status.confirmedAt, 0)
+        let messageID = UUID()
+        let test = try await api.testPush(id: id, userID: accountID, secret: "fixture-installation", messageID: messageID)
+        XCTAssertEqual(test.messageID, messageID); XCTAssertEqual(test.status, "accepted"); XCTAssertEqual(test.confirmedAt, 0)
+        try await api.confirmPush(id: id, userID: accountID, secret: "fixture-installation", messageID: messageID)
+        try await api.removePush(id: id, userID: accountID, secret: "fixture-installation")
+        let (data, _) = try await URLSession.shared.data(from: url.appendingPathComponent("counts"))
+        XCTAssertEqual(try JSONDecoder().decode([String: Int].self, from: data)["push"], 1)
+    }
 }

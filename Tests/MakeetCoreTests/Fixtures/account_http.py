@@ -3,7 +3,7 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-counts = {"refresh": 0, "sync": 0, "delete": 0}
+counts = {"refresh": 0, "sync": 0, "delete": 0, "push": 0}
 lock = threading.Lock()
 
 
@@ -28,7 +28,14 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
-        if self.path == "/v1/auth/challenges":
+        if self.path.startswith("/v1/devices/") and self.headers.get("Authorization") == "Bearer fixture-next":
+            if body.get("installation_secret") != "fixture-installation" or not body.get("message_id"):
+                self.reply(400, {"error": "invalid_device_request"})
+            elif self.path.endswith("/test"):
+                self.reply(200, {"message_id": body["message_id"], "status": "accepted", "confirmed_at": 0})
+            else:
+                self.reply(204, {})
+        elif self.path == "/v1/auth/challenges":
             self.reply(201, {"id": "fixture", "nonce": "fixture-nonce", "expires_at": 1900000000})
         elif self.path == "/v1/auth/refresh":
             with lock:
@@ -49,6 +56,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_DELETE(self):
         body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
+        if self.path.startswith("/v1/devices/") and self.headers.get("Authorization") == "Bearer fixture-next" and body.get("installation_secret") == "fixture-installation":
+            self.reply(204, {})
+            return
         if self.path != "/v1/me" or self.headers.get("Authorization") != "Bearer fixture-next" or body != {"confirmation": "DELETE"}:
             self.reply(401, {"error": "unauthorized"})
             return
@@ -59,6 +69,19 @@ class Handler(BaseHTTPRequestHandler):
             self.reply(503, {"error": "provider_revocation_unavailable"})
         else:
             self.reply(204, {})
+
+    def do_PUT(self):
+        body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
+        if not self.path.startswith("/v1/devices/") or self.headers.get("Authorization") != "Bearer fixture-next":
+            self.reply(401, {"error": "unauthorized"})
+            return
+        expected = {"installation_secret", "token", "topic", "environment", "language", "time_zone", "reminders_enabled", "reminder_hour", "reminder_minute"}
+        if set(body) != expected or body["time_zone"] != "Europe/Rome" or body["installation_secret"] != "fixture-installation":
+            self.reply(400, {"error": "invalid_device"})
+            return
+        with lock:
+            counts["push"] += 1
+        self.reply(200, {"registered": True, "accepted_at": 123, "confirmed_at": 0})
 
 
 server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)

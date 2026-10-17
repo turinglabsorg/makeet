@@ -58,7 +58,7 @@ import SwiftData
             }
             if active { lastSuccess = Date() }
         } catch {
-            if active { message = String(localized: "Sincronizzazione in pausa. I progressi restano sul dispositivo; riproveremo alla prossima connessione.") }
+            if active { message = String(localized: "Sincronizzazione in pausa. I progressi restano sul dispositivo; riproveremo alla prossima connessione.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
         }
     }
     func resolve(_ conflict: SyncConflict, keepLocal: Bool) throws {

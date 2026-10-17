@@ -23,8 +23,8 @@ struct ProgressEntry: TimelineEntry {
 
 struct ProgressProvider: TimelineProvider {
     func placeholder(in context: Context) -> ProgressEntry {
-        ProgressEntry(date: Date(), habits: [WidgetHabit(id: UUID(), name: String(localized: "Bere acqua"), symbol: "drop",
-            colorIndex: 1, unit: String(localized: "bicchieri"), quantity: 4, target: 8, step: 1)])
+        ProgressEntry(date: Date(), habits: [WidgetHabit(id: UUID(), name: String(localized: "Bere acqua", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "drop",
+            colorIndex: 1, unit: String(localized: "bicchieri", bundle: AppLanguage.bundle, locale: AppLanguage.locale), quantity: 4, target: 8, step: 1)])
     }
     func getSnapshot(in context: Context, completion: @escaping (ProgressEntry) -> Void) {
         if context.isPreview { completion(placeholder(in: context)) }
@@ -101,7 +101,7 @@ enum HabitIntentStore {
 
 enum IntentFailure: LocalizedError {
     case missingHabit
-    var errorDescription: String? { String(localized: "Questa abitudine non è più disponibile. Apri Makeet per aggiornare il widget.") }
+    var errorDescription: String? { String(localized: "Questa abitudine non è più disponibile. Apri Makeet per aggiornare il widget.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
 }
 
 struct ProgressWidgetView: View {
@@ -115,9 +115,9 @@ struct ProgressWidgetView: View {
                 Image(systemName: "leaf").foregroundStyle(Palette.accent)
             }
             if entry.habits.isEmpty {
-                Text(entry.unavailable ? String(localized: "Apri Makeet per accedere ai tuoi dati.") : String(localized: "Un piccolo passo, oggi."))
+                Text(entry.unavailable ? String(localized: "Apri Makeet per accedere ai tuoi dati.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Un piccolo passo, oggi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .font(.subheadline)
-                Text(entry.unavailable ? String(localized: "Archivio non disponibile") : String(localized: "Crea la prima abitudine nell’app."))
+                Text(entry.unavailable ? String(localized: "Archivio non disponibile", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Crea la prima abitudine nell’app.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .font(.caption).foregroundStyle(.secondary)
             } else {
                 ForEach(Array(entry.habits.prefix(family == .systemSmall ? 1 : 2))) { habit in
@@ -140,7 +140,7 @@ struct ProgressWidgetView: View {
         VStack(alignment: .leading, spacing: 3) {
             Label { Text(habit.name) } icon: { HabitMark(symbol: habit.symbol) }
                 .font(.subheadline.weight(.medium)).lineLimit(1)
-            Text(String(localized: "\(habit.quantity.quantityText) / \(habit.target.quantityText) \(habit.unit)"))
+            Text(String(localized: "\(habit.quantity.quantityText) / \(habit.target.quantityText) \(habit.unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                 .font(.caption).foregroundStyle(.secondary).monospacedDigit()
         }
     }
@@ -151,7 +151,7 @@ struct ProgressWidgetView: View {
         }.buttonStyle(.plain).foregroundStyle(Palette.habit(habit.colorIndex))
             .background(Palette.habit(habit.colorIndex).opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
             .disabled(habit.quantity <= 0).opacity(habit.quantity > 0 ? 1 : 0.35)
-            .accessibilityLabel(String(localized: "Togli \(habit.step.quantityText) \(habit.unit) da \(habit.name)"))
+            .accessibilityLabel(String(localized: "Togli \(habit.step.quantityText) \(habit.unit) da \(habit.name)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
     }
 
     private func plus(_ habit: WidgetHabit) -> some View {
@@ -159,7 +159,7 @@ struct ProgressWidgetView: View {
             Text("+\(habit.step.quantityText)").font(.subheadline.weight(.semibold)).frame(minWidth: 44, minHeight: 44)
         }.buttonStyle(.plain).foregroundStyle(Palette.habit(habit.colorIndex))
             .background(Palette.habit(habit.colorIndex).opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
-            .accessibilityLabel(String(localized: "Aggiungi \(habit.step.quantityText) \(habit.unit) a \(habit.name)"))
+            .accessibilityLabel(String(localized: "Aggiungi \(habit.step.quantityText) \(habit.unit) a \(habit.name)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
     }
 }
 
@@ -168,7 +168,7 @@ struct ProgressWidgetView: View {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ProgressProvider()) { ProgressWidgetView(entry: $0) }
             .configurationDisplayName("Un passo con Makeet")
-            .description(String(localized: "I tuoi progressi e un tocco per registrarli."))
+            .description(String(localized: "I tuoi progressi e un tocco per registrarli.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
             .supportedFamilies([.systemSmall, .systemMedium])
     }
 }

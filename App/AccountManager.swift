@@ -12,7 +12,9 @@ import GoogleSignIn
     private(set) var providers: [String] = []
     private(set) var appleChallenge: AccountChallenge?
     private(set) var sync: AccountSyncService?
+    private(set) var push: DevicePushService?
     private(set) var working = false
+    private(set) var checkingService = false
     private(set) var startupError: String?
     var message: String?
     private var api: AccountAPI?
@@ -50,16 +52,30 @@ import GoogleSignIn
                 if try WidgetAccountScope.current()?.hasPrefix("account-") == true { try WidgetAccountScope.activate(nil) }
                 container = try SharedStore.makeContainer()
             }
-        } catch { startupError = String(localized: "Archivio non disponibile") }
+        } catch { startupError = String(localized: "Archivio non disponibile", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
     }
 
     func start() async {
-        guard !testing, let api else { return }
+        guard !testing, !checkingService, let api else { return }
+        checkingService = true
+        defer { checkingService = false }
         do {
+            message = nil
             providers = try await api.providers()
-            if user == nil, providers.contains("apple") { appleChallenge = try await api.challenge("apple") }
-        } catch { message = String(localized: "Connessione al servizio non disponibile. Puoi continuare sul dispositivo.") }
+            await refreshAppleChallenge()
+        } catch { message = String(localized: "Connessione al servizio non disponibile. Puoi continuare sul dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
         await sync?.synchronize()
+    }
+
+    func refreshAppleChallenge() async {
+        guard !testing, !working, user == nil, providers.contains("apple"), let api else { return }
+        if let appleChallenge, appleChallenge.expiresAt > Int64(Date().timeIntervalSince1970) + 60 { return }
+        appleChallenge = try? await api.challenge("apple")
+    }
+
+    func chooseLocalMode() throws {
+        guard !testing, user == nil else { return }
+        try WidgetAccountScope.activate(.local)
     }
 
     func prepareApple(_ request: ASAuthorizationAppleIDRequest) {
@@ -85,7 +101,7 @@ import GoogleSignIn
             await sync?.synchronize()
         } catch {
             if (error as? ASAuthorizationError)?.code != .canceled {
-                message = String(localized: "Accesso non riuscito. Riprova senza modificare il tuo archivio locale.")
+                message = String(localized: "Accesso non riuscito. Riprova senza modificare il tuo archivio locale.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
             }
             appleChallenge = try? await api.challenge("apple")
         }
@@ -98,8 +114,8 @@ import GoogleSignIn
             let revoked = try await api.logout()
             try returnToLocal()
             await start()
-            if !revoked { message = String(localized: "Uscita completata su questo dispositivo. La sessione sul servizio scadrà automaticamente.") }
-        } catch { message = String(localized: "Disconnessione non completata. Verifica la connessione e riprova.") }
+            if !revoked { message = String(localized: "Uscita completata su questo dispositivo. La sessione sul servizio scadrà automaticamente.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
+        } catch { message = String(localized: "Disconnessione non completata. Verifica la connessione e riprova.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
     }
 
     func signInGoogle() async {
@@ -128,7 +144,7 @@ import GoogleSignIn
             await sync?.synchronize()
         } catch {
             if (error as NSError).domain != kGIDSignInErrorDomain || (error as NSError).code != -5 {
-                message = String(localized: "Accesso non riuscito. Riprova senza modificare il tuo archivio locale.")
+                message = String(localized: "Accesso non riuscito. Riprova senza modificare il tuo archivio locale.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
             }
         }
     }
@@ -141,13 +157,13 @@ import GoogleSignIn
             fallback = try SharedStore.makeContainer()
             try await api.deleteAccount()
         } catch {
-            message = String(localized: "Eliminazione non completata. I dati restano disponibili: riprova quando il servizio è raggiungibile.")
+            message = String(localized: "Eliminazione non completata. I dati restano disponibili: riprova quando il servizio è raggiungibile.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
             return
         }
         var pendingDeletion = UserDefaults.standard.stringArray(forKey: "deletedAccountCaches") ?? []
         if !pendingDeletion.contains(user.id.uuidString) { pendingDeletion.append(user.id.uuidString) }
         UserDefaults.standard.set(pendingDeletion, forKey: "deletedAccountCaches")
-        sync?.stop()
+        sync?.stop(); push?.stop()
         do {
             try await api.clearLocal()
             try WidgetAccountScope.activate(nil)
@@ -160,8 +176,11 @@ import GoogleSignIn
             try AccountCoding.encoder().encode(SyncLedger()).write(to: ledgerURL, options: .atomic)
             UserDefaults.standard.removeObject(forKey: scope.key + ".calendarSources")
             UserDefaults.standard.removeObject(forKey: scope.key + ".calendarDestination")
-        } catch { message = String(localized: "Account eliminato dal servizio. La pulizia dell’archivio su questo dispositivo richiede un nuovo avvio.") }
-        self.user = nil; sync = nil; scope = .local; container = fallback
+            for suffix in [".enabled", ".hour", ".minute"] {
+                UserDefaults.standard.removeObject(forKey: "account-" + user.id.uuidString + ".push" + suffix)
+            }
+        } catch { message = String(localized: "Account eliminato dal servizio. La pulizia dell’archivio su questo dispositivo richiede un nuovo avvio.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
+        self.user = nil; sync = nil; push = nil; scope = .local; container = fallback
         await start()
     }
 
@@ -174,21 +193,22 @@ import GoogleSignIn
             let records = try AccountRecords.snapshot(in: local).filter { !existing.contains($0.key) }
             try AccountRecords.apply(records, in: context)
             await sync?.synchronize()
-        } catch { message = String(localized: "Importazione non completata. L’archivio locale è conservato.") }
+        } catch { message = String(localized: "Importazione non completata. L’archivio locale è conservato.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
     }
 
     private func activate(_ user: AccountUser) throws {
         guard let api else { throw AccountAPIError.signedOut }
         let next = try AccountStoreLocation().container(for: user.id)
         let service = try AccountSyncService(userID: user.id, context: next.mainContext, api: api)
-        sync?.stop(); try WidgetAccountScope.activate(nil)
-        self.user = user; scope = .account(user.id); container = next; sync = service
+        let devicePush = try DevicePushService(api: api, userID: user.id)
+        sync?.stop(); push?.stop(); try WidgetAccountScope.activate(nil)
+        self.user = user; scope = .account(user.id); container = next; sync = service; push = devicePush; message = nil
         try WidgetAccountScope.activate(scope)
     }
 
     private func returnToLocal() throws {
         let local = try SharedStore.makeContainer()
-        sync?.stop(); try WidgetAccountScope.activate(nil)
-        user = nil; sync = nil; scope = .local; container = local
+        sync?.stop(); push?.stop(); try WidgetAccountScope.activate(nil)
+        user = nil; sync = nil; push = nil; scope = .local; container = local
     }
 }

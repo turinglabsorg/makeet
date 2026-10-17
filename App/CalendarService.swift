@@ -32,7 +32,7 @@ private final class CalendarObservation {
     func connect() async {
         do {
             authorized = try await store.requestFullAccessToEvents()
-            message = authorized ? nil : String(localized: "Accesso al calendario non concesso. Puoi abilitarlo nelle Impostazioni.")
+            message = authorized ? nil : String(localized: "Accesso al calendario non concesso. Puoi abilitarlo nelle Impostazioni.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
             refresh()
         } catch { message = error.localizedDescription }
     }
@@ -96,7 +96,7 @@ private final class CalendarObservation {
         event.title = habit.name
         event.startDate = proposal.start; event.endDate = proposal.end
         event.url = marker
-        event.notes = String(localized: "Blocco pianificato dall’app. Il completamento dell’abitudine si registra separatamente.")
+        event.notes = String(localized: "Blocco pianificato dall’app. Il completamento dell’abitudine si registra separatamente.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
         try store.save(event, span: .thisEvent)
         refresh()
     }
@@ -106,9 +106,9 @@ enum CalendarFailure: LocalizedError {
     case noDestination, conflict, expired
     var errorDescription: String? {
         switch self {
-        case .noDestination: String(localized: "Scegli un calendario scrivibile nelle connessioni.")
-        case .conflict: String(localized: "Il calendario è cambiato: questo spazio è occupato. Aggiorna le proposte.")
-        case .expired: String(localized: "Questo orario è già passato. Aggiorna le proposte.")
+        case .noDestination: String(localized: "Scegli un calendario scrivibile nelle connessioni.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
+        case .conflict: String(localized: "Il calendario è cambiato: questo spazio è occupato. Aggiorna le proposte.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
+        case .expired: String(localized: "Questo orario è già passato. Aggiorna le proposte.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
         }
     }
 }

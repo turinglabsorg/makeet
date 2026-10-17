@@ -31,3 +31,7 @@ Habit appearance offers SF Symbols or a single emoji, including composed emoji a
 ## Public website
 
 Use the same warm canvas, forest ink and native system sans typography. The home page combines a large action-led heading, a labeled native app screenshot and a small intensity grid, followed by numbered feature rows and native expandable FAQs. Keep navigation and language switching keyboard accessible; stack the hero and feature columns on narrow screens. All visible copy supports the same five languages. Clearly label pre-release availability and illustrative data; show a download link only after verified availability.
+
+## First-run onboarding
+
+A two-step, native onboarding introduces quantities, statistics and confirmed calendar planning, then asks where progress should live. The account and local-only choices start unselected. Account mode shows Apple/Google access with policy links and honest errors; local mode requires an explicit continue action and explains the absence of cross-device sync. Language is available from the first screen. Calendar and notification permission requests are deferred until a user chooses their respective features. Preserve existing archives and do not upload demo or local data implicitly.
