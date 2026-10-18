@@ -129,6 +129,14 @@
         "Body": "El archivo local funciona sin sesión. La sincronización privada requiere Apple o Google. Protege el acceso a tu proveedor de identidad. Distintos proveedores pueden crear cuentas separadas; no se unen automáticamente por correo."
       },
       {
+        "Title": "Uso local y Makeet Plus",
+        "Body": "El seguimiento local de hábitos ilimitados, cantidades, historial y estadísticas es gratuito. Makeet Plus añade sincronización privada de la cuenta y planificación avanzada. El precio aprobado para Italia es 1,99 € al mes u 11,99 € al año, pagados íntegramente por el período elegido. El App Store muestra el precio, la moneda y el período aplicables antes de confirmar. Durante la versión interna de TestFlight las compras públicas siguen desactivadas; este sitio no vende suscripciones."
+      },
+      {
+        "Title": "Renovación, cancelación y restauración",
+        "Body": "El pago se carga a tu cuenta de Apple al confirmar la compra. La suscripción se renueva automáticamente, salvo que la canceles al menos 24 horas antes de terminar el período actual. Apple puede cobrar la renovación durante las últimas 24 horas de ese período. Gestiona o cancela desde los ajustes de suscripciones de tu cuenta de Apple. La cancelación detiene futuras renovaciones; normalmente el acceso continúa hasta el final del período pagado. Usa Restaurar compras en Makeet Plus con la cuenta de Apple de la compra y la cuenta Makeet original. La suscripción no se puede transferir automáticamente a otra cuenta Makeet."
+      },
+      {
         "Title": "Registro y planificación",
         "Body": "Controlas objetivos, cantidades, correcciones y recordatorios. Los bloques del calendario no completan hábitos. Revisa las propuestas y confirma las escrituras. La disponibilidad puede cambiar entre propuesta y confirmación; comprueba los eventos en tu calendario."
       },
@@ -142,11 +150,11 @@
       },
       {
         "Title": "Dejar Makeet",
-        "Body": "Cierra sesión o elimina la cuenta en Conexiones > Cuenta. También puedes enviar solicitudes de eliminación y privacidad a support@makeet.app. Eventos existentes y archivos locales independientes no se borran automáticamente. Consulta el aviso de privacidad para tratamiento y conservación."
+        "Body": "Puedes cerrar sesión o eliminar la cuenta en Conexiones > Cuenta. Eliminar la cuenta no cancela una suscripción de Apple: los cobros continúan hasta que la canceles con Apple. Cancela Makeet Plus antes de eliminar la cuenta o elige eliminarla de inmediato sin esperar. Exporta primero los datos que quieras conservar. Tras caducar la suscripción siguen disponibles el uso local, la exportación y la eliminación de la cuenta. Los eventos ya creados y los archivos locales independientes no se eliminan automáticamente. Consulta la privacidad para la conservación y support@makeet.app para obtener ayuda."
       },
       {
         "Title": "Contacto y derechos",
-        "Body": "Contacta con Meaningtech en support@makeet.app. Estas condiciones no limitan derechos imperativos de consumidores o protección de datos. Esta versión de desarrollo no ofrece planes de pago ni suscripciones. Cualquier oferta futura de pago mostrará precio y condiciones antes de comprar."
+        "Body": "Contacta con Meaningtech en support@makeet.app. A la aplicación del App Store también se aplica el contrato de licencia estándar de Apple, cuyo texto completo está enlazado a continuación. Estas condiciones no limitan los derechos imperativos de los consumidores o de protección de datos."
       }
     ],
     "DeletionIntro": "Elimina tu cuenta Makeet en la app o contacta con soporte si no puedes acceder. Cerrar sesión no elimina la cuenta.",
@@ -154,6 +162,10 @@
       {
         "Title": "En la app",
         "Body": "Abre Conexiones, busca Cuenta, elige Eliminar cuenta y confirma. Necesitas conexión. La app confirma tras la eliminación en el servicio; si no puede revocarse la autorización Apple, reintenta cuando esté disponible."
+      },
+      {
+        "Title": "Suscripciones de Apple",
+        "Body": "Eliminar tu cuenta Makeet o desinstalar la app no cancela Makeet Plus. Apple seguirá cobrando hasta que canceles la suscripción en los ajustes de tu cuenta de Apple. Cancélala antes de eliminar la cuenta. Aun así, puedes eliminar la cuenta de inmediato sin esperar a la cancelación o caducidad. Usa el enlace del App Store de abajo para gestionar las suscripciones."
       },
       {
         "Title": "Datos eliminados",

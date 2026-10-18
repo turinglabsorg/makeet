@@ -3257,36 +3257,36 @@
         }
       }
     },
-    "Elimineremo dal servizio abitudini e attività e revocheremo l’accesso Apple. Questa operazione è definitiva.": {
+    "Elimineremo definitivamente l’account e i dati dal servizio. L’eliminazione non annulla l’abbonamento: Apple continuerà gli addebiti. Se hai Makeet Plus, annullalo prima di procedere. Puoi comunque eliminare subito l’account.": {
       "localizations": {
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elimineremo dal servizio abitudini e attività e revocheremo l’accesso Apple. Questa operazione è definitiva."
+            "value": "Elimineremo definitivamente l’account e i dati dal servizio. L’eliminazione non annulla l’abbonamento: Apple continuerà gli addebiti. Se hai Makeet Plus, annullalo prima di procedere. Puoi comunque eliminare subito l’account."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "We will delete your habits and activities from the service and revoke Apple access. This cannot be undone."
+            "value": "We will permanently delete your account and service data. Deletion does not cancel your subscription: Apple will continue billing. If you have Makeet Plus, cancel it before proceeding. You can still delete your account immediately."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nous supprimerons vos habitudes et activités du service et révoquerons l’accès Apple. Cette opération est définitive."
+            "value": "Nous supprimerons définitivement votre compte et les données du service. Cela n’annule pas l’abonnement : Apple continuera la facturation. Si vous avez Makeet Plus, annulez-le avant de continuer. Vous pouvez tout de même supprimer le compte immédiatement."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wir löschen deine Gewohnheiten und Aktivitäten aus dem Dienst und widerrufen den Apple-Zugriff. Dies kann nicht rückgängig gemacht werden."
+            "value": "Wir löschen dein Konto und die Daten im Dienst endgültig. Das kündigt dein Abonnement nicht: Apple wird weiterhin Zahlungen abbuchen. Kündige Makeet Plus, bevor du fortfährst, falls du es abonniert hast. Du kannst dein Konto trotzdem sofort löschen."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eliminaremos tus hábitos y actividades del servicio y revocaremos el acceso de Apple. Esta operación es definitiva."
+            "value": "Eliminaremos definitivamente tu cuenta y los datos del servicio. Esto no cancela la suscripción: Apple seguirá cobrando. Si tienes Makeet Plus, cancélalo antes de continuar. Aun así, puedes eliminar la cuenta de inmediato."
           }
         }
       }

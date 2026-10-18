@@ -129,6 +129,14 @@
         "Body": "L’archive locale fonctionne sans connexion. La synchronisation privée nécessite Apple ou Google. Protégez l’accès à votre fournisseur d’identité. Des fournisseurs différents peuvent créer des comptes séparés ; les comptes ne sont pas fusionnés automatiquement par email."
       },
       {
+        "Title": "Utilisation locale et Makeet Plus",
+        "Body": "Le suivi local d’habitudes illimitées, les quantités, l’historique et les statistiques sont gratuits. Makeet Plus ajoute la synchronisation privée du compte et la planification avancée. Le tarif approuvé pour l’Italie est de 1,99 € par mois ou 11,99 € par an, payés intégralement pour la période choisie. L’App Store affiche le prix, la devise et la période applicables avant confirmation. Pendant l’aperçu TestFlight interne, les achats publics restent désactivés ; ce site ne vend pas d’abonnements."
+      },
+      {
+        "Title": "Renouvellement, résiliation et restauration",
+        "Body": "Le paiement est débité de votre compte Apple à la confirmation de l’achat. L’abonnement se renouvelle automatiquement, sauf résiliation au moins 24 heures avant la fin de la période en cours. Apple peut facturer le renouvellement au cours des dernières 24 heures de cette période. Gérez ou résiliez dans les réglages d’abonnement de votre compte Apple. La résiliation arrête les renouvellements futurs ; l’accès reste normalement disponible jusqu’à la fin de la période payée. Utilisez Restaurer les achats dans Makeet Plus avec le compte Apple de l’achat et le compte Makeet d’origine. L’abonnement ne peut pas être transféré automatiquement à un autre compte Makeet."
+      },
+      {
         "Title": "Saisie et planification",
         "Body": "Vous contrôlez objectifs, quantités, corrections et rappels. Un événement ne termine pas une habitude. Vérifiez les propositions et confirmez les écritures dans le calendrier. Les disponibilités peuvent changer entre proposition et confirmation ; vérifiez vos événements."
       },
@@ -142,11 +150,11 @@
       },
       {
         "Title": "Quitter Makeet",
-        "Body": "Déconnectez-vous ou supprimez le compte dans Connexions > Compte. Vous pouvez aussi écrire à support@makeet.app pour la suppression et la confidentialité. Événements existants et archives locales indépendantes ne sont pas retirés automatiquement. Consultez la notice de confidentialité pour le traitement et la conservation."
+        "Body": "Vous pouvez vous déconnecter ou supprimer le compte dans Connexions > Compte. La suppression du compte ne résilie pas un abonnement Apple : la facturation continue tant que vous ne le résiliez pas auprès d’Apple. Résiliez Makeet Plus avant de supprimer le compte, ou choisissez la suppression immédiate sans attendre. Exportez d’abord les données à conserver. Après expiration, l’utilisation locale, l’exportation et la suppression du compte restent accessibles. Les événements déjà créés et les archives locales indépendantes ne sont pas supprimés automatiquement. Consultez la confidentialité pour la conservation et support@makeet.app pour de l’aide."
       },
       {
         "Title": "Contact et droits",
-        "Body": "Contactez Meaningtech à support@makeet.app. Ces conditions ne limitent pas les droits impératifs des consommateurs ou de protection des données. Cette version de développement ne propose ni offre payante ni abonnement. Toute offre payante future indiquera prix et conditions avant achat."
+        "Body": "Contactez Meaningtech à support@makeet.app. Le contrat de licence utilisateur final standard d’Apple s’applique également à l’application App Store ; son texte intégral est accessible ci-dessous. Ces conditions ne limitent pas les droits impératifs des consommateurs ou relatifs à la protection des données."
       }
     ],
     "DeletionIntro": "Supprimez le compte Makeet dans l’app ou contactez l’assistance si vous ne pouvez pas vous connecter. Une déconnexion ne supprime pas le compte.",
@@ -154,6 +162,10 @@
       {
         "Title": "Dans l’app",
         "Body": "Ouvrez Connexions, puis Compte, choisissez Supprimer le compte et confirmez. Une connexion est nécessaire. La confirmation intervient après suppression par le service ; si la révocation Apple échoue, réessayez lorsque le service est disponible."
+      },
+      {
+        "Title": "Abonnements Apple",
+        "Body": "Supprimer votre compte Makeet ou désinstaller l’app ne résilie pas Makeet Plus. Apple continuera la facturation tant que vous ne résiliez pas l’abonnement dans les réglages de votre compte Apple. Résiliez-le avant de supprimer le compte. Vous pouvez tout de même supprimer immédiatement le compte sans attendre la résiliation ou l’expiration. Utilisez le lien App Store ci-dessous pour gérer les abonnements."
       },
       {
         "Title": "Données supprimées",

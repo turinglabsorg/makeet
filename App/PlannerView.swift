@@ -183,6 +183,7 @@ struct PlanReviewView: View {
 
 struct ConnectionsView: View {
     @Environment(\.modelContext) private var context
+    @Environment(\.openURL) private var openURL
     @State private var exportDocument: ArchiveExport?
     @State private var exporting = false
     @State private var exportName = "Makeet-export"
@@ -268,9 +269,12 @@ struct ConnectionsView: View {
             if let profile = account.profile { ProfileEditorView(service: profile) }
         }
         .confirmationDialog(String(localized: "Eliminare l’account Makeet?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $deletingAccount, titleVisibility: .visible) {
+            Button(String(localized: "Gestisci abbonamento", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
+                openURL(URL(string: "https://apps.apple.com/account/subscriptions/")!)
+            }
             Button(String(localized: "Elimina account e dati", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .destructive) { Task { await account.deleteAccount() } }
             Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}
-        } message: { Text(String(localized: "Elimineremo dal servizio abitudini e attività e revocheremo l’accesso Apple. Questa operazione è definitiva.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
+        } message: { Text(String(localized: "Elimineremo definitivamente l’account e i dati dal servizio. L’eliminazione non annulla l’abbonamento: Apple continuerà gli addebiti. Se hai Makeet Plus, annullalo prima di procedere. Puoi comunque eliminare subito l’account.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
         .confirmationDialog(String(localized: "Importare in questo account?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $importingArchive, titleVisibility: .visible) {
             Button(String(localized: "Conferma importazione", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await account.importLocalArchive() } }
             Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}

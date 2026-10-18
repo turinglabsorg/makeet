@@ -129,6 +129,14 @@
         "Body": "Puoi usare un archivio locale senza accesso. Per la sincronizzazione privata serve l’accesso Apple o Google. Proteggi l’accesso al tuo provider d’identità. Provider diversi possono creare account separati: gli account non vengono uniti automaticamente tramite email."
       },
       {
+        "Title": "Uso locale e Makeet Plus",
+        "Body": "Abitudini locali illimitate, quantità, cronologia e statistiche sono gratuite. Makeet Plus aggiunge sincronizzazione privata dell’account e pianificazione avanzata. Il listino approvato per l’Italia è 1,99 € al mese oppure 11,99 € all’anno, pagati per intero per il periodo scelto. L’App Store mostra prezzo, valuta e periodo applicabili prima della conferma. Durante l’anteprima interna TestFlight gli acquisti pubblici restano disattivati; questo sito non vende abbonamenti."
+      },
+      {
+        "Title": "Rinnovo, annullamento e ripristino",
+        "Body": "Il pagamento viene addebitato all’account Apple alla conferma dell’acquisto. L’abbonamento si rinnova automaticamente, salvo annullamento almeno 24 ore prima della fine del periodo corrente. Apple può addebitare il rinnovo nelle ultime 24 ore del periodo. Gestisci o annulla nelle impostazioni degli abbonamenti del tuo account Apple. L’annullamento interrompe i rinnovi futuri; l’accesso normalmente resta fino alla fine del periodo pagato. Usa Ripristina acquisti in Makeet Plus con l’account Apple dell’acquisto e l’account Makeet originale. L’abbonamento non può essere trasferito automaticamente a un altro account Makeet."
+      },
+      {
         "Title": "Registrazioni e pianificazione",
         "Body": "Controlli obiettivi, quantità, correzioni e promemoria. I blocchi del calendario non completano un’abitudine. Verifica le proposte e conferma la scrittura degli eventi. La disponibilità può cambiare fra proposta e conferma: controlla gli eventi nel calendario."
       },
@@ -142,11 +150,11 @@
       },
       {
         "Title": "Lasciare Makeet",
-        "Body": "Puoi uscire o eliminare l’account da Collegamenti > Account. Puoi inviare richieste di cancellazione e privacy anche a support@makeet.app. Gli eventi già creati e gli archivi locali indipendenti non vengono rimossi automaticamente. L’informativa privacy descrive trattamento e conservazione."
+        "Body": "Puoi uscire o eliminare l’account da Connessioni > Account. L’eliminazione dell’account non annulla un abbonamento Apple: gli addebiti continuano finché non lo annulli con Apple. Annulla Makeet Plus prima di eliminare l’account, oppure scegli l’eliminazione immediata senza attese. Prima esporta i dati che vuoi conservare. Alla scadenza dell’abbonamento restano accessibili uso locale, esportazione ed eliminazione dell’account. Gli eventi già creati e gli archivi locali indipendenti non vengono rimossi automaticamente. Consulta la privacy per la conservazione e support@makeet.app per assistenza."
       },
       {
         "Title": "Contatti e diritti applicabili",
-        "Body": "Contatta Meaningtech a support@makeet.app. Queste condizioni non limitano i diritti inderogabili dei consumatori o sulla protezione dei dati. Questa versione di sviluppo non offre piani a pagamento o abbonamenti. Eventuali future offerte a pagamento mostreranno prezzi e condizioni prima dell’acquisto."
+        "Body": "Contatta Meaningtech a support@makeet.app. All’app distribuita tramite App Store si applica anche il contratto di licenza standard Apple, disponibile integralmente al link qui sotto. Queste condizioni non limitano i diritti inderogabili dei consumatori o sulla protezione dei dati."
       }
     ],
     "DeletionIntro": "Elimina l’account Makeet dall’app oppure contatta l’assistenza se non riesci ad accedere. Uscire dall’account non lo elimina.",
@@ -154,6 +162,10 @@
       {
         "Title": "Nell’app",
         "Body": "Apri Collegamenti, trova Account, scegli Elimina account e conferma. Serve una connessione. L’app conferma solo dopo l’eliminazione sul servizio; se non è possibile revocare l’autorizzazione Apple, riprova quando il servizio è disponibile."
+      },
+      {
+        "Title": "Abbonamenti Apple",
+        "Body": "Eliminare l’account Makeet o disinstallare l’app non annulla Makeet Plus. Apple continuerà gli addebiti finché non annulli l’abbonamento nelle impostazioni del tuo account Apple. Annullalo prima di eliminare l’account. Puoi comunque eliminare subito l’account senza attendere l’annullamento o la scadenza. Usa il link App Store qui sotto per gestire gli abbonamenti."
       },
       {
         "Title": "Cosa viene rimosso",

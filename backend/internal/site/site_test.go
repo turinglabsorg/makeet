@@ -126,6 +126,14 @@ func TestConfiguredPoliciesIdentifyControllerOnlyOnPrivacy(t *testing.T) {
 			if strings.Contains(body, "<no value>") {
 				t.Fatal("incomplete legal template")
 			}
+			eula := strings.Contains(body, `href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"`)
+			if eula != (path == "terms") {
+				t.Fatalf("EULA link scope violated on %s/%s", lang, path)
+			}
+			management := strings.Contains(body, `href="https://apps.apple.com/account/subscriptions/"`)
+			if management != (path == "terms" || path == "delete-account") {
+				t.Fatalf("subscription management link scope violated on %s/%s", lang, path)
+			}
 		}
 	}
 }

@@ -129,6 +129,14 @@
         "Body": "Das lokale Archiv funktioniert ohne Anmeldung. Private Synchronisierung erfordert Apple oder Google. Schütze den Zugang zu deinem Identitätsanbieter. Unterschiedliche Anbieter können separate Konten erzeugen; Konten werden nicht automatisch anhand der E-Mail-Adresse zusammengeführt."
       },
       {
+        "Title": "Lokale Nutzung und Makeet Plus",
+        "Body": "Unbegrenzte lokale Gewohnheiten, Mengen, Verlauf und Statistiken sind kostenlos. Makeet Plus ergänzt die private Kontosynchronisierung und erweiterte Planung. Der genehmigte Listenpreis für Italien beträgt 1,99 € monatlich oder 11,99 € jährlich, jeweils vollständig für den gewählten Zeitraum bezahlt. Der App Store zeigt Preis, Währung und Abrechnungszeitraum vor der Bestätigung. Während der internen TestFlight-Vorschau bleiben öffentliche Käufe deaktiviert; diese Website verkauft keine Abonnements."
+      },
+      {
+        "Title": "Verlängerung, Kündigung und Wiederherstellung",
+        "Body": "Die Zahlung wird deinem Apple-Account bei der Kaufbestätigung belastet. Das Abonnement verlängert sich automatisch, sofern du es nicht mindestens 24 Stunden vor Ablauf des aktuellen Zeitraums kündigst. Apple kann die Verlängerung innerhalb der letzten 24 Stunden dieses Zeitraums abbuchen. Verwalte oder kündige es in den Abonnementeinstellungen deines Apple-Accounts. Die Kündigung beendet zukünftige Verlängerungen; der Zugriff bleibt normalerweise bis zum Ende des bezahlten Zeitraums bestehen. Nutze Käufe wiederherstellen in Makeet Plus mit dem Apple-Account des Kaufs und dem ursprünglichen Makeet-Konto. Ein Abonnement kann nicht automatisch auf ein anderes Makeet-Konto übertragen werden."
+      },
+      {
         "Title": "Erfassung und Planung",
         "Body": "Du bestimmst Ziele, Mengen, Korrekturen und Erinnerungen. Kalenderblöcke erledigen keine Gewohnheit. Prüfe Vorschläge und bestätige Kalendereinträge. Verfügbarkeiten können sich zwischen Vorschlag und Bestätigung ändern; kontrolliere deine Termine."
       },
@@ -142,11 +150,11 @@
       },
       {
         "Title": "Makeet verlassen",
-        "Body": "Abmelden oder Löschen ist unter Verbindungen > Konto möglich. Lösch- und Datenschutzanfragen gehen auch an support@makeet.app. Bestehende Termine und unabhängige lokale Archive werden nicht automatisch entfernt. Datenverarbeitung und Speicherdauer stehen in den Datenschutzhinweisen."
+        "Body": "Du kannst dich unter Verbindungen > Konto abmelden oder dein Konto löschen. Die Kontolöschung kündigt ein Apple-Abonnement nicht: Zahlungen laufen weiter, bis du es bei Apple kündigst. Kündige Makeet Plus vor der Kontolöschung oder wähle die sofortige Löschung ohne Wartezeit. Exportiere vorher die Daten, die du behalten möchtest. Nach Ablauf bleiben lokale Nutzung, Datenexport und Kontolöschung zugänglich. Bereits erstellte Kalenderereignisse und unabhängige lokale Archive werden nicht automatisch entfernt. Informationen zur Aufbewahrung stehen in der Datenschutzerklärung; Hilfe erhältst du unter support@makeet.app."
       },
       {
         "Title": "Kontakt und Rechte",
-        "Body": "Kontaktiere Meaningtech unter support@makeet.app. Zwingende Verbraucher- und Datenschutzrechte bleiben unberührt. Diese Entwicklungsversion bietet keine kostenpflichtigen Pläne oder Abonnements. Künftige kostenpflichtige Angebote zeigen Preise und Bedingungen vor einem Kauf."
+        "Body": "Kontaktiere Meaningtech unter support@makeet.app. Für die App-Store-Anwendung gilt außerdem Apples Standard-Endbenutzer-Lizenzvertrag; der vollständige Text ist unten verlinkt. Diese Bedingungen beschränken keine zwingenden Verbraucher- oder Datenschutzrechte."
       }
     ],
     "DeletionIntro": "Lösche dein Makeet-Konto in der App oder kontaktiere den Support, wenn du dich nicht anmelden kannst. Abmelden allein löscht das Konto nicht.",
@@ -154,6 +162,10 @@
       {
         "Title": "In der App",
         "Body": "Öffne Verbindungen, dann Konto, wähle Konto löschen und bestätige. Eine Verbindung ist erforderlich. Die App bestätigt erst nach Löschung im Dienst. Scheitert der Widerruf der Apple-Autorisierung, versuche es erneut, wenn der Dienst verfügbar ist."
+      },
+      {
+        "Title": "Apple-Abonnements",
+        "Body": "Das Löschen deines Makeet-Kontos oder das Deinstallieren der App kündigt Makeet Plus nicht. Apple wird weiterhin Zahlungen abbuchen, bis du das Abonnement in den Einstellungen deines Apple-Accounts kündigst. Kündige es vor der Kontolöschung. Du kannst das Konto trotzdem sofort löschen, ohne auf Kündigung oder Ablauf zu warten. Verwende den App-Store-Link unten, um Abonnements zu verwalten."
       },
       {
         "Title": "Gelöschte Daten",

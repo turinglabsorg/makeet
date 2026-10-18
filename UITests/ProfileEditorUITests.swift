@@ -1,6 +1,32 @@
 import XCTest
 
 final class ProfileEditorUITests: XCTestCase {
+    @MainActor func testAccountDeletionExplainsBillingAndAllowsCancellationInFiveLanguages() {
+        for (language, connections, delete, erase, manage, cancel, warning) in [
+            ("it", "Connessioni", "Elimina account", "Elimina account e dati", "Gestisci abbonamento", "Annulla", "Apple continuerà gli addebiti"),
+            ("en", "Connections", "Delete account", "Delete account and data", "Manage subscription", "Cancel", "Apple will continue billing"),
+            ("fr", "Connexions", "Supprimer le compte", "Supprimer le compte et les données", "Gérer l’abonnement", "Annuler", "Apple continuera la facturation"),
+            ("de", "Verbindungen", "Konto löschen", "Konto und Daten löschen", "Abonnement verwalten", "Abbrechen", "Apple wird weiterhin Zahlungen abbuchen"),
+            ("es", "Conexiones", "Eliminar cuenta", "Eliminar cuenta y datos", "Gestionar suscripción", "Cancelar", "Apple seguirá cobrando")
+        ] {
+            let app = profileApp(language: language)
+            app.launch()
+            app.buttons["accountSettings"].tap()
+            for attempt in 1...2 {
+                app.buttons[delete].tap()
+                XCTAssertTrue(app.buttons[erase].waitForExistence(timeout: 5), language)
+                XCTAssertTrue(app.buttons[erase].isEnabled, language)
+                XCTAssertTrue(app.buttons[manage].isHittable, language)
+                XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", warning)).firstMatch.exists, language)
+                attach("Account deletion billing warning \(language) \(attempt)", app)
+                cancelConfirmation(app, action: erase, cancel: cancel, navigation: connections)
+                XCTAssertTrue(app.staticTexts["Alex Morgan"].exists, language)
+                XCTAssertTrue(app.buttons["editProfile"].isHittable, language)
+            }
+            app.terminate()
+        }
+    }
+
     @MainActor func testAccountActionsAskForConfirmationAndCanBeCancelled() {
         let app = profileApp()
         app.launch()
@@ -148,15 +174,15 @@ final class ProfileEditorUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Alex Morgan"].waitForExistence(timeout: 5))
     }
 
-    @MainActor private func profileApp(extra: [String] = []) -> XCUIApplication {
+    @MainActor private func profileApp(extra: [String] = [], language: String = "it") -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing", "--profile-fixture", "-AppleLanguages", "(it)"] + extra
+        app.launchArguments = ["--ui-testing", "--profile-fixture", "-AppleLanguages", "(\(language))"] + extra
         app.launchEnvironment["MAKEET_PROFILE_FIXTURE_ID"] = UUID().uuidString
         return app
     }
-    @MainActor private func cancelConfirmation(_ app: XCUIApplication, action: String) {
-        if app.buttons["Annulla"].exists { app.buttons["Annulla"].tap() }
-        else { app.navigationBars["Connessioni"].coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap() }
+    @MainActor private func cancelConfirmation(_ app: XCUIApplication, action: String, cancel: String = "Annulla", navigation: String = "Connessioni") {
+        if app.buttons[cancel].exists { app.buttons[cancel].tap() }
+        else { app.navigationBars[navigation].coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap() }
         let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons[action])
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 5), .completed)
     }
