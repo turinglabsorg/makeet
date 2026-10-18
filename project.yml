@@ -136,6 +136,20 @@ targets:
       properties:
         com.apple.security.app-sandbox: true
         com.apple.security.application-groups: [group.org.turinglabs.makeet]
+  MakeetStoreKitSetupTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - StoreKitSetupTests
+      - path: CalendarTests/MakeetTests.storekit
+        buildPhase: resources
+    dependencies:
+      - target: Makeet
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.storekitsetup
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Makeet.app/Makeet
+        BUNDLE_LOADER: $(TEST_HOST)
   MakeetCalendarTests:
     type: bundle.unit-test
     platform: iOS
@@ -160,7 +174,7 @@ targets:
 schemes:
   Makeet:
     test:
-      targets: [MakeetUITests, MakeetCalendarTests]
+      targets: [MakeetUITests, MakeetStoreKitSetupTests, MakeetCalendarTests]
       commandLineArguments:
         --ui-testing: true
     build:

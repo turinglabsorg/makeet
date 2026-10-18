@@ -55,6 +55,17 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "10DD30B535B5FFA767233D84"
+               BuildableName = "MakeetStoreKitSetupTests.xctest"
+               BlueprintName = "MakeetStoreKitSetupTests"
+               ReferencedContainer = "container:Makeet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "F36909E2C2AFF6CB7EC86C9C"
                BuildableName = "MakeetCalendarTests.xctest"
                BlueprintName = "MakeetCalendarTests"

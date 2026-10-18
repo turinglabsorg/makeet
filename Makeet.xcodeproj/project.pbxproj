@@ -35,6 +35,7 @@
 		1FEEB150350CCFAA86D628A0 /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
 		20A81E8853102B8BCCB557B6 /* HabitCardLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4935E5FEF5178CF7CC62BA78 /* HabitCardLifecycleTests.swift */; };
 		21AFC0ED02E6039533B2666B /* MakeetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE80A05B489E9A80C5F186 /* MakeetWidget.swift */; };
+		237C6EAF861CA18E31AB9319 /* MakeetTests.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 27D63CE11C0B8814E12E8311 /* MakeetTests.storekit */; };
 		26F1DF3289357D49828CAD79 /* SubscriptionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95CD9952E0AF8388123DE2 /* SubscriptionStore.swift */; };
 		2A28237498A0883958760320 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED286E6CF9EA21EC4ECE0D /* InfoPlist.xcstrings */; };
 		2B06E5E2BE2592FEB202E532 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8EF339792D048E778065CEF1 /* Localizable.xcstrings */; };
@@ -47,6 +48,7 @@
 		3A2DD2C00491DD9C32D5228F /* PushProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFC48EE084F27F808031383 /* PushProtocol.swift */; };
 		3B3F7690E0F179530D46D3AA /* HabitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DA0E5B41B2CF8E95514A /* HabitEngine.swift */; };
 		3B980483D1A59B0B563485A4 /* HabitAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16E79D0337524029F11416 /* HabitAppearance.swift */; };
+		403AD6EEEA3233DBAE16AFA4 /* StoreKitEnvironmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C72B23F983CA90CCE670F /* StoreKitEnvironmentTests.swift */; };
 		4422F67AAD6F1B59756C0DFC /* MakeetWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		488060E7E85EAB3531D49056 /* DayCorrections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C572677F881A31E35A5832B /* DayCorrections.swift */; };
 		4C47E134F5207238BA1DB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */; };
@@ -152,6 +154,13 @@
 			remoteGlobalIDString = E3A5A26FF5F120F84E4E5E3C;
 			remoteInfo = Makeet;
 		};
+		89127316A723586890714E53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6292574163A82835936704F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3A5A26FF5F120F84E4E5E3C;
+			remoteInfo = Makeet;
+		};
 		8A8BA15E87F8FE6FC0CBC0C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6292574163A82835936704F2 /* Project object */;
@@ -201,6 +210,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D4C72B23F983CA90CCE670F /* StoreKitEnvironmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitEnvironmentTests.swift; sourceTree = "<group>"; };
 		0DEE102605ABA65839580BC5 /* ProfileUITestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUITestFixture.swift; sourceTree = "<group>"; };
 		1233EDE5EB4E5B5E75B8BB1A /* ArchiveHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveHost.swift; sourceTree = "<group>"; };
 		140A573FC39844A3208A74A9 /* AccountProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfile.swift; sourceTree = "<group>"; };
@@ -242,6 +252,7 @@
 		A4FC9984242CC6634D72E864 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
 		A54ED3EA62009446C32C0EB7 /* KeychainSessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSessionStorage.swift; sourceTree = "<group>"; };
 		AA5C729CE3D4513FC2DCFAB5 /* ProfilePresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresentationTests.swift; sourceTree = "<group>"; };
+		AB4B4C46F096B67F88D49FA2 /* MakeetStoreKitSetupTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MakeetStoreKitSetupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC88E138CB5413197569EB2B /* MakeetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeetApp.swift; sourceTree = "<group>"; };
 		AE86BE058455F79D120E8E84 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		B3CFE5DC206D3B8F3E341D12 /* ArchiveExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveExport.swift; sourceTree = "<group>"; };
@@ -325,6 +336,7 @@
 				27EAF38905E863D2D6ED17D8 /* MakeetCalendarTests.xctest */,
 				4F28922DF689E430A56BA629 /* MakeetMac.app */,
 				1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */,
+				AB4B4C46F096B67F88D49FA2 /* MakeetStoreKitSetupTests.xctest */,
 				709F99091FAC8F0BFF8B9E17 /* MakeetUITests.xctest */,
 				6015DF23ECD9F3F73E5AA697 /* MakeetWidget.appex */,
 			);
@@ -404,6 +416,7 @@
 				DBD74CFBD7B7617736942C24 /* Core */,
 				160AA0F0184844580A1AD221 /* Resources */,
 				128B818EF46ACCD92AD9D812 /* Shared */,
+				FBD588C481C9ACB838D75633 /* StoreKitSetupTests */,
 				90546B561B6A18C14E11B2AD /* UITests */,
 				273D8BC95A96E1CF0E80B312 /* Widget */,
 				5362A864D9763F2F0B8E800B /* Products */,
@@ -433,9 +446,36 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		FBD588C481C9ACB838D75633 /* StoreKitSetupTests */ = {
+			isa = PBXGroup;
+			children = (
+				0D4C72B23F983CA90CCE670F /* StoreKitEnvironmentTests.swift */,
+			);
+			path = StoreKitSetupTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		10DD30B535B5FFA767233D84 /* MakeetStoreKitSetupTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 441156A5542FCDD3B1796707 /* Build configuration list for PBXNativeTarget "MakeetStoreKitSetupTests" */;
+			buildPhases = (
+				2C732495C85283E65A1BE79F /* Sources */,
+				C8E77A463B7A222FC2D3ED76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA0307D1048F7BC322C29605 /* PBXTargetDependency */,
+			);
+			name = MakeetStoreKitSetupTests;
+			packageProductDependencies = (
+			);
+			productName = MakeetStoreKitSetupTests;
+			productReference = AB4B4C46F096B67F88D49FA2 /* MakeetStoreKitSetupTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		248A1795BCE348E6C77691C2 /* MakeetWidget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 474A19CA00BB7CB7A2A6524D /* Build configuration list for PBXNativeTarget "MakeetWidget" */;
@@ -564,6 +604,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					10DD30B535B5FFA767233D84 = {
+						ProvisioningStyle = Automatic;
+					};
 					248A1795BCE348E6C77691C2 = {
 						ProvisioningStyle = Automatic;
 					};
@@ -610,6 +653,7 @@
 				F36909E2C2AFF6CB7EC86C9C /* MakeetCalendarTests */,
 				958C23D2857D484945E081D5 /* MakeetMac */,
 				FF2F750A90A4CC610A04C522 /* MakeetMacWidget */,
+				10DD30B535B5FFA767233D84 /* MakeetStoreKitSetupTests */,
 				D1B9527DCBD5ED3A9949DDEE /* MakeetUITests */,
 				248A1795BCE348E6C77691C2 /* MakeetWidget */,
 			);
@@ -645,6 +689,14 @@
 				08F823D3C1ACC8BF681B4460 /* GoogleSignIn-LICENSE.txt in Resources */,
 				2A28237498A0883958760320 /* InfoPlist.xcstrings in Resources */,
 				67A34CADEDA12963147B55C9 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8E77A463B7A222FC2D3ED76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				237C6EAF861CA18E31AB9319 /* MakeetTests.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +768,14 @@
 				1EBF1B2B807CEC44BC386E40 /* Theme.swift in Sources */,
 				A38C92304E74DAD11FBDEEFD /* TodayView.swift in Sources */,
 				1E482DB553A8F4F93BE8B738 /* TrendsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C732495C85283E65A1BE79F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				403AD6EEEA3233DBAE16AFA4 /* StoreKitEnvironmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +904,11 @@
 			target = E3A5A26FF5F120F84E4E5E3C /* Makeet */;
 			targetProxy = 429EF8DB523EAD4DD8C8818E /* PBXContainerItemProxy */;
 		};
+		EA0307D1048F7BC322C29605 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E3A5A26FF5F120F84E4E5E3C /* Makeet */;
+			targetProxy = 89127316A723586890714E53 /* PBXContainerItemProxy */;
+		};
 		F0691CA48DCFC515EF9602C2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 248A1795BCE348E6C77691C2 /* MakeetWidget */;
@@ -852,6 +917,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		16C43FA3D3B4DCE87FD82525 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.storekitsetup;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Makeet.app/Makeet";
+			};
+			name = Release;
+		};
 		47A60F2EF0CF2D84C1F27CFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1081,6 +1162,22 @@
 			};
 			name = Release;
 		};
+		975D15FE448955F00F6D59D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.turinglabs.makeet.storekitsetup;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Makeet.app/Makeet";
+			};
+			name = Debug;
+		};
 		A7D8EBFCD1EC52EBB0521ADE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1207,6 +1304,15 @@
 			buildConfigurations = (
 				7CC6801FFC38622D542DA8DB /* Debug */,
 				C755F08C73A82E2B8E4EE790 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		441156A5542FCDD3B1796707 /* Build configuration list for PBXNativeTarget "MakeetStoreKitSetupTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				975D15FE448955F00F6D59D6 /* Debug */,
+				16C43FA3D3B4DCE87FD82525 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
