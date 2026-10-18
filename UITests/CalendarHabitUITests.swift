@@ -23,7 +23,8 @@ final class CalendarHabitUITests: XCTestCase {
         XCTAssertFalse(app.buttons["Abitudini archiviate"].exists)
         app.buttons["addHabit"].tap()
         let name=app.textFields["habitName"]
-        XCTAssertTrue(name.waitForExistence(timeout:5));name.tap();name.typeText("Weekly habit")
+        guard name.waitForExistence(timeout:5) else { attach("New habit form missing",app);XCTFail("New habit name field did not appear");return }
+        name.tap();name.typeText("Weekly habit")
         app.swipeDown()
         for day in 0..<7 { let button=app.buttons["weekday-\(day)"];XCTAssertTrue(button.exists);button.tap() }
         XCTAssertFalse(app.buttons["saveHabit"].isEnabled)
@@ -34,9 +35,11 @@ final class CalendarHabitUITests: XCTestCase {
         let edit=app.buttons["edit-habit-Weekly habit"];reveal(edit,in:app);edit.tap()
         let monday=app.buttons["weekday-0"];XCTAssertTrue(monday.exists);monday.tap();monday.tap()
         for day in 0..<7 { XCTAssertEqual(app.buttons["weekday-\(day)"].isSelected,[0,1,3].contains(day)) }
-        app.swipeDown();app.swipeDown()
-        XCTAssertTrue(name.waitForExistence(timeout:5));name.tap()
-        name.typeText(String(repeating:XCUIKeyboardKey.delete.rawValue,count:"Weekly habit".count)+"Weekly edited")
+        attach("Weekly editor before returning to name",app)
+        let editedName=app.textFields["habitName"]
+        guard editedName.waitForExistence(timeout:5) else { attach("Weekly editor missing name",app);XCTFail("Edited habit name field did not appear");return }
+        editedName.tap()
+        editedName.typeText(String(repeating:XCUIKeyboardKey.delete.rawValue,count:"Weekly habit".count)+"Weekly edited")
         app.buttons["saveHabit"].tap()
         XCTAssertTrue(app.buttons["edit-habit-Weekly edited"].waitForExistence(timeout:5))
         attach("Edited habit in monthly calendar",app)
