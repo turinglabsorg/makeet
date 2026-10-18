@@ -1,6 +1,7 @@
 package billing
 
 import (
+	"context"
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/sha256"
@@ -28,6 +29,7 @@ var ErrInvalid = errors.New("invalid App Store signature or transaction")
 type Verifier struct {
 	roots   *x509.CertPool
 	Sandbox bool
+	status  *certificateStatus
 }
 type Transaction struct {
 	ID             string `json:"transactionId"`
@@ -55,7 +57,13 @@ type Notification struct {
 	} `json:"data"`
 }
 
-func New(sandbox bool) (*Verifier, error) { return WithRoots([][]byte{appleRoot}, sandbox) }
+func New(sandbox bool) (*Verifier, error) {
+	v, err := WithRoots([][]byte{appleRoot}, sandbox)
+	if err == nil {
+		v.status = newCertificateStatus()
+	}
+	return v, err
+}
 func WithRoots(der [][]byte, sandbox bool) (*Verifier, error) {
 	roots := x509.NewCertPool()
 	for _, data := range der {
@@ -71,6 +79,9 @@ func (v *Verifier) environment(env string) bool {
 	return env == "Production" || (v.Sandbox && env == "Sandbox")
 }
 func (v *Verifier) Decode(raw string, out any, now time.Time) error {
+	return v.decode(context.Background(), raw, out, now)
+}
+func (v *Verifier) decode(ctx context.Context, raw string, out any, now time.Time) error {
 	if len(raw) > 65536 {
 		return ErrInvalid
 	}
@@ -109,8 +120,12 @@ func (v *Verifier) Decode(raw string, out any, now time.Time) error {
 	}
 	intermediate := x509.NewCertPool()
 	intermediate.AddCert(certs[1])
-	chains, err := certs[0].Verify(x509.VerifyOptions{Roots: v.roots, Intermediates: intermediate, CurrentTime: time.UnixMilli(signed.Date), KeyUsages: []x509.ExtKeyUsage{x509.ExtKeyUsageAny}})
-	if err != nil || len(chains) == 0 || len(chains[0]) != 3 || !hasOID(certs[0], asn1.ObjectIdentifier{1, 2, 840, 113635, 100, 6, 11, 1}) || !hasOID(certs[1], asn1.ObjectIdentifier{1, 2, 840, 113635, 100, 6, 2, 1}) {
+	verificationTime := time.UnixMilli(signed.Date)
+	if v.status != nil {
+		verificationTime = now
+	}
+	chains, err := certs[0].Verify(x509.VerifyOptions{Roots: v.roots, Intermediates: intermediate, CurrentTime: verificationTime, KeyUsages: []x509.ExtKeyUsage{x509.ExtKeyUsageAny}})
+	if err != nil || len(chains) == 0 || len(chains[0]) != 3 || !certs[2].Equal(chains[0][2]) || !hasOID(certs[0], asn1.ObjectIdentifier{1, 2, 840, 113635, 100, 6, 11, 1}) || !hasOID(certs[1], asn1.ObjectIdentifier{1, 2, 840, 113635, 100, 6, 2, 1}) {
 		return ErrInvalid
 	}
 	key, ok := certs[0].PublicKey.(*ecdsa.PublicKey)
@@ -124,6 +139,13 @@ func (v *Verifier) Decode(raw string, out any, now time.Time) error {
 	digest := sha256.Sum256([]byte(parts[0] + "." + parts[1]))
 	if !ecdsa.Verify(key, digest[:], new(big.Int).SetBytes(sig[:32]), new(big.Int).SetBytes(sig[32:])) {
 		return ErrInvalid
+	}
+	if v.status != nil {
+		for i := 0; i < 2; i++ {
+			if err := v.status.check(ctx, chains[0][i], chains[0][i+1], now); err != nil {
+				return err
+			}
+		}
 	}
 	if json.Unmarshal(payload, out) != nil {
 		return ErrInvalid
@@ -139,8 +161,11 @@ func hasOID(cert *x509.Certificate, oid asn1.ObjectIdentifier) bool {
 	return false
 }
 func (v *Verifier) Transaction(raw string, now time.Time) (Transaction, error) {
+	return v.TransactionContext(context.Background(), raw, now)
+}
+func (v *Verifier) TransactionContext(ctx context.Context, raw string, now time.Time) (Transaction, error) {
 	var t Transaction
-	if err := v.Decode(raw, &t, now); err != nil {
+	if err := v.decode(ctx, raw, &t, now); err != nil {
 		return t, err
 	}
 	token, err := uuid.Parse(t.AccountToken)
@@ -151,8 +176,11 @@ func (v *Verifier) Transaction(raw string, now time.Time) (Transaction, error) {
 	return t, nil
 }
 func (v *Verifier) Notification(raw string, now time.Time) (Notification, error) {
+	return v.NotificationContext(context.Background(), raw, now)
+}
+func (v *Verifier) NotificationContext(ctx context.Context, raw string, now time.Time) (Notification, error) {
 	var n Notification
-	if err := v.Decode(raw, &n, now); err != nil {
+	if err := v.decode(ctx, raw, &n, now); err != nil {
 		return n, err
 	}
 	if _, err := uuid.Parse(n.UUID); err != nil || n.Data.BundleID != "org.turinglabs.makeet" || ((n.Data.Environment == "Production" || n.Data.AppID != 0) && n.Data.AppID != 6823557479) || !v.environment(n.Data.Environment) {

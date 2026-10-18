@@ -4,7 +4,10 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/hex"
+	"strings"
 	"testing"
+
+	"github.com/google/uuid"
 )
 
 func TestProviderEncryptionConfiguration(t *testing.T) {
@@ -19,5 +22,30 @@ func TestProviderEncryptionConfiguration(t *testing.T) {
 		if _, err := providerKey(invalid); err == nil {
 			t.Fatal("invalid encryption configuration accepted")
 		}
+	}
+}
+
+func TestBillingPreviewConfigurationRejectsUnboundedOrInvalidAccounts(t *testing.T) {
+	id := "5c720ee0-b1f6-43ca-ab46-05e80e8af4e6"
+	for _, raw := range []string{"", id, " " + id + " , " + id} {
+		users, err := billingPreviewUsers(raw)
+		if err != nil || len(users) > 1 {
+			t.Fatal("valid allowlist rejected", err)
+		}
+	}
+	for _, raw := range []string{"invalid", "00000000-0000-0000-0000-000000000000", id + ","} {
+		if _, err := billingPreviewUsers(raw); err == nil {
+			t.Fatal("invalid allowlist accepted")
+		}
+	}
+	ids := make([]string, 11)
+	for i := range ids {
+		ids[i] = uuid.NewString()
+	}
+	if _, err := billingPreviewUsers(strings.Join(ids, ",")); err == nil {
+		t.Fatal("unbounded preview allowlist accepted")
+	}
+	if users, err := billingPreviewUsers(strings.Join(append(ids[:10:10], ids[0]), ",")); err != nil || len(users) != 10 {
+		t.Fatal("duplicate account consumed an extra preview slot", err)
 	}
 }

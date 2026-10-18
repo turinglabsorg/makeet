@@ -18,13 +18,20 @@ type entitlement struct {
 	ExpiresAt int64  `json:"expires_at"`
 }
 
+func (s *Server) publicBillingEnabled() bool {
+	return s.cfg.Billing != nil && len(s.cfg.BillingPreviewUsers) == 0
+}
+func (s *Server) billingEnabledFor(userID string) bool {
+	return s.cfg.Billing != nil && (len(s.cfg.BillingPreviewUsers) == 0 || s.cfg.BillingPreviewUsers[userID])
+}
+
 func (s *Server) entitlement(ctx context.Context, userID string) (entitlement, error) {
-	value := entitlement{Enabled: s.cfg.Billing != nil}
+	value := entitlement{Enabled: s.billingEnabledFor(userID)}
 	if !value.Enabled {
 		return value, nil
 	}
 	var expires int64
-	err := s.db.QueryRowContext(ctx, `SELECT product_id,expires_date FROM subscriptions WHERE user_id=? AND revoked=0 AND expires_date>? ORDER BY expires_date DESC LIMIT 1`, userID, s.cfg.Clock().UnixMilli()).Scan(&value.ProductID, &expires)
+	err := s.db.QueryRowContext(ctx, `SELECT product_id,expires_date FROM subscriptions WHERE user_id=? AND revoked=0 AND expires_date>? AND (environment='Production' OR ?=1) ORDER BY expires_date DESC LIMIT 1`, userID, s.cfg.Clock().UnixMilli(), s.cfg.Billing.Sandbox).Scan(&value.ProductID, &expires)
 	if errors.Is(err, sql.ErrNoRows) {
 		return value, nil
 	}
@@ -54,9 +61,17 @@ func (s *Server) submitTransaction(w http.ResponseWriter, r *http.Request, p pri
 	if !decode(w, r, &req) {
 		return
 	}
-	value, err := s.cfg.Billing.Transaction(req.Signed, s.cfg.Clock())
+	value, err := s.cfg.Billing.TransactionContext(r.Context(), req.Signed, s.cfg.Clock())
+	if errors.Is(err, billing.ErrUnavailable) {
+		fail(w, 503, "billing_verification_unavailable")
+		return
+	}
 	if err != nil {
 		fail(w, 400, "invalid_transaction")
+		return
+	}
+	if value.Environment == "Sandbox" && len(s.cfg.BillingPreviewUsers) > 0 && !s.cfg.BillingPreviewUsers[p.UserID] {
+		fail(w, 403, "sandbox_account_not_enabled")
 		return
 	}
 	if value.AccountToken != p.UserID {
@@ -118,7 +133,11 @@ func (s *Server) appStoreNotification(w http.ResponseWriter, r *http.Request) {
 	if !decode(w, r, &req) {
 		return
 	}
-	value, err := s.cfg.Billing.Notification(req.Signed, s.cfg.Clock())
+	value, err := s.cfg.Billing.NotificationContext(r.Context(), req.Signed, s.cfg.Clock())
+	if errors.Is(err, billing.ErrUnavailable) {
+		fail(w, 503, "billing_verification_unavailable")
+		return
+	}
 	if err != nil {
 		fail(w, 400, "invalid_notification")
 		return
@@ -131,9 +150,17 @@ func (s *Server) appStoreNotification(w http.ResponseWriter, r *http.Request) {
 		fail(w, 400, "transaction_required")
 		return
 	}
-	purchase, err := s.cfg.Billing.Transaction(value.Data.Transaction, s.cfg.Clock())
+	purchase, err := s.cfg.Billing.TransactionContext(r.Context(), value.Data.Transaction, s.cfg.Clock())
+	if errors.Is(err, billing.ErrUnavailable) {
+		fail(w, 503, "billing_verification_unavailable")
+		return
+	}
 	if err != nil || purchase.Environment != value.Data.Environment {
 		fail(w, 400, "invalid_transaction")
+		return
+	}
+	if purchase.Environment == "Sandbox" && len(s.cfg.BillingPreviewUsers) > 0 && !s.cfg.BillingPreviewUsers[purchase.AccountToken] {
+		w.WriteHeader(204)
 		return
 	}
 	// The signed outer event date orders refunds/renewals even when its nested transaction is older.

@@ -76,3 +76,116 @@ func TestSubscriptionOwnershipExpiryRefundReplayAndFreeDataAccess(t *testing.T) 
 	f.request("GET", "/v1/me/export", a.Access, nil, 200)
 	f.request("DELETE", "/v1/me", b.Access, map[string]string{"confirmation": "DELETE"}, 204)
 }
+
+func TestBillingPreviewOnlyEnablesNamedAccountsAndDoesNotPublishCharging(t *testing.T) {
+	f := setup(t)
+	a := f.login("google", "preview-owner")
+	b := f.login("google", "ordinary-preview")
+	issuer := testbilling.New(t, f.now)
+	f.server.Close()
+	f.api = api.New(f.db, api.Config{Billing: issuer.Verifier, BillingPreviewUsers: map[string]bool{a.User.ID: true}, Clock: func() time.Time { return f.now }})
+	f.server = httptest.NewServer(f.api.Handler())
+	var config struct {
+		Billing bool `json:"billing_enabled"`
+	}
+	json.Unmarshal(f.request("GET", "/v1/config", "", nil, 200), &config)
+	if config.Billing {
+		t.Fatal("preview enabled public billing")
+	}
+	var owner, ordinary struct {
+		Enabled bool `json:"billing_enabled"`
+		Active  bool `json:"active"`
+	}
+	json.Unmarshal(f.request("GET", "/v1/me/entitlement", a.Access, nil, 200), &owner)
+	json.Unmarshal(f.request("GET", "/v1/me/entitlement", b.Access, nil, 200), &ordinary)
+	if !owner.Enabled || owner.Active || ordinary.Enabled {
+		t.Fatal("preview isolation failed")
+	}
+	f.request("POST", "/v1/sync", a.Access, api.SyncRequest{}, 403)
+	f.sync(b, 0, []api.Record{habit(uuid.NewString(), 0)})
+	signed := issuer.Sign(t, testbilling.Purchase(a.User.ID, f.now))
+	f.request("POST", "/v1/me/transactions", a.Access, map[string]string{"signed_transaction": signed}, 200)
+	f.request("POST", "/v1/sync", a.Access, api.SyncRequest{}, 200)
+	purchase := testbilling.Purchase(b.User.ID, f.now)
+	purchase.OriginalID = "other"
+	purchase.ID = "other"
+	f.request("POST", "/v1/me/transactions", b.Access, map[string]string{"signed_transaction": issuer.Sign(t, purchase)}, 403)
+	event := billing.Notification{UUID: uuid.NewString(), Type: "DID_RENEW", SignedDate: f.now.UnixMilli()}
+	event.Data.BundleID = purchase.BundleID
+	event.Data.Environment = "Sandbox"
+	event.Data.Transaction = issuer.Sign(t, purchase)
+	f.request("POST", "/v1/app-store/notifications", "", map[string]string{"signedPayload": issuer.Sign(t, event)}, 204)
+	var count int
+	if err := f.db.QueryRow("SELECT count(*) FROM subscriptions WHERE user_id=?", b.User.ID).Scan(&count); err != nil || count != 0 {
+		t.Fatal("unapproved Sandbox notification stored", err)
+	}
+}
+
+func TestExpiredSubscriberCanExportAndEraseItsDataWithoutAffectingAnotherAccount(t *testing.T) {
+	f := setup(t)
+	a := f.login("google", "expired-subscriber")
+	b := f.login("google", "retained-neighbor")
+	f.sync(a, 0, []api.Record{habit(uuid.NewString(), 0)})
+	f.sync(b, 0, []api.Record{habit(uuid.NewString(), 0)})
+	issuer := testbilling.New(t, f.now)
+	f.server.Close()
+	f.api = api.New(f.db, api.Config{Billing: issuer.Verifier, Clock: func() time.Time { return f.now }})
+	f.server = httptest.NewServer(f.api.Handler())
+	p := testbilling.Purchase(a.User.ID, f.now)
+	p.ExpiresDate = f.now.Add(time.Minute).UnixMilli()
+	f.request("POST", "/v1/me/transactions", a.Access, map[string]string{"signed_transaction": issuer.Sign(t, p)}, 200)
+	f.now = f.now.Add(2 * time.Minute)
+	f.request("POST", "/v1/sync", a.Access, api.SyncRequest{}, 403)
+	var exported struct{ Records []api.Record }
+	json.Unmarshal(f.request("GET", "/v1/me/export", a.Access, nil, 200), &exported)
+	if len(exported.Records) != 1 {
+		t.Fatal("expired account lost export")
+	}
+	f.request("DELETE", "/v1/me", a.Access, map[string]string{"confirmation": "DELETE"}, 204)
+	for _, table := range []string{"users", "identities", "sessions", "records", "changes", "batches", "subscriptions"} {
+		column := "user_id"
+		if table == "users" {
+			column = "id"
+		}
+		var count int
+		if err := f.db.QueryRow("SELECT count(*) FROM "+table+" WHERE "+column+"=?", a.User.ID).Scan(&count); err != nil || count != 0 {
+			t.Fatalf("%s retained deleted subscriber data: %v", table, err)
+		}
+	}
+	f.request("GET", "/v1/me", a.Access, nil, 401)
+	json.Unmarshal(f.request("GET", "/v1/me/export", b.Access, nil, 200), &exported)
+	if len(exported.Records) != 1 {
+		t.Fatal("deletion affected another account")
+	}
+	event := billing.Notification{UUID: uuid.NewString(), Type: "DID_RENEW", SignedDate: f.now.UnixMilli()}
+	event.Data.BundleID = p.BundleID
+	event.Data.Environment = "Sandbox"
+	event.Data.Transaction = issuer.Sign(t, p)
+	f.request("POST", "/v1/app-store/notifications", "", map[string]string{"signedPayload": issuer.Sign(t, event)}, 204)
+	var count int
+	f.db.QueryRow("SELECT count(*) FROM subscriptions WHERE user_id=?", a.User.ID).Scan(&count)
+	if count != 0 {
+		t.Fatal("notification resurrected erased subscriber")
+	}
+}
+
+func TestProductionEntitlementDoesNotUseStoredSandboxPurchase(t *testing.T) {
+	f := setup(t)
+	a := f.login("google", "sandbox-explicit")
+	issuer := testbilling.New(t, f.now)
+	f.server.Close()
+	f.api = api.New(f.db, api.Config{Billing: issuer.Verifier, Clock: func() time.Time { return f.now }})
+	f.server = httptest.NewServer(f.api.Handler())
+	f.request("POST", "/v1/me/transactions", a.Access, map[string]string{"signed_transaction": issuer.Sign(t, testbilling.Purchase(a.User.ID, f.now))}, 200)
+	f.server.Close()
+	productionVerifier := *issuer.Verifier
+	productionVerifier.Sandbox = false
+	f.api = api.New(f.db, api.Config{Billing: &productionVerifier, Clock: func() time.Time { return f.now }})
+	f.server = httptest.NewServer(f.api.Handler())
+	var e struct{ Active bool }
+	json.Unmarshal(f.request("GET", "/v1/me/entitlement", a.Access, nil, 200), &e)
+	if e.Active {
+		t.Fatal("Sandbox receipt granted production entitlement")
+	}
+	f.request("POST", "/v1/sync", a.Access, api.SyncRequest{}, 403)
+}

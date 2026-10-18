@@ -14,8 +14,8 @@ settings:
   base:
     SWIFT_VERSION: '5.0'
     SWIFT_EMIT_LOC_STRINGS: YES
-    MARKETING_VERSION: '0.1.0'
-    CURRENT_PROJECT_VERSION: 10
+    MARKETING_VERSION: '1.0'
+    CURRENT_PROJECT_VERSION: 11
     CODE_SIGN_STYLE: Automatic
     ENABLE_USER_SCRIPT_SANDBOXING: YES
     ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
@@ -32,7 +32,7 @@ targets:
   Makeet:
     type: application
     platform: iOS
-    sources: [App, Accounts, Core, Shared, Resources]
+    sources: [App, Accounts, Core, Shared, Resources, Privacy/App]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet
@@ -67,7 +67,7 @@ targets:
   MakeetWidget:
     type: app-extension
     platform: iOS
-    sources: [Widget, Core, Shared, Resources]
+    sources: [Widget, Core, Shared, Resources, Privacy/Widget]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.widget
@@ -85,7 +85,7 @@ targets:
   MakeetMac:
     type: application
     platform: macOS
-    sources: [App, Accounts, Core, Shared, Resources]
+    sources: [App, Accounts, Core, Shared, Resources, Privacy/App]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.mac
@@ -119,7 +119,7 @@ targets:
   MakeetMacWidget:
     type: app-extension
     platform: macOS
-    sources: [Widget, Core, Shared, Resources]
+    sources: [Widget, Core, Shared, Resources, Privacy/Widget]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.turinglabs.makeet.mac.widget

@@ -221,9 +221,14 @@ final class MakeetUITests: XCTestCase {
             let app = XCUIApplication()
             app.launchArguments = ["--ui-testing", "--demo", "-AppleLanguages", "(\(language))", "-AppleLocale", locale]
             app.launch()
-            XCTAssertTrue(app.tabBars.buttons[today].waitForExistence(timeout: 5), language)
+            XCTAssertTrue(app.buttons[today].firstMatch.waitForExistence(timeout: 5), language)
             XCTAssertTrue(app.staticTexts[example].exists, language)
             attach("Today \(language)", app)
+            let calendar = ["it": "Calendario", "en": "Calendar", "fr": "Calendrier", "de": "Kalender", "es": "Calendario"][language]!
+            app.buttons[calendar].firstMatch.tap()
+            XCTAssertTrue(app.buttons["calendar-day-1"].waitForExistence(timeout: 5), language)
+            attach("Calendar \(language)", app)
+            app.buttons[today].firstMatch.tap()
             app.buttons["addHabit"].tap()
             XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5), language)
             app.segmentedControls["appearanceKind"].buttons["Emoji"].tap()

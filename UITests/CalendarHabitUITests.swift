@@ -1,6 +1,25 @@
 import XCTest
 
 final class CalendarHabitUITests: XCTestCase {
+    @MainActor func testExternalPurchaseIntentWaitsForOnboardingAndDoesNotPurchaseWithoutAnAccount() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--onboarding", "--demo", "--external-purchase-intent", "-AppleLanguages", "(it)"]
+        app.launch()
+        XCTAssertTrue(app.buttons["onboardingContinue"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["plusDone"].exists)
+        app.buttons["onboardingContinue"].tap()
+        app.buttons["onboardingLocalChoice"].tap()
+        app.buttons["onboardingLocal"].tap()
+        app.buttons["onboardingFinish"].tap()
+        XCTAssertTrue(app.buttons["plusDone"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["googleSignIn"].exists)
+        XCTAssertFalse(app.buttons["purchase-org.turinglabs.makeet.plus.monthly"].exists)
+        XCTAssertFalse(app.buttons["purchase-org.turinglabs.makeet.plus.yearly"].exists)
+        app.buttons["plusDone"].tap()
+        XCTAssertTrue(app.buttons["increment-Bere acqua"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["4 / 8 bicchieri"].exists)
+    }
+
     @MainActor private func launch(demo: Bool = true) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "-AppleLanguages", "(it)", "-AppleLocale", "it_IT"] + (demo ? ["--demo"] : [])
@@ -157,5 +176,27 @@ extension CalendarHabitUITests {
         attach("Calendar setup offers an actionable choice",app)
         app.buttons["Fine"].tap()
         XCTAssertTrue(app.segmentedControls["planningHorizon"].waitForExistence(timeout:5))
+    }
+}
+
+
+extension CalendarHabitUITests {
+    @MainActor func testUnknownBillingStateProtectsPlanningAndKeepsLocalTrackingFree() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--demo", "--billing-state-unknown", "-AppleLanguages", "(it)", "-AppleLocale", "it_IT"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["4 / 8 bicchieri"].waitForExistence(timeout: 5))
+        app.buttons["increment-Bere acqua"].tap()
+        XCTAssertTrue(app.staticTexts["5 / 8 bicchieri"].exists)
+        app.tabBars.buttons["Il tuo piano"].tap()
+        XCTAssertTrue(app.staticTexts["Makeet Plus"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.segmentedControls["planningHorizon"].exists)
+        app.tabBars.buttons["Calendario"].tap()
+        XCTAssertTrue(app.buttons["calendar-day-1"].waitForExistence(timeout: 5))
+        app.tabBars.buttons["Oggi"].tap()
+        XCTAssertTrue(app.staticTexts["5 / 8 bicchieri"].waitForExistence(timeout: 5))
+        app.buttons["decrement-Bere acqua"].tap()
+        XCTAssertTrue(app.staticTexts["4 / 8 bicchieri"].exists)
+        attach("Unknown billing preserves free local tracking", app)
     }
 }

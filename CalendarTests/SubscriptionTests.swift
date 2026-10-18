@@ -33,9 +33,11 @@ final class SubscriptionTests: XCTestCase {
         XCTAssertEqual(Set(store.products.map(\.id)), SubscriptionStore.identifiers)
         let monthly = try XCTUnwrap(store.products.first { $0.id == SubscriptionStore.monthly })
         XCTAssertFalse(store.hasPlus)
+        XCTAssertFalse(store.canPlan(publicBillingRequired: false))
         NSLog("Makeet StoreKit test: purchase")
         await store.purchase(monthly)
         XCTAssertTrue(store.hasPlus); XCTAssertGreaterThan(accepted, 0)
+        XCTAssertTrue(store.canPlan(publicBillingRequired: true))
         let other = SubscriptionStore(userID: UUID(), submit: { _ in XCTFail("Cross-account purchase submitted"); return AccountEntitlement(billingEnabled: true, active: true) }, fetch: { AccountEntitlement(billingEnabled: true, active: false) })
         await other.load(); XCTAssertFalse(other.hasPlus); other.stop()
         NSLog("Makeet StoreKit test: restore")
@@ -63,6 +65,18 @@ final class SubscriptionTests: XCTestCase {
         XCTAssertFalse(store.hasPlus)
         store.stop(); XCTAssertFalse(store.hasPlus)
         #endif
+    }
+    @MainActor func testPerAccountPreviewPolicyControlsPlanningWithoutPurchase() async {
+        let store = SubscriptionStore(userID: UUID(), submit: { _ in
+            XCTFail("Free preview must not submit a transaction")
+            return AccountEntitlement(billingEnabled: false, active: false)
+        }, fetch: { AccountEntitlement(billingEnabled: false, active: false) })
+        defer { store.stop() }
+        XCTAssertFalse(store.canPlan(publicBillingRequired: true))
+        await store.load()
+        XCTAssertTrue(store.canPlan(publicBillingRequired: true))
+        XCTAssertFalse(store.hasPlus)
+        XCTAssertTrue(store.products.isEmpty)
     }
     @MainActor func testCancelledPendingAndFailedPurchasesNeverUnlockPlus() async throws {
         #if !targetEnvironment(simulator)

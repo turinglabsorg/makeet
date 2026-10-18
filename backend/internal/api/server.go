@@ -25,13 +25,14 @@ import (
 )
 
 type Config struct {
-	Billing    *billing.Verifier
-	Providers  map[string]identity.Verifier
-	Apple      *apple.Client
-	Push       *push.Client
-	Site       http.Handler
-	Clock      func() time.Time
-	TrustRelay bool
+	Billing             *billing.Verifier
+	BillingPreviewUsers map[string]bool
+	Providers           map[string]identity.Verifier
+	Apple               *apple.Client
+	Push                *push.Client
+	Site                http.Handler
+	Clock               func() time.Time
+	TrustRelay          bool
 }
 type Server struct {
 	db     *sql.DB
@@ -77,7 +78,7 @@ func (s *Server) Handler() http.Handler {
 				providers = append(providers, p)
 			}
 		}
-		respond(w, 200, map[string]any{"providers": providers, "billing_enabled": s.cfg.Billing != nil})
+		respond(w, 200, map[string]any{"providers": providers, "billing_enabled": s.publicBillingEnabled()})
 	})
 	mux.HandleFunc("POST /v1/auth/challenges", s.challenge)
 	mux.HandleFunc("POST /v1/auth/exchange", s.exchange)

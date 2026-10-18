@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import GoogleSignIn
+import StoreKit
 
 @main struct MakeetApp: App {
     #if os(iOS)
@@ -41,6 +42,22 @@ import GoogleSignIn
                     .environment(NotificationService.shared)
                     .environment(account)
                     .onOpenURL { url in _ = GIDSignIn.sharedInstance.handle(url) }
+                    .task {
+                        #if DEBUG && targetEnvironment(simulator)
+                        if ProcessInfo.processInfo.arguments.contains("--ui-testing"),
+                           ProcessInfo.processInfo.arguments.contains("--external-purchase-intent") {
+                            account.requestPurchase(SubscriptionStore.monthly)
+                            return
+                        }
+                        #endif
+                        guard !ProcessInfo.processInfo.arguments.contains("--ui-testing") else { return }
+                        if #available(macOS 14.4, *) {
+                            for await intent in PurchaseIntent.intents {
+                                guard !Task.isCancelled else { break }
+                                account.requestPurchase(intent.product.id)
+                            }
+                        }
+                    }
             } else {
                 ContentUnavailableView(String(localized: "Archivio non disponibile", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "externaldrive.badge.exclamationmark",
                                        description: Text(account.startupError ?? String(localized: "Riapri l’app per riprovare.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)))
@@ -79,6 +96,9 @@ struct RootView: View {
                 .tabItem { Label(String(localized: "Calendario", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "calendar") }.tag(3)
         }
         .foregroundStyle(Palette.ink)
+        .sheet(isPresented: Binding(get: { account.requestedPurchaseID != nil }, set: { if !$0 { account.dismissPurchaseRequest() } })) {
+            PlusView()
+        }
         .task {
             calendar = CalendarService(scope: account.scope.key)
             if ProcessInfo.processInfo.arguments.contains("--ui-testing") {

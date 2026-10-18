@@ -76,14 +76,14 @@
     }
   ],
   "Policy": {
-    "Updated": "Actualizado el 17 de octubre de 2026",
+    "Updated": "Actualizada el 18 de octubre de 2026",
     "PrivacyIntro": "Este aviso describe cómo Makeet trata datos en la app, el servicio de cuentas, el sitio y soporte. Durante el desarrollo, las cuentas se habilitan tras verificar el servicio. Puedes usar el archivo local sin cuenta.",
     "ControllerTitle": "Responsable del tratamiento",
     "HostingTitle": "País del servidor principal de cuentas",
     "PrivacySections": [
       {
         "Title": "Datos y finalidades",
-        "Body": "Sin iniciar sesión, hábitos, cantidades, horarios, estadísticas y planificación permanecen en el archivo de la app en tu dispositivo. Con una cuenta, guardamos el identificador del proveedor, el correo facilitado por Apple o Google y los hábitos y actividades que sincronizas: nombres, iconos, objetivos, unidades, horas y zonas horarias. Sirven para tu archivo privado y la sincronización entre dispositivos. No recibimos tu contraseña de Apple o Google. Puedes añadir un nombre y una foto de perfil privados, sincronizados con tu cuenta. En el primer acceso con Google podemos usar el nombre y la imagen que proporciona Google; Apple no proporciona una foto. Puedes cambiarla o quitarla. El selector del sistema solo lee la imagen elegida, que reducimos y guardamos sin metadatos. El perfil no es público y se elimina con la cuenta."
+        "Body": "Sin iniciar sesión, hábitos, cantidades, horarios, estadísticas y planificación permanecen en el archivo de la app en tu dispositivo. Con una cuenta, guardamos el identificador del proveedor, el correo facilitado por Apple o Google y los hábitos y actividades que sincronizas: nombres, iconos, objetivos, unidades, horas y zonas horarias. Sirven para tu archivo privado y la sincronización entre dispositivos. No recibimos tu contraseña de Apple o Google. Puedes añadir un nombre y una foto de perfil privados, sincronizados con tu cuenta. En el primer acceso con Google podemos usar el nombre y la imagen que proporciona Google; Apple no proporciona una foto. Puedes cambiarla o quitarla. El selector del sistema solo lee la imagen elegida, que reducimos y guardamos sin metadatos. El perfil no es público y se elimina con la cuenta. Los nombres y cantidades de los hábitos que elijas pueden describir rutinas de bienestar o ejercicio. Son datos que introduces tú; Makeet no lee datos de HealthKit ni de sensores de movimiento."
       },
       {
         "Title": "Calendarios y planificación",
@@ -94,12 +94,16 @@
         "Body": "Las notificaciones requieren permiso del dispositivo. Tras iniciar sesión, el servicio guarda un identificador de instalación, un token push de Apple cifrado, idioma, zona horaria y la hora opcional del recordatorio. Usa el progreso sincronizado para decidir si hace falta un recordatorio diario. Los avisos son genéricos, sin nombres ni cantidades de hábitos. Se registran intentos, aceptación de Apple y recepción cuando la app ve la notificación o la abres. Puedes desactivar recordatorios en la app o notificaciones en los ajustes del dispositivo."
       },
       {
+        "Title": "Compras en el App Store",
+        "Body": "Cuando compras o restauras Makeet Plus, Apple procesa el pago. El servicio verifica las transacciones y notificaciones de suscripción firmadas por Apple y guarda los identificadores de transacción y compra original, producto, entorno, caducidad y estado de revocación, vinculados al identificador de tu cuenta Makeet. Usamos estos datos para ofrecer la suscripción e impedir que una cuenta reclame la compra de otra. No recibimos los datos de tu tarjeta ni de tu cuenta bancaria."
+      },
+      {
         "Title": "Bases jurídicas y decisiones",
         "Body": "Cuenta, sincronización y soporte solicitado son necesarios para prestar el servicio pedido (artículo 6.1.b del RGPD). Calendarios y notificaciones opcionales siguen tu elección y los permisos del dispositivo; cuando la base sea el consentimiento, puedes retirarlo en cualquier momento (artículo 6.1.a). Seguridad, prevención de abusos y operación técnica esencial se basan en intereses legítimos (artículo 6.1.f), a los que puedes oponerte. Sin datos de identidad no podemos crear la cuenta, pero sigue disponible el archivo local. Los permisos opcionales no son necesarios para registrar hábitos locales."
       },
       {
         "Title": "Proveedores y transferencias internacionales",
-        "Body": "Cloudflare presta protección HTTPS y reenvío de correo; DigitalOcean aloja el relay de tráfico. Apple facilita inicio de sesión y entrega push. Google facilita inicio de sesión y trata el correo de soporte. Estos servicios reciben datos necesarios para sus funciones y pueden tratarlos fuera del Espacio Económico Europeo, incluidos Estados Unidos. Cloudflare describe el Data Privacy Framework y las cláusulas contractuales tipo en su DPA; Apple y Google explican sus garantías en las políticas enlazadas abajo. Solicita información sobre las garantías aplicables a support@makeet.app. No vendemos datos ni usamos rastreadores publicitarios, ni compartimos hábitos para publicidad."
+        "Body": "Cloudflare presta protección HTTPS y reenvío de correo; DigitalOcean aloja el relay de tráfico. Apple facilita inicio de sesión y entrega push. Google facilita inicio de sesión y trata el correo de soporte. Estos servicios reciben datos necesarios para sus funciones y pueden tratarlos fuera del Espacio Económico Europeo, incluidos Estados Unidos. Cloudflare describe el Data Privacy Framework y las cláusulas contractuales tipo en su DPA; Apple y Google explican sus garantías en las políticas enlazadas abajo. Solicita información sobre las garantías aplicables a support@makeet.app. No vendemos datos ni usamos rastreadores publicitarios, ni compartimos hábitos para publicidad. Si eliges iniciar sesión con Google, su SDK también declara la recopilación de información telefónica, ubicación aproximada, identificadores, otros datos de uso y otros datos técnicos. Google utiliza identificadores, datos de uso y otros datos técnicos para sus propios análisis, según su política de privacidad. Makeet solo recibe los datos de identidad y perfil necesarios para tu cuenta y no solicita permisos de teléfono ni ubicación. Makeet no envía tu archivo de hábitos al SDK de Google."
       },
       {
         "Title": "Conservación y eliminación",

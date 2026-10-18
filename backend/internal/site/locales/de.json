@@ -76,14 +76,14 @@
     }
   ],
   "Policy": {
-    "Updated": "Aktualisiert am 17. Oktober 2026",
+    "Updated": "Aktualisiert am 18. Oktober 2026",
     "PrivacyIntro": "Diese Hinweise beschreiben die Datenverarbeitung in der Makeet-App, im Kontodienst, auf der Website und beim Support. Während der Entwicklung werden Kontofunktionen nach Dienstprüfungen freigeschaltet. Das lokale Archiv funktioniert ohne Konto.",
     "ControllerTitle": "Verantwortlicher",
     "HostingTitle": "Land des primären Kontoservers",
     "PrivacySections": [
       {
         "Title": "Daten und Zwecke",
-        "Body": "Ohne Anmeldung bleiben Gewohnheiten, Mengen, Aktivitätszeiten, Statistiken und Planung im App-Archiv auf deinem Gerät. Mit Konto speichern wir die Anbieterkennung, die von Apple oder Google übermittelte E-Mail-Adresse sowie synchronisierte Gewohnheiten und Aktivitäten: Namen, Symbole, Ziele, Einheiten, Zeiten und Zeitzonen. Dies dient deinem privaten Archiv und der Synchronisierung zwischen Geräten. Dein Apple- oder Google-Passwort erhalten wir nicht. Du kannst einen privaten Anzeigenamen und ein Profilfoto hinzufügen, die mit deinem Konto synchronisiert werden. Bei der ersten Google-Anmeldung können wir den von Google bereitgestellten Namen und das Bild verwenden; Apple stellt kein Foto bereit. Du kannst das Foto ändern oder entfernen. Die Systemauswahl liest nur das gewählte Bild, das vor dem Speichern verkleinert und von Metadaten bereinigt wird. Das Profil ist nicht öffentlich und wird mit dem Konto gelöscht."
+        "Body": "Ohne Anmeldung bleiben Gewohnheiten, Mengen, Aktivitätszeiten, Statistiken und Planung im App-Archiv auf deinem Gerät. Mit Konto speichern wir die Anbieterkennung, die von Apple oder Google übermittelte E-Mail-Adresse sowie synchronisierte Gewohnheiten und Aktivitäten: Namen, Symbole, Ziele, Einheiten, Zeiten und Zeitzonen. Dies dient deinem privaten Archiv und der Synchronisierung zwischen Geräten. Dein Apple- oder Google-Passwort erhalten wir nicht. Du kannst einen privaten Anzeigenamen und ein Profilfoto hinzufügen, die mit deinem Konto synchronisiert werden. Bei der ersten Google-Anmeldung können wir den von Google bereitgestellten Namen und das Bild verwenden; Apple stellt kein Foto bereit. Du kannst das Foto ändern oder entfernen. Die Systemauswahl liest nur das gewählte Bild, das vor dem Speichern verkleinert und von Metadaten bereinigt wird. Das Profil ist nicht öffentlich und wird mit dem Konto gelöscht. Die von dir gewählten Namen und Mengen deiner Gewohnheiten können Wohlbefinden oder Trainingsroutinen beschreiben. Diese Angaben stammen von dir; Makeet liest keine HealthKit- oder Bewegungssensordaten."
       },
       {
         "Title": "Kalender und Planung",
@@ -94,12 +94,16 @@
         "Body": "Benachrichtigungen benötigen die Geräteerlaubnis. Bei Anmeldung speichert der Dienst eine Installationskennung, ein verschlüsseltes Apple-Push-Token, Sprache, Zeitzone und die freiwillige Erinnerungszeit. Anhand des synchronisierten Fortschritts entscheidet er, ob eine tägliche Erinnerung nötig ist. Mitteilungen enthalten allgemeinen Text, keine Namen oder Mengen deiner Gewohnheiten. Versandversuche, Apples Annahme und der Empfang beim Anzeigen in der App oder Öffnen der Mitteilung werden erfasst. Erinnerungen lassen sich in der App, Mitteilungen in den Geräteeinstellungen deaktivieren."
       },
       {
+        "Title": "Käufe im App Store",
+        "Body": "Wenn du Makeet Plus kaufst oder wiederherstellst, verarbeitet Apple die Zahlung. Der Dienst prüft von Apple signierte Transaktionen und Abonnementmitteilungen und speichert Transaktions- und ursprüngliche Kaufkennungen, Produkt, Umgebung, Ablauf und Widerrufsstatus, verknüpft mit deiner Makeet-Kontokennung. Wir verwenden diese Daten, um das Abonnement bereitzustellen und zu verhindern, dass ein Konto den Kauf eines anderen beansprucht. Wir erhalten keine Karten- oder Bankkontodaten."
+      },
+      {
         "Title": "Rechtsgrundlagen und Wahlmöglichkeiten",
         "Body": "Konto, Synchronisierung und angeforderter Support dienen der Erfüllung des gewünschten Dienstes (Art. 6 Abs. 1 b DSGVO). Freiwilliger Kalenderzugriff und Mitteilungen folgen deiner Wahl und den Geräteberechtigungen; soweit eine Einwilligung die Rechtsgrundlage bildet, ist sie jederzeit widerrufbar (Art. 6 Abs. 1 a). Sicherheit, Missbrauchsvermeidung und notwendiger technischer Betrieb beruhen auf berechtigten Interessen (Art. 6 Abs. 1 f); du kannst widersprechen. Ohne Identitätsdaten können wir kein Konto erstellen; das lokale Archiv bleibt nutzbar. Freiwillige Berechtigungen sind für die lokale Erfassung nicht erforderlich."
       },
       {
         "Title": "Dienstleister und internationale Verarbeitung",
-        "Body": "Cloudflare bietet HTTPS-Schutz und E-Mail-Weiterleitung; DigitalOcean betreibt den Datenverkehrsrelay. Apple stellt Anmeldung und Push-Zustellung bereit. Google stellt Anmeldung bereit und verarbeitet Support-E-Mails. Diese Dienste erhalten die jeweils erforderlichen Informationen und können sie außerhalb des Europäischen Wirtschaftsraums, auch in den USA, verarbeiten. Cloudflare beschreibt Data Privacy Framework und Standardvertragsklauseln im DPA; Apple und Google erläutern ihre Garantien in den unten verlinkten Hinweisen. Informationen zu anwendbaren Garantien erhältst du über support@makeet.app. Wir verkaufen keine personenbezogenen Daten, verwenden keine Werbetracker und teilen keine Gewohnheiten für Werbung."
+        "Body": "Cloudflare bietet HTTPS-Schutz und E-Mail-Weiterleitung; DigitalOcean betreibt den Datenverkehrsrelay. Apple stellt Anmeldung und Push-Zustellung bereit. Google stellt Anmeldung bereit und verarbeitet Support-E-Mails. Diese Dienste erhalten die jeweils erforderlichen Informationen und können sie außerhalb des Europäischen Wirtschaftsraums, auch in den USA, verarbeiten. Cloudflare beschreibt Data Privacy Framework und Standardvertragsklauseln im DPA; Apple und Google erläutern ihre Garantien in den unten verlinkten Hinweisen. Informationen zu anwendbaren Garantien erhältst du über support@makeet.app. Wir verkaufen keine personenbezogenen Daten, verwenden keine Werbetracker und teilen keine Gewohnheiten für Werbung. Wenn du die Google-Anmeldung wählst, deklariert das zugehörige SDK auch die Erhebung von Telefoninformationen, ungefährem Standort, Kennungen, weiteren Nutzungsdaten und sonstigen technischen Daten. Google verwendet Kennungen, Nutzungsdaten und sonstige technische Daten für eigene Analysen gemäß seiner Datenschutzerklärung. Makeet erhält nur die für dein Konto benötigten Identitäts- und Profildaten und fordert keine Telefon- oder Standortberechtigung an. Makeet sendet dein Gewohnheitsarchiv nicht an das Google-SDK."
       },
       {
         "Title": "Speicherdauer und Löschung",

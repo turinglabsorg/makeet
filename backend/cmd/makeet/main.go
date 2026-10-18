@@ -13,6 +13,8 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/google/uuid"
+
 	"github.com/turinglabsorg/makeet/backend/internal/api"
 	"github.com/turinglabsorg/makeet/backend/internal/apple"
 	"github.com/turinglabsorg/makeet/backend/internal/billing"
@@ -73,15 +75,20 @@ func main() {
 		slog.Error("accounts require configured privacy information")
 		os.Exit(1)
 	}
+	previewUsers, err := billingPreviewUsers(os.Getenv("MAKEET_BILLING_PREVIEW_USERS"))
+	if err != nil {
+		slog.Error("invalid billing preview configuration")
+		os.Exit(1)
+	}
 	var subscriptions *billing.Verifier
-	if os.Getenv("MAKEET_BILLING_ENABLED") == "true" {
+	if os.Getenv("MAKEET_BILLING_ENABLED") == "true" || len(previewUsers) > 0 {
 		subscriptions, err = billing.New(os.Getenv("MAKEET_BILLING_SANDBOX") == "true")
 		if err != nil {
 			slog.Error("invalid App Store trust configuration")
 			os.Exit(1)
 		}
 	}
-	service := api.New(db, api.Config{Billing: subscriptions, Providers: providers, Apple: appleClient, Push: pushClient, Site: site.WithConfig(siteConfig), TrustRelay: os.Getenv("MAKEET_TRUST_RELAY") == "true"})
+	service := api.New(db, api.Config{Billing: subscriptions, BillingPreviewUsers: previewUsers, Providers: providers, Apple: appleClient, Push: pushClient, Site: site.WithConfig(siteConfig), TrustRelay: os.Getenv("MAKEET_TRUST_RELAY") == "true"})
 	go service.RunPush(ctx)
 	handler := service.Handler()
 	server := &http.Server{Addr: env("MAKEET_LISTEN", "127.0.0.1:8086"), Handler: handler, ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 << 10}
@@ -106,4 +113,22 @@ func providerKey(raw string) ([]byte, error) {
 		}
 	}
 	return nil, errors.New("invalid provider encryption key")
+}
+
+func billingPreviewUsers(raw string) (map[string]bool, error) {
+	users := map[string]bool{}
+	if raw == "" {
+		return users, nil
+	}
+	for _, value := range strings.Split(raw, ",") {
+		id, err := uuid.Parse(strings.TrimSpace(value))
+		if err != nil || id == uuid.Nil {
+			return nil, errors.New("invalid preview account")
+		}
+		users[id.String()] = true
+		if len(users) > 10 {
+			return nil, errors.New("too many preview accounts")
+		}
+	}
+	return users, nil
 }

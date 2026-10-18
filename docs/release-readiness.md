@@ -14,19 +14,23 @@ Last audited: 2026-10-18. The website/API are online and internal TestFlight dis
 | Calendar | Explainable local proposals and isolated EventKit integration | Real permission, selected calendar, confirmed creation, conflict and duplicate handling. Google calendars currently use accounts configured in iOS; direct Google Calendar OAuth/incremental reconciliation is unimplemented |
 | Notifications | Encrypted device registration, APNs sender and receipt/retry tests; Sandbox credential | Provision production APNs and verify TestFlight receipt/reminder behavior on a device |
 | Widgets/macOS | Shared model/intent logic and iOS/macOS compilation | Home Screen and desktop interaction, timeline/account-switch behavior and native macOS authentication |
-| Subscription billing | Approved EUR 1.99/month or 11.99/year; StoreKit2 and Go account-bound JWS entitlements implemented; local StoreKit/backend tests | Keep billing disabled until product metadata/availability, signed notifications, real App Store Sandbox flows, certificate-revocation policy and individual cloud erasure after subscription expiry are verified. Charging is not enabled |
+| Subscription billing | Approved EUR 1.99/month or 11.99/year; StoreKit2 and Go account-bound JWS entitlements implemented; local StoreKit/backend tests | Keep billing disabled until product metadata/availability, signed notifications, real App Store Sandbox flows, signed notification delivery and real expiry/account-erasure checks are verified. Charging is not enabled |
 | Hosting | Dedicated service, health routes, rate-limit/ownership tests, backup and isolated restore drill | Final production configuration and account-lifecycle operational check |
 
 Automated fixtures use generated test identities and isolated storage. They do not substitute for real provider or multi-device validation. Never use a real owner's account for destructive lifecycle checks.
 
 ## App Store Connect audit
 
-The record is `Makeet`, iOS version1.0, Prepare for Submission. Current TestFlight version is0.1.0, so the release build and store version must be aligned before submission.
+The record is `Makeet`, iOS version1.0, Prepare for Submission. Current delivered TestFlight is0.1.0(10). Source is aligned to1.0for the next candidate; no release build is selected and no App Review submission has been made.
 
-- Product description, keywords, support/marketing URLs and copyright are unset. Store localizations and screenshots still need preparation; the audited Italian iPhone screenshot slot contains zero images.
-- No release build is selected. Review contact, access instructions and reviewer notes are unset. The app supports local use and provider login; do not supply the owner's Apple password to reviewers.
-- App Privacy has no policy URL and its data-collection questionnaire has not been started, although the five-language public website policies are live.
-- Primary category, content rights and age rating are unset.
-- Pricing and territory availability are not configured. Public distribution is selected; compatible Mac/Vision distribution defaults need a conscious release decision and validation.
-- The account is marked as a trader. Review the public seller/contact information before publication, preserving the owner's restrictions on personal data. Do not infer authorization to publish addresses or personal contact details from this existing selection.
-- Submit only after the release checks pass, then track Apple's review and the chosen release action. A successful TestFlight upload does not publish the app.
+- Descriptions, promotional text, keywords, subtitles and support/marketing URLs are saved in Italian, English, French, German and Spanish; copyright is2026Meaningtech. Native screenshots are prepared and visually reviewed for the required iPhone6.3-inch and iPad13-inch slots, plus optional iPhone6.9-inch in all five languages; Store uploads are in progress.
+- Reviewer instructions explain optional local use and Apple/Google access. Sign-in is not required for core local features. Manual release is selected. Private reviewer contact details still need an approved contact; never supply an owner's provider password.
+- Policy and privacy-choice URLs are saved for all five locales. The App Privacy questionnaire includes both Makeet and the pinned Google sign-in SDK's declared collection, including provider analytics. It is configured but not yet published; the updated notice must be verified in deployment first.
+- Primary category isProductivity, content rights are configured and the saved age questionnaire produces9+for self-care/wellness topics, with no medical guidance, social distribution, ads or mature content.
+- Plus monthly/yearly products and five-language product/group localizations are configured at the same service level. Approved Italy reference prices remainEUR1.99/month andEUR11.99/year. Both use individual App Store purchases; multiseat/Business/School Manager purchases are disabled, and the annual uses upfront billing. Current175territories are selected for subscriptions; future-territory expansion is off. The free app's price/territory and compatible Mac/Vision distribution settings still require final review.
+- Production and Sandbox notification URLs point to the implemented HTTPS endpoint. This is URL registration, not delivery proof.
+- Free Apps Agreement isActive; Paid Apps Agreement isNew. Acceptance is pending the account holder's explicit confirmation. Banking/tax completion must then be verified.
+- Streamlined outside-app purchasing is currently on. Apple refuses to turn it off until a supporting binary is approved. The candidate handlesPurchaseIntent; after approval, turn off streamlined purchasing before the manual public release because purchases require a Makeet account binding.
+- The account is marked as a trader. Public professional address/phone details still require the owner's approval; do not publish previously supplied personal contacts from the existing account.
+- The production APNs key is staged for specific Makeet topics, with creation/custody approval pending. Real receipt/reminder checks remain mandatory.
+- Submit only after release checks and business/contact requirements pass. A successful TestFlight upload does not publish the app.
