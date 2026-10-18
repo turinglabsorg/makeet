@@ -1,1 +1,9 @@
-Corretto Modifica profilo: apri l’editor da Oggi o Connessioni, modifica nome e foto, salva oppure annulla e riapri. Verifica anche la scelta e la rimozione della foto e la persistenza dopo aver riavviato l’app. In caso di errore di rete o conflitto, la bozza resta aperta. Account e progressi esistenti vengono conservati. Controlla anche il cambio periodo nelle statistiche con i dati demo.
+Questa build riunisce calendario mensile con heatmap, correzione dei giorni passati e scelta dei giorni settimanali nella creazione/modifica delle abitudini.
+
+Puoi modificare o eliminare definitivamente un’abitudine dal dettaglio. La cancellazione richiede conferma e può rimuovere anche i blocchi futuri creati da Makeet nei calendari modificabili.
+
+In Oggi: + a sinistra, solo profilo tondo a destra; archivio nelle impostazioni. Il piano mostra cosa hai da fare oggi o nei prossimi giorni e permette di rivedere fino a 28 giorni prima di aggiungere gli eventi. Il messaggio di calendario già collegato non compare più.
+
+Le funzioni restano disponibili durante questa anteprima; gli abbonamenti non addebitano nulla. Puoi esportare i dati anche senza Plus. I calendari Google configurati sul dispositivo usano la sincronizzazione di sistema.
+
+Prova anche accesso Apple/Google, profilo, lingua, widget e riapertura dell’app. Segnala eventuali errori senza cancellare il tuo account.

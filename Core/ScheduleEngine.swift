@@ -19,18 +19,29 @@ public enum ProposalReason: Sendable {
     case preferredHour
 }
 
+public struct PlannedOccurrence: Sendable {
+    public let habitID: UUID
+    public let start: Date
+    public init(habitID: UUID, start: Date) { self.habitID = habitID; self.start = start }
+}
+
 public enum ScheduleEngine {
     public static func propose(habits: [HabitSnapshot], activities: [ActivitySnapshot],
-                               busy: [BusyInterval], now: Date = Date()) -> [ScheduleProposal] {
+                               busy: [BusyInterval], now: Date = Date(), days: Int = 1,
+                               planned: [PlannedOccurrence] = []) -> [ScheduleProposal] {
         var occupied = busy.filter { $0.end > $0.start }
         var result: [ScheduleProposal] = []
-        for habit in habits {
+        for offset in 0..<min(28, max(1, days)) {
+          for habit in habits {
             let calendar = habit.calendar
-            guard !HabitEngine.progress(for: habit, on: now, activities: activities).completed else { continue }
-            let today = calendar.startOfDay(for: now)
-            let cutoff = calendar.date(byAdding: .day, value: -28, to: today)!
+            let actualToday = calendar.startOfDay(for: now)
+            let today = calendar.date(byAdding: .day, value: offset, to: actualToday)!
+            guard habit.isScheduled(on: today),
+                  !planned.contains(where: { $0.habitID == habit.id && calendar.isDate($0.start, inSameDayAs: today) }),
+                  !HabitEngine.progress(for: habit, on: today, activities: activities).completed else { continue }
+            let cutoff = calendar.date(byAdding: .day, value: -28, to: actualToday)!
             let history = activities.filter {
-                $0.habitID == habit.id && $0.timestamp >= cutoff && $0.timestamp < today && $0.amount.isFinite && $0.amount > 0
+                $0.habitID == habit.id && $0.timestamp >= cutoff && $0.timestamp < actualToday && $0.amount.isFinite && $0.amount > 0
             }
             let hours = Dictionary(grouping: history) { calendar.component(.hour, from: $0.timestamp) }
             let bestHour = hours.keys.sorted {
@@ -60,6 +71,7 @@ public enum ScheduleEngine {
             result.append(ScheduleProposal(habitID: habit.id, start: start, end: end,
                 reason: enoughHistory ? .historicalHour(samples: history.count) : .preferredHour))
             occupied.append(BusyInterval(start: start, end: end))
+          }
         }
         return result.sorted { $0.start < $1.start }
     }

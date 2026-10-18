@@ -137,4 +137,19 @@ final class AccountAPITests: XCTestCase, @unchecked Sendable {
         let (data, _) = try await URLSession.shared.data(from: url.appendingPathComponent("counts"))
         XCTAssertEqual(try JSONDecoder().decode([String: Int].self, from: data)["profile"], 1)
     }
+    func testSubscriptionAndExportWireDataStayBoundToCurrentAccount() async throws {
+        let (_, url) = try server()
+        let api = try AccountAPI(baseURL: url, storage: TestSessionStorage(StoredSession(tokens: try tokens("fixture-next"))))
+        let enabled = try await api.billingEnabled(); XCTAssertTrue(enabled)
+        let free = try await api.entitlement(userID: accountID); XCTAssertFalse(free.active)
+        let active = try await api.submitTransaction("fixture-signed-transaction", userID: accountID)
+        XCTAssertTrue(active.active); XCTAssertEqual(active.expiresAt, 1_900_000_000)
+        let data = try await api.export(userID: accountID)
+        XCTAssertEqual((try JSONSerialization.jsonObject(with: data) as? [String: Any])?["version"] as? Int, 1)
+        do { _ = try await api.submitTransaction("fixture-signed-transaction", userID: UUID()); XCTFail("Wrong account submitted purchase") }
+        catch AccountAPIError.signedOut {}
+        do { _ = try await api.export(userID: UUID()); XCTFail("Wrong account exported data") }
+        catch AccountAPIError.signedOut {}
+    }
+
 }

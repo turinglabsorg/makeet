@@ -155,9 +155,13 @@ final class MakeetUITests: XCTestCase {
         app.swipeDown(); app.swipeDown(); app.swipeDown()
         XCTAssertTrue(app.buttons["Torna alle abitudini"].waitForExistence(timeout: 5))
         app.buttons["Torna alle abitudini"].tap()
-        app.buttons["Abitudini archiviate"].tap()
+        app.buttons["accountSettings"].tap()
+        let archive = app.buttons["archivedHabits"]
+        for _ in 0..<4 where !archive.isHittable { app.swipeUp() }
+        archive.tap()
         XCTAssertTrue(app.staticTexts["Focus test"].waitForExistence(timeout: 5))
         app.buttons["Ripristina"].tap()
+        app.buttons["Fine"].tap()
         app.buttons["Fine"].tap()
         XCTAssertTrue(app.buttons["increment-Focus test"].waitForExistence(timeout: 5))
     }

@@ -1,1 +1,9 @@
-Corregido Editar perfil: abre el editor desde Hoy o Conexiones, cambia el nombre y la foto, guarda o cancela y vuelve a abrirlo. Comprueba también la selección y eliminación de fotos y la persistencia tras reiniciar la app. Si hay un error de red o un conflicto, el borrador permanece abierto. Se conservan las cuentas y el progreso existentes. Comprueba también el cambio de período en las estadísticas con datos de demostración.
+Calendario mensual con mapa de intensidad, corrección de días anteriores y selección de días de la semana al crear/editar hábitos.
+
+Edita o elimina definitivamente un hábito desde su detalle. La eliminación requiere confirmación y permite quitar los futuros bloques de Makeet de los calendarios editables.
+
+Hoy muestra + a la izquierda y solo el perfil redondo a la derecha; el archivo está en los ajustes. Planifica hoy o hasta 28 días y revisa todo antes de crear eventos. Se elimina el aviso de calendario conectado.
+
+Todas las funciones siguen disponibles en esta versión preliminar; las suscripciones no cobran. Puedes exportar datos sin Plus. Los calendarios Google configurados en el dispositivo usan la sincronización del sistema.
+
+Prueba también Apple/Google, perfil, idioma, widgets y reapertura. Informa de errores sin eliminar tu cuenta.

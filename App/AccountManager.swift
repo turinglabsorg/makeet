@@ -14,8 +14,11 @@ import GoogleSignIn
     private(set) var sync: AccountSyncService?
     private(set) var push: DevicePushService?
     private(set) var profile: AccountProfileService?
+    private(set) var subscription: SubscriptionStore?
     private(set) var working = false
     private(set) var checkingService = false
+    private(set) var billingRequired = false
+    var canPlan: Bool { !billingRequired || subscription?.hasPlus == true }
     private(set) var startupError: String?
     var message: String?
     private var api: AccountAPI?
@@ -70,8 +73,10 @@ import GoogleSignIn
         do {
             message = nil
             providers = try await api.providers()
+            billingRequired = try await api.billingEnabled()
             await refreshAppleChallenge()
         } catch { message = String(localized: "Connessione al servizio non disponibile. Puoi continuare sul dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
+        await subscription?.load()
         await sync?.synchronize()
         await profile?.refresh()
     }
@@ -109,7 +114,8 @@ import GoogleSignIn
             try activate(user)
             let name = credentials.fullName.map { PersonNameComponentsFormatter().string(from: $0) }
             await profile?.importProvider(name: name)
-            await sync?.synchronize()
+            await subscription?.load()
+        await sync?.synchronize()
         } catch {
             if (error as? ASAuthorizationError)?.code != .canceled {
                 message = String(localized: "Accesso non riuscito. Riprova senza modificare il tuo archivio locale.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
@@ -154,7 +160,8 @@ import GoogleSignIn
             try activate(user)
             await profile?.importProvider(name: result.user.profile?.name,
                                           imageURL: result.user.profile?.hasImage == true ? result.user.profile?.imageURL(withDimension: 320) : nil)
-            await sync?.synchronize()
+            await subscription?.load()
+        await sync?.synchronize()
         } catch {
             if (error as NSError).domain != kGIDSignInErrorDomain || (error as NSError).code != -5 {
                 message = String(localized: "Accesso non riuscito. Riprova senza modificare il tuo archivio locale.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
@@ -176,7 +183,7 @@ import GoogleSignIn
         var pendingDeletion = UserDefaults.standard.stringArray(forKey: "deletedAccountCaches") ?? []
         if !pendingDeletion.contains(user.id.uuidString) { pendingDeletion.append(user.id.uuidString) }
         UserDefaults.standard.set(pendingDeletion, forKey: "deletedAccountCaches")
-        sync?.stop(); push?.stop(); profile?.stop()
+        sync?.stop(); push?.stop(); profile?.stop(); subscription?.stop()
         do {
             try await api.clearLocal()
             try WidgetAccountScope.activate(nil)
@@ -195,7 +202,7 @@ import GoogleSignIn
                 UserDefaults.standard.removeObject(forKey: "account-" + user.id.uuidString + ".push" + suffix)
             }
         } catch { message = String(localized: "Account eliminato dal servizio. La pulizia dell’archivio su questo dispositivo richiede un nuovo avvio.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
-        self.user = nil; sync = nil; push = nil; profile = nil; scope = .local; container = fallback
+        self.user = nil; sync = nil; push = nil; profile = nil; subscription = nil; scope = .local; container = fallback
         await start()
     }
 
@@ -207,8 +214,28 @@ import GoogleSignIn
             let existing = Set(try AccountRecords.snapshot(in: context).map(\.key))
             let records = try AccountRecords.snapshot(in: local).filter { !existing.contains($0.key) }
             try AccountRecords.apply(records, in: context)
-            await sync?.synchronize()
+            await subscription?.load()
+        await sync?.synchronize()
         } catch { message = String(localized: "Importazione non completata. L’archivio locale è conservato.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
+    }
+
+    func exportData(in context: ModelContext) async throws -> Data {
+        struct Remote: Decodable { let records: [SyncRecord] }
+        struct Export: Encodable {
+            let version = 1
+            let exportedAt = Date()
+            let account: AccountUser?
+            let profile: AccountProfile?
+            let deviceRecords: [SyncRecord]
+            let serverRecords: [SyncRecord]?
+            enum CodingKeys: String, CodingKey { case version, exportedAt = "exported_at", account, profile, deviceRecords = "device_records", serverRecords = "server_records" }
+        }
+        let local = try AccountRecords.snapshot(in: context)
+        var remote: [SyncRecord]?
+        if let api, let user, let raw = try? await api.export(userID: user.id) {
+            remote = try? AccountCoding.decoder().decode(Remote.self, from: raw).records
+        }
+        return try AccountCoding.encoder().encode(Export(account: user, profile: profile?.value, deviceRecords: local, serverRecords: remote))
     }
 
     private func activate(_ user: AccountUser) throws {
@@ -217,14 +244,15 @@ import GoogleSignIn
         let service = try AccountSyncService(userID: user.id, context: next.mainContext, api: api)
         let devicePush = try DevicePushService(api: api, userID: user.id)
         let accountProfile = try AccountProfileService(userID: user.id, api: api)
-        sync?.stop(); push?.stop(); profile?.stop(); try WidgetAccountScope.activate(nil)
+        sync?.stop(); push?.stop(); profile?.stop(); subscription?.stop(); try WidgetAccountScope.activate(nil)
+        subscription = SubscriptionStore(userID: user.id, api: api)
         self.user = user; scope = .account(user.id); container = next; sync = service; push = devicePush; profile = accountProfile; message = nil
         try WidgetAccountScope.activate(scope)
     }
 
     private func returnToLocal() throws {
         let local = try SharedStore.makeContainer()
-        sync?.stop(); push?.stop(); profile?.stop(); try WidgetAccountScope.activate(nil)
-        user = nil; sync = nil; push = nil; profile = nil; scope = .local; container = local
+        sync?.stop(); push?.stop(); profile?.stop(); subscription?.stop(); try WidgetAccountScope.activate(nil)
+        user = nil; sync = nil; push = nil; profile = nil; subscription = nil; scope = .local; container = local
     }
 }

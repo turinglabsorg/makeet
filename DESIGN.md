@@ -44,3 +44,12 @@ Version2 of onboarding is shown once after updating as well as on a fresh instal
 Apple and Google access share equal width, 54-point height and a 15-point corner radius. Google uses its unmodified official multicolor mark with a neutral light/dark surface and a five-language Continue with Google label; its authorization browser remains provider-owned. The Google mark is distributed under the pinned SDK's Apache2 license in Resources/GoogleSignIn-LICENSE.txt.
 
 An authenticated account opens with a centered circular photo, display name, email and a private-account label. The same photo appears in Today's Account button. Initials or a person symbol are an explicit fallback when no image exists. The editor uses the system photo picker, a name field and explicit Save; no broad photo-library permission prompt is required. Google profile images are imported only for an empty Makeet profile. Apple does not supply an image; the owner can choose one. All profile data remains private to the account.
+
+
+## Calendar and habit management
+
+Today has a 44-point plus control on the left and a circular 34-point avatar inside a 44-point control on the right; omit visible Account text. Archive is reached through Connections. Keep language immediately after the account section. Habit creation/editing places a date and seven localized weekday pills immediately below appearance, with at least one selected day required. Explain that target/weekday changes apply to historical statistics while recorded quantities are preserved.
+
+Calendar uses a seven-column month with intensity, numeric completed/expected goals, a selected-day outline, date detail and separate calendar events. Future dates show calendar planning rather than failed completion. Past/today edits use a draft with minus left, plus right and explicit Save/Cancel. Permanent deletion has a named review sheet, irreversible-progress warning and a separate optional Makeet-event cleanup toggle. Show an immutable success state after deleting.
+
+Planner uses natural-language Today/next-days headings, a1/7/14/28-day horizon and a complete batch review before calendar writes. Hide the connected-calendar success banner. Plus explains free unlimited local tracking, shows actual StoreKit prices and billing periods when enabled, and provides restore/manage/privacy/terms. During the preview, display the disabled-billing state clearly and preserve access.

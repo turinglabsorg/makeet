@@ -111,3 +111,13 @@ The APNs sender uses cached ES256 assertions and fixed Apple endpoints. Pending 
 ## Private account profile
 
 Schema4 adds an account-owned `profiles` row with a display name, normalized photo and revision. Authenticated `GET /v1/me/profile` returns the current private profile; `PUT /v1/me/profile` saves `{name,image,revision}`, where image is base64 JPEG/PNG or null. Names are limited to80 Unicode characters without controls; input photos are limited to128KiB and512pixels per side, decoded and reencoded as JPEG without metadata. The server never fetches image URLs. Stale revisions return409 `profile_conflict`; successful writes increment the revision. There is no public profile route or user-selectable owner. Account deletion cascades to the profile.
+
+## Subscription staging
+
+Billing defaults off. `/v1/config` reports `billing_enabled`; authenticated `GET /v1/me/entitlement` reports account access, and `POST /v1/me/transactions` accepts an App Store `signed_transaction`. Purchases bind `appAccountToken` to the authenticated Makeet UUID. Signed App Store Server Notifications V2 use `POST /v1/app-store/notifications`. The subscription table is account-scoped and indexed by user/revocation/expiry. Whole-account deletion, profile access and `GET /v1/me/export` remain available without Plus.
+
+`MAKEET_BILLING_ENABLED=true` enables verified entitlements and sync gating; `MAKEET_BILLING_SANDBOX=true` additionally accepts Apple Sandbox signatures. Neither accepts Xcode/local-test data. Keep both disabled in the public preview until the [release checks](../docs/release-readiness.md) pass, including real Sandbox checkout/restore, notification setup, certificate-revocation policy and individual cloud erasure after expiry. Do not infer payment readiness from generated-fixture tests.
+
+The public trust anchor `internal/billing/AppleRootCA-G3.cer` comes from [Apple PKI](https://www.apple.com/certificateauthority/AppleRootCA-G3.cer). It contains no private key. Verification checks the ES256 signature, a trusted certificate chain at `signedDate`, Apple purpose OIDs, identifiers, ownership, environment and expiry; online OCSP is not implemented. Production notifications require app Apple ID 6823557479; Sandbox may omit it, as in Apple's server library. Refund ordering prevents replaying an older purchase to revive access.
+
+Approved products are `org.turinglabs.makeet.plus.monthly` and `org.turinglabs.makeet.plus.yearly`, with Italy reference prices EUR 1.99/month and EUR 11.99/year. Prices shown in the client come from StoreKit. No introductory trial or Family Sharing is enabled.

@@ -82,7 +82,7 @@ public struct SyncLedger: Codable, Sendable {
     public mutating func resolve(_ key: String, keepLocal: Bool) -> SyncRecord? {
         guard let conflict = conflicts.first(where: { $0.id == key }) else { return nil }
         conflicts.removeAll { $0.id == key }
-        return keepLocal ? nil : conflict.remote
+        return keepLocal && !conflict.remote.deleted ? nil : conflict.remote
     }
 
     private func contentEqual(_ lhs: SyncRecord?, _ rhs: SyncRecord?) -> Bool {

@@ -54,15 +54,49 @@ struct HabitDetailView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \Activity.timestamp, order: .reverse) private var activities: [Activity]
+    @Environment(AccountManager.self) private var account
+    private struct Deletion: Identifiable {
+        let id: UUID
+        let name: String
+        let calendar: CalendarService
+    }
+    @State private var deletion: Deletion?
+    @State private var deletedName: String?
+    @State private var deletionCalendar: CalendarService?
+    @State private var cleanupID: UUID?
+    @State private var cleanupError: String?
     @State private var window = 28
     @State private var error: String?
     @State private var archiving = false
+    @State private var editing = false
     private var todayEntries: [Activity] {
         activities.filter { $0.habitID == habit.id && habit.snapshot.calendar.isDateInToday($0.timestamp) }
     }
     private var tint: Color { Palette.habit(habit.colorIndex) }
 
     var body: some View {
+        Group {
+            if let deletedName {
+                VStack(alignment: .leading, spacing: 20) {
+                    Label(String(localized: "Abitudine eliminata", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "checkmark.circle").font(.title2.weight(.semibold))
+                    Text(deletedName).font(.headline)
+                    if let cleanupError {
+                        Text(cleanupError).foregroundStyle(.secondary)
+                        Button(String(localized: "Riprova a rimuovere i blocchi", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { cleanCalendar() }
+                    }
+                    Button(String(localized: "Torna alle abitudini", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { dismiss() }.buttonStyle(.borderedProminent)
+                }.padding(24).frame(maxWidth: 650, alignment: .leading).journalBackground()
+            } else { detail }
+        }
+        .sheet(item: $deletion) { destination in
+            HabitDeletionReview(name: destination.name, calendar: destination.calendar) { removeBlocks in
+                delete(destination, removeBlocks: removeBlocks)
+            }
+        }
+        .sheet(isPresented: $editing) { AddHabitView(habit: habit) }
+    }
+
+    @ViewBuilder private var detail: some View {
         let snapshot = habit.snapshot
         let snapshots = activities.map(\.snapshot)
         let stats = HabitEngine.statistics(for: snapshot, activities: snapshots, window: window)
@@ -72,7 +106,7 @@ struct HabitDetailView: View {
                 if habit.archived {
                     VStack(alignment: .leading, spacing: 12) {
                         Label(String(localized: "Abitudine archiviata", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "archivebox").font(.headline)
-                        Text(String(localized: "Lo storico è conservato. Puoi ripristinarla dall’archivio in Oggi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                        Text(String(localized: "Lo storico è conservato. Puoi ripristinarla dall’archivio nelle impostazioni.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                             .font(.subheadline).foregroundStyle(.secondary)
                         Button(String(localized: "Torna alle abitudini", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { dismiss() }
                     }.journalCard()
@@ -106,8 +140,9 @@ struct HabitDetailView: View {
                     }.chartXAxis { AxisMarks(values: .stride(by: .day, count: window <= 7 ? 1 : 7)) { value in
                         AxisValueLabel(format: .dateTime.day().month(.abbreviated))
                     } }.frame(height: 180)
-                    Text(String(localized: "\(stats.completedDays) giorni a obiettivo su \(stats.days.count) osservati. I giorni precedenti alla creazione sono esclusi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                    Text(String(localized: "\(stats.completedDays) giorni a obiettivo su \(stats.scheduledDays) osservati. I giorni precedenti alla creazione sono esclusi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                         .font(.caption).foregroundStyle(.secondary)
+                    Text(String(localized: "I giorni di riposo non interrompono le serie e non contano come obiettivi mancati.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption).foregroundStyle(.secondary)
                 }.journalCard()
                 VStack(alignment: .leading, spacing: 16) {
                     Text(String(localized: "La tua continuità", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.headline)
@@ -163,8 +198,15 @@ struct HabitDetailView: View {
         #endif
         .toolbar {
             if !habit.archived {
+                Button { editing = true } label: { Image(systemName: "pencil") }.accessibilityLabel(String(localized: "Modifica abitudine", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                    .accessibilityIdentifier("editHabit")
                 Button { archiving = true } label: { Image(systemName: "archivebox") }.accessibilityLabel(String(localized: "Archivia abitudine", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
             }
+            Button(role: .destructive) {
+                deletion = Deletion(id: habit.id, name: habit.name, calendar: CalendarService(scope: account.scope.key))
+            } label: { Image(systemName: "trash") }
+                .accessibilityLabel(String(localized: "Elimina definitivamente", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).accessibilityIdentifier("deleteHabit")
+
         }
         .confirmationDialog(String(localized: "Archiviare questa abitudine? Lo storico verrà conservato.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $archiving, titleVisibility: .visible) {
             Button(String(localized: "Archivia", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
@@ -176,6 +218,23 @@ struct HabitDetailView: View {
         .alert(String(localized: "Operazione non riuscita", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
             Button(String(localized: "OK", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { error = nil }
         } message: { Text(error ?? "") }
+    }
+
+    private func delete(_ destination: Deletion, removeBlocks: Bool) {
+        deletedName = destination.name
+        do {
+            try SharedStore.deleteHabit(destination.id, in: context)
+            deletion = nil
+            if removeBlocks {
+                deletionCalendar = destination.calendar; cleanupID = destination.id; cleanCalendar()
+            }
+        } catch { deletedName = nil; deletion = nil; self.error = error.localizedDescription }
+    }
+
+    private func cleanCalendar() {
+        guard let cleanupID, let deletionCalendar else { return }
+        do { try deletionCalendar.removeFutureBlocks(for: cleanupID); self.cleanupID = nil; cleanupError = nil }
+        catch { cleanupError = error.localizedDescription }
     }
 
     private func metric(_ value: String, label: String) -> some View {

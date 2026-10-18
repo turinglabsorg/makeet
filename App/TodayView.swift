@@ -14,7 +14,7 @@ struct TodayView: View {
     @Environment(\.scenePhase) private var phase
     @Environment(AccountManager.self) private var account
     @State private var settings: SettingsDestination?
-    private var habits: [Habit] { allHabits.filter { !$0.archived } }
+    private var habits: [Habit] { allHabits.filter { !$0.archived && $0.snapshot.isScheduled(on: now) } }
     private var snapshots: [ActivitySnapshot] { activities.map(\.snapshot) }
     private var completed: Int { habits.filter { HabitEngine.progress(for: $0.snapshot, on: now, activities: snapshots).completed }.count }
     private var dailyFraction: Double {
@@ -42,7 +42,11 @@ struct TodayView: View {
                         Button(String(localized: "Svuota", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { resetting = true }.font(.caption.weight(.semibold))
                     }.padding(12).background(Palette.soft, in: RoundedRectangle(cornerRadius: 12))
                 }
-                if habits.isEmpty { emptyState }
+                if habits.isEmpty && !allHabits.contains(where: { !$0.archived }) { emptyState }
+                else if habits.isEmpty {
+                    ContentUnavailableView(String(localized: "Oggi puoi riposare", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "leaf",
+                        description: Text(String(localized: "Non hai abitudini in programma. Nel Calendario puoi vedere e correggere tutti i tuoi progressi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)))
+                }
                 else {
                     HStack(spacing: 20) {
                         ZStack {
@@ -84,25 +88,13 @@ struct TodayView: View {
         }
         .journalBackground()
         .toolbar {
-            ToolbarItem(placement: .automatic) {
-                Button {
-                    settings = SettingsDestination(calendar: CalendarService(scope: account.scope.key))
-                } label: {
-                    HStack(spacing: 7) {
-                        if account.user != nil { ProfileAvatar(profile: account.profile?.value ?? AccountProfile(), size: 30) }
-                        else { Image(systemName: "person.crop.circle") }
-                        Text(account.user == nil ? String(localized: "Accedi", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Account", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-                    }
-                }.accessibilityIdentifier("accountSettings")
-            }
-            ToolbarItem {
-                NavigationLink { ArchivedHabitsView() } label: { Image(systemName: "archivebox") }
-                    .accessibilityLabel(String(localized: "Abitudini archiviate", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-            }
-            ToolbarItem(placement: .primaryAction) {
-                Button { adding = true } label: { Image(systemName: "plus") }
-                    .accessibilityLabel(String(localized: "Nuova abitudine", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).accessibilityIdentifier("addHabit")
-            }
+            #if os(iOS)
+            ToolbarItem(placement: .topBarLeading) { addButton }
+            ToolbarItem(placement: .topBarTrailing) { profileButton }
+            #else
+            ToolbarItem(placement: .navigation) { addButton }
+            ToolbarItem(placement: .primaryAction) { profileButton }
+            #endif
         }
         .navigationTitle("")
         #if os(iOS)
@@ -117,7 +109,7 @@ struct TodayView: View {
             Button(String(localized: "Elimina demo", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .destructive) {
                 do {
                     for entry in activities where entry.source == "demo" { context.delete(entry) }
-                    for habit in habits where habit.isDemo {
+                    for habit in allHabits where habit.isDemo {
                         if activities.contains(where: { $0.habitID == habit.id && $0.source != "demo" }) {
                             habit.isDemo = false
                         } else { context.delete(habit) }
@@ -132,6 +124,22 @@ struct TodayView: View {
                 do { try await Task.sleep(for: .seconds(30)); now = Date() } catch { break }
             }
         }
+    }
+
+    private var addButton: some View {
+        Button { adding = true } label: { Image(systemName: "plus").frame(width: 44, height: 44) }
+            .accessibilityLabel(String(localized: "Nuova abitudine", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).accessibilityIdentifier("addHabit")
+    }
+
+    private var profileButton: some View {
+        Button { settings = SettingsDestination(calendar: CalendarService(scope: account.scope.key)) } label: {
+            Group {
+                if account.user != nil { ProfileAvatar(profile: account.profile?.value ?? AccountProfile(), size: 34) }
+                else { Image(systemName: "person.crop.circle.fill").font(.system(size: 34)).foregroundStyle(Palette.accent) }
+            }.frame(width: 44, height: 44)
+        }.buttonStyle(.plain)
+            .accessibilityLabel(account.user == nil ? String(localized: "Accedi", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Account", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+            .accessibilityIdentifier("accountSettings")
     }
 
     private var emptyState: some View {
@@ -172,7 +180,7 @@ struct ArchivedHabitsView: View {
                 }
                 ForEach(habits) { habit in
                     HStack {
-                        Label { Text(habit.name) } icon: { HabitMark(symbol: habit.symbol) }
+                        NavigationLink { HabitDetailView(habit: habit) } label: { Label { Text(habit.name) } icon: { HabitMark(symbol: habit.symbol) } }
                         Spacer()
                         Button(String(localized: "Ripristina", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
                             habit.archived = false

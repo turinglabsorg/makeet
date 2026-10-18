@@ -46,6 +46,10 @@ public actor AccountAPI {
         let data = try await send("GET", "/v1/config")
         return try AccountCoding.decoder().decode(Config.self, from: data).providers
     }
+    public func billingEnabled() async throws -> Bool {
+        struct Config: Decodable { let billing_enabled: Bool? }
+        return try AccountCoding.decoder().decode(Config.self, from: await send("GET", "/v1/config")).billing_enabled ?? false
+    }
     public func challenge(_ provider: String) async throws -> AccountChallenge {
         let data = try await send("POST", "/v1/auth/challenges", body: AccountCoding.encoder().encode(["provider": provider]))
         return try AccountCoding.decoder().decode(AccountChallenge.self, from: data)
@@ -74,6 +78,19 @@ public actor AccountAPI {
         guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
         let data = try await authenticated("PUT", "/v1/me/profile", body: AccountCoding.encoder().encode(profile))
         return try AccountCoding.decoder().decode(AccountProfile.self, from: data)
+    }
+    public func entitlement(userID: UUID) async throws -> AccountEntitlement {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        return try AccountCoding.decoder().decode(AccountEntitlement.self, from: await authenticated("GET", "/v1/me/entitlement"))
+    }
+    public func submitTransaction(_ signed: String, userID: UUID) async throws -> AccountEntitlement {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        let data = try await authenticated("POST", "/v1/me/transactions", body: AccountCoding.encoder().encode(["signed_transaction": signed]))
+        return try AccountCoding.decoder().decode(AccountEntitlement.self, from: data)
+    }
+    public func export(userID: UUID) async throws -> Data {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        return try await authenticated("GET", "/v1/me/export")
     }
     public func logout() async throws -> Bool {
         var revoked = false

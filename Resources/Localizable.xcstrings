@@ -10728,6 +10728,2420 @@
           }
         }
       }
+    },
+    "2 settimane": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 settimane"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 weeks"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 semaines"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 Wochen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 semanas"
+          }
+        }
+      }
+    },
+    "4 settimane": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 settimane"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 weeks"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 semaines"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 Wochen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 semanas"
+          }
+        }
+      }
+    },
+    "Conferma e crea eventi": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conferma e crea eventi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm and create events"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmer et créer les événements"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bestätigen und Ereignisse erstellen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmar y crear eventos"
+          }
+        }
+      }
+    },
+    "Correggi le quantità e salva. Le nuove registrazioni nei giorni passati sono indicate come correzioni manuali alle 12:00, nel fuso dell’abitudine.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correggi le quantità e salva. Le nuove registrazioni nei giorni passati sono indicate come correzioni manuali alle 12:00, nel fuso dell’abitudine."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjust quantities and save. New entries on past days are marked as manual corrections at noon in the habit’s time zone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrigez les quantités et enregistrez. Les nouvelles saisies des jours passés sont indiquées comme corrections manuelles à midi, dans le fuseau de l’habitude."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passe die Mengen an und speichere. Neue Einträge für vergangene Tage werden als manuelle Korrekturen um 12 Uhr in der Zeitzone der Gewohnheit erfasst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrige las cantidades y guarda. Los nuevos registros de días anteriores se marcan como correcciones manuales a las 12:00, en la zona horaria del hábito."
+          }
+        }
+      }
+    },
+    "Data di inizio": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data di inizio"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start date"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date de début"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Startdatum"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fecha de inicio"
+          }
+        }
+      }
+    },
+    "Eventi del giorno": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eventi del giorno"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events for the day"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Événements du jour"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ereignisse des Tages"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eventos del día"
+          }
+        }
+      }
+    },
+    "Gli eventi Apple e Google configurati sul dispositivo restano aggiornati tramite Calendario.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gli eventi Apple e Google configurati sul dispositivo restano aggiornati tramite Calendario."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple and Google events configured on this device are kept up to date by Calendar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les événements Apple et Google configurés sur cet appareil sont mis à jour par Calendrier."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die auf diesem Gerät eingerichteten Apple- und Google-Ereignisse werden von Kalender aktuell gehalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendario mantiene actualizados los eventos de Apple y Google configurados en este dispositivo."
+          }
+        }
+      }
+    },
+    "I giorni di riposo non interrompono le serie e non contano come obiettivi mancati.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I giorni di riposo non interrompono le serie e non contano come obiettivi mancati."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest days do not break streaks or count as missed goals."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les jours de repos ne rompent pas les séries et ne comptent pas comme des objectifs manqués."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruhetage unterbrechen keine Serien und zählen nicht als verfehlte Ziele."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los días de descanso no interrumpen las rachas ni cuentan como objetivos incumplidos."
+          }
+        }
+      }
+    },
+    "I progressi sono cambiati. Riapri il giorno per usare i valori aggiornati.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I progressi sono cambiati. Riapri il giorno per usare i valori aggiornati."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your progress has changed. Reopen the day to use the latest values."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos progrès ont changé. Rouvrez ce jour pour utiliser les valeurs à jour."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Fortschritte haben sich geändert. Öffne den Tag erneut, um die aktuellen Werte zu verwenden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus progresos han cambiado. Vuelve a abrir el día para usar los valores actualizados."
+          }
+        }
+      }
+    },
+    "Il piano è completo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il piano è completo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your plan is complete"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre programme est complet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Plan ist vollständig"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu plan está completo"
+          }
+        }
+      }
+    },
+    "In quali giorni?": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In quali giorni?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Which days?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quels jours ?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An welchen Tagen?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué días?"
+          }
+        }
+      }
+    },
+    "La data di inizio non può escludere progressi già registrati.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La data di inizio non può escludere progressi già registrati."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The start date cannot exclude progress already recorded."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La date de début ne peut pas exclure des progrès déjà enregistrés."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Startdatum darf bereits erfasste Fortschritte nicht ausschließen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La fecha de inicio no puede excluir progresos ya registrados."
+          }
+        }
+      }
+    },
+    "L’abitudine è cambiata. Aggiorna il piano prima di confermare.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’abitudine è cambiata. Aggiorna il piano prima di confermare."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The habit has changed. Refresh the plan before confirming."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’habitude a changé. Actualisez le programme avant de confirmer."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Gewohnheit hat sich geändert. Aktualisiere den Plan vor dem Bestätigen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El hábito ha cambiado. Actualiza el plan antes de confirmar."
+          }
+        }
+      }
+    },
+    "Mese precedente": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mese precedente"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous month"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mois précédent"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vorheriger Monat"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes anterior"
+          }
+        }
+      }
+    },
+    "Mese successivo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mese successivo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next month"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mois suivant"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nächster Monat"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes siguiente"
+          }
+        }
+      }
+    },
+    "Modifica abitudine": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica abitudine"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit habit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier l’habitude"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheit bearbeiten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar hábito"
+          }
+        }
+      }
+    },
+    "Modifica progressi": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica progressi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit progress"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier les progrès"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortschritte bearbeiten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar progresos"
+          }
+        }
+      }
+    },
+    "Nessun evento nei calendari selezionati.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun evento nei calendari selezionati."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No events in the selected calendars."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun événement dans les calendriers sélectionnés."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Ereignisse in den ausgewählten Kalendern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay eventos en los calendarios seleccionados."
+          }
+        }
+      }
+    },
+    "Nessuna abitudine era ancora iniziata. Puoi cambiare la data di inizio modificando l’abitudine.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna abitudine era ancora iniziata. Puoi cambiare la data di inizio modificando l’abitudine."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No habits had started yet. You can change the start date by editing a habit."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune habitude n’avait encore commencé. Vous pouvez changer la date de début en modifiant l’habitude."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es hatte noch keine Gewohnheit begonnen. Du kannst das Startdatum beim Bearbeiten einer Gewohnheit ändern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todavía no había empezado ningún hábito. Puedes cambiar la fecha de inicio editando un hábito."
+          }
+        }
+      }
+    },
+    "Non hai abitudini in programma. Nel Calendario puoi vedere e correggere tutti i tuoi progressi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non hai abitudini in programma. Nel Calendario puoi vedere e correggere tutti i tuoi progressi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No habits are scheduled. View and adjust all your progress in Calendar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune habitude n’est prévue. Retrouvez et corrigez tous vos progrès dans Calendrier."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es sind keine Gewohnheiten geplant. In Kalender kannst du alle Fortschritte ansehen und korrigieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No tienes hábitos programados. En Calendario puedes ver y corregir todos tus progresos."
+          }
+        }
+      }
+    },
+    "Non in programma": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non in programma"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not scheduled"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non prévu"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht geplant"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No programado"
+          }
+        }
+      }
+    },
+    "Oggi puoi riposare": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi puoi riposare"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can rest today"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd’hui, vous pouvez souffler"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute kannst du dich ausruhen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy puedes descansar"
+          }
+        }
+      }
+    },
+    "Ogni abitudine riceve al massimo un blocco per giorno programmato. Gli eventi futuri già presenti vengono mantenuti.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni abitudine riceve al massimo un blocco per giorno programmato. Gli eventi futuri già presenti vengono mantenuti."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each habit gets at most one block per scheduled day. Existing future events are kept."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque habitude reçoit au plus un créneau par jour prévu. Les événements futurs existants sont conservés."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jede Gewohnheit erhält höchstens einen Block pro geplantem Tag. Bestehende zukünftige Ereignisse bleiben erhalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada hábito recibe como máximo un bloque por día programado. Los eventos futuros existentes se conservan."
+          }
+        }
+      }
+    },
+    "Più colore, più progressi. Tocca un giorno per vedere abitudini ed eventi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più colore, più progressi. Tocca un giorno per vedere abitudini ed eventi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More color, more progress. Tap a day to see habits and events."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus de couleur, plus de progrès. Touchez un jour pour voir les habitudes et les événements."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Farbe, mehr Fortschritt. Tippe auf einen Tag, um Gewohnheiten und Ereignisse zu sehen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más color, más progreso. Toca un día para ver hábitos y eventos."
+          }
+        }
+      }
+    },
+    "Puoi correggere i giorni già trascorsi dalla data di inizio dell’abitudine.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puoi correggere i giorni già trascorsi dalla data di inizio dell’abitudine."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can adjust past days from the habit’s start date onward."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous pouvez corriger les jours passés à partir de la date de début de l’habitude."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kannst vergangene Tage ab dem Startdatum der Gewohnheit korrigieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puedes corregir días anteriores desde la fecha de inicio del hábito."
+          }
+        }
+      }
+    },
+    "Rivedi e aggiungi tutto": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rivedi e aggiungi tutto"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review and add all"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier et tout ajouter"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prüfen und alle hinzufügen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisar y añadir todo"
+          }
+        }
+      }
+    },
+    "Scegli almeno un giorno.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli almeno un giorno."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose at least one day."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez au moins un jour."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle mindestens einen Tag."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige al menos un día."
+          }
+        }
+      }
+    },
+    "Seleziona tutti i calendari": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona tutti i calendari"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select all calendars"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionner tous les calendriers"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Kalender auswählen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccionar todos los calendarios"
+          }
+        }
+      }
+    },
+    "Tutti i giorni scelti sono già pianificati, completati o senza spazi liberi tra le 7 e le 22. Puoi cambiare periodo o preferenze.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutti i giorni scelti sono già pianificati, completati o senza spazi liberi tra le 7 e le 22. Puoi cambiare periodo o preferenze."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All selected days are already planned, completed, or have no free time between 7 AM and 10 PM. You can change the period or preferences."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les jours choisis sont déjà planifiés, terminés ou sans créneau libre entre 7 h et 22 h. Vous pouvez changer la période ou les préférences."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle gewählten Tage sind bereits geplant, abgeschlossen oder haben keinen freien Platz zwischen 7 und 22 Uhr. Du kannst Zeitraum oder Einstellungen ändern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los días elegidos están planificados, completados o sin huecos libres entre las 7 y las 22. Puedes cambiar el período o las preferencias."
+          }
+        }
+      }
+    },
+    "Tutto il giorno": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutto il giorno"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All day"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toute la journée"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ganztägig"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo el día"
+          }
+        }
+      }
+    },
+    "Un piano che parte dai tuoi progressi, dai giorni scelti e dagli impegni in calendario.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un piano che parte dai tuoi progressi, dai giorni scelti e dagli impegni in calendario."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A plan built around your progress, chosen days, and calendar events."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un programme adapté à vos progrès, aux jours choisis et aux événements du calendrier."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Plan passend zu deinen Fortschritten, gewählten Tagen und Kalenderereignissen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un plan basado en tus progresos, los días elegidos y los eventos del calendario."
+          }
+        }
+      }
+    },
+    "%lld eventi nel calendario selezionato. Controlla il piano: i progressi delle abitudini restano separati.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld eventi nel calendario selezionato. Controlla il piano: i progressi delle abitudini restano separati."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld events in the selected calendar. Review the plan: habit progress stays separate."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld événements dans le calendrier sélectionné. Vérifiez le programme : les progrès des habitudes restent séparés."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Ereignisse im ausgewählten Kalender. Prüfe den Plan: Die Fortschritte der Gewohnheiten bleiben getrennt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld eventos en el calendario seleccionado. Revisa el plan: el progreso de los hábitos sigue siendo independiente."
+          }
+        }
+      }
+    },
+    "Cosa hai da fare oggi": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cosa hai da fare oggi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What you have to do today"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce que vous avez à faire aujourd’hui"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was du heute zu tun hast"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué tienes que hacer hoy"
+          }
+        }
+      }
+    },
+    "Cosa hai da fare nei prossimi giorni": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cosa hai da fare nei prossimi giorni"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What you have to do in the coming days"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce que vous avez à faire ces prochains jours"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was du in den nächsten Tagen zu tun hast"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué tienes que hacer los próximos días"
+          }
+        }
+      }
+    },
+    "Abitudine eliminata": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abitudine eliminata"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit deleted"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habitude supprimée"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheit gelöscht"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hábito eliminado"
+          }
+        }
+      }
+    },
+    "Riprova a rimuovere i blocchi": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riprova a rimuovere i blocchi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry removing calendar blocks"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réessayer de supprimer les créneaux"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalenderblöcke erneut entfernen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reintentar eliminar los bloques"
+          }
+        }
+      }
+    },
+    "Elimina definitivamente": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina definitivamente"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete permanently"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer définitivement"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dauerhaft löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar definitivamente"
+          }
+        }
+      }
+    },
+    "Elimineremo definitivamente l’abitudine e tutte le sue registrazioni. Questa operazione non si può annullare.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimineremo definitivamente l’abitudine e tutte le sue registrazioni. Questa operazione non si può annullare."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This permanently deletes the habit and all its entries. This cannot be undone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’habitude et toutes ses saisies seront définitivement supprimées. Cette opération est irréversible."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Gewohnheit und alle ihre Einträge werden dauerhaft gelöscht. Das kann nicht rückgängig gemacht werden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se eliminará permanentemente el hábito y todos sus registros. Esta acción no se puede deshacer."
+          }
+        }
+      }
+    },
+    "Rimuovi anche i blocchi futuri di Makeet": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuovi anche i blocchi futuri di Makeet"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also remove future Makeet blocks"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer aussi les futurs créneaux Makeet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auch zukünftige Makeet-Blöcke entfernen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar también los bloques futuros de Makeet"
+          }
+        }
+      }
+    },
+    "Rimuove solo gli eventi futuri collegati a questa abitudine nei calendari modificabili. Gli altri eventi restano al loro posto.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuove solo gli eventi futuri collegati a questa abitudine nei calendari modificabili. Gli altri eventi restano al loro posto."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removes only future events linked to this habit in editable calendars. Other events stay in place."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprime uniquement les événements futurs liés à cette habitude dans les calendriers modifiables. Les autres événements sont conservés."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entfernt nur zukünftige Ereignisse dieser Gewohnheit in bearbeitbaren Kalendern. Andere Ereignisse bleiben erhalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo elimina los eventos futuros vinculados a este hábito en calendarios editables. Los demás eventos se conservan."
+          }
+        }
+      }
+    },
+    "Il calendario non è collegato: gli eventuali eventi già creati restano nel calendario.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il calendario non è collegato: gli eventuali eventi già creati restano nel calendario."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendar is not connected: any previously created events stay in the calendar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le calendrier n’est pas connecté : les événements déjà créés y restent."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Kalender ist nicht verbunden: Bereits erstellte Ereignisse bleiben im Kalender."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El calendario no está conectado: los eventos ya creados permanecen en él."
+          }
+        }
+      }
+    },
+    "Elimina abitudine e progressi": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina abitudine e progressi"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete habit and progress"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer l’habitude et les progrès"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheit und Fortschritte löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar hábito y progresos"
+          }
+        }
+      }
+    },
+    "Makeet Plus": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus"
+          }
+        }
+      }
+    },
+    "L’abitudine è cambiata. Chiudi e riapri la modifica prima di salvare.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’abitudine è cambiata. Chiudi e riapri la modifica prima di salvare."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This habit changed. Close and reopen the editor before saving."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette habitude a changé. Fermez et rouvrez la modification avant d’enregistrer."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit wurde geändert. Schließe und öffne die Bearbeitung vor dem Speichern erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este hábito ha cambiado. Cierra y vuelve a abrir el editor antes de guardar."
+          }
+        }
+      }
+    },
+    "Le opzioni di acquisto non sono disponibili. Riprova dall’App Store più tardi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le opzioni di acquisto non sono disponibili. Riprova dall’App Store più tardi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchase options are unavailable. Try again through the App Store later."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les options d’achat sont indisponibles. Réessayez via l’App Store plus tard."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaufoptionen sind nicht verfügbar. Versuche es später über den App Store erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las opciones de compra no están disponibles. Inténtalo más tarde desde el App Store."
+          }
+        }
+      }
+    },
+    "Acquisto in attesa di approvazione. Nessuna funzione locale viene bloccata.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acquisto in attesa di approvazione. Nessuna funzione locale viene bloccata."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchase awaiting approval. All local features remain available."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Achat en attente d’approbation. Toutes les fonctions locales restent disponibles."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Kauf wartet auf Genehmigung. Alle lokalen Funktionen bleiben verfügbar."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compra pendiente de aprobación. Todas las funciones locales siguen disponibles."
+          }
+        }
+      }
+    },
+    "Nessun abbonamento attivo per questo account Makeet. Verifica di usare l’account con cui hai acquistato.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun abbonamento attivo per questo account Makeet. Verifica di usare l’account con cui hai acquistato."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No active subscription for this Makeet account. Check that you are using the account you purchased with."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun abonnement actif pour ce compte Makeet. Vérifiez que vous utilisez le compte de l’achat."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein aktives Abonnement für dieses Makeet-Konto. Prüfe, ob du das Konto des Kaufs verwendest."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay una suscripción activa para esta cuenta de Makeet. Comprueba que usas la cuenta de la compra."
+          }
+        }
+      }
+    },
+    "Questo acquisto è collegato a un altro account Makeet.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questo acquisto è collegato a un altro account Makeet."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This purchase is linked to another Makeet account."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cet achat est lié à un autre compte Makeet."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Kauf ist mit einem anderen Makeet-Konto verknüpft."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta compra está vinculada a otra cuenta de Makeet."
+          }
+        }
+      }
+    },
+    "Acquisto o verifica non completati. I progressi restano disponibili; puoi riprovare o ripristinare gli acquisti.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acquisto o verifica non completati. I progressi restano disponibili; puoi riprovare o ripristinare gli acquisti."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchase or verification did not complete. Your progress remains available; retry or restore purchases."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’achat ou la vérification n’a pas abouti. Vos progrès restent disponibles ; réessayez ou restaurez les achats."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kauf oder Prüfung nicht abgeschlossen. Deine Fortschritte bleiben verfügbar; versuche es erneut oder stelle Käufe wieder her."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La compra o verificación no se completó. Tus progresos siguen disponibles; reintenta o restaura las compras."
+          }
+        }
+      }
+    },
+    "Tutte le tue abitudini, sul dispositivo, gratis. Plus aggiunge sincronizzazione tra dispositivi e pianificazione avanzata sul calendario.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutte le tue abitudini, sul dispositivo, gratis. Plus aggiunge sincronizzazione tra dispositivi e pianificazione avanzata sul calendario."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All your habits, on your device, for free. Plus adds sync across devices and advanced calendar planning."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes vos habitudes sur votre appareil, gratuitement. Plus ajoute la synchronisation entre appareils et la planification avancée du calendrier."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Gewohnheiten auf deinem Gerät, kostenlos. Plus bietet Synchronisierung zwischen Geräten und erweiterte Kalenderplanung."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos tus hábitos en tu dispositivo, gratis. Plus añade sincronización entre dispositivos y planificación avanzada del calendario."
+          }
+        }
+      }
+    },
+    "Makeet Plus è attivo": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus è attivo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus is active"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus est actif"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus ist aktiv"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Makeet Plus está activo"
+          }
+        }
+      }
+    },
+    "Gli abbonamenti saranno disponibili al lancio. Durante questa anteprima puoi provare tutte le funzioni.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gli abbonamenti saranno disponibili al lancio. Durante questa anteprima puoi provare tutte le funzioni."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscriptions will be available at launch. You can try all features during this preview."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les abonnements seront disponibles au lancement. Vous pouvez essayer toutes les fonctions pendant cet aperçu."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abonnements sind zum Start verfügbar. In dieser Vorschau kannst du alle Funktionen ausprobieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las suscripciones estarán disponibles en el lanzamiento. Puedes probar todas las funciones durante esta versión preliminar."
+          }
+        }
+      }
+    },
+    "Mensile": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mensile"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mensuel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monatlich"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mensual"
+          }
+        }
+      }
+    },
+    "Annuale": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuale"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yearly"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jährlich"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anual"
+          }
+        }
+      }
+    },
+    "Il piano annuale addebita l’intero importo ogni anno. L’abbonamento si rinnova automaticamente; puoi annullarlo nelle impostazioni dell’App Store.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il piano annuale addebita l’intero importo ogni anno. L’abbonamento si rinnova automaticamente; puoi annullarlo nelle impostazioni dell’App Store."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The yearly plan charges the full amount each year. Subscriptions renew automatically; cancel in your App Store settings."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le forfait annuel facture le montant total chaque année. L’abonnement se renouvelle automatiquement ; annulez dans les réglages de l’App Store."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Jahresplan berechnet den Gesamtbetrag jedes Jahr. Das Abonnement verlängert sich automatisch; kündige in den App-Store-Einstellungen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El plan anual cobra el importe completo cada año. La suscripción se renueva automáticamente; cancélala en los ajustes del App Store."
+          }
+        }
+      }
+    },
+    "Ripristina acquisti": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripristina acquisti"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore purchases"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurer les achats"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Käufe wiederherstellen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurar compras"
+          }
+        }
+      }
+    },
+    "Accedi con Apple o Google per collegare Plus al tuo account. Puoi continuare a usare tutte le funzioni locali senza registrarti.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accedi con Apple o Google per collegare Plus al tuo account. Puoi continuare a usare tutte le funzioni locali senza registrarti."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in with Apple or Google to link Plus to your account. You can keep using all local features without registering."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectez-vous avec Apple ou Google pour associer Plus à votre compte. Toutes les fonctions locales restent disponibles sans inscription."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melde dich mit Apple oder Google an, um Plus mit deinem Konto zu verknüpfen. Alle lokalen Funktionen kannst du weiterhin ohne Registrierung nutzen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión con Apple o Google para vincular Plus a tu cuenta. Puedes seguir usando todas las funciones locales sin registrarte."
+          }
+        }
+      }
+    },
+    "Gestisci abbonamento": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestisci abbonamento"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage subscription"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gérer l’abonnement"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abonnement verwalten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestionar suscripción"
+          }
+        }
+      }
+    },
+    "Anche se Plus scade, i dati già presenti restano consultabili, modificabili ed esportabili. Account e cancellazione restano sempre accessibili.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anche se Plus scade, i dati già presenti restano consultabili, modificabili ed esportabili. Account e cancellazione restano sempre accessibili."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Even if Plus expires, existing data remains available to view, edit and export. Account access and deletion are always available."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Même si Plus expire, les données présentes restent consultables, modifiables et exportables. L’accès au compte et la suppression restent disponibles."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auch nach Ablauf von Plus kannst du vorhandene Daten ansehen, bearbeiten und exportieren. Kontozugriff und Löschung bleiben immer verfügbar."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aunque Plus caduque, puedes consultar, editar y exportar tus datos existentes. El acceso a la cuenta y la eliminación siempre están disponibles."
+          }
+        }
+      }
+    },
+    "La sincronizzazione richiede Makeet Plus. I dati già presenti restano sul dispositivo.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sincronizzazione richiede Makeet Plus. I dati già presenti restano sul dispositivo."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync requires Makeet Plus. Existing data remains on your device."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La synchronisation nécessite Makeet Plus. Les données présentes restent sur votre appareil."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchronisierung erfordert Makeet Plus. Vorhandene Daten bleiben auf deinem Gerät."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sincronización requiere Makeet Plus. Los datos existentes permanecen en tu dispositivo."
+          }
+        }
+      }
+    },
+    "Esporta i tuoi dati": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esporta i tuoi dati"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export your data"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter vos données"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Daten exportieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar tus datos"
+          }
+        }
+      }
+    },
+    "Esportazione non riuscita. Riprova quando il servizio è raggiungibile.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esportazione non riuscita. Riprova quando il servizio è raggiungibile."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export failed. Retry when the service is reachable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’exportation a échoué. Réessayez quand le service est accessible."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export fehlgeschlagen. Versuche es erneut, wenn der Dienst erreichbar ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La exportación falló. Reinténtalo cuando el servicio esté disponible."
+          }
+        }
+      }
+    },
+    "Lo storico è conservato. Puoi ripristinarla dall’archivio nelle impostazioni.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo storico è conservato. Puoi ripristinarla dall’archivio nelle impostazioni."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History is preserved. Restore this habit from the archive in settings."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’historique est conservé. Restaurez cette habitude depuis les archives dans les réglages."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Verlauf bleibt erhalten. Stelle die Gewohnheit im Archiv in den Einstellungen wieder her."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El historial se conserva. Restaura este hábito desde el archivo en los ajustes."
+          }
+        }
+      }
+    },
+    "Questi dati sono stati eliminati su un altro dispositivo. Conferma la rimozione anche qui.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questi dati sono stati eliminati su un altro dispositivo. Conferma la rimozione anche qui."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This data was deleted on another device. Confirm its removal here too."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ces données ont été supprimées sur un autre appareil. Confirmez leur suppression ici aussi."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Daten wurden auf einem anderen Gerät gelöscht. Bestätige die Entfernung auch hier."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estos datos se eliminaron en otro dispositivo. Confirma su eliminación también aquí."
+          }
+        }
+      }
+    },
+    "Rimuovi anche qui": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuovi anche qui"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove here too"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer ici aussi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auch hier entfernen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar también aquí"
+          }
+        }
+      }
+    },
+    "Le modifiche a obiettivo e giorni si applicano anche alle statistiche passate. Le quantità registrate restano invariate.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le modifiche a obiettivo e giorni si applicano anche alle statistiche passate. Le quantità registrate restano invariate."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes to targets and weekdays also apply to past statistics. Recorded quantities stay unchanged."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les changements d’objectif et de jours s’appliquent aussi aux statistiques passées. Les quantités enregistrées restent inchangées."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Änderungen an Ziel und Wochentagen gelten auch für frühere Statistiken. Erfasste Mengen bleiben unverändert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los cambios de objetivo y días también se aplican a las estadísticas pasadas. Las cantidades registradas no cambian."
+          }
+        }
+      }
+    },
+    "%@ %@": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        }
+      }
+    },
+    "%lld/%lld": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        }
+      }
+    },
+    "Riprova": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riprova"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réessayer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erneut versuchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reintentar"
+          }
+        }
+      }
+    },
+    "Scegli i calendari da considerare e un calendario modificabile in cui aggiungere i blocchi.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli i calendari da considerare e un calendario modificabile in cui aggiungere i blocchi."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose availability calendars and a writable calendar for adding habit blocks."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez les calendriers à consulter et un calendrier modifiable pour ajouter les créneaux."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle Kalender für die Verfügbarkeit und einen beschreibbaren Kalender für neue Zeitblöcke."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige los calendarios de disponibilidad y un calendario editable para añadir bloques."
+          }
+        }
+      }
+    },
+    "Orario indicativo: scegli i calendari da considerare.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orario indicativo: scegli i calendari da considerare."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated time: choose which calendars to consider."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horaire indicatif : choisissez les calendriers à consulter."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ungefähre Uhrzeit: Wähle die zu berücksichtigenden Kalender."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horario orientativo: elige qué calendarios tener en cuenta."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

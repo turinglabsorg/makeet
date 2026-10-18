@@ -17,20 +17,22 @@ import MakeetCore
     var timeZoneID: String = TimeZone.current.identifier
     var preferredHour: Int = 18
     var durationMinutes: Int = 20
+    var weekdayMask: Int = 127
     var archived: Bool = false
     var isDemo: Bool = false
 
     init(name: String, symbol: String, colorIndex: Int, target: Double, step: Double,
-         unit: String, preferredHour: Int = 18, durationMinutes: Int = 20, createdAt: Date = Date()) {
+         unit: String, preferredHour: Int = 18, durationMinutes: Int = 20, createdAt: Date = Date(), weekdayMask: Int = 127) {
         self.name = name; self.symbol = symbol; self.colorIndex = colorIndex
         self.target = target; self.step = step; self.unit = unit
         self.preferredHour = preferredHour; self.durationMinutes = durationMinutes
         self.createdAt = createdAt
+        self.weekdayMask = weekdayMask
     }
 
     var snapshot: HabitSnapshot {
         HabitSnapshot(id: id, name: name, target: target, step: step, createdAt: createdAt,
-                      timeZoneID: timeZoneID, preferredHour: preferredHour, durationMinutes: durationMinutes)
+                      timeZoneID: timeZoneID, preferredHour: preferredHour, durationMinutes: durationMinutes, weekdayMask: weekdayMask)
     }
 }
 
@@ -62,9 +64,9 @@ enum SharedStore {
         return try ModelContainer(for: schema, configurations: [configuration])
     }
 
-    @MainActor static func log(_ habit: Habit, in context: ModelContext, source: String = "app") throws {
+    @MainActor static func log(_ habit: Habit, in context: ModelContext, source: String = "app", timestamp: Date = Date()) throws {
         guard habit.step.isFinite, habit.step > 0, !habit.archived else { return }
-        context.insert(Activity(habitID: habit.id, amount: habit.step, source: source))
+        context.insert(Activity(habitID: habit.id, amount: habit.step, timestamp: timestamp, source: source))
         do { try context.save() } catch { context.rollback(); throw error }
         WidgetCenter.shared.reloadAllTimelines()
     }

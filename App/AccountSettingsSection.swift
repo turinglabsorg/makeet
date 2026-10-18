@@ -28,10 +28,12 @@ struct AccountSettingsSection: View {
                     ForEach(sync.ledger.conflicts) { conflict in
                         VStack(alignment: .leading, spacing: 8) {
                             Text(conflict.local.habit?.name ?? String(localized: "Attività modificata su più dispositivi", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.headline)
-                            Text(String(localized: "Scegli quale versione conservare. Nessuna modifica viene scartata automaticamente.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                            Text(conflict.remote.deleted ? String(localized: "Questi dati sono stati eliminati su un altro dispositivo. Conferma la rimozione anche qui.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Scegli quale versione conservare. Nessuna modifica viene scartata automaticamente.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                                 .font(.caption).foregroundStyle(.secondary)
-                            Button(String(localized: "Conserva su questo dispositivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { resolve(conflict, keepLocal: true) }
-                            Button(String(localized: "Usa la versione sincronizzata", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { resolve(conflict, keepLocal: false) }
+                            if !conflict.remote.deleted {
+                                Button(String(localized: "Conserva su questo dispositivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { resolve(conflict, keepLocal: true) }
+                            }
+                            Button(conflict.remote.deleted ? String(localized: "Rimuovi anche qui", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Usa la versione sincronizzata", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { resolve(conflict, keepLocal: false) }
                         }.disabled(sync.syncing)
                     }
                 }

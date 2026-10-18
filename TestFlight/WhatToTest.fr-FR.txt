@@ -1,1 +1,9 @@
-Correction de Modifier le profil : ouvrez l’éditeur depuis Aujourd’hui ou Connexions, modifiez le nom et la photo, enregistrez ou annulez, puis rouvrez-le. Vérifiez aussi le choix et la suppression d’une photo et la conservation après redémarrage. Une erreur réseau ou un conflit laisse le brouillon ouvert. Les comptes et progrès existants sont conservés. Vérifiez aussi le changement de période des statistiques avec les données de démonstration.
+Calendrier mensuel avec carte d’intensité, correction des jours passés et choix des jours de la semaine lors de la création/modification des habitudes.
+
+Modifiez ou supprimez définitivement une habitude depuis son détail. La suppression exige une confirmation et peut retirer les futurs blocs Makeet des calendriers modifiables.
+
+Aujourd’hui : + à gauche, profil rond à droite ; archives dans les réglages. La planification couvre aujourd’hui ou jusqu’à 28 jours, avec vérification avant création des événements. La bannière du calendrier connecté disparaît.
+
+Toutes les fonctions restent disponibles pendant cet aperçu ; aucun abonnement n’est facturé. L’exportation reste accessible sans Plus. Les calendriers Google du dispositif utilisent la synchronisation du système.
+
+Vérifiez aussi Apple/Google, le profil, la langue, les widgets et la réouverture. Signalez les erreurs sans supprimer votre compte.

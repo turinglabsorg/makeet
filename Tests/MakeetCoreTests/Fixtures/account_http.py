@@ -24,6 +24,12 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/v1/me/profile" and self.headers.get("Authorization") == "Bearer fixture-next":
             with lock:
                 self.reply(200, profile)
+        elif self.path == "/v1/config":
+            self.reply(200, {"providers": ["apple", "google"], "billing_enabled": True})
+        elif self.path == "/v1/me/entitlement" and self.headers.get("Authorization") == "Bearer fixture-next":
+            self.reply(200, {"billing_enabled": True, "active": False, "product_id": "", "expires_at": 0})
+        elif self.path == "/v1/me/export" and self.headers.get("Authorization") == "Bearer fixture-next":
+            self.reply(200, {"version": 1, "records": []})
         elif self.path == "/counts":
             with lock:
                 self.reply(200, counts)
@@ -39,6 +45,11 @@ class Handler(BaseHTTPRequestHandler):
                 self.reply(200, {"message_id": body["message_id"], "status": "accepted", "confirmed_at": 0})
             else:
                 self.reply(204, {})
+        elif self.path == "/v1/me/transactions" and self.headers.get("Authorization") == "Bearer fixture-next":
+            if body != {"signed_transaction": "fixture-signed-transaction"}:
+                self.reply(400, {"error": "invalid_transaction"})
+            else:
+                self.reply(200, {"billing_enabled": True, "active": True, "product_id": "org.turinglabs.makeet.plus.monthly", "expires_at": 1900000000})
         elif self.path == "/v1/auth/challenges":
             self.reply(201, {"id": "fixture", "nonce": "fixture-nonce", "expires_at": 1900000000})
         elif self.path == "/v1/auth/refresh":
@@ -97,6 +108,10 @@ class Handler(BaseHTTPRequestHandler):
         self.reply(200, {"registered": True, "accepted_at": 123, "confirmed_at": 0})
 
 
-server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+class FixtureServer(ThreadingHTTPServer):
+    request_queue_size = 64
+
+
+server = FixtureServer(("127.0.0.1", 0), Handler)
 print(server.server_port, flush=True)
 server.serve_forever()

@@ -19,11 +19,13 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/turinglabsorg/makeet/backend/internal/apple"
+	"github.com/turinglabsorg/makeet/backend/internal/billing"
 	"github.com/turinglabsorg/makeet/backend/internal/identity"
 	"github.com/turinglabsorg/makeet/backend/internal/push"
 )
 
 type Config struct {
+	Billing    *billing.Verifier
 	Providers  map[string]identity.Verifier
 	Apple      *apple.Client
 	Push       *push.Client
@@ -75,7 +77,7 @@ func (s *Server) Handler() http.Handler {
 				providers = append(providers, p)
 			}
 		}
-		respond(w, 200, map[string]any{"providers": providers})
+		respond(w, 200, map[string]any{"providers": providers, "billing_enabled": s.cfg.Billing != nil})
 	})
 	mux.HandleFunc("POST /v1/auth/challenges", s.challenge)
 	mux.HandleFunc("POST /v1/auth/exchange", s.exchange)
@@ -86,6 +88,10 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("PUT /v1/me/profile", s.auth(s.updateProfile))
 	mux.HandleFunc("DELETE /v1/me", s.auth(s.deleteAccount))
 	mux.HandleFunc("POST /v1/sync", s.auth(s.syncRecords))
+	mux.HandleFunc("GET /v1/me/entitlement", s.auth(s.getEntitlement))
+	mux.HandleFunc("POST /v1/me/transactions", s.auth(s.submitTransaction))
+	mux.HandleFunc("GET /v1/me/export", s.auth(s.exportAccount))
+	mux.HandleFunc("POST /v1/app-store/notifications", s.appStoreNotification)
 	mux.HandleFunc("PUT /v1/devices/{id}", s.auth(s.registerDevice))
 	mux.HandleFunc("DELETE /v1/devices/{id}", s.auth(s.removeDevice))
 	mux.HandleFunc("POST /v1/devices/{id}/test", s.auth(s.testPush))

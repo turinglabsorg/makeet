@@ -44,7 +44,7 @@ struct ProgressProvider: TimelineProvider {
                 let context = ModelContext(container)
                 let habits = try context.fetch(FetchDescriptor<Habit>(predicate: #Predicate { !$0.archived }, sortBy: [SortDescriptor(\.createdAt)]))
                 let activities = try context.fetch(FetchDescriptor<Activity>()).map(\.snapshot)
-                let values = habits.map { habit in
+                let values = habits.filter { $0.snapshot.isScheduled(on: Date()) }.map { habit in
                     let progress = HabitEngine.progress(for: habit.snapshot, on: Date(), activities: activities)
                     return WidgetHabit(id: habit.id, name: habit.name, symbol: habit.symbol, colorIndex: habit.colorIndex,
                         unit: habit.unit, quantity: progress.quantity, target: habit.target, step: habit.step)

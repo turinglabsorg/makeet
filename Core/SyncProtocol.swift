@@ -34,16 +34,38 @@ public struct HabitRecord: Codable, Equatable, Sendable {
     public var preferredHour: Int
     public var durationMinutes: Int
     public var archived: Bool
+    public var weekdayMask: Int
     public init(name: String, symbol: String, colorIndex: Int, target: Double, step: Double, unit: String,
-                createdAt: Date, timeZoneID: String, preferredHour: Int, durationMinutes: Int, archived: Bool) {
+                createdAt: Date, timeZoneID: String, preferredHour: Int, durationMinutes: Int, archived: Bool, weekdayMask: Int = 127) {
         self.name = name; self.symbol = symbol; self.colorIndex = colorIndex; self.target = target
         self.step = step; self.unit = unit; self.createdAt = createdAt; self.timeZoneID = timeZoneID
         self.preferredHour = preferredHour; self.durationMinutes = durationMinutes; self.archived = archived
+        self.weekdayMask = weekdayMask
     }
     enum CodingKeys: String, CodingKey {
         case name, symbol, target, step, unit, archived
         case colorIndex = "color_index", createdAt = "created_at", timeZoneID = "time_zone_id"
         case preferredHour = "preferred_hour", durationMinutes = "duration_minutes"
+        case weekdayMask = "weekday_mask"
+    }
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        name = try c.decode(String.self, forKey: .name); symbol = try c.decode(String.self, forKey: .symbol)
+        colorIndex = try c.decode(Int.self, forKey: .colorIndex); target = try c.decode(Double.self, forKey: .target)
+        step = try c.decode(Double.self, forKey: .step); unit = try c.decode(String.self, forKey: .unit)
+        createdAt = try c.decode(Date.self, forKey: .createdAt); timeZoneID = try c.decode(String.self, forKey: .timeZoneID)
+        preferredHour = try c.decode(Int.self, forKey: .preferredHour); durationMinutes = try c.decode(Int.self, forKey: .durationMinutes)
+        archived = try c.decode(Bool.self, forKey: .archived)
+        weekdayMask = try c.decodeIfPresent(Int.self, forKey: .weekdayMask) ?? 127
+    }
+    public func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(name, forKey: .name); try c.encode(symbol, forKey: .symbol); try c.encode(colorIndex, forKey: .colorIndex)
+        try c.encode(target, forKey: .target); try c.encode(step, forKey: .step); try c.encode(unit, forKey: .unit)
+        try c.encode(createdAt, forKey: .createdAt); try c.encode(timeZoneID, forKey: .timeZoneID)
+        try c.encode(preferredHour, forKey: .preferredHour); try c.encode(durationMinutes, forKey: .durationMinutes)
+        try c.encode(archived, forKey: .archived)
+        try c.encode(weekdayMask, forKey: .weekdayMask)
     }
 }
 

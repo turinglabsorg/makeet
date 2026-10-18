@@ -15,6 +15,7 @@ import (
 
 	"github.com/turinglabsorg/makeet/backend/internal/api"
 	"github.com/turinglabsorg/makeet/backend/internal/apple"
+	"github.com/turinglabsorg/makeet/backend/internal/billing"
 	"github.com/turinglabsorg/makeet/backend/internal/identity"
 	"github.com/turinglabsorg/makeet/backend/internal/push"
 	"github.com/turinglabsorg/makeet/backend/internal/site"
@@ -72,7 +73,15 @@ func main() {
 		slog.Error("accounts require configured privacy information")
 		os.Exit(1)
 	}
-	service := api.New(db, api.Config{Providers: providers, Apple: appleClient, Push: pushClient, Site: site.WithConfig(siteConfig), TrustRelay: os.Getenv("MAKEET_TRUST_RELAY") == "true"})
+	var subscriptions *billing.Verifier
+	if os.Getenv("MAKEET_BILLING_ENABLED") == "true" {
+		subscriptions, err = billing.New(os.Getenv("MAKEET_BILLING_SANDBOX") == "true")
+		if err != nil {
+			slog.Error("invalid App Store trust configuration")
+			os.Exit(1)
+		}
+	}
+	service := api.New(db, api.Config{Billing: subscriptions, Providers: providers, Apple: appleClient, Push: pushClient, Site: site.WithConfig(siteConfig), TrustRelay: os.Getenv("MAKEET_TRUST_RELAY") == "true"})
 	go service.RunPush(ctx)
 	handler := service.Handler()
 	server := &http.Server{Addr: env("MAKEET_LISTEN", "127.0.0.1:8086"), Handler: handler, ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 << 10}

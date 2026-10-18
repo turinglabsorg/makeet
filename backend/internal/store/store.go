@@ -52,6 +52,7 @@ CREATE INDEX IF NOT EXISTS identities_user ON identities(user_id);
 CREATE TABLE IF NOT EXISTS records(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, kind TEXT NOT NULL, id TEXT NOT NULL, revision INTEGER NOT NULL, deleted INTEGER NOT NULL, data TEXT NOT NULL, PRIMARY KEY(user_id,kind,id));
 CREATE TABLE IF NOT EXISTS changes(sequence INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, kind TEXT NOT NULL, id TEXT NOT NULL, revision INTEGER NOT NULL, deleted INTEGER NOT NULL, data TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS changes_user_sequence ON changes(user_id,sequence);
+CREATE INDEX IF NOT EXISTS changes_record ON changes(user_id,kind,id);
 CREATE TABLE IF NOT EXISTS batches(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, id TEXT NOT NULL, request_hash TEXT NOT NULL, response TEXT NOT NULL, PRIMARY KEY(user_id,id));
 CREATE TABLE IF NOT EXISTS provider_grants(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, provider TEXT NOT NULL, audience TEXT NOT NULL, token BLOB NOT NULL, updated_at INTEGER NOT NULL, PRIMARY KEY(user_id,provider,audience));
 CREATE TABLE IF NOT EXISTS devices(id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, session_id TEXT NOT NULL REFERENCES sessions(id) ON DELETE CASCADE, installation_hash TEXT NOT NULL, token BLOB NOT NULL, token_hash TEXT NOT NULL, topic TEXT NOT NULL, environment TEXT NOT NULL, language TEXT NOT NULL, time_zone TEXT NOT NULL, reminders_enabled INTEGER NOT NULL, reminder_hour INTEGER NOT NULL, reminder_minute INTEGER NOT NULL, updated_at INTEGER NOT NULL, UNIQUE(token_hash,topic,environment));
@@ -64,5 +65,7 @@ CREATE INDEX IF NOT EXISTS push_device ON push_messages(device_id,created_at);
 CREATE INDEX IF NOT EXISTS push_expiry ON push_messages(created_at);
 CREATE UNIQUE INDEX IF NOT EXISTS push_reminder_day ON push_messages(device_id,day) WHERE kind='reminder';
 CREATE INDEX IF NOT EXISTS activity_day ON records(user_id,kind,deleted,json_extract(data,'$.habit_id'),unixepoch(json_extract(data,'$.timestamp')));
-PRAGMA user_version=4;
+CREATE TABLE IF NOT EXISTS subscriptions(environment TEXT NOT NULL,original_id TEXT NOT NULL,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,transaction_id TEXT NOT NULL,product_id TEXT NOT NULL,expires_date INTEGER NOT NULL,signed_date INTEGER NOT NULL,revoked INTEGER NOT NULL,PRIMARY KEY(environment,original_id));
+CREATE INDEX IF NOT EXISTS subscriptions_user_expiry ON subscriptions(user_id,revoked,expires_date DESC);
+PRAGMA user_version=6;
 `

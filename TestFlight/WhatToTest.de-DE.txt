@@ -1,1 +1,9 @@
-Profil bearbeiten wurde korrigiert: Öffne den Editor über Heute oder Verbindungen, ändere Name und Foto, speichere oder brich ab und öffne ihn erneut. Prüfe auch die Fotoauswahl, das Entfernen und die Speicherung nach einem Neustart. Bei Netzwerkfehlern oder Konflikten bleibt der Entwurf geöffnet. Bestehende Konten und Fortschritte bleiben erhalten. Prüfe auch den Zeitraumwechsel in den Statistiken mit Demodaten.
+Monatskalender mit Heatmap, Korrekturen vergangener Tage und Wochentagsauswahl beim Erstellen/Bearbeiten von Gewohnheiten.
+
+Gewohnheiten lassen sich im Detail bearbeiten oder endgültig löschen. Löschen erfordert eine Bestätigung; zukünftige Makeet-Blöcke können aus beschreibbaren Kalendern entfernt werden.
+
+Heute zeigt links + und rechts nur das runde Profil; das Archiv liegt in den Einstellungen. Planung für heute oder bis zu 28 Tage mit Prüfung vor der Terminerstellung. Das Banner für verbundene Kalender entfällt.
+
+In dieser Vorschau bleiben alle Funktionen verfügbar; Abonnements berechnen nichts. Datenexport bleibt ohne Plus verfügbar. Auf dem Gerät eingerichtete Google-Kalender verwenden die Systemsynchronisierung.
+
+Prüfe auch Apple/Google-Anmeldung, Profil, Sprache, Widgets und erneutes Öffnen. Melde Fehler, ohne dein Konto zu löschen.

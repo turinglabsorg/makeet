@@ -1,0 +1,12 @@
+{
+ "identifier":"MAKEET-TESTS",
+ "nonRenewingSubscriptions":[], "products":[],
+ "settings":{"_askToBuyEnabled":false,"_disableDialogs":true,"_failTransactionsEnabled":false,"_locale":"it_IT","_storefront":"ITA","_timeRate":0},
+ "subscriptionGroups":[{
+  "id":"22489799","name":"Makeet Plus","localizations":[],
+  "subscriptions":[
+   {"displayPrice":"1.99","familyShareable":false,"groupNumber":1,"internalID":"MAKEET-MONTH","localizations":[{"description":"Sync and planning","displayName":"Makeet Plus Monthly","locale":"en_US"}],"productID":"org.turinglabs.makeet.plus.monthly","recurringSubscriptionPeriod":"P1M","referenceName":"Makeet Plus Monthly","subscriptionGroupID":"22489799","type":"RecurringSubscription","adHocOffers":[],"codeOffers":[]},
+   {"displayPrice":"11.99","familyShareable":false,"groupNumber":1,"internalID":"MAKEET-YEAR","localizations":[{"description":"Sync and planning","displayName":"Makeet Plus Yearly","locale":"en_US"}],"productID":"org.turinglabs.makeet.plus.yearly","recurringSubscriptionPeriod":"P1Y","referenceName":"Makeet Plus Yearly","subscriptionGroupID":"22489799","type":"RecurringSubscription","adHocOffers":[],"codeOffers":[]}
+  ]
+ }],"version":{"major":3,"minor":0}
+}

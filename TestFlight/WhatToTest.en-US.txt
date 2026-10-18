@@ -1,1 +1,9 @@
-Fixed Edit profile: open the editor from Today or Connections, change your name and photo, save or cancel, then reopen it. Also check choosing and removing a photo and persistence after restarting the app. A network error or conflict keeps your draft open. Existing accounts and progress are preserved. Also check changing statistics periods with demo data.
+Monthly calendar heatmap, past-day progress corrections and weekday selection when creating/editing habits are included together.
+
+Edit or permanently delete a habit from its detail screen. Deletion requires confirmation, with optional cleanup of future Makeet blocks in writable calendars.
+
+Today places plus on the left and a round profile on the right; archive is in settings. Planning covers today or up to 28 days, with a full review before creating events. The connected-calendar banner is removed.
+
+All features remain available during this preview; subscriptions do not charge. Data export remains available without Plus. Device-configured Google calendars use system synchronization.
+
+Also check Apple/Google login, profile, language, widgets and reopening. Report errors without deleting your account.

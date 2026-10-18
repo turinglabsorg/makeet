@@ -91,7 +91,7 @@ extension Habit {
     var syncRecord: SyncRecord {
         SyncRecord(id: id, habit: HabitRecord(name: name, symbol: symbol, colorIndex: colorIndex, target: target, step: step,
             unit: unit, createdAt: createdAt, timeZoneID: timeZoneID, preferredHour: preferredHour,
-            durationMinutes: durationMinutes, archived: archived))
+            durationMinutes: durationMinutes, archived: archived, weekdayMask: weekdayMask))
     }
 }
 
@@ -116,7 +116,10 @@ enum AccountRecords {
         for record in records {
             if record.kind == .habit {
                 let existing = habits.first { $0.id == record.id }
-                if record.deleted { if let existing { context.delete(existing) }; continue }
+                if record.deleted {
+                    for entry in activities where entry.habitID == record.id { context.delete(entry) }
+                    if let existing { context.delete(existing) }; continue
+                }
                 guard let data = record.habit else { continue }
                 let habit = existing ?? Habit(name: data.name, symbol: data.symbol, colorIndex: data.colorIndex,
                     target: data.target, step: data.step, unit: data.unit)
@@ -125,10 +128,13 @@ enum AccountRecords {
                 habit.target = data.target; habit.step = data.step; habit.unit = data.unit; habit.createdAt = data.createdAt
                 habit.timeZoneID = data.timeZoneID; habit.preferredHour = data.preferredHour
                 habit.durationMinutes = data.durationMinutes; habit.archived = data.archived; habit.isDemo = false
+                habit.weekdayMask = data.weekdayMask
             } else {
                 let existing = activities.first { $0.id == record.id }
                 if record.deleted { if let existing { context.delete(existing) }; continue }
                 guard let data = record.activity else { continue }
+                let parent = data.habitID
+                guard try context.fetchCount(FetchDescriptor<Habit>(predicate: #Predicate { $0.id == parent })) > 0 else { continue }
                 let activity = existing ?? Activity(habitID: data.habitID, amount: data.amount)
                 if existing == nil { activity.id = record.id; context.insert(activity) }
                 activity.habitID = data.habitID; activity.amount = data.amount; activity.timestamp = data.timestamp
