@@ -12,10 +12,10 @@ import Observation
     private var refreshing = false
     private var generation = UUID()
 
-    init(userID: UUID, api: AccountAPI) throws {
+    init(userID: UUID, api: AccountAPI, cacheURL: URL? = nil) throws {
         self.userID = userID; self.api = api
-        cacheURL = try AccountStoreLocation().directory(for: userID).appendingPathComponent("profile.json")
-        if let data = try? Data(contentsOf: cacheURL), let cached = try? AccountCoding.decoder().decode(AccountProfile.self, from: data) {
+        self.cacheURL = try cacheURL ?? AccountStoreLocation().directory(for: userID).appendingPathComponent("profile.json")
+        if let data = try? Data(contentsOf: self.cacheURL), let cached = try? AccountCoding.decoder().decode(AccountProfile.self, from: data) {
             value = cached
         }
     }

@@ -35,6 +35,13 @@ import GoogleSignIn
             if testing {
                 container = try ModelContainer(for: Habit.self, Activity.self,
                     configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+                #if DEBUG && targetEnvironment(simulator)
+                if ProcessInfo.processInfo.arguments.contains("--profile-fixture") {
+                    let fixture = try ProfileUITestFixture()
+                    user = fixture.user; scope = .account(fixture.user.id)
+                    profile = fixture.service
+                }
+                #endif
                 return
             }
             let storage = KeychainSessionStorage()

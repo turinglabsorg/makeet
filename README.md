@@ -100,3 +100,5 @@ Test permission setup is not a substitute for validating the real user consent s
 The Go service embeds a responsive pre-release website in `backend/internal/site/`, with Italian, English, French, German, and Spanish content. It uses system typography and a labeled screenshot of the native app. Support is available at [makeet.app/en/support](https://makeet.app/en/support). No sign-up or download button is shown before those services are ready.
 
 Privacy, terms and account deletion instructions are published in five languages. The controller identity is runtime-only and appears exclusively in the privacy notice; primary hosting is in Italy. Daily restricted SQLite backups rotate within 30 days and an isolated restore drill passed. Real account lifecycle verification remains a release requirement. Apple App Store Connect has a Makeet iOS record, version 1.0 in preparation; this does not mean the app has been submitted or approved.
+
+See [release readiness](docs/release-readiness.md) for the audited App Store preparation and remaining real-provider/device validation.

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01351ED47D45639A5CED7210 /* ProfileUITestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE102605ABA65839580BC5 /* ProfileUITestFixture.swift */; };
 		028B625D2593B68D0388AB19 /* DevicePushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54307EA0F7582984D4E75CB /* DevicePushService.swift */; };
 		06785B2325FF3E1CC3FD0937 /* DevicePushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54307EA0F7582984D4E75CB /* DevicePushService.swift */; };
 		08F823D3C1ACC8BF681B4460 /* GoogleSignIn-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22A42246CBFF0CA2BC76BC0C /* GoogleSignIn-LICENSE.txt */; };
@@ -108,6 +109,7 @@
 		DB75E18DDAD985DA9AC831CE /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
 		DE80855BC6F0858F7E07684A /* AccountSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA637E491A80C570F4A8E022 /* AccountSyncService.swift */; };
 		E0E6FF3E735D94A92498CB6B /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5930B98D9E60B07A35574CB4 /* GoogleSignIn */; };
+		E6CE511D06FA824E08023805 /* ProfileUITestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE102605ABA65839580BC5 /* ProfileUITestFixture.swift */; };
 		EA0112147AB371A401DFC32C /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
 		EAFE12CD98745B0A1DE5D346 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C1FE5B4CD4748D63459CFD /* NotificationService.swift */; };
 		EB3731670669E60AFD50D493 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7EC58729B9AAEDEC8E3CC /* AppLanguage.swift */; };
@@ -116,6 +118,7 @@
 		F5E7A0CA22B50BB98EC1832B /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565655381A18FD725549CD7 /* AccountManager.swift */; };
 		F931044D6ABED40DA3A5C688 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7EC58729B9AAEDEC8E3CC /* AppLanguage.swift */; };
 		FA804BDD6FA9E9D291C12ED0 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0A14A0070D7B714276612 /* AccountStore.swift */; };
+		FC8F91B5BF6E6A4FC92987D0 /* ProfileEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AA0469FF3BFBC4262ACF61 /* ProfileEditorUITests.swift */; };
 		FD870906C82EB7F6353F7B7F /* AccountSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5862C45C954D1F1334C025BE /* AccountSettingsSection.swift */; };
 		FF362787ECD22576802773FD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CDA211E3F74C49BB61B43A9 /* GoogleSignInSwift */; };
 		FF948AF63AC90CC0E9A02B11 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4604DEDED38E987C68739341 /* GoogleSignInSwift */; };
@@ -178,6 +181,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DEE102605ABA65839580BC5 /* ProfileUITestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUITestFixture.swift; sourceTree = "<group>"; };
 		1233EDE5EB4E5B5E75B8BB1A /* ArchiveHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveHost.swift; sourceTree = "<group>"; };
 		140A573FC39844A3208A74A9 /* AccountProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfile.swift; sourceTree = "<group>"; };
 		1EFC6BB9DD082214DD5D0010 /* MakeetMacWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MakeetMacWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +221,7 @@
 		B6838CA5C3F018FBED63B4EB /* ScheduleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEngine.swift; sourceTree = "<group>"; };
 		BA637E491A80C570F4A8E022 /* AccountSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSyncService.swift; sourceTree = "<group>"; };
 		C13A6599DBDC41E5938199A9 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		C1AA0469FF3BFBC4262ACF61 /* ProfileEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorUITests.swift; sourceTree = "<group>"; };
 		C7FEA19B6EFAB632F2280FC7 /* PhysicalAccountSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAccountSmokeTests.swift; sourceTree = "<group>"; };
 		CBC24D3C5892D0F984E6FFC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE16E79D0337524029F11416 /* HabitAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitAppearance.swift; sourceTree = "<group>"; };
@@ -315,6 +320,7 @@
 				3AC3438229D003EE9AF7A8B2 /* ProfileView.swift */,
 				5D19613A3934E9695BEBD056 /* TodayView.swift */,
 				A4FC9984242CC6634D72E864 /* TrendsView.swift */,
+				895147E5B838114F10DC743D /* Testing */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -330,11 +336,20 @@
 			path = CalendarTests;
 			sourceTree = "<group>";
 		};
+		895147E5B838114F10DC743D /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				0DEE102605ABA65839580BC5 /* ProfileUITestFixture.swift */,
+			);
+			path = Testing;
+			sourceTree = "<group>";
+		};
 		90546B561B6A18C14E11B2AD /* UITests */ = {
 			isa = PBXGroup;
 			children = (
 				9B8797C3234E26FD735807DC /* MakeetUITests.swift */,
 				C7FEA19B6EFAB632F2280FC7 /* PhysicalAccountSmokeTests.swift */,
+				C1AA0469FF3BFBC4262ACF61 /* ProfileEditorUITests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -634,6 +649,7 @@
 				78E35139819661C318EC2DEA /* OnboardingView.swift in Sources */,
 				A64933F55DA21C52051EEA7E /* PlannerView.swift in Sources */,
 				B39350AA4F4D6F9EB6D24A64 /* ProfileImage.swift in Sources */,
+				E6CE511D06FA824E08023805 /* ProfileUITestFixture.swift in Sources */,
 				330F30F025D57A0007F962BB /* ProfileView.swift in Sources */,
 				A6ADAD50750B48956698D3F8 /* PushProtocol.swift in Sources */,
 				745656F6F7D42075CA28EBAA /* ScheduleEngine.swift in Sources */,
@@ -651,6 +667,7 @@
 			files = (
 				71814DC5E846CBCCFB0C2008 /* MakeetUITests.swift in Sources */,
 				59ACF6135E38F47E96137DE4 /* PhysicalAccountSmokeTests.swift in Sources */,
+				FC8F91B5BF6E6A4FC92987D0 /* ProfileEditorUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +744,7 @@
 				A106D36F9DE6DF76DF7EE86E /* OnboardingView.swift in Sources */,
 				1616B8A0CDEED2B989E4127E /* PlannerView.swift in Sources */,
 				5B11E4B48004328A9EF9555A /* ProfileImage.swift in Sources */,
+				01351ED47D45639A5CED7210 /* ProfileUITestFixture.swift in Sources */,
 				C14D1DCB03608FE1E89205FB /* ProfileView.swift in Sources */,
 				3A2DD2C00491DD9C32D5228F /* PushProtocol.swift in Sources */,
 				17C3BBB04EB1D09145D7CAD8 /* ScheduleEngine.swift in Sources */,
@@ -836,7 +854,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -927,7 +945,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

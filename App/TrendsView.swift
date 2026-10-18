@@ -57,14 +57,16 @@ struct HabitDetailView: View {
     @State private var window = 28
     @State private var error: String?
     @State private var archiving = false
-    private var snapshots: [ActivitySnapshot] { activities.map(\.snapshot) }
-    private var stats: HabitStatistics { HabitEngine.statistics(for: habit.snapshot, activities: snapshots, window: window) }
     private var todayEntries: [Activity] {
         activities.filter { $0.habitID == habit.id && habit.snapshot.calendar.isDateInToday($0.timestamp) }
     }
     private var tint: Color { Palette.habit(habit.colorIndex) }
 
     var body: some View {
+        let snapshot = habit.snapshot
+        let snapshots = activities.map(\.snapshot)
+        let stats = HabitEngine.statistics(for: snapshot, activities: snapshots, window: window)
+        let continuity = window == 84 ? stats : HabitEngine.statistics(for: snapshot, activities: snapshots, window: 84)
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 if habit.archived {
@@ -84,7 +86,7 @@ struct HabitDetailView: View {
                 }
                 Picker(String(localized: "Periodo", bundle: AppLanguage.bundle, locale: AppLanguage.locale), selection: $window) {
                     Text(String(localized: "7 giorni", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).tag(7); Text(String(localized: "28 giorni", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).tag(28); Text(String(localized: "12 settimane", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).tag(84)
-                }.pickerStyle(.segmented)
+                }.pickerStyle(.segmented).accessibilityIdentifier("statisticsPeriod")
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 12) {
                     metric(stats.total.quantityText, label: String(localized: "\(habit.unit) totali", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     metric(stats.average.quantityText, label: String(localized: "media al giorno", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
@@ -109,7 +111,7 @@ struct HabitDetailView: View {
                 }.journalCard()
                 VStack(alignment: .leading, spacing: 16) {
                     Text(String(localized: "La tua continuità", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.headline)
-                    let days = HabitEngine.statistics(for: habit.snapshot, activities: snapshots, window: 84).days
+                    let days = continuity.days
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 5), count: 14), spacing: 5) {
                         ForEach(days) { day in
                             RoundedRectangle(cornerRadius: 4).fill(tint.opacity(day.quantity > 0 ? 0.2 + day.fraction * 0.8 : 0.07))
@@ -126,7 +128,7 @@ struct HabitDetailView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text(String(localized: "Quando trovi il tuo ritmo", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.headline)
                     Chart(0..<24, id: \.self) { hour in
-                        let count = activities.filter { $0.habitID == habit.id && $0.timestamp >= (stats.days.first?.date ?? Date()) && habit.snapshot.calendar.component(.hour, from: $0.timestamp) == hour }.count
+                        let count = stats.hourlyRegistrations[hour]
                         BarMark(x: .value(String(localized: "Ora", bundle: AppLanguage.bundle, locale: AppLanguage.locale), hour), y: .value(String(localized: "Registrazioni", bundle: AppLanguage.bundle, locale: AppLanguage.locale), count)).foregroundStyle(tint)
                     }.frame(height: 130)
                     Text(String(localized: "Registrazioni per ora, nel fuso \(habit.timeZoneID). Descrivono quando registri: non dimostrano quale orario funzioni meglio.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))

@@ -59,6 +59,7 @@ public struct HabitStatistics: Sendable {
     public let days: [DayProgress]
     public let currentStreak: Int
     public let longestStreak: Int
+    public let hourlyRegistrations: [Int]
     public var completedDays: Int { days.filter(\.completed).count }
     public var completionRate: Double { days.isEmpty ? 0 : Double(completedDays) / Double(days.count) }
     public var total: Double { days.reduce(0) { $0 + $1.quantity } }
@@ -85,8 +86,20 @@ public enum HabitEngine {
         let calendar = habit.calendar
         let today = calendar.startOfDay(for: now)
         let created = calendar.startOfDay(for: habit.createdAt)
+        let end = calendar.date(byAdding: .day, value: 1, to: today)!
+        let entries = activities.filter {
+            $0.habitID == habit.id && $0.timestamp >= created && $0.timestamp < end
+                && $0.amount.isFinite && $0.amount > 0
+        }
+        var totals: [Date: (quantity: Double, registrations: Int)] = [:]
+        for entry in entries {
+            let day = calendar.startOfDay(for: entry.timestamp)
+            let previous = totals[day, default: (0, 0)]
+            totals[day] = (previous.quantity + entry.amount, previous.registrations + 1)
+        }
         let allDays = days(from: created, through: today, calendar: calendar).map {
-            progress(for: habit, on: $0, activities: activities)
+            let total = totals[$0, default: (0, 0)]
+            return DayProgress(date: $0, quantity: total.quantity, target: habit.target, registrations: total.registrations)
         }
         var longest = 0
         var streak = 0
@@ -97,8 +110,14 @@ public enum HabitEngine {
         // An unfinished current day does not break yesterday's streak.
         let eligible = allDays.last?.completed == false ? allDays.dropLast() : allDays[...]
         let current = eligible.reversed().prefix(while: \.completed).count
-        return HabitStatistics(days: Array(allDays.suffix(max(1, window))),
-                               currentStreak: current, longestStreak: longest)
+        let visible = Array(allDays.suffix(max(1, window)))
+        var hourly = [Int](repeating: 0, count: 24)
+        if let start = visible.first?.date {
+            for entry in entries where entry.timestamp >= start {
+                hourly[calendar.component(.hour, from: entry.timestamp)] += 1
+            }
+        }
+        return HabitStatistics(days: visible, currentStreak: current, longestStreak: longest, hourlyRegistrations: hourly)
     }
 
     public static func days(from start: Date, through end: Date, calendar: Calendar) -> [Date] {

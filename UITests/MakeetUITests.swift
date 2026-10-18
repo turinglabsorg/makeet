@@ -1,6 +1,23 @@
 import XCTest
 
 final class MakeetUITests: XCTestCase {
+    @MainActor func testStatisticsPeriodChangesFromSevenDaysToTwelveWeeks() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--demo", "-AppleLanguages", "(it)"]
+        app.launch()
+        app.tabBars.buttons["Andamento"].tap()
+        app.staticTexts["Bere acqua"].tap()
+        let periods = app.segmentedControls["statisticsPeriod"]
+        XCTAssertTrue(periods.waitForExistence(timeout: 5))
+        for (label, days) in [("7 giorni", 7), ("28 giorni", 28), ("12 settimane", 84)] {
+            periods.buttons[label].tap()
+            XCTAssertTrue(periods.buttons[label].isSelected)
+            let summary = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "su \(days) osservati")).firstMatch
+            XCTAssertTrue(summary.waitForExistence(timeout: 5))
+        }
+        attach("Twelve-week statistics", app)
+    }
+
     @MainActor func testOnboardingRequiresExplicitStorageChoiceAndRemembersLocalMode() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--onboarding", "-AppleLanguages", "(it)"]

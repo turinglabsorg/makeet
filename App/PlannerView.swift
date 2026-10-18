@@ -159,10 +159,13 @@ struct ConnectionsView: View {
     @Environment(AccountManager.self) private var account
     let calendar: CalendarService
     @Environment(\.dismiss) private var dismiss
+    @State private var editingProfile = false
+    @State private var deletingAccount = false
+    @State private var importingArchive = false
     var body: some View {
         NavigationStack {
             Form {
-                AccountSettingsSection()
+                AccountSettingsSection(deleting: $deletingAccount, importing: $importingArchive, editingProfile: $editingProfile)
                 LanguageSettingsSection()
                 NotificationSettingsSection()
                 Section {
@@ -201,6 +204,17 @@ struct ConnectionsView: View {
                 .task { await account.start() }
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button(String(localized: "Fine", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { dismiss() } } }
         }
+        .sheet(isPresented: $editingProfile) {
+            if let profile = account.profile { ProfileEditorView(service: profile) }
+        }
+        .confirmationDialog(String(localized: "Eliminare l’account Makeet?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $deletingAccount, titleVisibility: .visible) {
+            Button(String(localized: "Elimina account e dati", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .destructive) { Task { await account.deleteAccount() } }
+            Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}
+        } message: { Text(String(localized: "Elimineremo dal servizio abitudini e attività e revocheremo l’accesso Apple. Questa operazione è definitiva.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
+        .confirmationDialog(String(localized: "Importare in questo account?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $importingArchive, titleVisibility: .visible) {
+            Button(String(localized: "Conferma importazione", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await account.importLocalArchive() } }
+            Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}
+        } message: { Text(String(localized: "Copia soltanto i progressi locali non dimostrativi nell’account attuale. L’archivio originale resta sul dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
         #if os(macOS)
         .frame(minWidth: 500, minHeight: 600)
         #endif

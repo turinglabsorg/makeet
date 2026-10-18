@@ -3,9 +3,9 @@ import SwiftUI
 
 struct AccountSettingsSection: View {
     @Environment(AccountManager.self) private var account
-    @State private var deleting = false
-    @State private var importing = false
-    @State private var editingProfile = false
+    @Binding var deleting: Bool
+    @Binding var importing: Bool
+    @Binding var editingProfile: Bool
 
     var body: some View {
         Section {
@@ -56,17 +56,6 @@ struct AccountSettingsSection: View {
         } header: { Text(String(localized: "Account Makeet", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
         footer: { Text(String(localized: "Ogni account ha un archivio separato. Accedere non carica automaticamente i dati locali o dimostrativi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
         .disabled(account.working)
-        .sheet(isPresented: $editingProfile) {
-            if let profile = account.profile { ProfileEditorView(service: profile) }
-        }
-        .confirmationDialog(String(localized: "Eliminare l’account Makeet?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $deleting, titleVisibility: .visible) {
-            Button(String(localized: "Elimina account e dati", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .destructive) { Task { await account.deleteAccount() } }
-            Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}
-        } message: { Text(String(localized: "Elimineremo dal servizio abitudini e attività e revocheremo l’accesso Apple. Questa operazione è definitiva.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
-        .confirmationDialog(String(localized: "Importare in questo account?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $importing, titleVisibility: .visible) {
-            Button(String(localized: "Conferma importazione", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await account.importLocalArchive() } }
-            Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}
-        } message: { Text(String(localized: "Copia soltanto i progressi locali non dimostrativi nell’account attuale. L’archivio originale resta sul dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
     }
 
     private func resolve(_ conflict: SyncConflict, keepLocal: Bool) {

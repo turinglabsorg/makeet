@@ -40,17 +40,18 @@ struct ProfileIdentityHeader: View {
 
 struct ProfileEditorView: View {
     let service: AccountProfileService
-    private let revision: Int64
+    @State private var revision: Int64
     @Environment(\.dismiss) private var dismiss
     @State private var name: String
     @State private var image: Data?
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var loading = false
     @State private var photoError: String?
+    @FocusState private var editingName: Bool
 
     init(service: AccountProfileService) {
         self.service = service
-        revision = service.value.revision
+        _revision = State(initialValue: service.value.revision)
         _name = State(initialValue: service.value.name)
         _image = State(initialValue: service.value.image)
     }
@@ -67,12 +68,13 @@ struct ProfileEditorView: View {
                         if loading { ProgressView() }
                         if image != nil {
                             Button(String(localized: "Rimuovi foto", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { image = nil; selectedPhoto = nil; loading = false }
-                                .font(.subheadline).frame(minHeight: 44)
+                                .font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("removeProfilePhoto")
                         }
                     }
                     VStack(alignment: .leading, spacing: 10) {
                         Text(String(localized: "Come ti chiami?", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.headline)
                         TextField(String(localized: "Il tuo nome", bundle: AppLanguage.bundle, locale: AppLanguage.locale), text: $name)
+                            .focused($editingName)
                             .textContentType(.name).textFieldStyle(.plain).padding(16)
                             .background(Palette.card, in: RoundedRectangle(cornerRadius: 14))
                             .accessibilityIdentifier("profileName")
@@ -88,6 +90,7 @@ struct ProfileEditorView: View {
                     ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { dismiss() } }
                     ToolbarItem(placement: .confirmationAction) {
                         Button(String(localized: "Salva", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
+                            editingName = false
                             Task { if await service.save(name: name, image: image, revision: revision) { dismiss() } }
                         }.fontWeight(.semibold).disabled(loading || service.saving).accessibilityIdentifier("saveProfile")
                     }
