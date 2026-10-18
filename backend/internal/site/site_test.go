@@ -62,7 +62,7 @@ func TestPublicSiteOverHTTP(t *testing.T) {
 	if res.StatusCode != 307 || res.Header.Get("Location") != "/fr/" {
 		t.Fatal("language redirect")
 	}
-	for _, asset := range []string{"style.css", "today.png", "icon.png"} {
+	for _, asset := range []string{"style.css", "today.png", "today-preview10.png", "icon.png"} {
 		res, err := client.Get(server.URL + "/assets/" + asset)
 		if err != nil {
 			t.Fatal(err)

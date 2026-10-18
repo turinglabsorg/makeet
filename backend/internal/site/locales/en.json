@@ -1,17 +1,17 @@
 {
   "Language": "English",
   "Description": "Habits, at your pace",
-  "Status": "In development for iPhone. Not yet available on the App Store.",
+  "Status": "iPhone preview in internal TestFlight testing. Not yet on the App Store.",
   "Eyebrow": "Small steps. Real progress.",
   "Headline": "Make it.\nEvery day.",
-  "Intro": "A little more reading. A moment to move. Make room for the habits that matter, one step at a time.",
+  "Intro": "Choose your days, count every small step and make room in your calendar. Habits that matter, at the pace of your life.",
   "Explore": "Take a closer look",
   "Support": "Support",
-  "Preview": "Development preview · illustrative habits · Italian interface",
+  "Preview": "iPhone preview · demo data · interface shown in Italian",
   "FeaturesTitle": "Built around your day",
-  "FeaturesIntro": "Every little bit\ncounts.",
-  "Future": "Next: a plan that adapts to your calendar, private account sync, and reminders when you need them. We are building it into Makeet.",
-  "Footer": "Habits, at your pace. For iOS, with Mac and widgets in development.",
+  "FeaturesIntro": "Your rhythm.\nRoom to change.",
+  "Future": "Start without an account: complete local tracking is free, with unlimited habits. If you choose Apple or Google, your profile stays private. Cross-device sync is being validated during the preview.",
+  "Footer": "Habits, at your pace. iPhone preview; Mac and widgets in development.",
   "Privacy": "Privacy",
   "Terms": "Terms",
   "Deletion": "Delete account",
@@ -26,29 +26,53 @@
   "Features": [
     {
       "Title": "More than a checkmark",
-      "Body": "Count glasses, pages, minutes or repetitions. Add what you did, correct an entry, and keep the full story of your day."
+      "Body": "Count glasses, pages, minutes or repetitions, several times a day and beyond your goal. Minus on the left, plus on the right: adjust a quantity and keep going."
     },
     {
-      "Title": "See your own pattern",
-      "Body": "Daily quantities, streaks and time-of-day charts help you see when a habit fits your life. Your progress deserves more than a yes or no."
+      "Title": "A week of your own",
+      "Body": "Monday, Tuesday and Thursday? Pick days for each habit, along with a goal, increment, icon or emoji. Rest days do not break your streak."
     },
     {
-      "Title": "Give your habits a face",
-      "Body": "Choose an icon or emoji, a color, a target and a step. Keep your most important habits close with interactive widgets."
+      "Title": "A history you can correct",
+      "Body": "Edit past-day quantities from the calendar, review and save. You can also change a habit, archive it, restore it or permanently delete it and its progress after confirmation."
+    },
+    {
+      "Title": "A plan that looks ahead",
+      "Body": "Plan today, 7, 14 or 28 days. Makeet suggests slots using your chosen days, preferred times, progress and commitments. Review and confirm before future events are created."
+    },
+    {
+      "Title": "Calendars, with your permission",
+      "Body": "Choose which device calendars to read and where to add Makeet blocks. Google Calendar works when configured on your device; events sync according to the calendar provider’s settings."
+    },
+    {
+      "Title": "See what works for you",
+      "Body": "Explore quantities, consistency, streaks and logging times. The monthly view gives you the full picture; statistics help you notice your patterns."
     }
   ],
   "Questions": [
     {
       "Title": "When can I download it?",
-      "Body": "Makeet is currently in development and being tested on iPhone. An App Store link will appear here when it is available."
+      "Body": "Makeet is in internal iPhone testing through TestFlight. A public App Store link will appear here when the app is available. The Mac version and widgets are in development and validation."
     },
     {
-      "Title": "Will it work with my calendar?",
-      "Body": "The development app can read the device calendars you select and add only events you confirm. Direct Google Calendar connection and account synchronization are being built."
+      "Title": "Do I need an account?",
+      "Body": "No. Guided onboarding lets you choose: keep progress only on your device, or sign in with Apple or Google. Your local archive is not uploaded automatically; importing it requires your choice."
     },
     {
-      "Title": "Which languages does it support?",
-      "Body": "The app and widgets support English, Italian, French, German and Spanish. Your own habit names stay exactly as you write them."
+      "Title": "How much will it cost?",
+      "Body": "Complete local use will stay free, with unlimited habits. Planned Makeet Plus pricing, for sync and advanced planning, is €1.99 per month or €11.99 per year. Subscriptions are not active during the preview."
+    },
+    {
+      "Title": "Does it work with Apple and Google Calendar?",
+      "Body": "Makeet uses calendars you configure and select on your device, including Apple and Google. Signing in with Google identifies your Makeet account; it does not connect Google Calendar by itself. Event details stay on your device. A direct Google Calendar connection is not yet available."
+    },
+    {
+      "Title": "Does it create events by itself?",
+      "Body": "Every plan needs your review and confirmation, including plans up to 28 days ahead. Makeet checks conflicts and duplicates again before saving. A calendar event never marks a habit as completed."
+    },
+    {
+      "Title": "Which languages are supported?",
+      "Body": "Italian, English, French, German and Spanish, with a language choice from the first onboarding screen. Habit names and units you write stay exactly as you enter them."
     }
   ],
   "Policy": {
@@ -139,6 +163,25 @@
         "Title": "If you cannot sign in",
         "Body": "Write to support@makeet.app requesting Makeet account deletion and identify the sign-in provider. Do not send passwords or tokens. Support may request a proportionate verification of ownership. Privacy rights and retention details are described in the privacy notice."
       }
+    ]
+  },
+  "Calendar": {
+    "Eyebrow": "Your days, together",
+    "Title": "A month,\nat a glance.",
+    "Body": "One heatmap brings all your habits together. Open a day to see quantities and events, or go back and correct what you logged.",
+    "Schedule": "Choose the days that suit you",
+    "Example": "Illustrative example · Mon, Tue and Thu selected",
+    "Month": "Your progress at a glance",
+    "Low": "Less",
+    "High": "More",
+    "Weekdays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
     ]
   }
 }

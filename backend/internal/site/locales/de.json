@@ -1,17 +1,17 @@
 {
   "Language": "Deutsch",
   "Description": "Gewohnheiten in deinem Tempo",
-  "Status": "In Entwicklung für iPhone. Noch nicht im App Store verfügbar.",
+  "Status": "iPhone-Vorschau im internen Test über TestFlight. Noch nicht im App Store.",
   "Eyebrow": "Kleine Schritte. Echte Fortschritte.",
   "Headline": "Schaffe Raum.\nJeden Tag.",
-  "Intro": "Ein paar Seiten mehr. Ein Moment für Bewegung. Schaffe Raum für die Gewohnheiten, die dir wichtig sind. Schritt für Schritt.",
+  "Intro": "Wähle deine Tage, zähle jeden kleinen Schritt und schaffe Platz im Kalender. Gewohnheiten, die zählen – im Rhythmus deines Lebens.",
   "Explore": "Makeet entdecken",
   "Support": "Support",
-  "Preview": "Entwicklungsvorschau · Beispielgewohnheiten · italienische Oberfläche",
+  "Preview": "iPhone-Vorschau · Beispieldaten · Oberfläche auf Italienisch",
   "FeaturesTitle": "Rund um deinen Tag",
-  "FeaturesIntro": "Jeder kleine\nSchritt zählt.",
-  "Future": "Als Nächstes: ein Plan, der sich deinem Kalender anpasst, private Synchronisierung zwischen Geräten und Erinnerungen zur richtigen Zeit. Daran arbeiten wir.",
-  "Footer": "Gewohnheiten in deinem Tempo. Für iOS, mit Mac und Widgets in Entwicklung.",
+  "FeaturesIntro": "Dein Rhythmus.\nRaum für Veränderung.",
+  "Future": "Starte ohne Konto: Die vollständige lokale Nutzung ist kostenlos, mit unbegrenzten Gewohnheiten. Mit Apple oder Google bleibt dein Profil privat. Die Synchronisierung zwischen Geräten wird während der Vorschau überprüft.",
+  "Footer": "Gewohnheiten in deinem Tempo. iPhone-Vorschau; Mac und Widgets in Entwicklung.",
   "Privacy": "Datenschutz",
   "Terms": "Bedingungen",
   "Deletion": "Konto löschen",
@@ -26,29 +26,53 @@
   "Features": [
     {
       "Title": "Mehr als ein Häkchen",
-      "Body": "Zähle Gläser, Seiten, Minuten oder Wiederholungen. Erfasse deine Aktivitäten, korrigiere einen Eintrag und behalte den Überblick über deinen Tag."
+      "Body": "Zähle Gläser, Seiten, Minuten oder Wiederholungen – mehrmals täglich und über dein Ziel hinaus. Minus links, Plus rechts: Passe Mengen an und bleib dabei."
     },
     {
-      "Title": "Erkenne dein Muster",
-      "Body": "Tagesmengen, Serien und die Verteilung nach Uhrzeit zeigen dir, wann eine Gewohnheit zu deinem Leben passt. Dein Fortschritt verdient mehr als ein Ja oder Nein."
+      "Title": "Deine eigene Woche",
+      "Body": "Montag, Dienstag und Donnerstag? Wähle für jede Gewohnheit die Tage, Ziel, Schrittweite, Symbol oder Emoji. Ruhetage unterbrechen deine Serie nicht."
     },
     {
-      "Title": "Deine Gewohnheiten, dein Stil",
-      "Body": "Wähle ein Symbol oder Emoji, eine Farbe, ein Ziel und eine Schrittweite. Mit interaktiven Widgets bleiben wichtige Gewohnheiten griffbereit."
+      "Title": "Ein Verlauf zum Korrigieren",
+      "Body": "Ändere Mengen vergangener Tage im Kalender, prüfe sie und speichere. Du kannst Gewohnheiten auch bearbeiten, archivieren, wiederherstellen oder nach Bestätigung samt Fortschritt endgültig löschen."
+    },
+    {
+      "Title": "Ein Plan mit Weitblick",
+      "Body": "Plane heute, 7, 14 oder 28 Tage. Makeet schlägt Zeitfenster anhand deiner Tage, bevorzugten Zeiten, Fortschritte und Termine vor. Prüfe und bestätige den Plan, bevor zukünftige Termine angelegt werden."
+    },
+    {
+      "Title": "Kalender mit deiner Erlaubnis",
+      "Body": "Wähle die Kalender auf deinem Gerät und das Ziel für Makeet-Zeitblöcke. Google Calendar funktioniert, wenn er auf dem Gerät eingerichtet ist; Termine werden gemäß den Einstellungen des Anbieters synchronisiert."
+    },
+    {
+      "Title": "Erkenne, was dir hilft",
+      "Body": "Entdecke Mengen, Beständigkeit, Serien und Erfassungszeiten. Die Monatsansicht zeigt das Gesamtbild; Statistiken helfen dir, deine Muster zu erkennen."
     }
   ],
   "Questions": [
     {
-      "Title": "Wann kann ich die App herunterladen?",
-      "Body": "Makeet ist in Entwicklung und wird auf dem iPhone getestet. Sobald die App verfügbar ist, erscheint hier ein App-Store-Link."
+      "Title": "Wann kann ich die App laden?",
+      "Body": "Makeet wird intern auf dem iPhone über TestFlight getestet. Der öffentliche App-Store-Link erscheint hier, sobald die App verfügbar ist. Die Mac-Version und Widgets werden entwickelt und überprüft."
     },
     {
-      "Title": "Funktioniert sie mit meinem Kalender?",
-      "Body": "Die Entwicklungsversion liest die ausgewählten Gerätekalender und fügt nur bestätigte Termine hinzu. Die direkte Google-Calendar-Verbindung und Kontosynchronisierung sind in Arbeit."
+      "Title": "Brauche ich ein Konto?",
+      "Body": "Nein. Die Einführung führt dich durch die Wahl: Fortschritte nur auf dem Gerät behalten oder mit Apple oder Google anmelden. Dein lokales Archiv wird nicht automatisch hochgeladen; der Import erfordert deine Entscheidung."
     },
     {
-      "Title": "Welche Sprachen werden unterstützt?",
-      "Body": "App und Widgets unterstützen Deutsch, Englisch, Italienisch, Französisch und Spanisch. Die Namen deiner Gewohnheiten bleiben so, wie du sie schreibst."
+      "Title": "Was wird Makeet kosten?",
+      "Body": "Die vollständige lokale Nutzung bleibt kostenlos, ohne Begrenzung der Gewohnheiten. Für Makeet Plus mit Synchronisierung und erweiterter Planung sind 1,99 € monatlich oder 11,99 € jährlich vorgesehen. Während der Vorschau sind Abonnements nicht aktiv."
+    },
+    {
+      "Title": "Funktioniert es mit Apple und Google Calendar?",
+      "Body": "Makeet verwendet Kalender, die du auf dem Gerät einrichtest und auswählst, einschließlich Apple und Google. Die Google-Anmeldung dient deinem Makeet-Konto und verbindet Google Calendar nicht automatisch. Termindetails bleiben auf dem Gerät. Eine direkte Verbindung zu Google Calendar ist noch nicht verfügbar."
+    },
+    {
+      "Title": "Erstellt Makeet selbstständig Termine?",
+      "Body": "Jeder Plan muss geprüft und bestätigt werden, auch bis zu 28 Tage im Voraus. Makeet prüft Konflikte und Duplikate vor dem Speichern erneut. Ein Kalendereintrag markiert eine Gewohnheit niemals als erledigt."
+    },
+    {
+      "Title": "Welche Sprachen gibt es?",
+      "Body": "Italienisch, Englisch, Französisch, Deutsch und Spanisch, mit Sprachauswahl ab der ersten Einführungsseite. Namen und Einheiten deiner Gewohnheiten bleiben unverändert."
     }
   ],
   "Policy": {
@@ -139,6 +163,25 @@
         "Title": "Ohne Kontozugriff",
         "Body": "Bitte support@makeet.app um Kontolöschung und nenne den Anmeldeanbieter. Sende keine Passwörter oder Token. Eine angemessene Eigentumsprüfung kann erforderlich sein. Rechte und Speicherdauer stehen in den Datenschutzhinweisen."
       }
+    ]
+  },
+  "Calendar": {
+    "Eyebrow": "Deine Tage im Überblick",
+    "Title": "Ein Monat.\nEin Blick.",
+    "Body": "Eine Heatmap zeigt den Fortschritt aller Gewohnheiten. Öffne einen Tag für Mengen und Termine oder gehe zurück, um Einträge zu korrigieren.",
+    "Schedule": "Wähle die Tage, die zu dir passen",
+    "Example": "Illustratives Beispiel · Mo, Di und Do ausgewählt",
+    "Month": "Dein Fortschritt im Überblick",
+    "Low": "Weniger",
+    "High": "Mehr",
+    "Weekdays": [
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa",
+      "So"
     ]
   }
 }

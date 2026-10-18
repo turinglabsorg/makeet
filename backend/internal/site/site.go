@@ -17,12 +17,17 @@ type Section struct {
 	Title string
 	Body  string
 }
+type CalendarCopy struct {
+	Eyebrow, Title, Body, Schedule, Example, Month, Low, High string
+	Weekdays                                                  []string
+}
 type Copy struct {
 	Language, Description, Status, Eyebrow, Headline, Intro, Explore, Support, Preview, FeaturesTitle, FeaturesIntro, Future, Footer, Privacy, Terms, Deletion, Back, Email, SupportBody, LegalStatus, LegalBody, NotFound, NotFoundBody string
 	Features                                                                                                                                                                                                                             []Section
 	Questions                                                                                                                                                                                                                            []Section
 	FAQ                                                                                                                                                                                                                                  string
 	Policy                                                                                                                                                                                                                               LegalCopy
+	Calendar                                                                                                                                                                                                                             CalendarCopy
 }
 type page struct {
 	Copy
@@ -40,6 +45,8 @@ func WithConfig(cfg Config) http.Handler {
 		return []map[string]string{{"Code": "it", "Name": "Italiano"}, {"Code": "en", "Name": "English"}, {"Code": "fr", "Name": "Français"}, {"Code": "de", "Name": "Deutsch"}, {"Code": "es", "Name": "Español"}}
 	}, "marks": func() []int {
 		return []int{1, 2, 2, 0, 3, 2, 3, 3, 1, 3, 2, 3, 3, 2, 0, 1, 2, 2, 3, 1, 3, 2, 2, 3, 1, 3, 3, 2, 1, 2, 3, 3, 2, 3, 2, 3, 3, 1, 3, 2, 3, 3}
+	}, "month": func() []int {
+		return []int{1, 2, 0, 3, 2, 1, 3, 3, 2, 1, 3, 2, 3, 3, 2, 3, 1, 2, 3, 2, 3, 3, 2, 3, 3, 1, 3, 3}
 	}}).ParseFS(files, "templates/page.html"))
 	translations := map[string]Copy{}
 	for _, lang := range []string{"it", "en", "fr", "de", "es"} {

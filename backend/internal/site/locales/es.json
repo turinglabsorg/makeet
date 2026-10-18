@@ -1,17 +1,17 @@
 {
   "Language": "Español",
   "Description": "Hábitos a tu ritmo",
-  "Status": "En desarrollo para iPhone. Aún no disponible en el App Store.",
+  "Status": "Vista previa para iPhone en pruebas internas con TestFlight. Aún no está en el App Store.",
   "Eyebrow": "Pequeños pasos. Progreso real.",
   "Headline": "Haz espacio.\nCada día.",
-  "Intro": "Unas páginas más. Un momento para moverte. Haz espacio para los hábitos que importan, paso a paso.",
+  "Intro": "Elige tus días, cuenta cada pequeño paso y encuentra espacio en el calendario. Los hábitos que importan, al ritmo de tu vida.",
   "Explore": "Descubre Makeet",
   "Support": "Soporte",
-  "Preview": "Vista previa de desarrollo · hábitos de ejemplo · interfaz en italiano",
+  "Preview": "Vista previa para iPhone · datos de demostración · interfaz en italiano",
   "FeaturesTitle": "Alrededor de tu día",
-  "FeaturesIntro": "Cada pequeño\npaso cuenta.",
-  "Future": "Lo próximo: un plan que se adapta a tu calendario, sincronización privada entre dispositivos y recordatorios en el momento adecuado. Estamos trabajando en ello.",
-  "Footer": "Hábitos a tu ritmo. Para iOS, con Mac y widgets en desarrollo.",
+  "FeaturesIntro": "Tu ritmo.\nTambién cuando cambia.",
+  "Future": "Empieza sin cuenta: el seguimiento local completo es gratis, sin límite de hábitos. Si eliges Apple o Google, tu perfil sigue siendo privado. La sincronización entre dispositivos se está validando durante la vista previa.",
+  "Footer": "Hábitos, a tu ritmo. Vista previa para iPhone; Mac y widgets en desarrollo.",
   "Privacy": "Privacidad",
   "Terms": "Condiciones",
   "Deletion": "Eliminar cuenta",
@@ -25,30 +25,54 @@
   "FAQ": "Algunas respuestas",
   "Features": [
     {
-      "Title": "Más que una casilla marcada",
-      "Body": "Cuenta vasos, páginas, minutos o repeticiones. Añade lo que has hecho, corrige un registro y conserva la historia de tu día."
+      "Title": "Más que una marca",
+      "Body": "Cuenta vasos, páginas, minutos o repeticiones, varias veces al día e incluso por encima de tu objetivo. Menos a la izquierda, más a la derecha: ajusta una cantidad y sigue adelante."
     },
     {
-      "Title": "Encuentra tu propio ritmo",
-      "Body": "Las cantidades diarias, las rachas y la distribución horaria te ayudan a ver cuándo encaja un hábito en tu vida. Tu progreso merece más que un sí o un no."
+      "Title": "Una semana a tu medida",
+      "Body": "¿Lunes, martes y jueves? Elige los días de cada hábito, con objetivo, incremento, icono o emoji. Los días de descanso no rompen tu racha."
     },
     {
-      "Title": "Dale personalidad a tus hábitos",
-      "Body": "Elige un icono o emoji, un color, un objetivo y un incremento. Ten a mano tus hábitos más importantes con widgets interactivos."
+      "Title": "Un historial que puedes corregir",
+      "Body": "Edita las cantidades de días anteriores desde el calendario, revisa y guarda. También puedes modificar un hábito, archivarlo, restaurarlo o eliminarlo definitivamente con su progreso, tras confirmar."
+    },
+    {
+      "Title": "Un plan que mira adelante",
+      "Body": "Planifica hoy, 7, 14 o 28 días. Makeet propone huecos según tus días, horarios preferidos, progreso y compromisos. Revisa y confirma antes de crear eventos futuros."
+    },
+    {
+      "Title": "Calendarios, con tu permiso",
+      "Body": "Elige los calendarios del dispositivo que consultar y dónde añadir los bloques de Makeet. Google Calendar funciona si está configurado en el dispositivo; los eventos se sincronizan según los ajustes del proveedor."
+    },
+    {
+      "Title": "Descubre qué te funciona",
+      "Body": "Explora cantidades, constancia, rachas y horas de registro. La vista mensual te da una visión completa; las estadísticas te ayudan a reconocer tus ritmos."
     }
   ],
   "Questions": [
     {
-      "Title": "¿Cuándo podré descargarla?",
-      "Body": "Makeet está en desarrollo y se está probando en iPhone. El enlace al App Store aparecerá aquí cuando esté disponible."
+      "Title": "¿Cuándo puedo descargarla?",
+      "Body": "Makeet está en pruebas internas para iPhone a través de TestFlight. El enlace público al App Store aparecerá aquí cuando esté disponible. La versión para Mac y los widgets están en desarrollo y validación."
     },
     {
-      "Title": "¿Funcionará con mi calendario?",
-      "Body": "La versión de desarrollo lee los calendarios del dispositivo que elijas y añade solo los eventos que confirmes. La conexión directa con Google Calendar y la sincronización de la cuenta están en desarrollo."
+      "Title": "¿Necesito una cuenta?",
+      "Body": "No. La bienvenida te guía para elegir: guardar el progreso solo en el dispositivo o acceder con Apple o Google. Tu archivo local no se sube automáticamente; importarlo requiere tu decisión."
+    },
+    {
+      "Title": "¿Cuánto costará?",
+      "Body": "El uso local completo seguirá siendo gratis, sin límite de hábitos. El precio previsto de Makeet Plus, con sincronización y planificación avanzada, es de 1,99 € al mes o 11,99 € al año. Las suscripciones no están activas durante la vista previa."
+    },
+    {
+      "Title": "¿Funciona con Apple y Google Calendar?",
+      "Body": "Makeet usa los calendarios que configuras y seleccionas en el dispositivo, incluidos Apple y Google. Acceder con Google identifica tu cuenta Makeet, pero no conecta Google Calendar por sí solo. Los detalles de los eventos se quedan en el dispositivo. La conexión directa con Google Calendar aún no está disponible."
+    },
+    {
+      "Title": "¿Crea eventos por su cuenta?",
+      "Body": "Cada plan requiere tu revisión y confirmación, incluso hasta 28 días por adelantado. Makeet comprueba de nuevo conflictos y duplicados antes de guardar. Un evento del calendario nunca marca un hábito como completado."
     },
     {
       "Title": "¿Qué idiomas admite?",
-      "Body": "La app y los widgets admiten español, inglés, italiano, francés y alemán. Los nombres de tus hábitos se conservan tal como los escribes."
+      "Body": "Italiano, inglés, francés, alemán y español, con selección de idioma desde la primera pantalla de bienvenida. Los nombres y las unidades que escribes para tus hábitos se mantienen tal cual."
     }
   ],
   "Policy": {
@@ -139,6 +163,25 @@
         "Title": "Sin acceso a la cuenta",
         "Body": "Escribe a support@makeet.app solicitando la eliminación e indicando el proveedor de acceso. No envíes contraseñas ni tokens. Soporte puede pedir verificación proporcionada de titularidad. Los derechos y plazos están en el aviso de privacidad."
       }
+    ]
+  },
+  "Calendar": {
+    "Eyebrow": "Tus días, juntos",
+    "Title": "Un mes,\nde un vistazo.",
+    "Body": "Un mapa de intensidad reúne el progreso de todos tus hábitos. Abre un día para ver cantidades y eventos, o vuelve atrás para corregir lo que registraste.",
+    "Schedule": "Elige los días que van contigo",
+    "Example": "Ejemplo ilustrativo · lun., mar. y jue. seleccionados",
+    "Month": "Tu progreso de un vistazo",
+    "Low": "Menos",
+    "High": "Más",
+    "Weekdays": [
+      "lun.",
+      "mar.",
+      "mié.",
+      "jue.",
+      "vie.",
+      "sáb.",
+      "dom."
     ]
   }
 }
