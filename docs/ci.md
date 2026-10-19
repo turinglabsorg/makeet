@@ -12,6 +12,10 @@ The checked-in Xcode project and pinned Swift package resolution are the cloud b
 
 `TestFlight/WhatToTest.<locale>.txt` supplies tester notes in Italian, English, French, German and Spanish through Apple's native Xcode Cloud import. Keep these focused on current changes, device checks and truthful integration boundaries.
 
+## GitHub simulator tests
+
+`.github/workflows/simulator-tests.yml` runs the complete required `Makeet` scheme on every push to a branch other than `main`, on GitHub's `xcode-27` image with a freshly booted iOS 27.0 iPhone Simulator. Targets are signed ad hoc for the Simulator, so App Group entitlements are present without a development team. The result bundle and the exported XCTest screenshot attachments are uploaded as the `simulator-tests` artifact for 14 days. Use it to runtime-verify branch changes and review their screens before merging; Xcode Cloud on `main` remains the distribution gate. Physical-only and calendar-permission tests keep their guards.
+
 ## Distribution workflow
 
 The configured iOS product is `org.turinglabs.makeet`, using `turinglabsorg/makeet`. Xcode 27 is pinned, with a required test action on an iPhone 16 Pro Simulator running iOS 27.0 and an App Store Connect archive action. Internal TestFlight distribution uses the archive only after the required actions succeed. The archive uses automatic Apple-managed signing. Xcode Cloud manages monotonically increasing build numbers; its next number must exceed any existing uploaded build for the same version.

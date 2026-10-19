@@ -33,11 +33,9 @@ final class SubscriptionTests: XCTestCase {
         XCTAssertEqual(Set(store.products.map(\.id)), SubscriptionStore.identifiers)
         let monthly = try XCTUnwrap(store.products.first { $0.id == SubscriptionStore.monthly })
         XCTAssertFalse(store.hasPlus)
-        XCTAssertFalse(store.canPlan(publicBillingRequired: false))
         NSLog("Makeet StoreKit test: purchase")
         await store.purchase(monthly)
         XCTAssertTrue(store.hasPlus); XCTAssertGreaterThan(accepted, 0)
-        XCTAssertTrue(store.canPlan(publicBillingRequired: true))
         let other = SubscriptionStore(userID: UUID(), submit: { _ in XCTFail("Cross-account purchase submitted"); return AccountEntitlement(billingEnabled: true, active: true) }, fetch: { AccountEntitlement(billingEnabled: true, active: false) })
         await other.load(); XCTAssertFalse(other.hasPlus); other.stop()
         NSLog("Makeet StoreKit test: restore")
@@ -66,15 +64,15 @@ final class SubscriptionTests: XCTestCase {
         store.stop(); XCTAssertFalse(store.hasPlus)
         #endif
     }
-    @MainActor func testPerAccountPreviewPolicyControlsPlanningWithoutPurchase() async {
+    @MainActor func testPerAccountPreviewPolicyNeverPurchases() async {
         let store = SubscriptionStore(userID: UUID(), submit: { _ in
             XCTFail("Free preview must not submit a transaction")
             return AccountEntitlement(billingEnabled: false, active: false)
         }, fetch: { AccountEntitlement(billingEnabled: false, active: false) })
         defer { store.stop() }
-        XCTAssertFalse(store.canPlan(publicBillingRequired: true))
+        XCTAssertNil(store.entitlement)
         await store.load()
-        XCTAssertTrue(store.canPlan(publicBillingRequired: true))
+        XCTAssertEqual(store.entitlement?.billingEnabled, false)
         XCTAssertFalse(store.hasPlus)
         XCTAssertTrue(store.products.isEmpty)
     }
@@ -105,6 +103,11 @@ final class SubscriptionTests: XCTestCase {
         try await session.setSimulatedError(nil, forAPI: .purchase)
         session.askToBuyEnabled = true
         await store.purchase(product); XCTAssertFalse(store.hasPlus); XCTAssertNotNil(store.message)
+        store.stop()
+        let pending = session.allTransactions().filter(\.pendingAskToBuyConfirmation)
+        XCTAssertFalse(pending.isEmpty)
+        for transaction in pending { try session.declineAskToBuyTransaction(identifier: transaction.identifier) }
+        session.askToBuyEnabled = false
         #endif
     }
     @MainActor private func isolatedSession() async throws -> SKTestSession {

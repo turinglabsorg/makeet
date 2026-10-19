@@ -60,7 +60,7 @@
     },
     {
       "Title": "Quel sera le prix ?",
-      "Body": "L’usage local complet restera gratuit, sans limite d’habitudes. Le tarif prévu de Makeet Plus, pour la synchronisation et la planification avancée, est de 1,99 € par mois ou 11,99 € par an. Les abonnements ne sont pas actifs pendant l’aperçu."
+      "Body": "L’usage local complet, planification comprise, restera gratuit, sans limite d’habitudes. Le tarif prévu de Makeet Plus, pour la synchronisation entre appareils, est de 1,99 € par mois ou 11,99 € par an. Les abonnements ne sont pas actifs pendant l’aperçu."
     },
     {
       "Title": "Est-ce compatible avec Apple et Google Calendar ?",
@@ -130,7 +130,7 @@
       },
       {
         "Title": "Utilisation locale et Makeet Plus",
-        "Body": "Le suivi local d’habitudes illimitées, les quantités, l’historique et les statistiques sont gratuits. Makeet Plus ajoute la synchronisation privée du compte et la planification avancée. Le tarif approuvé pour l’Italie est de 1,99 € par mois ou 11,99 € par an, payés intégralement pour la période choisie. L’App Store affiche le prix, la devise et la période applicables avant confirmation. Pendant l’aperçu TestFlight interne, les achats publics restent désactivés ; ce site ne vend pas d’abonnements."
+        "Body": "Le suivi local d’habitudes illimitées, les quantités, l’historique, les statistiques et la planification dans le calendrier sont gratuits. Makeet Plus ajoute la synchronisation privée du compte entre vos appareils. Le tarif approuvé pour l’Italie est de 1,99 € par mois ou 11,99 € par an, payés intégralement pour la période choisie. L’App Store affiche le prix, la devise et la période applicables avant confirmation. Pendant l’aperçu TestFlight interne, les achats publics restent désactivés ; ce site ne vend pas d’abonnements."
       },
       {
         "Title": "Renouvellement, résiliation et restauration",

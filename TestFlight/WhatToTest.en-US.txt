@@ -1,4 +1,4 @@
-Monthly calendar heatmap, past-day progress corrections and weekday selection when creating/editing habits are included together.
+Makeet 1.0: habits, statistics, calendar and planning are free on your device. Makeet Plus only adds private sync across your devices. Planning is always available, even without an account.
 
 Edit or permanently delete a habit from its detail screen. Deletion requires confirmation, with optional cleanup of future Makeet blocks in writable calendars.
 

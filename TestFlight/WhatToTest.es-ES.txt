@@ -1,4 +1,4 @@
-Calendario mensual con mapa de intensidad, corrección de días anteriores y selección de días de la semana al crear/editar hábitos.
+Makeet 1.0: hábitos, estadísticas, calendario y planificación son gratis en tu dispositivo. Makeet Plus solo añade la sincronización privada entre tus dispositivos. La planificación siempre está disponible, incluso sin cuenta.
 
 Edita o elimina definitivamente un hábito desde su detalle. La eliminación requiere confirmación y permite quitar los futuros bloques de Makeet de los calendarios editables.
 

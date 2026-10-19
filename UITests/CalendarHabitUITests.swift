@@ -146,10 +146,10 @@ extension CalendarHabitUITests {
         app.buttons["plusDone"].tap()
         let export = app.buttons["exportData"];reveal(export,in:app);export.tap()
         let saveExport = app.buttons["DOCPicker.actionButton"]
-        XCTAssertTrue(saveExport.waitForExistence(timeout:5))
+        XCTAssertTrue(saveExport.waitForExistence(timeout:30))
         attach("System exporter ready to save",app)
         saveExport.tap()
-        XCTAssertTrue(saveExport.waitForNonExistence(timeout:5))
+        XCTAssertTrue(saveExport.waitForNonExistence(timeout:15))
         XCTAssertTrue(app.buttons["exportData"].waitForExistence(timeout:5))
         app.buttons["Fine"].tap()
         XCTAssertTrue(app.buttons["increment-Bere acqua"].exists)
@@ -181,22 +181,23 @@ extension CalendarHabitUITests {
 
 
 extension CalendarHabitUITests {
-    @MainActor func testUnknownBillingStateProtectsPlanningAndKeepsLocalTrackingFree() {
+    @MainActor func testPlanningAndLocalTrackingStayFreeWithoutPlus() {
         let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing", "--demo", "--billing-state-unknown", "-AppleLanguages", "(it)", "-AppleLocale", "it_IT"]
+        app.launchArguments = ["--ui-testing", "--demo", "-AppleLanguages", "(it)", "-AppleLocale", "it_IT"]
         app.launch()
         XCTAssertTrue(app.staticTexts["4 / 8 bicchieri"].waitForExistence(timeout: 5))
         app.buttons["increment-Bere acqua"].tap()
         XCTAssertTrue(app.staticTexts["5 / 8 bicchieri"].exists)
         app.tabBars.buttons["Il tuo piano"].tap()
-        XCTAssertTrue(app.staticTexts["Makeet Plus"].waitForExistence(timeout: 5))
-        XCTAssertFalse(app.segmentedControls["planningHorizon"].exists)
+        XCTAssertTrue(app.segmentedControls["planningHorizon"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.staticTexts["Makeet Plus"].exists)
+        attach("Planning is available without Plus", app)
         app.tabBars.buttons["Calendario"].tap()
         XCTAssertTrue(app.buttons["calendar-day-1"].waitForExistence(timeout: 5))
         app.tabBars.buttons["Oggi"].tap()
         XCTAssertTrue(app.staticTexts["5 / 8 bicchieri"].waitForExistence(timeout: 5))
         app.buttons["decrement-Bere acqua"].tap()
         XCTAssertTrue(app.staticTexts["4 / 8 bicchieri"].exists)
-        attach("Unknown billing preserves free local tracking", app)
+        attach("Local tracking stays free", app)
     }
 }

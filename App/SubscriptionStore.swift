@@ -17,10 +17,6 @@ import StoreKit
     private let fetch: () async throws -> AccountEntitlement
     var hasPlus: Bool { entitlement?.active == true && (entitlement?.expiresAt ?? 0) > Int64(Date().timeIntervalSince1970) }
 
-    func canPlan(publicBillingRequired: Bool) -> Bool {
-        !(entitlement?.billingEnabled ?? publicBillingRequired) || hasPlus
-    }
-
     init(userID: UUID, api: AccountAPI) {
         self.userID = userID
         submit = { try await api.submitTransaction($0, userID: userID) }

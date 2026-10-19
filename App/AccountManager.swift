@@ -18,8 +18,6 @@ import GoogleSignIn
     private(set) var working = false
     private(set) var checkingService = false
     private(set) var requestedPurchaseID: String?
-    private(set) var billingRequired = true
-    var canPlan: Bool { subscription?.canPlan(publicBillingRequired: billingRequired) ?? !billingRequired }
     private(set) var startupError: String?
     var message: String?
     private var api: AccountAPI?
@@ -35,15 +33,8 @@ import GoogleSignIn
 
     init() {
         testing = ProcessInfo.processInfo.arguments.contains("--ui-testing")
-        var unknownBillingFixture = false
-        #if DEBUG && targetEnvironment(simulator)
-        unknownBillingFixture = testing && ProcessInfo.processInfo.arguments.contains("--billing-state-unknown")
-        if unknownBillingFixture { UserDefaults.standard.removeObject(forKey: "publicBillingRequired") }
-        #endif
-        billingRequired = AppLanguage.defaults.object(forKey: "publicBillingRequired") as? Bool ?? true
         do {
             if testing {
-                if !unknownBillingFixture { billingRequired = false }
                 container = try ModelContainer(for: Habit.self, Activity.self,
                     configurations: ModelConfiguration(isStoredInMemoryOnly: true))
                 #if DEBUG && targetEnvironment(simulator)
@@ -81,8 +72,6 @@ import GoogleSignIn
         do {
             message = nil
             providers = try await api.providers()
-            billingRequired = try await api.billingEnabled()
-            AppLanguage.defaults.set(billingRequired, forKey: "publicBillingRequired")
             await refreshAppleChallenge()
         } catch { message = String(localized: "Connessione al servizio non disponibile. Puoi continuare sul dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
         await subscription?.load()
