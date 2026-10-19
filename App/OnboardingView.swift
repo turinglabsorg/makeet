@@ -108,7 +108,7 @@ struct OnboardingView: View {
                     .foregroundStyle(Palette.ink.opacity(0.72))
             }
             choice(.account, title: String(localized: "Con un account", bundle: AppLanguage.bundle, locale: AppLanguage.locale),
-                   body: String(localized: "Il tuo archivio privato, sincronizzato con Makeet Plus. Accedi con Apple o Google.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "person.crop.circle.fill")
+                   body: String(localized: "Il tuo archivio privato, sincronizzato gratuitamente. Accedi con Apple o Google.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "person.crop.circle.fill")
             choice(.local, title: String(localized: "Solo su questo dispositivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale),
                    body: String(localized: "Nessuna registrazione. I progressi restano qui: potrai accedere quando vuoi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "iphone")
             Text(storage == .local

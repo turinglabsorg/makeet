@@ -10,7 +10,7 @@
   "Preview": "Aperçu iPhone · données de démonstration · interface en italien",
   "FeaturesTitle": "Autour de votre journée",
   "FeaturesIntro": "Votre rythme.\nMême quand il change.",
-  "Future": "Commencez sans compte : le suivi local complet est gratuit, sans limite d’habitudes. Avec Apple ou Google, votre profil reste privé. La synchronisation entre appareils est en cours de validation pendant l’aperçu.",
+  "Future": "Makeet est gratuit : habitudes illimitées, statistiques, planification et synchronisation privée entre appareils. Sans abonnement ni achat intégré. Gardez vos données sur l’appareil ou connectez-vous avec Apple ou Google.",
   "Footer": "Des habitudes à votre rythme. Aperçu iPhone ; Mac et widgets en développement.",
   "Privacy": "Confidentialité",
   "Terms": "Conditions",
@@ -27,6 +27,10 @@
     {
       "Title": "Plus qu’une case cochée",
       "Body": "Comptez verres, pages, minutes ou répétitions, plusieurs fois par jour et au-delà de votre objectif. Moins à gauche, plus à droite : ajustez une quantité et poursuivez."
+    },
+    {
+      "Title": "Des objectifs à atteindre ou des limites à respecter",
+      "Body": "Choisissez un objectif à atteindre ou une limite à ne pas dépasser, même zéro. Les occurrences au-delà comptent comme malus. Confirmez zéro pour distinguer une journée sans occurrence d’une journée non renseignée. Si vous activez cette option, moins peut faire passer le solde sous zéro ; historique et statistiques conservent le signe."
     },
     {
       "Title": "Une semaine à votre image",
@@ -59,8 +63,8 @@
       "Body": "Non. L’accueil guidé vous laisse choisir : garder les progrès uniquement sur l’appareil ou vous connecter avec Apple ou Google. Votre archive locale n’est pas envoyée automatiquement ; son importation exige votre choix."
     },
     {
-      "Title": "Quel sera le prix ?",
-      "Body": "L’usage local complet, planification comprise, restera gratuit, sans limite d’habitudes. Le tarif prévu de Makeet Plus, pour la synchronisation entre appareils, est de 1,99 € par mois ou 11,99 € par an. Les abonnements ne sont pas actifs pendant l’aperçu."
+      "Title": "Est-ce gratuit ?",
+      "Body": "Makeet est gratuit : habitudes illimitées, statistiques, planification et synchronisation privée entre appareils. Sans abonnement ni achat intégré. Gardez vos données sur l’appareil ou connectez-vous avec Apple ou Google."
     },
     {
       "Title": "Est-ce compatible avec Apple et Google Calendar ?",
@@ -76,7 +80,7 @@
     }
   ],
   "Policy": {
-    "Updated": "Mise à jour le 18 octobre 2026",
+    "Updated": "Dernière mise à jour : 19 octobre 2026",
     "PrivacyIntro": "Cette notice décrit les données traitées par l’app Makeet, le service de compte, le site et l’assistance. Pendant le développement, les comptes sont activés après les vérifications du service. L’archive locale fonctionne sans compte.",
     "ControllerTitle": "Responsable du traitement",
     "HostingTitle": "Pays du serveur principal des comptes",
@@ -92,10 +96,6 @@
       {
         "Title": "Notifications",
         "Body": "Les notifications nécessitent l’autorisation de l’appareil. Avec un compte, le service conserve un identifiant d’installation, un jeton push Apple chiffré, la langue, le fuseau et l’heure facultative du rappel. Il utilise la progression synchronisée pour décider si un rappel quotidien est nécessaire. Les alertes sont génériques, sans noms ni quantités d’habitudes. Les tentatives, l’acceptation par Apple et la réception lorsque l’app voit la notification ou que vous l’ouvrez sont enregistrées. Désactivez les rappels dans l’app ou les notifications dans les réglages de l’appareil."
-      },
-      {
-        "Title": "Achats sur l’App Store",
-        "Body": "Lorsque vous achetez ou restaurez Makeet Plus, Apple traite le paiement. Le service vérifie les transactions et notifications d’abonnement signées par Apple et conserve les identifiants de transaction et d’achat initial, le produit, l’environnement, l’expiration et l’état de révocation, liés à l’identifiant de votre compte Makeet. Nous utilisons ces données pour fournir l’abonnement et empêcher un compte de revendiquer l’achat d’un autre. Nous ne recevons pas vos coordonnées de carte ou de compte bancaire."
       },
       {
         "Title": "Bases juridiques et choix",
@@ -129,12 +129,8 @@
         "Body": "L’archive locale fonctionne sans connexion. La synchronisation privée nécessite Apple ou Google. Protégez l’accès à votre fournisseur d’identité. Des fournisseurs différents peuvent créer des comptes séparés ; les comptes ne sont pas fusionnés automatiquement par email."
       },
       {
-        "Title": "Utilisation locale et Makeet Plus",
-        "Body": "Le suivi local d’habitudes illimitées, les quantités, l’historique, les statistiques et la planification dans le calendrier sont gratuits. Makeet Plus ajoute la synchronisation privée du compte entre vos appareils. Le tarif approuvé pour l’Italie est de 1,99 € par mois ou 11,99 € par an, payés intégralement pour la période choisie. L’App Store affiche le prix, la devise et la période applicables avant confirmation. Pendant l’aperçu TestFlight interne, les achats publics restent désactivés ; ce site ne vend pas d’abonnements."
-      },
-      {
-        "Title": "Renouvellement, résiliation et restauration",
-        "Body": "Le paiement est débité de votre compte Apple à la confirmation de l’achat. L’abonnement se renouvelle automatiquement, sauf résiliation au moins 24 heures avant la fin de la période en cours. Apple peut facturer le renouvellement au cours des dernières 24 heures de cette période. Gérez ou résiliez dans les réglages d’abonnement de votre compte Apple. La résiliation arrête les renouvellements futurs ; l’accès reste normalement disponible jusqu’à la fin de la période payée. Utilisez Restaurer les achats dans Makeet Plus avec le compte Apple de l’achat et le compte Makeet d’origine. L’abonnement ne peut pas être transféré automatiquement à un autre compte Makeet."
+        "Title": "Accès gratuit",
+        "Body": "Makeet est gratuit : habitudes illimitées, statistiques, planification et synchronisation privée entre appareils. Sans abonnement ni achat intégré. Gardez vos données sur l’appareil ou connectez-vous avec Apple ou Google."
       },
       {
         "Title": "Saisie et planification",
@@ -150,7 +146,7 @@
       },
       {
         "Title": "Quitter Makeet",
-        "Body": "Vous pouvez vous déconnecter ou supprimer le compte dans Connexions > Compte. La suppression du compte ne résilie pas un abonnement Apple : la facturation continue tant que vous ne le résiliez pas auprès d’Apple. Résiliez Makeet Plus avant de supprimer le compte, ou choisissez la suppression immédiate sans attendre. Exportez d’abord les données à conserver. Après expiration, l’utilisation locale, l’exportation et la suppression du compte restent accessibles. Les événements déjà créés et les archives locales indépendantes ne sont pas supprimés automatiquement. Consultez la confidentialité pour la conservation et support@makeet.app pour de l’aide."
+        "Body": "Déconnectez-vous ou supprimez votre compte dans Connexions > Compte. Exportez d’abord les données à conserver. La suppression réussie retire votre compte et ses données du service. Les événements existants et archives locales indépendantes ne sont pas supprimés automatiquement. Consultez la confidentialité pour la conservation et support@makeet.app pour de l’aide."
       },
       {
         "Title": "Contact et droits",
@@ -162,10 +158,6 @@
       {
         "Title": "Dans l’app",
         "Body": "Ouvrez Connexions, puis Compte, choisissez Supprimer le compte et confirmez. Une connexion est nécessaire. La confirmation intervient après suppression par le service ; si la révocation Apple échoue, réessayez lorsque le service est disponible."
-      },
-      {
-        "Title": "Abonnements Apple",
-        "Body": "Supprimer votre compte Makeet ou désinstaller l’app ne résilie pas Makeet Plus. Apple continuera la facturation tant que vous ne résiliez pas l’abonnement dans les réglages de votre compte Apple. Résiliez-le avant de supprimer le compte. Vous pouvez tout de même supprimer immédiatement le compte sans attendre la résiliation ou l’expiration. Utilisez le lien App Store ci-dessous pour gérer les abonnements."
       },
       {
         "Title": "Données supprimées",

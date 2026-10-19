@@ -20,15 +20,15 @@ final class HabitEngineTests: XCTestCase {
                        entry(h, "2026-10-25T12:00:00Z", .nan), entry(h, "2026-10-25T12:00:00Z", -1),
                        entry(h, "2026-10-25T12:00:00Z", 0), entry(other, "2026-10-25T12:00:00Z", 40)]
         let today = HabitEngine.statistics(for: h, activities: entries, now: date("2026-10-25T12:00:00Z"), window: 1)
-        XCTAssertEqual(today.total, 6)
-        XCTAssertEqual(today.days.first?.registrations, 3)
+        XCTAssertEqual(today.total, 5)
+        XCTAssertEqual(today.days.first?.registrations, 5)
         XCTAssertEqual(today.hourlyRegistrations.count, 24)
         XCTAssertEqual(today.hourlyRegistrations[2], 2)
         XCTAssertEqual(today.hourlyRegistrations[23], 1)
-        XCTAssertEqual(today.hourlyRegistrations.reduce(0, +), 3)
+        XCTAssertEqual(today.hourlyRegistrations.reduce(0, +), 5)
         let all = HabitEngine.statistics(for: h, activities: entries, now: date("2026-10-25T12:00:00Z"), window: 7)
-        XCTAssertEqual(all.total, 15)
-        XCTAssertEqual(all.hourlyRegistrations.reduce(0, +), 4)
+        XCTAssertEqual(all.total, 14)
+        XCTAssertEqual(all.hourlyRegistrations.reduce(0, +), 6)
         for day in all.days {
             let progress = HabitEngine.progress(for: h, on: day.date, activities: entries)
             XCTAssertEqual(day.quantity, progress.quantity)
@@ -112,6 +112,6 @@ final class HabitEngineTests: XCTestCase {
         let other = habit()
         let entries = [entry(h, "2026-10-16T08:00:00Z", .nan), entry(h, "2026-10-16T08:00:00Z", -2),
                        entry(other, "2026-10-16T08:00:00Z", 100), entry(h, "2026-10-16T08:00:00Z", 1)]
-        XCTAssertEqual(HabitEngine.progress(for: h, on: date("2026-10-16T12:00:00Z"), activities: entries).quantity, 1)
+        XCTAssertEqual(HabitEngine.progress(for: h, on: date("2026-10-16T12:00:00Z"), activities: entries).quantity, -1)
     }
 }

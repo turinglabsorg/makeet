@@ -1,5 +1,9 @@
 import Foundation
 
+public enum ProductFeatures {
+    public static let subscriptionsAvailable = false
+}
+
 public struct AccountUser: Codable, Equatable, Sendable {
     public let id: UUID
     public let email: String
@@ -35,18 +39,23 @@ public struct HabitRecord: Codable, Equatable, Sendable {
     public var durationMinutes: Int
     public var archived: Bool
     public var weekdayMask: Int
+    public var goal: HabitGoal
+    public var allowsNegative: Bool
     public init(name: String, symbol: String, colorIndex: Int, target: Double, step: Double, unit: String,
-                createdAt: Date, timeZoneID: String, preferredHour: Int, durationMinutes: Int, archived: Bool, weekdayMask: Int = 127) {
+                createdAt: Date, timeZoneID: String, preferredHour: Int, durationMinutes: Int, archived: Bool, weekdayMask: Int = 127,
+                goal: HabitGoal = .atLeast, allowsNegative: Bool = false) {
         self.name = name; self.symbol = symbol; self.colorIndex = colorIndex; self.target = target
         self.step = step; self.unit = unit; self.createdAt = createdAt; self.timeZoneID = timeZoneID
         self.preferredHour = preferredHour; self.durationMinutes = durationMinutes; self.archived = archived
         self.weekdayMask = weekdayMask
+        self.goal = goal; self.allowsNegative = allowsNegative
     }
     enum CodingKeys: String, CodingKey {
         case name, symbol, target, step, unit, archived
         case colorIndex = "color_index", createdAt = "created_at", timeZoneID = "time_zone_id"
         case preferredHour = "preferred_hour", durationMinutes = "duration_minutes"
         case weekdayMask = "weekday_mask"
+        case goal, allowsNegative = "allows_negative"
     }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -57,6 +66,8 @@ public struct HabitRecord: Codable, Equatable, Sendable {
         preferredHour = try c.decode(Int.self, forKey: .preferredHour); durationMinutes = try c.decode(Int.self, forKey: .durationMinutes)
         archived = try c.decode(Bool.self, forKey: .archived)
         weekdayMask = try c.decodeIfPresent(Int.self, forKey: .weekdayMask) ?? 127
+        goal = try c.decodeIfPresent(HabitGoal.self, forKey: .goal) ?? .atLeast
+        allowsNegative = try c.decodeIfPresent(Bool.self, forKey: .allowsNegative) ?? false
     }
     public func encode(to encoder: Encoder) throws {
         var c = encoder.container(keyedBy: CodingKeys.self)
@@ -66,6 +77,7 @@ public struct HabitRecord: Codable, Equatable, Sendable {
         try c.encode(preferredHour, forKey: .preferredHour); try c.encode(durationMinutes, forKey: .durationMinutes)
         try c.encode(archived, forKey: .archived)
         try c.encode(weekdayMask, forKey: .weekdayMask)
+        try c.encode(goal, forKey: .goal); try c.encode(allowsNegative, forKey: .allowsNegative)
     }
 }
 

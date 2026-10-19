@@ -1,13 +1,13 @@
 import XCTest
 
 final class ProfileEditorUITests: XCTestCase {
-    @MainActor func testAccountDeletionExplainsBillingAndAllowsCancellationInFiveLanguages() {
+    @MainActor func testFreeAccountDeletionExplainsErasureAndAllowsCancellationInFiveLanguages() {
         for (language, connections, delete, erase, manage, cancel, warning) in [
-            ("it", "Connessioni", "Elimina account", "Elimina account e dati", "Gestisci abbonamento", "Annulla", "Apple continuerà gli addebiti"),
-            ("en", "Connections", "Delete account", "Delete account and data", "Manage subscription", "Cancel", "Apple will continue billing"),
-            ("fr", "Connexions", "Supprimer le compte", "Supprimer le compte et les données", "Gérer l’abonnement", "Annuler", "Apple continuera la facturation"),
-            ("de", "Verbindungen", "Konto löschen", "Konto und Daten löschen", "Abonnement verwalten", "Abbrechen", "Apple wird weiterhin Zahlungen abbuchen"),
-            ("es", "Conexiones", "Eliminar cuenta", "Eliminar cuenta y datos", "Gestionar suscripción", "Cancelar", "Apple seguirá cobrando")
+            ("it", "Connessioni", "Elimina account", "Elimina account e dati", "Gestisci abbonamento", "Annulla", "non può essere annullata"),
+            ("en", "Connections", "Delete account", "Delete account and data", "Manage subscription", "Cancel", "cannot be undone"),
+            ("fr", "Connexions", "Supprimer le compte", "Supprimer le compte et les données", "Gérer l’abonnement", "Annuler", "est irréversible"),
+            ("de", "Verbindungen", "Konto löschen", "Konto und Daten löschen", "Abonnement verwalten", "Abbrechen", "nicht rückgängig gemacht"),
+            ("es", "Conexiones", "Eliminar cuenta", "Eliminar cuenta y datos", "Gestionar suscripción", "Cancelar", "no se puede deshacer")
         ] {
             let app = profileApp(language: language)
             app.launch()
@@ -16,9 +16,9 @@ final class ProfileEditorUITests: XCTestCase {
                 app.buttons[delete].tap()
                 XCTAssertTrue(app.buttons[erase].waitForExistence(timeout: 5), language)
                 XCTAssertTrue(app.buttons[erase].isEnabled, language)
-                XCTAssertTrue(app.buttons[manage].isHittable, language)
+                XCTAssertFalse(app.buttons[manage].exists, language)
                 XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", warning)).firstMatch.exists, language)
-                attach("Account deletion billing warning \(language) \(attempt)", app)
+                attach("Free account erasure confirmation \(language) \(attempt)", app)
                 cancelConfirmation(app, action: erase, cancel: cancel, navigation: connections)
                 XCTAssertTrue(app.staticTexts["Alex Morgan"].exists, language)
                 XCTAssertTrue(app.buttons["editProfile"].isHittable, language)

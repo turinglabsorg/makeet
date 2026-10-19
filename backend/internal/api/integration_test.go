@@ -59,6 +59,9 @@ func setupRelay(t *testing.T, trusted bool) *fixture {
 	return f
 }
 func (f *fixture) request(method, path, token string, body any, status int) []byte {
+	return f.requestProtocol(method, path, token, body, status, "2")
+}
+func (f *fixture) requestProtocol(method, path, token string, body any, status int, version string) []byte {
 	f.t.Helper()
 	var b bytes.Buffer
 	if body != nil {
@@ -68,6 +71,9 @@ func (f *fixture) request(method, path, token string, body any, status int) []by
 	}
 	req, _ := http.NewRequest(method, f.server.URL+path, &b)
 	req.Header.Set("Content-Type", "application/json")
+	if version != "" {
+		req.Header.Set("X-Makeet-Sync-Version", version)
+	}
 	if token != "" {
 		req.Header.Set("Authorization", "Bearer "+token)
 	}

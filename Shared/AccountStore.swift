@@ -91,7 +91,8 @@ extension Habit {
     var syncRecord: SyncRecord {
         SyncRecord(id: id, habit: HabitRecord(name: name, symbol: symbol, colorIndex: colorIndex, target: target, step: step,
             unit: unit, createdAt: createdAt, timeZoneID: timeZoneID, preferredHour: preferredHour,
-            durationMinutes: durationMinutes, archived: archived, weekdayMask: weekdayMask))
+            durationMinutes: durationMinutes, archived: archived, weekdayMask: weekdayMask,
+            goal: goal, allowsNegative: allowsNegative))
     }
 }
 
@@ -129,6 +130,7 @@ enum AccountRecords {
                 habit.timeZoneID = data.timeZoneID; habit.preferredHour = data.preferredHour
                 habit.durationMinutes = data.durationMinutes; habit.archived = data.archived; habit.isDemo = false
                 habit.weekdayMask = data.weekdayMask
+                habit.goal = data.goal; habit.allowsNegative = data.allowsNegative
             } else {
                 let existing = activities.first { $0.id == record.id }
                 if record.deleted { if let existing { context.delete(existing) }; continue }

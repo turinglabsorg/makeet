@@ -47,8 +47,8 @@ struct CalendarOverview: View {
                                     if future { Image(systemName: calendar.events(on: day.date).contains(where: { $0.makeetHabitID != nil }) ? "calendar.badge.checkmark" : "minus").font(.system(size: 9)) }
                                     else { Text("\(day.completedGoals)/\(day.scheduledGoals)").font(.system(size: 9)).monospacedDigit() }
                                 }.frame(maxWidth: .infinity, minHeight: 52)
-                                    .foregroundStyle(day.fraction >= 0.65 ? .white : Palette.ink)
-                                    .background(Palette.accent.opacity(day.fraction > 0 ? 0.2 + 0.8 * day.fraction : (day.hasActivity ? 0.2 : 0.05)), in: RoundedRectangle(cornerRadius: 12))
+                                    .foregroundStyle(day.hasMalus || day.fraction >= 0.65 ? .white : Palette.ink)
+                                    .background(day.hasMalus ? Palette.warning : Palette.accent.opacity(day.fraction > 0 ? 0.2 + 0.8 * day.fraction : (day.hasActivity ? 0.2 : 0.05)), in: RoundedRectangle(cornerRadius: 12))
                                     .overlay { RoundedRectangle(cornerRadius: 12).stroke(chosen ? Palette.ink : .clear, lineWidth: 2) }
                             }.buttonStyle(.plain).accessibilityIdentifier("calendar-day-\(display.component(.day, from: day.date))")
                                 .accessibilityLabel(day.date.formatted(.dateTime.weekday(.wide).day().month(.wide).year().locale(AppLanguage.locale)))
@@ -58,6 +58,7 @@ struct CalendarOverview: View {
                     }
                     Text(String(localized: "Più colore, più progressi. Tocca un giorno per vedere abitudini ed eventi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                         .font(.caption).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
+                    Text(String(localized: "Il colore arancione indica un limite superato o un saldo negativo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption).foregroundStyle(.secondary)
                 }
                 HStack(alignment: .top) {
                     Text(selected.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(AppLanguage.locale))).font(.headline)
@@ -75,8 +76,9 @@ struct CalendarOverview: View {
                             HabitMark(symbol: habit.symbol).foregroundStyle(Palette.habit(habit.colorIndex)).frame(width: 32)
                             VStack(alignment: .leading, spacing: 4) {
                                 NavigationLink { HabitDetailView(habit: habit) } label: { Text(habit.name).font(.subheadline.weight(.semibold)) }.buttonStyle(.plain)
-                                Text("\(progress.quantity.quantityText) / \(habit.target.quantityText) \(habit.unit)").font(.caption).monospacedDigit()
+                                Text(HabitText.quantity(progress.quantity, target: habit.target, unit: habit.unit, goal: habit.goal)).font(.caption).monospacedDigit()
                                     .accessibilityIdentifier("calendar-progress-\(habit.name)")
+                                HabitProgressStatus(progress: progress, unit: habit.unit).font(.caption)
                                 if !progress.scheduled { Text(String(localized: "Non in programma", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption).foregroundStyle(.secondary) }
                             }
                             Spacer()
@@ -151,6 +153,9 @@ private struct DayDraft: Identifiable {
     let unit: String
     let original: Double
     var quantity: Double
+    let goal: HabitGoal
+    let allowsNegative: Bool
+    var confirmZero = false
 }
 
 struct CalendarDayEditor: View {
@@ -166,7 +171,7 @@ struct CalendarDayEditor: View {
             let mapped = snapshot.date(forCalendarDay: date, displayedIn: display)
             guard snapshot.calendar.startOfDay(for: mapped) >= snapshot.calendar.startOfDay(for: snapshot.createdAt) else { return nil }
             let quantity = HabitEngine.progress(for: snapshot, on: mapped, activities: activities).quantity
-            return DayDraft(id: habit.id, date: mapped, name: habit.name, symbol: habit.symbol, color: habit.colorIndex, step: habit.step, unit: habit.unit, original: quantity, quantity: quantity)
+            return DayDraft(id: habit.id, date: mapped, name: habit.name, symbol: habit.symbol, color: habit.colorIndex, step: habit.step, unit: habit.unit, original: quantity, quantity: quantity, goal: habit.goal, allowsNegative: habit.allowsNegative)
         })
     }
     var body: some View {
@@ -176,15 +181,19 @@ struct CalendarDayEditor: View {
                     Text(date.formatted(.dateTime.weekday(.wide).day().month(.wide).year().locale(AppLanguage.locale))).font(.title2.weight(.semibold))
                     Text(String(localized: "Correggi le quantità e salva. Le nuove registrazioni nei giorni passati sono indicate come correzioni manuali alle 12:00, nel fuso dell’abitudine.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption).foregroundStyle(.secondary)
                     ForEach($drafts) { $draft in
-                        HStack(spacing: 12) {
-                            Button { draft.quantity = max(0, draft.quantity - draft.step) } label: { Image(systemName: "minus").frame(width: 44, height: 44) }
-                                .buttonStyle(.bordered).disabled(draft.quantity <= 0).accessibilityIdentifier("day-decrement-\(draft.name)")
+                        VStack(alignment: .leading, spacing: 12) { HStack(spacing: 12) {
+                            Button { draft.quantity = draft.allowsNegative ? draft.quantity - draft.step : max(0, draft.quantity - draft.step) } label: { Image(systemName: "minus").frame(width: 44, height: 44) }
+                                .buttonStyle(.bordered).disabled(!draft.allowsNegative && draft.quantity <= 0).accessibilityIdentifier("day-decrement-\(draft.name)")
                             VStack(alignment: .leading, spacing: 6) {
                                 Label { Text(draft.name) } icon: { HabitMark(symbol: draft.symbol) }.font(.headline)
                                 Text("\(draft.quantity.quantityText) \(draft.unit)").font(.subheadline).monospacedDigit().accessibilityIdentifier("day-quantity-\(draft.name)")
                             }.frame(maxWidth: .infinity, alignment: .leading)
                             Button { draft.quantity += draft.step } label: { Image(systemName: "plus").frame(width: 44, height: 44) }
                                 .buttonStyle(.bordered).disabled(!(draft.quantity + draft.step).isFinite).accessibilityIdentifier("day-increment-\(draft.name)")
+                        }
+                            Button(draft.goal == .atMost ? String(localized: "Conferma zero", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Imposta zero", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
+                                draft.quantity = 0; draft.confirmZero = true
+                            }.frame(minHeight: 44).accessibilityIdentifier("day-zero-\(draft.name)")
                         }.tint(Palette.habit(draft.color)).journalCard()
                     }
                     if drafts.isEmpty {
@@ -197,8 +206,8 @@ struct CalendarDayEditor: View {
                     ToolbarItem(placement: .confirmationAction) {
                         Button(String(localized: "Salva", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
                             do {
-                                try SharedStore.correct(drafts.filter { $0.quantity != $0.original }.map {
-                                    HabitDayCorrection(habitID: $0.id, date: $0.date, quantity: $0.quantity, expectedQuantity: $0.original)
+                                try SharedStore.correct(drafts.filter { $0.quantity != $0.original || $0.confirmZero }.map {
+                                    HabitDayCorrection(habitID: $0.id, date: $0.date, quantity: $0.quantity, expectedQuantity: $0.original, confirmZero: $0.confirmZero)
                                 }, in: context)
                                 dismiss()
                             } catch { self.error = error.localizedDescription }

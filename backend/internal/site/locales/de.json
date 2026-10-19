@@ -10,7 +10,7 @@
   "Preview": "iPhone-Vorschau · Beispieldaten · Oberfläche auf Italienisch",
   "FeaturesTitle": "Rund um deinen Tag",
   "FeaturesIntro": "Dein Rhythmus.\nRaum für Veränderung.",
-  "Future": "Starte ohne Konto: Die vollständige lokale Nutzung ist kostenlos, mit unbegrenzten Gewohnheiten. Mit Apple oder Google bleibt dein Profil privat. Die Synchronisierung zwischen Geräten wird während der Vorschau überprüft.",
+  "Future": "Makeet ist kostenlos: unbegrenzte Gewohnheiten, Statistiken, Planung und private Synchronisierung zwischen Geräten. Keine Abonnements oder In-App-Käufe. Nutze das Gerät lokal oder melde dich mit Apple oder Google an.",
   "Footer": "Gewohnheiten in deinem Tempo. iPhone-Vorschau; Mac und Widgets in Entwicklung.",
   "Privacy": "Datenschutz",
   "Terms": "Bedingungen",
@@ -27,6 +27,10 @@
     {
       "Title": "Mehr als ein Häkchen",
       "Body": "Zähle Gläser, Seiten, Minuten oder Wiederholungen – mehrmals täglich und über dein Ziel hinaus. Minus links, Plus rechts: Passe Mengen an und bleib dabei."
+    },
+    {
+      "Title": "Ziele erreichen oder Grenzen einhalten",
+      "Body": "Wähle ein Ziel zum Erreichen oder eine Grenze zum Einhalten, auch null. Mengen darüber zählen als Malus. Bestätige null, um einen Tag ohne Vorkommnisse von einem nicht erfassten Tag zu unterscheiden. Bei aktivierter Option kann Minus den Saldo unter null bringen; Verlauf und Statistiken behalten das Vorzeichen bei."
     },
     {
       "Title": "Deine eigene Woche",
@@ -59,8 +63,8 @@
       "Body": "Nein. Die Einführung führt dich durch die Wahl: Fortschritte nur auf dem Gerät behalten oder mit Apple oder Google anmelden. Dein lokales Archiv wird nicht automatisch hochgeladen; der Import erfordert deine Entscheidung."
     },
     {
-      "Title": "Was wird Makeet kosten?",
-      "Body": "Die vollständige lokale Nutzung einschließlich Planung bleibt kostenlos, ohne Begrenzung der Gewohnheiten. Für Makeet Plus mit Synchronisierung zwischen Geräten sind 1,99 € monatlich oder 11,99 € jährlich vorgesehen. Während der Vorschau sind Abonnements nicht aktiv."
+      "Title": "Ist Makeet kostenlos?",
+      "Body": "Makeet ist kostenlos: unbegrenzte Gewohnheiten, Statistiken, Planung und private Synchronisierung zwischen Geräten. Keine Abonnements oder In-App-Käufe. Nutze das Gerät lokal oder melde dich mit Apple oder Google an."
     },
     {
       "Title": "Funktioniert es mit Apple und Google Calendar?",
@@ -76,7 +80,7 @@
     }
   ],
   "Policy": {
-    "Updated": "Aktualisiert am 18. Oktober 2026",
+    "Updated": "Letzte Aktualisierung: 19. Oktober 2026",
     "PrivacyIntro": "Diese Hinweise beschreiben die Datenverarbeitung in der Makeet-App, im Kontodienst, auf der Website und beim Support. Während der Entwicklung werden Kontofunktionen nach Dienstprüfungen freigeschaltet. Das lokale Archiv funktioniert ohne Konto.",
     "ControllerTitle": "Verantwortlicher",
     "HostingTitle": "Land des primären Kontoservers",
@@ -92,10 +96,6 @@
       {
         "Title": "Benachrichtigungen",
         "Body": "Benachrichtigungen benötigen die Geräteerlaubnis. Bei Anmeldung speichert der Dienst eine Installationskennung, ein verschlüsseltes Apple-Push-Token, Sprache, Zeitzone und die freiwillige Erinnerungszeit. Anhand des synchronisierten Fortschritts entscheidet er, ob eine tägliche Erinnerung nötig ist. Mitteilungen enthalten allgemeinen Text, keine Namen oder Mengen deiner Gewohnheiten. Versandversuche, Apples Annahme und der Empfang beim Anzeigen in der App oder Öffnen der Mitteilung werden erfasst. Erinnerungen lassen sich in der App, Mitteilungen in den Geräteeinstellungen deaktivieren."
-      },
-      {
-        "Title": "Käufe im App Store",
-        "Body": "Wenn du Makeet Plus kaufst oder wiederherstellst, verarbeitet Apple die Zahlung. Der Dienst prüft von Apple signierte Transaktionen und Abonnementmitteilungen und speichert Transaktions- und ursprüngliche Kaufkennungen, Produkt, Umgebung, Ablauf und Widerrufsstatus, verknüpft mit deiner Makeet-Kontokennung. Wir verwenden diese Daten, um das Abonnement bereitzustellen und zu verhindern, dass ein Konto den Kauf eines anderen beansprucht. Wir erhalten keine Karten- oder Bankkontodaten."
       },
       {
         "Title": "Rechtsgrundlagen und Wahlmöglichkeiten",
@@ -129,12 +129,8 @@
         "Body": "Das lokale Archiv funktioniert ohne Anmeldung. Private Synchronisierung erfordert Apple oder Google. Schütze den Zugang zu deinem Identitätsanbieter. Unterschiedliche Anbieter können separate Konten erzeugen; Konten werden nicht automatisch anhand der E-Mail-Adresse zusammengeführt."
       },
       {
-        "Title": "Lokale Nutzung und Makeet Plus",
-        "Body": "Unbegrenzte lokale Gewohnheiten, Mengen, Verlauf, Statistiken und Kalenderplanung sind kostenlos. Makeet Plus ergänzt die private Kontosynchronisierung zwischen deinen Geräten. Der genehmigte Listenpreis für Italien beträgt 1,99 € monatlich oder 11,99 € jährlich, jeweils vollständig für den gewählten Zeitraum bezahlt. Der App Store zeigt Preis, Währung und Abrechnungszeitraum vor der Bestätigung. Während der internen TestFlight-Vorschau bleiben öffentliche Käufe deaktiviert; diese Website verkauft keine Abonnements."
-      },
-      {
-        "Title": "Verlängerung, Kündigung und Wiederherstellung",
-        "Body": "Die Zahlung wird deinem Apple-Account bei der Kaufbestätigung belastet. Das Abonnement verlängert sich automatisch, sofern du es nicht mindestens 24 Stunden vor Ablauf des aktuellen Zeitraums kündigst. Apple kann die Verlängerung innerhalb der letzten 24 Stunden dieses Zeitraums abbuchen. Verwalte oder kündige es in den Abonnementeinstellungen deines Apple-Accounts. Die Kündigung beendet zukünftige Verlängerungen; der Zugriff bleibt normalerweise bis zum Ende des bezahlten Zeitraums bestehen. Nutze Käufe wiederherstellen in Makeet Plus mit dem Apple-Account des Kaufs und dem ursprünglichen Makeet-Konto. Ein Abonnement kann nicht automatisch auf ein anderes Makeet-Konto übertragen werden."
+        "Title": "Kostenloser Zugang",
+        "Body": "Makeet ist kostenlos: unbegrenzte Gewohnheiten, Statistiken, Planung und private Synchronisierung zwischen Geräten. Keine Abonnements oder In-App-Käufe. Nutze das Gerät lokal oder melde dich mit Apple oder Google an."
       },
       {
         "Title": "Erfassung und Planung",
@@ -150,7 +146,7 @@
       },
       {
         "Title": "Makeet verlassen",
-        "Body": "Du kannst dich unter Verbindungen > Konto abmelden oder dein Konto löschen. Die Kontolöschung kündigt ein Apple-Abonnement nicht: Zahlungen laufen weiter, bis du es bei Apple kündigst. Kündige Makeet Plus vor der Kontolöschung oder wähle die sofortige Löschung ohne Wartezeit. Exportiere vorher die Daten, die du behalten möchtest. Nach Ablauf bleiben lokale Nutzung, Datenexport und Kontolöschung zugänglich. Bereits erstellte Kalenderereignisse und unabhängige lokale Archive werden nicht automatisch entfernt. Informationen zur Aufbewahrung stehen in der Datenschutzerklärung; Hilfe erhältst du unter support@makeet.app."
+        "Body": "Melde dich unter Verbindungen > Konto ab oder lösche dein Konto. Exportiere vorher die Daten, die du behalten möchtest. Eine erfolgreiche Löschung entfernt dein Konto und seine Daten aus dem Dienst. Bestehende Kalenderereignisse und unabhängige lokale Archive werden nicht automatisch entfernt. Informationen zur Aufbewahrung stehen in der Datenschutzerklärung; Hilfe erhältst du unter support@makeet.app."
       },
       {
         "Title": "Kontakt und Rechte",
@@ -162,10 +158,6 @@
       {
         "Title": "In der App",
         "Body": "Öffne Verbindungen, dann Konto, wähle Konto löschen und bestätige. Eine Verbindung ist erforderlich. Die App bestätigt erst nach Löschung im Dienst. Scheitert der Widerruf der Apple-Autorisierung, versuche es erneut, wenn der Dienst verfügbar ist."
-      },
-      {
-        "Title": "Apple-Abonnements",
-        "Body": "Das Löschen deines Makeet-Kontos oder das Deinstallieren der App kündigt Makeet Plus nicht. Apple wird weiterhin Zahlungen abbuchen, bis du das Abonnement in den Einstellungen deines Apple-Accounts kündigst. Kündige es vor der Kontolöschung. Du kannst das Konto trotzdem sofort löschen, ohne auf Kündigung oder Ablauf zu warten. Verwende den App-Store-Link unten, um Abonnements zu verwalten."
       },
       {
         "Title": "Gelöschte Daten",

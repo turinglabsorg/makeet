@@ -12,6 +12,12 @@ struct WidgetHabit: Identifiable {
     let quantity: Double
     let target: Double
     let step: Double
+    var goal: HabitGoal = .atLeast
+    var allowsNegative = false
+    var fraction = 0.5
+    var completed = false
+    var malus = 0.0
+    var registrations = 1
 }
 
 struct ProgressEntry: TimelineEntry {
@@ -47,9 +53,11 @@ struct ProgressProvider: TimelineProvider {
                 let values = habits.filter { $0.snapshot.isScheduled(on: Date()) }.map { habit in
                     let progress = HabitEngine.progress(for: habit.snapshot, on: Date(), activities: activities)
                     return WidgetHabit(id: habit.id, name: habit.name, symbol: habit.symbol, colorIndex: habit.colorIndex,
-                        unit: habit.unit, quantity: progress.quantity, target: habit.target, step: habit.step)
+                        unit: habit.unit, quantity: progress.quantity, target: habit.target, step: habit.step,
+                        goal: habit.goal, allowsNegative: habit.allowsNegative, fraction: progress.fraction,
+                        completed: progress.completed, malus: progress.malus, registrations: progress.registrations)
                 }.sorted { lhs, rhs in
-                    let leftDone = lhs.quantity >= lhs.target, rightDone = rhs.quantity >= rhs.target
+                    let leftDone = lhs.completed, rightDone = rhs.completed
                     return leftDone != rightDone ? !leftDone : lhs.name < rhs.name
                 }
                 return ProgressEntry(date: Date(), habits: values, scope: scope)
@@ -74,7 +82,7 @@ struct LogHabitIntent: AppIntent {
 
 struct DecrementHabitIntent: AppIntent {
     static var title: LocalizedStringResource = "Togli un passo"
-    static var description = IntentDescription("Riduce la quantità di oggi, senza scendere sotto zero o aprire Makeet.")
+    static var description = IntentDescription("Riduce la quantità di oggi e rispetta l’opzione dei valori negativi, senza aprire Makeet.")
     static var openAppWhenRun = false
     @Parameter(title: "Abitudine") var habitID: String
     @Parameter(title: "Archivio") var storeScope: String
@@ -124,7 +132,7 @@ struct ProgressWidgetView: View {
                     if family == .systemSmall {
                         info(habit)
                         HStack { minus(habit); Spacer(minLength: 0); plus(habit) }
-                        ProgressView(value: min(habit.quantity / habit.target, 1)).tint(Palette.habit(habit.colorIndex))
+                        ProgressView(value: habit.fraction).tint(habit.malus > 0 ? Palette.warning : Palette.habit(habit.colorIndex))
                     } else {
                         HStack(spacing: 10) { minus(habit); info(habit); Spacer(minLength: 0); plus(habit) }
                     }
@@ -140,8 +148,13 @@ struct ProgressWidgetView: View {
         VStack(alignment: .leading, spacing: 3) {
             Label { Text(habit.name) } icon: { HabitMark(symbol: habit.symbol) }
                 .font(.subheadline.weight(.medium)).lineLimit(1)
-            Text(String(localized: "\(habit.quantity.quantityText) / \(habit.target.quantityText) \(habit.unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+            Text(HabitText.quantity(habit.quantity, target: habit.target, unit: habit.unit, goal: habit.goal))
                 .font(.caption).foregroundStyle(.secondary).monospacedDigit()
+            if habit.malus > 0 {
+                Text(String(localized: "Malus: \(habit.malus.quantityText) \(habit.unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption2).foregroundStyle(Palette.warning)
+            } else if habit.goal == .atMost && habit.registrations == 0 {
+                Text(String(localized: "Da confermare", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption2).foregroundStyle(.secondary)
+            }
         }
     }
 
@@ -150,7 +163,7 @@ struct ProgressWidgetView: View {
             Text("−\(habit.step.quantityText)").font(.subheadline.weight(.semibold)).frame(minWidth: 44, minHeight: 44)
         }.buttonStyle(.plain).foregroundStyle(Palette.habit(habit.colorIndex))
             .background(Palette.habit(habit.colorIndex).opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
-            .disabled(habit.quantity <= 0).opacity(habit.quantity > 0 ? 1 : 0.35)
+            .disabled(!habit.allowsNegative && habit.quantity <= 0).opacity(habit.allowsNegative || habit.quantity > 0 ? 1 : 0.35)
             .accessibilityLabel(String(localized: "Togli \(habit.step.quantityText) \(habit.unit) da \(habit.name)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
     }
 

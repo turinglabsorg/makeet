@@ -170,9 +170,21 @@ func (s *Server) hasIncompleteHabit(ctx context.Context, user string, now time.T
 		local := now.In(zone)
 		start := time.Date(local.Year(), local.Month(), local.Day(), 0, 0, 0, 0, zone)
 		end := start.AddDate(0, 0, 1)
+		mask := 127
+		if h.data.WeekdayMask != nil {
+			mask = *h.data.WeekdayMask
+		}
+		if start.Before(time.Date(h.data.CreatedAt.In(zone).Year(), h.data.CreatedAt.In(zone).Month(), h.data.CreatedAt.In(zone).Day(), 0, 0, 0, 0, zone)) || mask&(1<<((int(local.Weekday())+6)%7)) == 0 {
+			continue
+		}
 		var quantity float64
-		err = s.db.QueryRowContext(ctx, `SELECT COALESCE(SUM(json_extract(data,'$.amount')),0) FROM records WHERE user_id=? AND kind='activity' AND deleted=0 AND json_extract(data,'$.habit_id')=? AND unixepoch(json_extract(data,'$.timestamp'))>=? AND unixepoch(json_extract(data,'$.timestamp'))<?`, user, h.id, start.Unix(), end.Unix()).Scan(&quantity)
-		if err == nil && quantity < h.data.Target {
+		var registrations int
+		err = s.db.QueryRowContext(ctx, `SELECT COALESCE(SUM(json_extract(data,'$.amount')),0),COUNT(*) FROM records WHERE user_id=? AND kind='activity' AND deleted=0 AND json_extract(data,'$.habit_id')=? AND unixepoch(json_extract(data,'$.timestamp'))>=? AND unixepoch(json_extract(data,'$.timestamp'))<?`, user, h.id, start.Unix(), end.Unix()).Scan(&quantity, &registrations)
+		incomplete := quantity < h.data.Target
+		if h.data.Goal == "at_most" {
+			incomplete = registrations == 0
+		}
+		if err == nil && incomplete {
 			return true
 		}
 	}

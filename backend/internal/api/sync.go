@@ -45,6 +45,8 @@ type habitData struct {
 	DurationMinutes int       `json:"duration_minutes"`
 	Archived        bool      `json:"archived"`
 	WeekdayMask     *int      `json:"weekday_mask,omitempty"`
+	Goal            string    `json:"goal,omitempty"`
+	AllowsNegative  bool      `json:"allows_negative,omitempty"`
 }
 type activityData struct {
 	HabitID   string    `json:"habit_id"`
@@ -77,10 +79,14 @@ func validate(c Record) error {
 			return err
 		}
 		_, zoneErr := time.LoadLocation(h.TimeZoneID)
+		validTarget := h.Target > 0 || (h.Goal == "at_most" && h.Target == 0)
+		if h.Goal != "" && h.Goal != "at_least" && h.Goal != "at_most" {
+			return errors.New("invalid goal")
+		}
 		if h.WeekdayMask != nil && (*h.WeekdayMask < 1 || *h.WeekdayMask > 127) {
 			return errors.New("invalid weekdays")
 		}
-		if len(h.Name) < 1 || len(h.Name) > 200 || len(h.Symbol) > 80 || len(h.Unit) < 1 || len(h.Unit) > 50 || h.Target <= 0 || h.Step <= 0 || math.IsInf(h.Target, 0) || math.IsInf(h.Step, 0) || h.PreferredHour < 0 || h.PreferredHour > 23 || h.DurationMinutes < 5 || h.DurationMinutes > 240 || h.ColorIndex < 0 || h.ColorIndex > 3 || h.CreatedAt.IsZero() || zoneErr != nil {
+		if len(h.Name) < 1 || len(h.Name) > 200 || len(h.Symbol) > 80 || len(h.Unit) < 1 || len(h.Unit) > 50 || !validTarget || h.Step <= 0 || math.IsInf(h.Target, 0) || math.IsInf(h.Step, 0) || h.PreferredHour < 0 || h.PreferredHour > 23 || h.DurationMinutes < 5 || h.DurationMinutes > 240 || h.ColorIndex < 0 || h.ColorIndex > 3 || h.CreatedAt.IsZero() || zoneErr != nil {
 			return errors.New("invalid habit")
 		}
 	} else {
@@ -91,7 +97,7 @@ func validate(c Record) error {
 		if _, err := uuid.Parse(a.HabitID); err != nil {
 			return err
 		}
-		if a.Amount <= 0 || math.IsInf(a.Amount, 0) || a.Timestamp.IsZero() || len(a.Source) > 32 {
+		if math.IsInf(a.Amount, 0) || math.IsNaN(a.Amount) || a.Timestamp.IsZero() || len(a.Source) > 32 {
 			return errors.New("invalid activity")
 		}
 	}
@@ -186,6 +192,40 @@ func (s *Server) syncRecords(w http.ResponseWriter, r *http.Request, p principal
 		return
 	}
 	defer tx.Rollback()
+	if r.Header.Get("X-Makeet-Sync-Version") != "2" {
+		var advanced int
+		err = tx.QueryRowContext(r.Context(), `SELECT 1 FROM records WHERE user_id=? AND deleted=0 AND
+		 ((kind='habit' AND (COALESCE(json_extract(data,'$.goal'),'at_least')='at_most' OR COALESCE(json_extract(data,'$.allows_negative'),0)=1))
+		 OR (kind='activity' AND json_extract(data,'$.amount')<=0)) LIMIT 1`, p.UserID).Scan(&advanced)
+		if err != nil && !errors.Is(err, sql.ErrNoRows) {
+			internal(w, err)
+			return
+		}
+		if advanced == 1 {
+			fail(w, 409, "app_update_required")
+			return
+		}
+		for _, change := range req.Changes {
+			if change.Deleted {
+				continue
+			}
+			if change.Kind == "habit" {
+				var h habitData
+				json.Unmarshal(change.Data, &h)
+				if h.Goal == "at_most" || h.AllowsNegative {
+					fail(w, 409, "app_update_required")
+					return
+				}
+			} else {
+				var a activityData
+				json.Unmarshal(change.Data, &a)
+				if a.Amount <= 0 {
+					fail(w, 409, "app_update_required")
+					return
+				}
+			}
+		}
+	}
 	if len(req.Changes) > 0 {
 		var savedHash, savedResponse string
 		err = tx.QueryRowContext(r.Context(), "SELECT request_hash,response FROM batches WHERE user_id=? AND id=?", p.UserID, req.MutationID).Scan(&savedHash, &savedResponse)

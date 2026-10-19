@@ -4,6 +4,20 @@ import StoreKitTest
 @testable import Makeet
 
 final class SubscriptionTests: XCTestCase {
+    @MainActor func testFreeReleaseNeverLoadsProductsOrStartsRestoration() async throws {
+        XCTAssertFalse(ProductFeatures.subscriptionsAvailable)
+        let api = try AccountAPI(storage: FreeReleaseSession())
+        let store = SubscriptionStore(userID: UUID(), api: api)
+        defer { store.stop() }
+        await store.load()
+        await store.restore()
+        XCTAssertEqual(store.entitlement?.billingEnabled, false)
+        XCTAssertFalse(store.hasPlus)
+        XCTAssertTrue(store.products.isEmpty)
+        XCTAssertNil(store.message)
+        XCTAssertFalse(store.working)
+    }
+
     @MainActor func testStoreKitPurchaseRestoreRefundExpiryAndAccountIsolation() async throws {
         #if !targetEnvironment(simulator)
         throw XCTSkip("Isolated StoreKit test catalog is Simulator-only")
@@ -127,4 +141,10 @@ final class SubscriptionTests: XCTestCase {
         while !condition() && Date() < deadline { try? await Task.sleep(for: .milliseconds(50)) }
         XCTAssertTrue(condition())
     }
+}
+
+private struct FreeReleaseSession: SessionStorage {
+    func load() throws -> StoredSession? { nil }
+    func save(_ session: StoredSession) throws { XCTFail("Free policy must not alter the session") }
+    func clear() throws { XCTFail("Free policy must not clear the session") }
 }

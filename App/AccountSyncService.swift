@@ -57,8 +57,6 @@ import SwiftData
                 rounds += 1
             }
             if active { lastSuccess = Date() }
-        } catch AccountAPIError.response(403, "subscription_required") {
-            if active { message = String(localized: "La sincronizzazione richiede Makeet Plus. I dati già presenti restano sul dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
         } catch {
             if active { message = String(localized: "Sincronizzazione in pausa. I progressi restano sul dispositivo; riproveremo alla prossima connessione.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
         }

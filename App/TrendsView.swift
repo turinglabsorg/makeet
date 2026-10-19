@@ -115,7 +115,7 @@ struct HabitDetailView: View {
                     HabitMark(symbol: habit.symbol).font(.largeTitle).foregroundStyle(tint)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(habit.name).font(.system(.largeTitle, design: .default))
-                        Text(String(localized: "Obiettivo: \(habit.target.quantityText) \(habit.unit) al giorno", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.subheadline).foregroundStyle(.secondary)
+                        Text(habit.goal == .atMost ? String(localized: "Limite: \(habit.target.quantityText) \(habit.unit) al giorno", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Obiettivo: \(habit.target.quantityText) \(habit.unit) al giorno", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.subheadline).foregroundStyle(.secondary)
                     }
                 }
                 Picker(String(localized: "Periodo", bundle: AppLanguage.bundle, locale: AppLanguage.locale), selection: $window) {
@@ -132,7 +132,7 @@ struct HabitDetailView: View {
                     Chart {
                         ForEach(stats.days) { day in
                             BarMark(x: .value(String(localized: "Giorno", bundle: AppLanguage.bundle, locale: AppLanguage.locale), day.date, unit: .day), y: .value(habit.unit, day.quantity))
-                                .foregroundStyle(tint).cornerRadius(3)
+                                .foregroundStyle(day.malus > 0 ? Palette.warning : tint).cornerRadius(3)
                         }
                         RuleMark(y: .value(String(localized: "Obiettivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale), habit.target)).foregroundStyle(tint.opacity(0.5))
                             .lineStyle(StrokeStyle(lineWidth: 1, dash: [4]))
@@ -149,7 +149,7 @@ struct HabitDetailView: View {
                     let days = continuity.days
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 5), count: 14), spacing: 5) {
                         ForEach(days) { day in
-                            RoundedRectangle(cornerRadius: 4).fill(tint.opacity(day.quantity > 0 ? 0.2 + day.fraction * 0.8 : 0.07))
+                            RoundedRectangle(cornerRadius: 4).fill(day.malus > 0 ? Palette.warning : tint.opacity(day.registrations > 0 ? 0.2 + day.fraction * 0.8 : 0.07))
                                 .aspectRatio(1, contentMode: .fit)
                                 .accessibilityLabel(String(localized: "\(day.date.formatted(Date.FormatStyle(date: .abbreviated, time: .omitted).locale(AppLanguage.locale))): \(day.quantity.quantityText) \(habit.unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                         }
@@ -176,7 +176,7 @@ struct HabitDetailView: View {
                         HStack {
                             Text(entry.timestamp, style: .time).monospacedDigit()
                             Spacer()
-                            Text(String(localized: "+\(entry.amount.quantityText) \(habit.unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                            Text(verbatim: "\(entry.amount > 0 ? "+" : "")\(entry.amount.quantityText) \(habit.unit)")
                             Button { remove(entry) } label: { Image(systemName: "arrow.uturn.backward").frame(width: 44, height: 44) }
                                 .buttonStyle(.plain).accessibilityLabel(String(localized: "Annulla registrazione delle \(entry.timestamp.formatted(Date.FormatStyle(date: .omitted, time: .shortened).locale(AppLanguage.locale)))", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                         }.font(.subheadline)
@@ -184,7 +184,7 @@ struct HabitDetailView: View {
                     HStack {
                         Button(String(localized: "Togli \(habit.step.quantityText) \(habit.unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
                             do { try SharedStore.decrement(habit, in: context) } catch { self.error = error.localizedDescription }
-                        }.buttonStyle(.bordered).disabled(habit.archived || todayEntries.isEmpty)
+                        }.buttonStyle(.bordered).disabled(habit.archived || (!habit.allowsNegative && todayEntries.reduce(0, { $0 + $1.amount }) <= 0))
                         Spacer()
                         Button(String(localized: "Aggiungi \(habit.step.quantityText) \(habit.unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
                         do { try SharedStore.log(habit, in: context) } catch { self.error = error.localizedDescription }

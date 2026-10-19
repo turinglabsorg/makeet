@@ -167,3 +167,29 @@ The updated Terms and account-deletion pages explain free local use, the approve
 - `testPlanningAndLocalTrackingStayFreeWithoutPlus` opens the Planner horizon without a Plus screen and keeps logging and decrement free. Its screenshots, the updated Plus sheet and the five-language onboarding account choice were visually reviewed.
 - The first GitHub runs exposed two pre-existing timing issues. The out-of-process Files exporter could stay blank for more than five seconds on a cold Simulator, and the unsuccessful-purchase test left an unanswered Ask to Buy request that intermittently failed the next real StoreKit purchase. The exporter wait now allows 30 seconds; the test asserts the pending request and declines it.
 - Go race tests and vet, five-language catalog validation and the iOS/macOS builds pass. Real App Store Sandbox purchases, production APNs receipt and multi-device sync remain release checks.
+
+
+## TestFlight 13 and production push — 19 October 2026
+
+The sync-only Plus change passed the required Xcode Cloud iOS test action at 15:24:54 UTC, alongside successful archive, backend and verification checks. App Store Connect confirms that processed version 1.0 (13) is Testing in the owner-only group. The owner confirmed real Google sign-in, profile editing and saving, and actual test-push receipt on that build. This confirmation does not establish multi-device synchronization, scheduled-reminder timing or real App Store Sandbox purchase and restoration.
+
+The production APNs credential is limited to the two Makeet bundle topics and stored opaquely in local and Mac Pro hush. The authorized temporary download was removed. The isolated service uses production APNs, with a new listener verified after restart. Public API health and configuration return HTTP 200; billing remains disabled. The owner's concurrently deployed backend and updated five-language landing were preserved.
+
+The five Store descriptions and reviewer instructions match the updated source after reload. All ten monthly and yearly subscription summaries, plus both reviewer notes, disclose synchronization-only Plus and free calendar planning. The 15-category App Privacy attestation is published. The Paid Apps Agreement is accepted but remains Pending User Info until banking and tax completion. The owner verified the professional EU contacts; their Apple status is In Review. No App Review submission or public release has occurred.
+
+## Product-page completion — 19 October 2026
+
+The current Apple UI was audited directly. Four actual native screenshots were confirmed in each required medium Dynamic Island iPhone and13-inch iPad slot across Italian, English, French, German and Spanish:40images. The separate initial Header and Search Results panel was empty and the release lacked a selected binary. Build13is now associated with version1.0and confirmed after reload.
+
+The AppKit creative renderer executes successfully and produces five opaque5244x2950headerPNGs and five opaque3840x2560searchPNGs, using the original app icon and real native demo captures. The first header composition exposed an additional crop in Apple's phone preview; the final layout adds safe margins and a text-column inset. Search uses a separate larger-content composition. Alltenfinalslots show1of1afterreload, with no Italian fallback in other locales. Product-page previews in allfive languages and the final Italian search preview were visually inspected; the icon and native gallery render correctly. The generated files' dimensions and opaqueRGBformat were checked. No native code, backend schema or API route changed, and no new native build was needed.
+
+The listing remains Prepare for Submission. No public product page, App Review submission, preview video or completed real subscription purchase-screen review attachment is claimed. Banking/tax steps remain on the owner's explicit hold pending Apple's membership residence correction.
+
+
+## Entirely free release and flexible goals — 19 October 2026
+
+The owner superseded the previous paid-sync offer. Production native purchases and backend billing processing are disabled; account sync remains free even if dormant billing credentials are configured. Purchase history was removed from the app-owned privacy manifest, leaving provider SDK declarations intact. Website and Store source copy describe free tracking/planning/sync and zero/negative goals; live deployment and listing verification are separate steps.
+
+Package tests cover explicit zero versus an unknown day, positive limits, malus, signed statistics/streak/calendar consistency, fractional cancellation, disk reopen, remote record application, old JSON defaults and opt-in negative corrections. HTTP tests cover signed and zero records, atomic/retried account sync, export/isolation, indexed legacy-client rejection and disabled billing. No database schema migration is introduced.
+
+The actual iOS27 Simulator flow creates a zero-limit habit, confirms zero, logs two malus occurrences, decrements back to zero, creates a signed minimum goal, decrements below zero, saves and reopens a negative calendar correction, and cancels a zero reset without changing the saved value. The comprehensive focused flow passes and its actual native screenshots were reviewed. Free external-purchase-intent handling, native Files export and five-language account-erasure/cancel paths also pass. Full scheme, final signed build and deployment evidence will be recorded separately; no new TestFlight availability or App Review submission is implied by these focused checks.

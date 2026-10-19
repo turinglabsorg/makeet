@@ -192,7 +192,6 @@ struct ConnectionsView: View {
     let calendar: CalendarService
     @Environment(\.dismiss) private var dismiss
     @State private var editingProfile = false
-    @State private var showingPlus = false
     @State private var deletingAccount = false
     @State private var importingArchive = false
     var body: some View {
@@ -201,7 +200,7 @@ struct ConnectionsView: View {
                 AccountSettingsSection(deleting: $deletingAccount, importing: $importingArchive, editingProfile: $editingProfile)
                 LanguageSettingsSection()
                 Section {
-                    Button { showingPlus = true } label: { Label("Makeet Plus", systemImage: "sparkles") }.accessibilityIdentifier("showMakeetPlus")
+                    Text(String(localized: "Tutte le funzioni sono gratuite, inclusa la sincronizzazione con un account.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).accessibilityIdentifier("freeAccessInfo")
                 }
                 Section {
                     Button(String(localized: "Esporta i tuoi dati", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
@@ -264,17 +263,16 @@ struct ConnectionsView: View {
         .alert(String(localized: "Operazione non riuscita", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: Binding(get: { exportError != nil }, set: { if !$0 { exportError = nil } })) {
             Button(String(localized: "OK", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { exportError = nil }
         } message: { Text(exportError ?? "") }
-        .sheet(isPresented: $showingPlus) { PlusView() }
         .sheet(isPresented: $editingProfile) {
             if let profile = account.profile { ProfileEditorView(service: profile) }
         }
         .confirmationDialog(String(localized: "Eliminare l’account Makeet?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $deletingAccount, titleVisibility: .visible) {
-            Button(String(localized: "Gestisci abbonamento", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
+            if ProductFeatures.subscriptionsAvailable { Button(String(localized: "Gestisci abbonamento", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
                 openURL(URL(string: "https://apps.apple.com/account/subscriptions/")!)
-            }
+            } }
             Button(String(localized: "Elimina account e dati", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .destructive) { Task { await account.deleteAccount() } }
             Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}
-        } message: { Text(String(localized: "Elimineremo definitivamente l’account e i dati dal servizio. L’eliminazione non annulla l’abbonamento: Apple continuerà gli addebiti. Se hai Makeet Plus, annullalo prima di procedere. Puoi comunque eliminare subito l’account.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
+        } message: { Text(String(localized: "Elimineremo definitivamente l’account e i dati dal servizio. Questa azione non può essere annullata.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
         .confirmationDialog(String(localized: "Importare in questo account?", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: $importingArchive, titleVisibility: .visible) {
             Button(String(localized: "Conferma importazione", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await account.importLocalArchive() } }
             Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale), role: .cancel) {}

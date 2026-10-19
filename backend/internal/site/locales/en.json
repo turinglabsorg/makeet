@@ -10,7 +10,7 @@
   "Preview": "iPhone preview · demo data · interface shown in Italian",
   "FeaturesTitle": "Built around your day",
   "FeaturesIntro": "Your rhythm.\nRoom to change.",
-  "Future": "Start without an account: complete local tracking is free, with unlimited habits. If you choose Apple or Google, your profile stays private. Cross-device sync is being validated during the preview.",
+  "Future": "Makeet is free: unlimited habits, statistics, planning and private sync across devices. No subscriptions or in-app purchases. Stay on your device or sign in with Apple or Google.",
   "Footer": "Habits, at your pace. iPhone preview; Mac and widgets in development.",
   "Privacy": "Privacy",
   "Terms": "Terms",
@@ -27,6 +27,10 @@
     {
       "Title": "More than a checkmark",
       "Body": "Count glasses, pages, minutes or repetitions, several times a day and beyond your goal. Minus on the left, plus on the right: adjust a quantity and keep going."
+    },
+    {
+      "Title": "Goals to reach or limits to respect",
+      "Body": "Choose a goal to reach or a limit not to exceed, including zero. Occurrences above the limit count as a penalty. Confirm zero to distinguish a day with no occurrences from an unlogged day. If you enable it, minus can take your balance below zero; history and statistics preserve the sign."
     },
     {
       "Title": "A week of your own",
@@ -59,8 +63,8 @@
       "Body": "No. Guided onboarding lets you choose: keep progress only on your device, or sign in with Apple or Google. Your local archive is not uploaded automatically; importing it requires your choice."
     },
     {
-      "Title": "How much will it cost?",
-      "Body": "Complete local use, including planning, will stay free, with unlimited habits. Planned Makeet Plus pricing, for sync across devices, is €1.99 per month or €11.99 per year. Subscriptions are not active during the preview."
+      "Title": "Is it free?",
+      "Body": "Makeet is free: unlimited habits, statistics, planning and private sync across devices. No subscriptions or in-app purchases. Stay on your device or sign in with Apple or Google."
     },
     {
       "Title": "Does it work with Apple and Google Calendar?",
@@ -76,7 +80,7 @@
     }
   ],
   "Policy": {
-    "Updated": "Updated 18 October 2026",
+    "Updated": "Last updated: 19 October 2026",
     "PrivacyIntro": "This notice explains how Makeet handles information in the app, account service, website and support. During development, account features become available only after service checks. You can use the local archive without an account.",
     "ControllerTitle": "Who is responsible",
     "HostingTitle": "Country of the primary account server",
@@ -92,10 +96,6 @@
       {
         "Title": "Notifications",
         "Body": "Notifications require device permission. When signed in, the service stores an installation identifier, an encrypted Apple push token, language, time zone and your optional reminder time. It uses synchronized progress to decide whether a daily reminder is needed. Alerts contain generic text, not habit names or quantities. The service records sending attempts, Apple acceptance and a receipt when the app sees or you open a notification. You can disable reminders in the app or notifications in device settings."
-      },
-      {
-        "Title": "App Store purchases",
-        "Body": "When you purchase or restore Makeet Plus, Apple processes payment. The service verifies Apple-signed transaction and subscription notifications and stores the transaction and original purchase identifiers, product, environment, expiration and revocation status, linked to your Makeet account identifier. We use these records to provide the subscription and prevent an account from claiming another account’s purchase. We do not receive your card or bank details."
       },
       {
         "Title": "Legal grounds and choices",
@@ -129,12 +129,8 @@
         "Body": "You may use a local archive without signing in. Apple or Google sign-in is required for private account synchronization. Keep access to your identity provider secure. Signing in with different providers may create separate accounts; accounts are not automatically merged by email."
       },
       {
-        "Title": "Local use and Makeet Plus",
-        "Body": "Unlimited local habit tracking, quantities, history, statistics and calendar planning are free. Makeet Plus adds private account synchronization across your devices. The approved Italy list price is €1.99 per month or €11.99 per year, paid in full for the selected period. The App Store shows the applicable price, currency and billing period before you confirm. During the internal TestFlight preview, public billing remains disabled; this website does not sell subscriptions."
-      },
-      {
-        "Title": "Renewal, cancellation and restoration",
-        "Body": "Payment is charged to your Apple account when you confirm a purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the current period ends. Apple may charge for renewal within the final 24 hours of that period. Manage or cancel in your Apple account subscription settings. Cancellation stops future renewals; access normally continues until the paid period ends. Use Restore Purchases in Makeet Plus with the Apple account used for the purchase and the original Makeet account. A subscription cannot be transferred automatically to a different Makeet account."
+        "Title": "Free access",
+        "Body": "Makeet is free: unlimited habits, statistics, planning and private sync across devices. No subscriptions or in-app purchases. Stay on your device or sign in with Apple or Google."
       },
       {
         "Title": "Logging and planning",
@@ -150,7 +146,7 @@
       },
       {
         "Title": "Leaving Makeet",
-        "Body": "You can sign out or delete your account from Connections > Account. Account deletion does not cancel an Apple subscription: billing continues until you cancel it with Apple. Cancel Makeet Plus before deleting your account, or choose immediate deletion without waiting. Export any data you want to keep first. After subscription expiry, local use, data export and account deletion remain accessible. Existing calendar events and independent local archives are not automatically removed. See the privacy notice for retention and support@makeet.app for help."
+        "Body": "Sign out or delete your account from Connections > Account. Export any data you want to keep first. Successful deletion removes your account and its data from the service. Existing calendar events and independent local archives are not automatically removed. See the privacy notice for retention and contact support@makeet.app for help."
       },
       {
         "Title": "Contact and applicable rights",
@@ -162,10 +158,6 @@
       {
         "Title": "In the app",
         "Body": "Open Connections, find Account, choose Delete account and confirm. A connection is required. The app confirms only after the service has deleted the account; if Apple authorization cannot be revoked, retry when the service is available."
-      },
-      {
-        "Title": "Apple subscriptions",
-        "Body": "Deleting your Makeet account or uninstalling the app does not cancel Makeet Plus. Apple will continue billing until you cancel the subscription in your Apple account settings. Cancel it before deleting your account. You can still delete your account immediately without waiting for cancellation or expiry. Use the App Store link below to manage subscriptions."
       },
       {
         "Title": "What is removed",

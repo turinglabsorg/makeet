@@ -91,6 +91,7 @@ import GoogleSignIn
     }
 
     func requestPurchase(_ productID: String) {
+        guard ProductFeatures.subscriptionsAvailable else { return }
         guard SubscriptionStore.identifiers.contains(productID) else { return }
         requestedPurchaseID = productID
     }
@@ -250,7 +251,7 @@ import GoogleSignIn
         let devicePush = try DevicePushService(api: api, userID: user.id)
         let accountProfile = try AccountProfileService(userID: user.id, api: api)
         sync?.stop(); push?.stop(); profile?.stop(); subscription?.stop(); try WidgetAccountScope.activate(nil)
-        subscription = SubscriptionStore(userID: user.id, api: api)
+        subscription = ProductFeatures.subscriptionsAvailable ? SubscriptionStore(userID: user.id, api: api) : nil
         self.user = user; scope = .account(user.id); container = next; sync = service; push = devicePush; profile = accountProfile; message = nil
         try WidgetAccountScope.activate(scope)
     }

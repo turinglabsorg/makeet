@@ -33,6 +33,7 @@ public enum ScheduleEngine {
         var result: [ScheduleProposal] = []
         for offset in 0..<min(28, max(1, days)) {
           for habit in habits {
+            guard habit.goal == .atLeast else { continue }
             let calendar = habit.calendar
             let actualToday = calendar.startOfDay(for: now)
             let today = calendar.date(byAdding: .day, value: offset, to: actualToday)!

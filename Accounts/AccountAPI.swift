@@ -179,6 +179,7 @@ public actor AccountAPI {
         request.httpMethod = method; request.httpBody = body; request.timeoutInterval = 30
         request.cachePolicy = .reloadIgnoringLocalCacheData
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        if path == "/v1/sync" { request.setValue("2", forHTTPHeaderField: "X-Makeet-Sync-Version") }
         if body != nil { request.setValue("application/json", forHTTPHeaderField: "Content-Type") }
         if let token { request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization") }
         let (data, response) = try await http.data(for: request)

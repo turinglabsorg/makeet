@@ -19,10 +19,10 @@ type entitlement struct {
 }
 
 func (s *Server) publicBillingEnabled() bool {
-	return s.cfg.Billing != nil && len(s.cfg.BillingPreviewUsers) == 0
+	return s.cfg.AllowSubscriptions && s.cfg.Billing != nil && len(s.cfg.BillingPreviewUsers) == 0
 }
 func (s *Server) billingEnabledFor(userID string) bool {
-	return s.cfg.Billing != nil && (len(s.cfg.BillingPreviewUsers) == 0 || s.cfg.BillingPreviewUsers[userID])
+	return s.cfg.AllowSubscriptions && s.cfg.Billing != nil && (len(s.cfg.BillingPreviewUsers) == 0 || s.cfg.BillingPreviewUsers[userID])
 }
 
 func (s *Server) entitlement(ctx context.Context, userID string) (entitlement, error) {
@@ -51,7 +51,7 @@ func (s *Server) getEntitlement(w http.ResponseWriter, r *http.Request, p princi
 	respond(w, 200, value)
 }
 func (s *Server) submitTransaction(w http.ResponseWriter, r *http.Request, p principal) {
-	if s.cfg.Billing == nil {
+	if !s.cfg.AllowSubscriptions || s.cfg.Billing == nil {
 		fail(w, 503, "billing_unavailable")
 		return
 	}
@@ -123,7 +123,7 @@ func (s *Server) storeTransaction(ctx context.Context, value billing.Transaction
 	return tx.Commit()
 }
 func (s *Server) appStoreNotification(w http.ResponseWriter, r *http.Request) {
-	if s.cfg.Billing == nil {
+	if !s.cfg.AllowSubscriptions || s.cfg.Billing == nil {
 		fail(w, 503, "billing_unavailable")
 		return
 	}

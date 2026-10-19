@@ -15,15 +15,16 @@ Makeet is intended for public use with open self-service registration and privat
 ## Current foundation
 
 - Create and edit habits with selected weekdays, an SF Symbol or emoji, target, unit, increment, preferred hour, start date and session duration.
-- Adjust today's quantity with minus on the left and plus on the right, stop at zero, continue beyond a target, inspect timestamps, and undo individual registrations.
+- Adjust today's quantity with minus on the left and plus on the right, choose whether minus stops at zero or permits a negative balance, continue beyond a target, inspect timestamps, and undo individual registrations.
 - Browse a combined monthly heatmap, inspect calendar events and correct past-day quantities without changing other days.
 - Review 7-day, 28-day, and 12-week quantities, daily averages, completion rates, current/best streaks, activity intensity, and hourly distributions.
 - Get local scheduling proposals that avoid calendar conflicts, other proposals, past hours, and completed goals. With sufficient history, proposals use the most frequently logged hour in the previous 28 days.
 - Connect device calendars through EventKit, select availability sources and a writable destination, and review individual events or batches covering up to 28 days before creating them. Planned events never mark habits as complete.
 - Use interactive small and medium WidgetKit extensions for iOS and native macOS, backed by the same on-device SwiftData store.
 - Archive and restore habits while retaining history, or permanently delete a habit and its registrations with confirmation. Optional cleanup removes its future linked Makeet calendar blocks.
-- Export device progress and available server records as JSON, including without an active subscription.
-- Use all local tracking and calendar planning free. Makeet Plus adds account sync across devices. Plus purchase/restore and account-bound server verification are staged; preview billing remains disabled. Approved Italy pricing is EUR 1.99/month or EUR 11.99/year.
+- Track minimum goals or limits, including a zero target for habits to avoid. Explicit zero confirmation counts a successful day; excess occurrences are shown as malus.
+- Export device progress and available server records as JSON, including offline.
+- Use tracking, calendar planning and private account synchronization free. Subscriptions and in-app purchase prompts are disabled for this release.
 - Follow a five-language welcome that explains progress and asks explicitly between an Apple/Google account and local storage. No option is preselected and no local archive uploads automatically. Calendar and notification permissions remain optional.
 - Personalize a private account profile with a display name and photo, shown in Account and Today. Choose a photo with the system picker; a first Google sign-in can import a profile when Makeet has none. Profile revisions prevent silent overwrites between devices. Demo data remains an explicit, labeled choice.
 
@@ -42,7 +43,7 @@ Makeet is intended for public use with open self-service registration and privat
 | Google through system calendars | Available through EventKit when the Google account is configured in device settings; actual provider synchronization belongs to the OS |
 | iCloud across devices | CloudKit configuration path prepared; disabled by default; requires Apple capability provisioning and multi-device validation |
 | Direct Google connection | Not implemented; requires OAuth and incremental Calendar API sync |
-| Subscription billing | StoreKit2 and signed Go entitlements implemented/tested; billing disabled pending store/Sandbox/release validation |
+| Subscription billing | Unavailable in the current free release; retained purchase code is isolated and disabled in production |
 | Scheduling assistant | Local deterministic engine; no external LLM, autonomous background execution, or hidden calendar writes |
 | Widget runtime | Builds for iOS and macOS; real Home Screen/desktop interaction still requires end-to-end validation |
 

@@ -10,7 +10,7 @@
   "Preview": "Vista previa para iPhone · datos de demostración · interfaz en italiano",
   "FeaturesTitle": "Alrededor de tu día",
   "FeaturesIntro": "Tu ritmo.\nTambién cuando cambia.",
-  "Future": "Empieza sin cuenta: el seguimiento local completo es gratis, sin límite de hábitos. Si eliges Apple o Google, tu perfil sigue siendo privado. La sincronización entre dispositivos se está validando durante la vista previa.",
+  "Future": "Makeet es gratis: hábitos ilimitados, estadísticas, planificación y sincronización privada entre dispositivos. Sin suscripciones ni compras dentro de la app. Guarda los datos en el dispositivo o accede con Apple o Google.",
   "Footer": "Hábitos, a tu ritmo. Vista previa para iPhone; Mac y widgets en desarrollo.",
   "Privacy": "Privacidad",
   "Terms": "Condiciones",
@@ -27,6 +27,10 @@
     {
       "Title": "Más que una marca",
       "Body": "Cuenta vasos, páginas, minutos o repeticiones, varias veces al día e incluso por encima de tu objetivo. Menos a la izquierda, más a la derecha: ajusta una cantidad y sigue adelante."
+    },
+    {
+      "Title": "Objetivos que alcanzar o límites que respetar",
+      "Body": "Elige un objetivo que alcanzar o un límite que no superar, incluso cero. Las ocurrencias superiores cuentan como penalización. Confirma cero para distinguir un día sin ocurrencias de un día sin registrar. Si activas la opción, menos puede llevar el saldo por debajo de cero; historial y estadísticas conservan el signo."
     },
     {
       "Title": "Una semana a tu medida",
@@ -59,8 +63,8 @@
       "Body": "No. La bienvenida te guía para elegir: guardar el progreso solo en el dispositivo o acceder con Apple o Google. Tu archivo local no se sube automáticamente; importarlo requiere tu decisión."
     },
     {
-      "Title": "¿Cuánto costará?",
-      "Body": "El uso local completo, planificación incluida, seguirá siendo gratis, sin límite de hábitos. El precio previsto de Makeet Plus, con sincronización entre dispositivos, es de 1,99 € al mes o 11,99 € al año. Las suscripciones no están activas durante la vista previa."
+      "Title": "¿Es gratis?",
+      "Body": "Makeet es gratis: hábitos ilimitados, estadísticas, planificación y sincronización privada entre dispositivos. Sin suscripciones ni compras dentro de la app. Guarda los datos en el dispositivo o accede con Apple o Google."
     },
     {
       "Title": "¿Funciona con Apple y Google Calendar?",
@@ -76,7 +80,7 @@
     }
   ],
   "Policy": {
-    "Updated": "Actualizada el 18 de octubre de 2026",
+    "Updated": "Última actualización: 19 de octubre de 2026",
     "PrivacyIntro": "Este aviso describe cómo Makeet trata datos en la app, el servicio de cuentas, el sitio y soporte. Durante el desarrollo, las cuentas se habilitan tras verificar el servicio. Puedes usar el archivo local sin cuenta.",
     "ControllerTitle": "Responsable del tratamiento",
     "HostingTitle": "País del servidor principal de cuentas",
@@ -92,10 +96,6 @@
       {
         "Title": "Notificaciones",
         "Body": "Las notificaciones requieren permiso del dispositivo. Tras iniciar sesión, el servicio guarda un identificador de instalación, un token push de Apple cifrado, idioma, zona horaria y la hora opcional del recordatorio. Usa el progreso sincronizado para decidir si hace falta un recordatorio diario. Los avisos son genéricos, sin nombres ni cantidades de hábitos. Se registran intentos, aceptación de Apple y recepción cuando la app ve la notificación o la abres. Puedes desactivar recordatorios en la app o notificaciones en los ajustes del dispositivo."
-      },
-      {
-        "Title": "Compras en el App Store",
-        "Body": "Cuando compras o restauras Makeet Plus, Apple procesa el pago. El servicio verifica las transacciones y notificaciones de suscripción firmadas por Apple y guarda los identificadores de transacción y compra original, producto, entorno, caducidad y estado de revocación, vinculados al identificador de tu cuenta Makeet. Usamos estos datos para ofrecer la suscripción e impedir que una cuenta reclame la compra de otra. No recibimos los datos de tu tarjeta ni de tu cuenta bancaria."
       },
       {
         "Title": "Bases jurídicas y decisiones",
@@ -129,12 +129,8 @@
         "Body": "El archivo local funciona sin sesión. La sincronización privada requiere Apple o Google. Protege el acceso a tu proveedor de identidad. Distintos proveedores pueden crear cuentas separadas; no se unen automáticamente por correo."
       },
       {
-        "Title": "Uso local y Makeet Plus",
-        "Body": "El seguimiento local de hábitos ilimitados, cantidades, historial, estadísticas y planificación en el calendario es gratuito. Makeet Plus añade sincronización privada de la cuenta entre tus dispositivos. El precio aprobado para Italia es 1,99 € al mes u 11,99 € al año, pagados íntegramente por el período elegido. El App Store muestra el precio, la moneda y el período aplicables antes de confirmar. Durante la versión interna de TestFlight las compras públicas siguen desactivadas; este sitio no vende suscripciones."
-      },
-      {
-        "Title": "Renovación, cancelación y restauración",
-        "Body": "El pago se carga a tu cuenta de Apple al confirmar la compra. La suscripción se renueva automáticamente, salvo que la canceles al menos 24 horas antes de terminar el período actual. Apple puede cobrar la renovación durante las últimas 24 horas de ese período. Gestiona o cancela desde los ajustes de suscripciones de tu cuenta de Apple. La cancelación detiene futuras renovaciones; normalmente el acceso continúa hasta el final del período pagado. Usa Restaurar compras en Makeet Plus con la cuenta de Apple de la compra y la cuenta Makeet original. La suscripción no se puede transferir automáticamente a otra cuenta Makeet."
+        "Title": "Acceso gratuito",
+        "Body": "Makeet es gratis: hábitos ilimitados, estadísticas, planificación y sincronización privada entre dispositivos. Sin suscripciones ni compras dentro de la app. Guarda los datos en el dispositivo o accede con Apple o Google."
       },
       {
         "Title": "Registro y planificación",
@@ -150,7 +146,7 @@
       },
       {
         "Title": "Dejar Makeet",
-        "Body": "Puedes cerrar sesión o eliminar la cuenta en Conexiones > Cuenta. Eliminar la cuenta no cancela una suscripción de Apple: los cobros continúan hasta que la canceles con Apple. Cancela Makeet Plus antes de eliminar la cuenta o elige eliminarla de inmediato sin esperar. Exporta primero los datos que quieras conservar. Tras caducar la suscripción siguen disponibles el uso local, la exportación y la eliminación de la cuenta. Los eventos ya creados y los archivos locales independientes no se eliminan automáticamente. Consulta la privacidad para la conservación y support@makeet.app para obtener ayuda."
+        "Body": "Cierra sesión o elimina la cuenta en Conexiones > Cuenta. Exporta primero los datos que quieras conservar. La eliminación correcta retira tu cuenta y sus datos del servicio. Los eventos existentes y archivos locales independientes no se eliminan automáticamente. Consulta la privacidad para la conservación y support@makeet.app para obtener ayuda."
       },
       {
         "Title": "Contacto y derechos",
@@ -162,10 +158,6 @@
       {
         "Title": "En la app",
         "Body": "Abre Conexiones, busca Cuenta, elige Eliminar cuenta y confirma. Necesitas conexión. La app confirma tras la eliminación en el servicio; si no puede revocarse la autorización Apple, reintenta cuando esté disponible."
-      },
-      {
-        "Title": "Suscripciones de Apple",
-        "Body": "Eliminar tu cuenta Makeet o desinstalar la app no cancela Makeet Plus. Apple seguirá cobrando hasta que canceles la suscripción en los ajustes de tu cuenta de Apple. Cancélala antes de eliminar la cuenta. Aun así, puedes eliminar la cuenta de inmediato sin esperar a la cancelación o caducidad. Usa el enlace del App Store de abajo para gestionar las suscripciones."
       },
       {
         "Title": "Datos eliminados",

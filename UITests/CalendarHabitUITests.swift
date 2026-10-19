@@ -1,7 +1,7 @@
 import XCTest
 
 final class CalendarHabitUITests: XCTestCase {
-    @MainActor func testExternalPurchaseIntentWaitsForOnboardingAndDoesNotPurchaseWithoutAnAccount() {
+    @MainActor func testExternalPurchaseIntentCannotOpenSubscriptionsInTheFreeRelease() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--onboarding", "--demo", "--external-purchase-intent", "-AppleLanguages", "(it)"]
         app.launch()
@@ -11,11 +11,10 @@ final class CalendarHabitUITests: XCTestCase {
         app.buttons["onboardingLocalChoice"].tap()
         app.buttons["onboardingLocal"].tap()
         app.buttons["onboardingFinish"].tap()
-        XCTAssertTrue(app.buttons["plusDone"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons["googleSignIn"].exists)
+        XCTAssertTrue(app.buttons["increment-Bere acqua"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["plusDone"].exists)
         XCTAssertFalse(app.buttons["purchase-org.turinglabs.makeet.plus.monthly"].exists)
         XCTAssertFalse(app.buttons["purchase-org.turinglabs.makeet.plus.yearly"].exists)
-        app.buttons["plusDone"].tap()
         XCTAssertTrue(app.buttons["increment-Bere acqua"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["4 / 8 bicchieri"].exists)
     }
@@ -135,15 +134,13 @@ final class CalendarHabitUITests: XCTestCase {
 }
 
 extension CalendarHabitUITests {
-    @MainActor func testPlusExplainsFreeLocalUseAndExportsData() {
+    @MainActor func testFreeAccessIncludesAccountSyncAndExportsData() {
         let app = launch()
         app.buttons["accountSettings"].tap()
-        let plus = app.buttons["showMakeetPlus"];reveal(plus,in:app);plus.tap()
-        XCTAssertTrue(app.staticTexts["Makeet Plus"].waitForExistence(timeout:5))
-        XCTAssertTrue(app.buttons["appleSignIn"].exists)
-        XCTAssertTrue(app.buttons["googleSignIn"].exists)
-        attach("Plus preserves the free local choice",app)
-        app.buttons["plusDone"].tap()
+        let free = app.staticTexts["freeAccessInfo"];reveal(free,in:app)
+        XCTAssertTrue(free.label.contains("gratuite"))
+        XCTAssertFalse(app.buttons["showMakeetPlus"].exists)
+        attach("Account sync and all local features are free",app)
         let export = app.buttons["exportData"];reveal(export,in:app);export.tap()
         let saveExport = app.buttons["DOCPicker.actionButton"]
         XCTAssertTrue(saveExport.waitForExistence(timeout:30))
@@ -181,6 +178,82 @@ extension CalendarHabitUITests {
 
 
 extension CalendarHabitUITests {
+    @MainActor private func createFlexibleHabit(_ name: String, limit: Bool, negative: Bool, in app: XCUIApplication) {
+        app.buttons["addHabit"].tap()
+        let field = app.textFields["habitName"]
+        XCTAssertTrue(field.waitForExistence(timeout: 5)); field.tap(); field.typeText(name)
+        if app.buttons["habitKeyboardDone"].exists { app.buttons["habitKeyboardDone"].tap() }
+        let goal = app.segmentedControls["habitGoal"]
+        reveal(goal.buttons.element(boundBy: 0), in: app)
+        if limit {
+            goal.buttons.element(boundBy: 1).tap()
+            XCTAssertTrue(goal.buttons.element(boundBy: 1).isSelected)
+            let target = app.textFields["habitTarget"]; reveal(target, in: app)
+            XCTAssertEqual(target.value as? String, "0")
+        }
+        let toggle = app.switches["allowNegative"]; reveal(toggle, in: app)
+        if negative {
+            toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+            XCTAssertEqual(toggle.value as? String, "1")
+        }
+        attach("Flexible goal editor \(name)", app)
+        app.buttons["saveHabit"].tap()
+        XCTAssertTrue(app.buttons["increment-\(name)"].waitForExistence(timeout: 5))
+    }
+
+    @MainActor func testZeroLimitMalusNegativeBalanceAndCalendarCorrection() {
+        continueAfterFailure = false
+        let app = launch(demo: false)
+        createFlexibleHabit("Beer", limit: true, negative: false, in: app)
+        XCTAssertTrue(app.buttons["confirm-zero-Beer"].exists)
+        XCTAssertFalse(app.buttons["decrement-Beer"].isEnabled)
+        app.buttons["confirm-zero-Beer"].tap()
+        XCTAssertFalse(app.buttons["confirm-zero-Beer"].exists)
+        app.buttons["increment-Beer"].tap(); app.buttons["increment-Beer"].tap()
+        XCTAssertTrue(app.staticTexts["progress-Beer"].label.hasPrefix("2 /"))
+        XCTAssertTrue(app.staticTexts["Malus: 2 volte"].exists)
+        attach("Zero limit with two occurrences as malus", app)
+        app.buttons["decrement-Beer"].tap(); app.buttons["decrement-Beer"].tap()
+        XCTAssertTrue(app.staticTexts["progress-Beer"].label.hasPrefix("0 /"))
+        XCTAssertFalse(app.buttons["confirm-zero-Beer"].exists)
+        createFlexibleHabit("Balance", limit: false, negative: true, in: app)
+        app.buttons["decrement-Balance"].tap()
+        XCTAssertTrue(app.staticTexts["progress-Balance"].label.hasPrefix("-1 /"))
+        attach("Signed negative balance in Today", app)
+        app.tabBars.buttons["Calendario"].tap()
+        let edit = app.buttons["editCalendarDay"]; reveal(edit, in: app); edit.tap()
+        let minus = app.buttons["day-decrement-Balance"]; reveal(minus, in: app); minus.tap()
+        XCTAssertTrue(app.staticTexts["day-quantity-Balance"].label.hasPrefix("-2 "))
+        app.buttons["saveCalendarDay"].tap()
+        reveal(edit, in: app); edit.tap()
+        XCTAssertTrue(app.staticTexts["day-quantity-Balance"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["day-quantity-Balance"].label.hasPrefix("-2 "))
+        app.buttons["day-zero-Balance"].tap()
+        app.buttons["Annulla"].tap()
+        app.tabBars.buttons["Oggi"].tap()
+        XCTAssertTrue(app.staticTexts["progress-Balance"].label.hasPrefix("-2 /"))
+        app.staticTexts["Balance"].tap()
+        XCTAssertTrue(app.staticTexts["-1 volte"].waitForExistence(timeout: 5))
+        attach("Negative values in statistics and registration history", app)
+    }
+
+    @MainActor func testZeroGoalCreationIsLocalizedInFiveLanguages() {
+        continueAfterFailure = false
+        for language in ["it", "en", "fr", "de", "es"] {
+            let app = XCUIApplication()
+            app.launchArguments = ["--ui-testing", "-AppleLanguages", "(\(language))"]
+            app.launch()
+            createFlexibleHabit("Zero", limit: true, negative: true, in: app)
+            XCTAssertTrue(app.buttons["confirm-zero-Zero"].exists, language)
+            app.buttons["confirm-zero-Zero"].tap()
+            XCTAssertTrue(app.buttons["decrement-Zero"].isEnabled, language)
+            app.buttons["decrement-Zero"].tap()
+            XCTAssertTrue(app.staticTexts["progress-Zero"].label.contains("1"), language)
+            attach("Localized zero and signed goal \(language)", app)
+            app.terminate()
+        }
+    }
+
     @MainActor func testPlanningAndLocalTrackingStayFreeWithoutPlus() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "--demo", "-AppleLanguages", "(it)", "-AppleLocale", "it_IT"]

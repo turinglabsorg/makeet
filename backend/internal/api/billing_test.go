@@ -19,7 +19,7 @@ func TestSubscriptionOwnershipExpiryRefundReplayAndFreeDataAccess(t *testing.T) 
 	f.sync(a, 0, []api.Record{habit(uuid.NewString(), 0)})
 	issuer := testbilling.New(t, f.now)
 	f.server.Close()
-	f.api = api.New(f.db, api.Config{Billing: issuer.Verifier, Clock: func() time.Time { return f.now }, Providers: map[string]identity.Verifier{}})
+	f.api = api.New(f.db, api.Config{AllowSubscriptions: true, Billing: issuer.Verifier, Clock: func() time.Time { return f.now }, Providers: map[string]identity.Verifier{}})
 	f.server = httptest.NewServer(f.api.Handler())
 	get := func(token string) bool {
 		var value struct{ Active bool }
@@ -77,13 +77,36 @@ func TestSubscriptionOwnershipExpiryRefundReplayAndFreeDataAccess(t *testing.T) 
 	f.request("DELETE", "/v1/me", b.Access, map[string]string{"confirmation": "DELETE"}, 204)
 }
 
+func TestFreeReleaseSyncIgnoresConfiguredBillingAndRejectsPurchases(t *testing.T) {
+	f := setup(t)
+	a := f.login("google", "free-release")
+	issuer := testbilling.New(t, f.now)
+	f.server.Close()
+	f.api = api.New(f.db, api.Config{Billing: issuer.Verifier, Clock: func() time.Time { return f.now }})
+	f.server = httptest.NewServer(f.api.Handler())
+	var config struct {
+		Enabled bool `json:"billing_enabled"`
+	}
+	json.Unmarshal(f.request("GET", "/v1/config", "", nil, 200), &config)
+	if config.Enabled {
+		t.Fatal("public billing must remain disabled")
+	}
+	json.Unmarshal(f.request("GET", "/v1/me/entitlement", a.Access, nil, 200), &config)
+	if config.Enabled {
+		t.Fatal("account billing must remain disabled")
+	}
+	f.sync(a, 0, []api.Record{habit(uuid.NewString(), 0)})
+	f.request("GET", "/v1/me/export", a.Access, nil, 200)
+	f.request("POST", "/v1/me/transactions", a.Access, map[string]string{"signed_transaction": "unused"}, 503)
+}
+
 func TestBillingPreviewOnlyEnablesNamedAccountsAndDoesNotPublishCharging(t *testing.T) {
 	f := setup(t)
 	a := f.login("google", "preview-owner")
 	b := f.login("google", "ordinary-preview")
 	issuer := testbilling.New(t, f.now)
 	f.server.Close()
-	f.api = api.New(f.db, api.Config{Billing: issuer.Verifier, BillingPreviewUsers: map[string]bool{a.User.ID: true}, Clock: func() time.Time { return f.now }})
+	f.api = api.New(f.db, api.Config{AllowSubscriptions: true, Billing: issuer.Verifier, BillingPreviewUsers: map[string]bool{a.User.ID: true}, Clock: func() time.Time { return f.now }})
 	f.server = httptest.NewServer(f.api.Handler())
 	var config struct {
 		Billing bool `json:"billing_enabled"`
@@ -129,7 +152,7 @@ func TestExpiredSubscriberCanExportAndEraseItsDataWithoutAffectingAnotherAccount
 	f.sync(b, 0, []api.Record{habit(uuid.NewString(), 0)})
 	issuer := testbilling.New(t, f.now)
 	f.server.Close()
-	f.api = api.New(f.db, api.Config{Billing: issuer.Verifier, Clock: func() time.Time { return f.now }})
+	f.api = api.New(f.db, api.Config{AllowSubscriptions: true, Billing: issuer.Verifier, Clock: func() time.Time { return f.now }})
 	f.server = httptest.NewServer(f.api.Handler())
 	p := testbilling.Purchase(a.User.ID, f.now)
 	p.ExpiresDate = f.now.Add(time.Minute).UnixMilli()
@@ -174,13 +197,13 @@ func TestProductionEntitlementDoesNotUseStoredSandboxPurchase(t *testing.T) {
 	a := f.login("google", "sandbox-explicit")
 	issuer := testbilling.New(t, f.now)
 	f.server.Close()
-	f.api = api.New(f.db, api.Config{Billing: issuer.Verifier, Clock: func() time.Time { return f.now }})
+	f.api = api.New(f.db, api.Config{AllowSubscriptions: true, Billing: issuer.Verifier, Clock: func() time.Time { return f.now }})
 	f.server = httptest.NewServer(f.api.Handler())
 	f.request("POST", "/v1/me/transactions", a.Access, map[string]string{"signed_transaction": issuer.Sign(t, testbilling.Purchase(a.User.ID, f.now))}, 200)
 	f.server.Close()
 	productionVerifier := *issuer.Verifier
 	productionVerifier.Sandbox = false
-	f.api = api.New(f.db, api.Config{Billing: &productionVerifier, Clock: func() time.Time { return f.now }})
+	f.api = api.New(f.db, api.Config{AllowSubscriptions: true, Billing: &productionVerifier, Clock: func() time.Time { return f.now }})
 	f.server = httptest.NewServer(f.api.Handler())
 	var e struct{ Active bool }
 	json.Unmarshal(f.request("GET", "/v1/me/entitlement", a.Access, nil, 200), &e)

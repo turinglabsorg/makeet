@@ -25,6 +25,7 @@ import (
 )
 
 type Config struct {
+	AllowSubscriptions  bool
 	Billing             *billing.Verifier
 	BillingPreviewUsers map[string]bool
 	Providers           map[string]identity.Verifier

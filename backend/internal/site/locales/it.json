@@ -10,7 +10,7 @@
   "Preview": "Anteprima iPhone · dati dimostrativi · interfaccia in italiano",
   "FeaturesTitle": "Intorno alla tua giornata",
   "FeaturesIntro": "Il tuo ritmo.\nAnche quando cambia.",
-  "Future": "Parti senza account: tutto il monitoraggio locale è gratuito, senza limiti di abitudini. Se scegli Apple o Google, il tuo profilo resta privato. La sincronizzazione tra dispositivi è in verifica durante l’anteprima.",
+  "Future": "Makeet è gratuito: abitudini illimitate, statistiche, pianificazione e sincronizzazione privata tra dispositivi. Nessun abbonamento e nessun acquisto in-app. Puoi restare sul dispositivo oppure accedere con Apple o Google.",
   "Footer": "Abitudini, al tuo passo. Anteprima iPhone; Mac e widget in sviluppo.",
   "Privacy": "Privacy",
   "Terms": "Termini",
@@ -27,6 +27,10 @@
     {
       "Title": "Più di una spunta",
       "Body": "Conta bicchieri, pagine, minuti o ripetizioni, anche più volte al giorno e oltre l’obiettivo. Meno a sinistra, più a destra: correggi la quantità senza perdere il filo."
+    },
+    {
+      "Title": "Obiettivi da raggiungere o limiti da rispettare",
+      "Body": "Scegli un obiettivo da raggiungere oppure un limite da non superare, anche zero. Le occorrenze oltre il limite contano come malus. Conferma zero per distinguere una giornata senza occorrenze da una giornata non registrata. Se lo scegli, il pulsante meno può portare il saldo in negativo; storico e statistiche conservano il segno."
     },
     {
       "Title": "Una settimana tutta tua",
@@ -59,8 +63,8 @@
       "Body": "No. L’onboarding ti guida nella scelta: puoi tenere i progressi soltanto sul dispositivo oppure accedere con Apple o Google. Non carichiamo automaticamente il tuo archivio locale; l’importazione richiede una tua scelta."
     },
     {
-      "Title": "Quanto costerà?",
-      "Body": "L’uso locale completo, pianificazione compresa, resterà gratuito, senza limiti di abitudini. Il listino previsto per Makeet Plus, con la sincronizzazione tra dispositivi, è 1,99 € al mese oppure 11,99 € l’anno. Durante l’anteprima gli abbonamenti non sono attivi."
+      "Title": "È gratuito?",
+      "Body": "Makeet è gratuito: abitudini illimitate, statistiche, pianificazione e sincronizzazione privata tra dispositivi. Nessun abbonamento e nessun acquisto in-app. Puoi restare sul dispositivo oppure accedere con Apple o Google."
     },
     {
       "Title": "Funziona con Apple e Google Calendar?",
@@ -76,7 +80,7 @@
     }
   ],
   "Policy": {
-    "Updated": "Aggiornata il 18 ottobre 2026",
+    "Updated": "Ultimo aggiornamento: 19 ottobre 2026",
     "PrivacyIntro": "Questa informativa descrive il trattamento dei dati nell’app Makeet, nel servizio account, sul sito e nell’assistenza. Durante lo sviluppo, le funzioni account vengono rese disponibili dopo le verifiche del servizio. Puoi usare l’archivio locale senza account.",
     "ControllerTitle": "Chi è il titolare",
     "HostingTitle": "Paese del server principale degli account",
@@ -92,10 +96,6 @@
       {
         "Title": "Notifiche",
         "Body": "Le notifiche richiedono il permesso del dispositivo. Dopo l’accesso, il servizio conserva un identificativo d’installazione, il token push Apple cifrato, lingua, fuso orario ed eventuale orario del promemoria. Usa i progressi sincronizzati per valutare se inviare il promemoria giornaliero. Gli avvisi hanno testo generico, senza nomi o quantità delle abitudini. Il servizio registra tentativi d’invio, accettazione di Apple e una ricevuta quando l’app vede o apri una notifica. Puoi disattivare i promemoria nell’app o le notifiche nelle impostazioni del dispositivo."
-      },
-      {
-        "Title": "Acquisti App Store",
-        "Body": "Quando acquisti o ripristini Makeet Plus, Apple gestisce il pagamento. Il servizio verifica le transazioni e le notifiche di abbonamento firmate da Apple e conserva gli identificativi della transazione e dell’acquisto originale, il prodotto, l’ambiente, la scadenza e lo stato di revoca, collegati all’identificativo del tuo account Makeet. Usiamo questi dati per fornire l’abbonamento e impedire che un account rivendichi l’acquisto di un altro. Non riceviamo i dati della tua carta o del conto bancario."
       },
       {
         "Title": "Basi giuridiche e scelte",
@@ -129,12 +129,8 @@
         "Body": "Puoi usare un archivio locale senza accesso. Per la sincronizzazione privata serve l’accesso Apple o Google. Proteggi l’accesso al tuo provider d’identità. Provider diversi possono creare account separati: gli account non vengono uniti automaticamente tramite email."
       },
       {
-        "Title": "Uso locale e Makeet Plus",
-        "Body": "Abitudini locali illimitate, quantità, cronologia, statistiche e pianificazione nel calendario sono gratuite. Makeet Plus aggiunge la sincronizzazione privata dell’account tra i tuoi dispositivi. Il listino approvato per l’Italia è 1,99 € al mese oppure 11,99 € all’anno, pagati per intero per il periodo scelto. L’App Store mostra prezzo, valuta e periodo applicabili prima della conferma. Durante l’anteprima interna TestFlight gli acquisti pubblici restano disattivati; questo sito non vende abbonamenti."
-      },
-      {
-        "Title": "Rinnovo, annullamento e ripristino",
-        "Body": "Il pagamento viene addebitato all’account Apple alla conferma dell’acquisto. L’abbonamento si rinnova automaticamente, salvo annullamento almeno 24 ore prima della fine del periodo corrente. Apple può addebitare il rinnovo nelle ultime 24 ore del periodo. Gestisci o annulla nelle impostazioni degli abbonamenti del tuo account Apple. L’annullamento interrompe i rinnovi futuri; l’accesso normalmente resta fino alla fine del periodo pagato. Usa Ripristina acquisti in Makeet Plus con l’account Apple dell’acquisto e l’account Makeet originale. L’abbonamento non può essere trasferito automaticamente a un altro account Makeet."
+        "Title": "Uso gratuito",
+        "Body": "Makeet è gratuito: abitudini illimitate, statistiche, pianificazione e sincronizzazione privata tra dispositivi. Nessun abbonamento e nessun acquisto in-app. Puoi restare sul dispositivo oppure accedere con Apple o Google."
       },
       {
         "Title": "Registrazioni e pianificazione",
@@ -150,7 +146,7 @@
       },
       {
         "Title": "Lasciare Makeet",
-        "Body": "Puoi uscire o eliminare l’account da Connessioni > Account. L’eliminazione dell’account non annulla un abbonamento Apple: gli addebiti continuano finché non lo annulli con Apple. Annulla Makeet Plus prima di eliminare l’account, oppure scegli l’eliminazione immediata senza attese. Prima esporta i dati che vuoi conservare. Alla scadenza dell’abbonamento restano accessibili uso locale, esportazione ed eliminazione dell’account. Gli eventi già creati e gli archivi locali indipendenti non vengono rimossi automaticamente. Consulta la privacy per la conservazione e support@makeet.app per assistenza."
+        "Body": "Puoi uscire o eliminare l’account da Connessioni > Account. Esporta prima i dati che vuoi conservare. L’eliminazione riuscita rimuove l’account e i suoi dati dal servizio. Gli eventi già creati e gli archivi locali indipendenti non vengono rimossi automaticamente. Consulta la privacy per la conservazione e support@makeet.app per assistenza."
       },
       {
         "Title": "Contatti e diritti applicabili",
@@ -162,10 +158,6 @@
       {
         "Title": "Nell’app",
         "Body": "Apri Collegamenti, trova Account, scegli Elimina account e conferma. Serve una connessione. L’app conferma solo dopo l’eliminazione sul servizio; se non è possibile revocare l’autorizzazione Apple, riprova quando il servizio è disponibile."
-      },
-      {
-        "Title": "Abbonamenti Apple",
-        "Body": "Eliminare l’account Makeet o disinstallare l’app non annulla Makeet Plus. Apple continuerà gli addebiti finché non annulli l’abbonamento nelle impostazioni del tuo account Apple. Annullalo prima di eliminare l’account. Puoi comunque eliminare subito l’account senza attendere l’annullamento o la scadenza. Usa il link App Store qui sotto per gestire gli abbonamenti."
       },
       {
         "Title": "Cosa viene rimosso",

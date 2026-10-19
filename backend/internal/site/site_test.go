@@ -131,7 +131,7 @@ func TestConfiguredPoliciesIdentifyControllerOnlyOnPrivacy(t *testing.T) {
 				t.Fatalf("EULA link scope violated on %s/%s", lang, path)
 			}
 			management := strings.Contains(body, `href="https://apps.apple.com/account/subscriptions/"`)
-			if management != (path == "terms" || path == "delete-account") {
+			if management {
 				t.Fatalf("subscription management link scope violated on %s/%s", lang, path)
 			}
 		}

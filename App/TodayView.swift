@@ -72,7 +72,10 @@ struct TodayView: View {
                     VStack(spacing: 14) {
                         ForEach(habits) { habit in
                             HabitCard(habit: habit, activities: activities, now: now,
-                                      decrement: { subtract(habit) }, increment: { log(habit) })
+                                      decrement: { subtract(habit) }, increment: { log(habit) }, confirmZero: {
+                                do { try SharedStore.confirmZero(habit, in: context) }
+                                catch { self.error = error.localizedDescription }
+                            })
                         }
                     }
                     HStack(alignment: .top, spacing: 12) {
@@ -210,13 +213,15 @@ struct HabitCard: View {
     private let now: Date
     let decrement: () -> Void
     let increment: () -> Void
+    let confirmZero: () -> Void
     init(habit: Habit, activities: [Activity], now: Date,
-         decrement: @escaping () -> Void, increment: @escaping () -> Void) {
+         decrement: @escaping () -> Void, increment: @escaping () -> Void, confirmZero: @escaping () -> Void = {}) {
         self.habit = habit
         snapshot = habit.snapshot
         symbol = habit.symbol; unit = habit.unit; colorIndex = habit.colorIndex
         self.activities = activities.map(\.snapshot)
         self.now = now; self.decrement = decrement; self.increment = increment
+        self.confirmZero = confirmZero
     }
 
     private var progress: DayProgress { HabitEngine.progress(for: snapshot, on: now, activities: activities) }
@@ -228,8 +233,8 @@ struct HabitCard: View {
                 Button(action: decrement) {
                     Text("−\(snapshot.step.quantityText)").font(.subheadline.weight(.semibold)).monospacedDigit()
                         .frame(minWidth: 44, minHeight: 44).background(tint.opacity(0.08), in: RoundedRectangle(cornerRadius: 14))
-                }.buttonStyle(.plain).foregroundStyle(tint).disabled(progress.quantity <= 0)
-                    .opacity(progress.quantity > 0 ? 1 : 0.35)
+                }.buttonStyle(.plain).foregroundStyle(tint).disabled(!snapshot.allowsNegative && progress.quantity <= 0)
+                    .opacity(snapshot.allowsNegative || progress.quantity > 0 ? 1 : 0.35)
                     .accessibilityLabel(String(localized: "Togli \(snapshot.step.quantityText) \(unit) da \(snapshot.name)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .accessibilityIdentifier("decrement-\(snapshot.name)")
                 NavigationLink { HabitDetailView(habit: habit) } label: {
@@ -238,8 +243,9 @@ struct HabitCard: View {
                             .frame(width: 42, height: 42).background(tint.opacity(0.10), in: RoundedRectangle(cornerRadius: 13))
                         VStack(alignment: .leading, spacing: 3) {
                             Text(snapshot.name).font(.headline).foregroundStyle(Palette.ink)
-                            Text(String(localized: "\(progress.quantity.quantityText) / \(snapshot.target.quantityText) \(unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                            Text(HabitText.quantity(progress.quantity, target: snapshot.target, unit: unit, goal: snapshot.goal))
                                 .font(.subheadline).foregroundStyle(.secondary).monospacedDigit()
+                                .accessibilityIdentifier("progress-\(snapshot.name)")
                         }.frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }.buttonStyle(.plain)
@@ -250,17 +256,23 @@ struct HabitCard: View {
                     .accessibilityLabel(String(localized: "Aggiungi \(snapshot.step.quantityText) \(unit) a \(snapshot.name)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .accessibilityIdentifier("increment-\(snapshot.name)")
             }
+            HabitProgressStatus(progress: progress, unit: unit).font(.caption)
+            if snapshot.goal == .atMost && progress.registrations == 0 {
+                Button(String(localized: "Conferma zero", bundle: AppLanguage.bundle, locale: AppLanguage.locale), action: confirmZero)
+                    .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
+                    .accessibilityIdentifier("confirm-zero-\(snapshot.name)")
+            }
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     Capsule().fill(tint.opacity(0.10))
-                    Capsule().fill(tint).frame(width: max(0, geometry.size.width * progress.fraction))
+                    Capsule().fill(progress.malus > 0 ? Palette.warning : tint).frame(width: max(0, geometry.size.width * progress.fraction))
                 }
             }.frame(height: 4).accessibilityHidden(true)
             HStack(spacing: 5) {
                 ForEach(0..<14, id: \.self) { index in
                     let date = snapshot.calendar.date(byAdding: .day, value: index - 13, to: now)!
                     let day = HabitEngine.progress(for: snapshot, on: date, activities: activities)
-                    RoundedRectangle(cornerRadius: 4).fill(tint.opacity(day.quantity > 0 ? 0.20 + day.fraction * 0.80 : 0.07))
+                    RoundedRectangle(cornerRadius: 4).fill(day.malus > 0 ? Palette.warning : tint.opacity(day.registrations > 0 ? 0.20 + day.fraction * 0.80 : 0.07))
                         .frame(maxWidth: .infinity).frame(height: 15)
                         .overlay { if day.completed { Image(systemName: "checkmark").font(.system(size: 7, weight: .bold)).foregroundStyle(.white) } }
                 }

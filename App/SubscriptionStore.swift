@@ -12,6 +12,7 @@ import StoreKit
     private(set) var working = false
     private(set) var message: String?
     private var active = true
+    private let purchasesAllowed: Bool
     private var listener: Task<Void, Never>?
     private let submit: (String) async throws -> AccountEntitlement
     private let fetch: () async throws -> AccountEntitlement
@@ -19,16 +20,18 @@ import StoreKit
 
     init(userID: UUID, api: AccountAPI) {
         self.userID = userID
+        purchasesAllowed = ProductFeatures.subscriptionsAvailable
         submit = { try await api.submitTransaction($0, userID: userID) }
         fetch = { try await api.entitlement(userID: userID) }
         observe()
     }
     init(userID: UUID, submit: @escaping (String) async throws -> AccountEntitlement,
          fetch: @escaping () async throws -> AccountEntitlement) {
-        self.userID = userID; self.submit = submit; self.fetch = fetch
+        self.userID = userID; self.submit = submit; self.fetch = fetch; purchasesAllowed = true
         observe()
     }
     private func observe() {
+        guard purchasesAllowed else { return }
         listener = Task { [weak self] in
             for await result in Transaction.updates {
                 guard let self, self.active, !Task.isCancelled else { break }
@@ -39,6 +42,9 @@ import StoreKit
     func stop() { active = false; listener?.cancel(); listener = nil; entitlement = nil }
     func load() async {
         guard active, !working else { return }
+        guard purchasesAllowed else {
+            entitlement = AccountEntitlement(billingEnabled: false, active: false); products = []; return
+        }
         working = true; defer { working = false }
         message = nil
         do {
@@ -59,7 +65,7 @@ import StoreKit
         } catch { failure() }
     }
     func purchase(_ product: Product) async {
-        guard active, !working, entitlement?.billingEnabled == true, Self.identifiers.contains(product.id) else { return }
+        guard purchasesAllowed, active, !working, entitlement?.billingEnabled == true, Self.identifiers.contains(product.id) else { return }
         working = true; message = nil; defer { working = false }
         do {
             switch try await product.purchase(options: [.appAccountToken(userID)]) {
@@ -72,7 +78,7 @@ import StoreKit
         } catch StoreKitError.userCancelled { } catch { failure() }
     }
     func restore() async {
-        guard active, !working else { return }
+        guard purchasesAllowed, active, !working else { return }
         working = true; message = nil
         do {
             try await AppStore.sync()
