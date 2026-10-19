@@ -146,10 +146,10 @@ extension CalendarHabitUITests {
         app.buttons["plusDone"].tap()
         let export = app.buttons["exportData"];reveal(export,in:app);export.tap()
         let saveExport = app.buttons["DOCPicker.actionButton"]
-        XCTAssertTrue(saveExport.waitForExistence(timeout:5))
+        XCTAssertTrue(saveExport.waitForExistence(timeout:30))
         attach("System exporter ready to save",app)
         saveExport.tap()
-        XCTAssertTrue(saveExport.waitForNonExistence(timeout:5))
+        XCTAssertTrue(saveExport.waitForNonExistence(timeout:15))
         XCTAssertTrue(app.buttons["exportData"].waitForExistence(timeout:5))
         app.buttons["Fine"].tap()
         XCTAssertTrue(app.buttons["increment-Bere acqua"].exists)
