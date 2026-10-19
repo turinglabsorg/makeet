@@ -3,10 +3,15 @@ on:
   push:
     branches-ignore: [main]
   workflow_dispatch:
+    inputs:
+      only:
+        description: Space-separated -only-testing identifiers (empty runs the whole scheme)
+        required: false
+        default: ""
 permissions:
   contents: read
 concurrency:
-  group: simulator-${{ github.ref }}
+  group: simulator-${{ github.ref }}-${{ github.event_name == 'workflow_dispatch' && github.run_id || 'push' }}
   cancel-in-progress: true
 jobs:
   scheme:
@@ -31,8 +36,12 @@ jobs:
           xcrun simctl bootstatus "$udid" -b
           echo "udid=$udid" >> "$GITHUB_OUTPUT"
       - name: Run the required Makeet scheme
+        env:
+          ONLY: ${{ inputs.only }}
         run: |
-          xcodebuild test -project Makeet.xcodeproj -scheme Makeet \
+          only=()
+          for identifier in $ONLY; do only+=("-only-testing:$identifier"); done
+          xcodebuild test -project Makeet.xcodeproj -scheme Makeet "${only[@]}" \
             -destination "id=${{ steps.simulator.outputs.udid }}" \
             -derivedDataPath artifacts/Simulator \
             -resultBundlePath artifacts/MakeetTests.xcresult \

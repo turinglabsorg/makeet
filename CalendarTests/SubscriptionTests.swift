@@ -103,6 +103,11 @@ final class SubscriptionTests: XCTestCase {
         try await session.setSimulatedError(nil, forAPI: .purchase)
         session.askToBuyEnabled = true
         await store.purchase(product); XCTAssertFalse(store.hasPlus); XCTAssertNotNil(store.message)
+        store.stop()
+        let pending = session.allTransactions().filter(\.pendingAskToBuyConfirmation)
+        XCTAssertFalse(pending.isEmpty)
+        for transaction in pending { try session.declineAskToBuyTransaction(identifier: transaction.identifier) }
+        session.askToBuyEnabled = false
         #endif
     }
     @MainActor private func isolatedSession() async throws -> SKTestSession {
