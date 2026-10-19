@@ -1,9 +1,11 @@
 package api_test
 
 import (
+	"context"
 	"encoding/json"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/turinglabsorg/makeet/backend/internal/api"
@@ -97,3 +99,60 @@ func TestLegacyCannotIntroduceOrOverwriteUnsupportedGoalsAndQueryUsesAccountInde
 		t.Fatal(plan.String())
 	}
 }
+
+func TestLegacyPendingBatchRetrySurvivesDefaultGoalFieldsAddedByUpdatedClient(t *testing.T) {
+	f := setup(t)
+	account := f.login("google", "upgrade")
+	h := habit(uuid.NewString(), 0)
+	req := api.SyncRequest{MutationID: uuid.NewString(), Changes: []api.Record{h}}
+	first := f.requestProtocol("POST", "/v1/sync", account.Access, req, 200, "")
+	req.Changes[0] = changeData(t, h, map[string]any{"goal": "at_least", "allows_negative": false})
+	retry := f.request("POST", "/v1/sync", account.Access, req, 200)
+	if strings.TrimSpace(string(first)) != strings.TrimSpace(string(retry)) {
+		t.Fatal("upgraded default fields changed a pending batch retry")
+	}
+	if len(f.sync(account, 0, nil).Changes) != 1 {
+		t.Fatal("upgraded retry duplicated records")
+	}
+}
+
+func TestLimitRemindersRequireUnloggedScheduledDay(t *testing.T) {
+	for _, tc := range []struct {
+		name    string
+		amount  *float64
+		weekday int
+		future  bool
+		want    int32
+	}{
+		{name: "unconfirmed", weekday: 127, want: 1},
+		{name: "confirmed zero", amount: number(0), weekday: 127},
+		{name: "malus already logged", amount: number(3), weekday: 127},
+		{name: "negative already logged", amount: number(-1), weekday: 127},
+		{name: "rest day", weekday: 1},
+		{name: "not started", weekday: 127, future: true},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			f := setup(t)
+			f.now = time.Date(2026, 10, 25, 9, 2, 0, 0, time.UTC)
+			account := f.login("google", "limit")
+			body := deviceBody(strings.Repeat("12", 32))
+			body["reminders_enabled"] = true
+			f.request("PUT", "/v1/devices/"+uuid.NewString(), account.Access, body, 200)
+			values := map[string]any{"goal": "at_most", "target": 0, "allows_negative": true, "weekday_mask": tc.weekday}
+			if tc.future {
+				values["created_at"] = f.now.AddDate(0, 0, 1)
+			}
+			h := changeData(t, habit(uuid.NewString(), 0), values)
+			changes := []api.Record{h}
+			if tc.amount != nil {
+				changes = append(changes, changeData(t, activity(uuid.NewString(), h.ID), map[string]any{"amount": *tc.amount, "timestamp": f.now.Add(-time.Hour)}))
+			}
+			f.sync(account, 0, changes)
+			f.api.TickPush(context.Background())
+			if got := f.push.Calls.Load(); got != tc.want {
+				t.Fatalf("got %d reminders, want %d", got, tc.want)
+			}
+		})
+	}
+}
+func number(value float64) *float64 { return &value }

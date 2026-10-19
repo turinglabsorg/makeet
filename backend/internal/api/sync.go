@@ -158,6 +158,9 @@ func (s *Server) syncRecords(w http.ResponseWriter, r *http.Request, p principal
 			var data habitData
 			json.Unmarshal(change.Data, &data)
 			weekdaysSpecified[change.ID] = data.WeekdayMask != nil
+			if data.Goal == "at_least" {
+				data.Goal = ""
+			}
 			if data.WeekdayMask != nil && *data.WeekdayMask == 127 {
 				data.WeekdayMask = nil
 			}
