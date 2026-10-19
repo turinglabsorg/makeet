@@ -60,7 +60,7 @@
     },
     {
       "Title": "How much will it cost?",
-      "Body": "Complete local use will stay free, with unlimited habits. Planned Makeet Plus pricing, for sync and advanced planning, is €1.99 per month or €11.99 per year. Subscriptions are not active during the preview."
+      "Body": "Complete local use, including planning, will stay free, with unlimited habits. Planned Makeet Plus pricing, for sync across devices, is €1.99 per month or €11.99 per year. Subscriptions are not active during the preview."
     },
     {
       "Title": "Does it work with Apple and Google Calendar?",
@@ -130,7 +130,7 @@
       },
       {
         "Title": "Local use and Makeet Plus",
-        "Body": "Unlimited local habit tracking, quantities, history and statistics are free. Makeet Plus adds private account synchronization and advanced planning. The approved Italy list price is €1.99 per month or €11.99 per year, paid in full for the selected period. The App Store shows the applicable price, currency and billing period before you confirm. During the internal TestFlight preview, public billing remains disabled; this website does not sell subscriptions."
+        "Body": "Unlimited local habit tracking, quantities, history, statistics and calendar planning are free. Makeet Plus adds private account synchronization across your devices. The approved Italy list price is €1.99 per month or €11.99 per year, paid in full for the selected period. The App Store shows the applicable price, currency and billing period before you confirm. During the internal TestFlight preview, public billing remains disabled; this website does not sell subscriptions."
       },
       {
         "Title": "Renewal, cancellation and restoration",

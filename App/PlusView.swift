@@ -11,7 +11,7 @@ struct PlusView: View {
                 VStack(alignment: .leading, spacing: 24) {
                     Image(systemName: "sparkles").font(.largeTitle).foregroundStyle(Palette.accent)
                     Text("Makeet Plus").font(.largeTitle.weight(.semibold))
-                    Text(String(localized: "Tutte le tue abitudini, sul dispositivo, gratis. Plus aggiunge sincronizzazione tra dispositivi e pianificazione avanzata sul calendario.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.body)
+                    Text(String(localized: "Abitudini, statistiche e pianificazione sul dispositivo sono gratis. Plus aggiunge la sincronizzazione privata tra i tuoi dispositivi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.body)
                     if let store = account.subscription {
                         if store.hasPlus {
                             Label(String(localized: "Makeet Plus è attivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "checkmark.seal.fill").font(.headline)

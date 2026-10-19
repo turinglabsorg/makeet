@@ -163,11 +163,11 @@ struct PlanReviewView: View {
                 Section {
                     Text(String(localized: "Creeremo soltanto questo evento. I progressi dell’abitudine cambiano quando registri un’attività.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     Button(String(localized: "Conferma e crea evento", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
-                        guard !isSaving, account.canPlan else { return }
+                        guard !isSaving else { return }
                         isSaving = true
                         do { try calendar.save(proposal, habit: habit); onSave() }
                         catch { self.error = error.localizedDescription; isSaving = false }
-                    }.disabled(isSaving || !account.canPlan || !calendar.canWrite)
+                    }.disabled(isSaving || !calendar.canWrite)
                 }
             }.navigationTitle(String(localized: "Conferma il piano", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { dismiss() } } }
@@ -317,11 +317,11 @@ struct PlanBatchReview: View {
             }.navigationTitle(String(localized: "Conferma il piano", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                 .safeAreaInset(edge: .bottom) {
                     Button(String(localized: "Conferma e crea eventi", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) {
-                        guard !saving, account.canPlan else { return }
+                        guard !saving else { return }
                         saving = true
                         do { try calendar.save(batch.proposals, habits: habits); onSave() }
                         catch { self.error = error.localizedDescription; saving = false }
-                    }.buttonStyle(.borderedProminent).controlSize(.large).disabled(saving || !account.canPlan || !calendar.canWrite)
+                    }.buttonStyle(.borderedProminent).controlSize(.large).disabled(saving || !calendar.canWrite)
                         .padding().frame(maxWidth: .infinity).background(Palette.paper).accessibilityIdentifier("confirmFuturePlan")
                 }
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { dismiss() } } }

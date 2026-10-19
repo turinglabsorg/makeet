@@ -1,4 +1,4 @@
-Monatskalender mit Heatmap, Korrekturen vergangener Tage und Wochentagsauswahl beim Erstellen/Bearbeiten von Gewohnheiten.
+Makeet 1.0: Gewohnheiten, Statistiken, Kalender und Planung sind auf dem Gerät kostenlos. Makeet Plus ergänzt nur die private Synchronisierung zwischen deinen Geräten. Planung ist immer verfügbar, auch ohne Konto.
 
 Gewohnheiten lassen sich im Detail bearbeiten oder endgültig löschen. Löschen erfordert eine Bestätigung; zukünftige Makeet-Blöcke können aus beschreibbaren Kalendern entfernt werden.
 

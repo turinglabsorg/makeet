@@ -9743,36 +9743,36 @@
         }
       }
     },
-    "Il tuo archivio privato, salvato e sincronizzato. Accedi con Apple o Google.": {
+    "Il tuo archivio privato, sincronizzato con Makeet Plus. Accedi con Apple o Google.": {
       "localizations": {
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il tuo archivio privato, salvato e sincronizzato. Accedi con Apple o Google."
+            "value": "Il tuo archivio privato, sincronizzato con Makeet Plus. Accedi con Apple o Google."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your private archive, saved and synced. Sign in with Apple or Google."
+            "value": "Your private archive, synced with Makeet Plus. Sign in with Apple or Google."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Votre archive privée, sauvegardée et synchronisée. Connectez-vous avec Apple ou Google."
+            "value": "Votre archive privée, synchronisée avec Makeet Plus. Connectez-vous avec Apple ou Google."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein privates Archiv, gespeichert und synchronisiert. Melde dich mit Apple oder Google an."
+            "value": "Dein privates Archiv, synchronisiert mit Makeet Plus. Melde dich mit Apple oder Google an."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu archivo privado, guardado y sincronizado. Entra con Apple o Google."
+            "value": "Tu archivo privado, sincronizado con Makeet Plus. Entra con Apple o Google."
           }
         }
       }
@@ -12395,36 +12395,36 @@
         }
       }
     },
-    "Tutte le tue abitudini, sul dispositivo, gratis. Plus aggiunge sincronizzazione tra dispositivi e pianificazione avanzata sul calendario.": {
+    "Abitudini, statistiche e pianificazione sul dispositivo sono gratis. Plus aggiunge la sincronizzazione privata tra i tuoi dispositivi.": {
       "localizations": {
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tutte le tue abitudini, sul dispositivo, gratis. Plus aggiunge sincronizzazione tra dispositivi e pianificazione avanzata sul calendario."
+            "value": "Abitudini, statistiche e pianificazione sul dispositivo sono gratis. Plus aggiunge la sincronizzazione privata tra i tuoi dispositivi."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "All your habits, on your device, for free. Plus adds sync across devices and advanced calendar planning."
+            "value": "Habits, statistics and planning on your device are free. Plus adds private sync across your devices."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toutes vos habitudes sur votre appareil, gratuitement. Plus ajoute la synchronisation entre appareils et la planification avancée du calendrier."
+            "value": "Les habitudes, les statistiques et la planification sur votre appareil sont gratuites. Plus ajoute la synchronisation privée entre vos appareils."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alle Gewohnheiten auf deinem Gerät, kostenlos. Plus bietet Synchronisierung zwischen Geräten und erweiterte Kalenderplanung."
+            "value": "Gewohnheiten, Statistiken und Planung auf deinem Gerät sind kostenlos. Plus ergänzt die private Synchronisierung zwischen deinen Geräten."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todos tus hábitos en tu dispositivo, gratis. Plus añade sincronización entre dispositivos y planificación avanzada del calendario."
+            "value": "Los hábitos, las estadísticas y la planificación en tu dispositivo son gratis. Plus añade la sincronización privada entre tus dispositivos."
           }
         }
       }

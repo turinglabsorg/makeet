@@ -1,4 +1,4 @@
-Questa build riunisce calendario mensile con heatmap, correzione dei giorni passati e scelta dei giorni settimanali nella creazione/modifica delle abitudini.
+Makeet 1.0: abitudini, statistiche, calendario e pianificazione sono gratuiti sul dispositivo. Makeet Plus aggiunge solo la sincronizzazione privata tra i tuoi dispositivi. Il piano è sempre disponibile, anche senza account.
 
 Puoi modificare o eliminare definitivamente un’abitudine dal dettaglio. La cancellazione richiede conferma e può rimuovere anche i blocchi futuri creati da Makeet nei calendari modificabili.
 

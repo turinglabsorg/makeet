@@ -23,7 +23,7 @@ Makeet is intended for public use with open self-service registration and privat
 - Use interactive small and medium WidgetKit extensions for iOS and native macOS, backed by the same on-device SwiftData store.
 - Archive and restore habits while retaining history, or permanently delete a habit and its registrations with confirmation. Optional cleanup removes its future linked Makeet calendar blocks.
 - Export device progress and available server records as JSON, including without an active subscription.
-- Use all local tracking free. Plus purchase/restore and account-bound server verification are staged; preview billing remains disabled. Approved Italy pricing is EUR 1.99/month or EUR 11.99/year.
+- Use all local tracking and calendar planning free. Makeet Plus adds account sync across devices. Plus purchase/restore and account-bound server verification are staged; preview billing remains disabled. Approved Italy pricing is EUR 1.99/month or EUR 11.99/year.
 - Follow a five-language welcome that explains progress and asks explicitly between an Apple/Google account and local storage. No option is preselected and no local archive uploads automatically. Calendar and notification permissions remain optional.
 - Personalize a private account profile with a display name and photo, shown in Account and Today. Choose a photo with the system picker; a first Google sign-in can import a profile when Makeet has none. Profile revisions prevent silent overwrites between devices. Demo data remains an explicit, labeled choice.
 

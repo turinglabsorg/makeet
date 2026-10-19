@@ -1,4 +1,4 @@
-Calendrier mensuel avec carte d’intensité, correction des jours passés et choix des jours de la semaine lors de la création/modification des habitudes.
+Makeet 1.0 : habitudes, statistiques, calendrier et planification sont gratuits sur l’appareil. Makeet Plus ajoute seulement la synchronisation privée entre vos appareils. La planification reste disponible, même sans compte.
 
 Modifiez ou supprimez définitivement une habitude depuis son détail. La suppression exige une confirmation et peut retirer les futurs blocs Makeet des calendriers modifiables.
 

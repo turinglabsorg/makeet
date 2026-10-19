@@ -90,7 +90,7 @@ struct RootView: View {
                 .tabItem { Label(String(localized: "Oggi", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "square.grid.2x2") }.tag(0)
             NavigationStack { TrendsView() }
                 .tabItem { Label(String(localized: "Andamento", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "chart.xyaxis.line") }.tag(1)
-            NavigationStack { if account.canPlan { if let calendar { PlannerView(calendar: calendar) } } else { PlusView() } }
+            NavigationStack { if let calendar { PlannerView(calendar: calendar) } }
                 .tabItem { Label(String(localized: "Il tuo piano", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "sparkles") }.tag(2)
             NavigationStack { if let calendar { CalendarOverview(calendar: calendar) } }
                 .tabItem { Label(String(localized: "Calendario", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "calendar") }.tag(3)
