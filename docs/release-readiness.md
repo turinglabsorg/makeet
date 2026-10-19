@@ -1,6 +1,6 @@
 # Release readiness
 
-Last audited: 2026-10-19. The website/API are online and internal TestFlight distribution is active. The iOS app has not been submitted to App Review.
+Last audited: 2026-10-19. Makeet 1.0 (14) was submitted as an entirely free app at 19:40 UTC and Apple confirms Waiting for Review. Internal TestFlight distribution and the public website/API are active. Public App Store release remains manual and has not occurred.
 
 ## Required product validation
 
@@ -13,13 +13,13 @@ Last audited: 2026-10-19. The website/API are online and internal TestFlight dis
 | Habits/statistics | Creation, quantity controls, undo, archive/restore and five-language UI tests; domain/persistence tests | Final signed release smoke test and accessibility review; five-language iPhone/iPad navigation and onboarding layouts pass |
 | Calendar | Explainable local proposals and isolated EventKit integration | Real permission, selected calendar, confirmed creation, conflict and duplicate handling. Google calendars currently use accounts configured in iOS; direct Google Calendar OAuth/incremental reconciliation is unimplemented |
 | Notifications | Encrypted device registration, APNs sender and receipt/retry tests; production runtime configuration | Production APNs key/configuration provisioned with encrypted custody; owner confirmed actual TestFlight 1.0 (13) test-push receipt; scheduled-reminder timing still needs verification |
-| Widgets/macOS | Shared model/intent logic and iOS/macOS compilation | Home Screen and desktop interaction, timeline/account-switch behavior and native macOS authentication |
-| Free release | Owner selected entirely free tracking, planning and account synchronization; native and Go purchase entry points disabled | Final free binary, unavailable subscription drafts, matching Store/privacy/site and App Review acceptance. No paid Sandbox flow is required for this free offer |
-| Hosting | Dedicated service, health routes, rate-limit/ownership tests, backup and isolated restore drill | Final production configuration and account-lifecycle operational check |
+| Widgets/macOS | Shared model/intent logic, iOS/macOS compilation and local iOS Home Screen widget/app round trip | Desktop interaction, timeline/account-switch behavior and native macOS authentication |
+| Free release | Owner selected entirely free tracking, planning and account synchronization; native and Go purchase entry points disabled | Build 14 and the free Store/privacy/site configuration are verified below. Apple approval and manual release remain; no paid Sandbox flow is required for this free offer |
+| Hosting | Dedicated service, health routes, rate-limit/ownership tests, backup and isolated restore drill | Account-lifecycle operational check; the deployed configuration and public routes are verified below |
 
 Automated fixtures use generated test identities and isolated storage. They do not substitute for real provider or multi-device validation. Never use a real owner's account for destructive lifecycle checks.
 
-## App Store Connect audit
+## Historical App Store Connect audit — build 13
 
 The record is `Makeet`, iOS version 1.0, Prepare for Submission. Version 1.0 (13), which includes synchronization-only Plus and free planning, passed the required Xcode Cloud checks and is confirmed Testing in the owner-only TestFlight group. Build 13 is associated with the release version and verified after reload. No App Review submission has been made.
 
@@ -40,6 +40,20 @@ The record is `Makeet`, iOS version 1.0, Prepare for Submission. Version 1.0 (13
 
 ## Current free-release update — 19 October 2026
 
-The owner superseded the previous pricing decision: tracking, planning and private account synchronization are all free. The earlier build-13/Plus audit above is historical; build13 must be replaced before review. Native purchase observers/prompts and backend transaction/notification processing are disabled by the release policy. Source Store descriptions, website and policies now describe the free offer and flexible goals. Live subscription withdrawal, final metadata/privacy publication, final candidate verification and App Review remain pending until explicitly recorded below. Banking/tax steps remain on hold; the Free Apps Agreement is the relevant agreement for this submission.
+The owner superseded the previous pricing decision: tracking, planning and private account synchronization are all free. The earlier build-13/Plus audit above is historical; build 14 replaces that paid-sync candidate. Native purchase observers/prompts and backend transaction/notification processing are disabled by the release policy. Source Store descriptions, website and policies now describe the free offer and flexible goals. Subscription withdrawal, public metadata/privacy, production deployment and final candidate verification are complete. The submission result is recorded below. Banking/tax steps remain on hold; the Free Apps Agreement is the relevant agreement for this submission.
 
-Zero-limit habits require explicit daily confirmation; occurrences above the limit are malus. Optional signed quantities preserve negative balances in logging, calendar corrections, statistics, account sync/export and widgets. Avoid habits are not scheduled as actions. Sync v2 protects this data against older clients. Existing daily positive-goal habits retain their default behavior. No database migration is involved.
+Zero-limit habits require explicit daily confirmation; occurrences above the limit are malus. Optional signed quantities preserve negative balances in logging, calendar corrections, statistics, account sync/export and widgets. Avoid habits are not scheduled as actions. Sync v2 protects this data against older clients. Existing daily positive-goal habits retain their default behavior. No backend database schema migration is involved.
+
+## Free-release console and deployment verification
+
+The final branch passed both required workflows and actual native CI screenshot review before main integration. The Go service and embedded five-language site are deployed, with backup/rollback retained and private runtime configuration unchanged. All 25 public pages and API health/config checks pass. Native Xcode Cloud build 14 from `f089343` passed both the required test and archive actions. App Store Connect confirms processed 1.0 (14) is assigned to the existing Makeet Internal group with one tester. Build 14 is now selected and saved for version 1.0 with manual release. Do not use the old build 13 for this free feature set.
+
+Both subscription drafts are withdrawn from every current country (0 of 175) and remain unsubmitted. The app itself is publicly configured at zero in all 175 countries. All five Store descriptions and reviewer notes match the free source. The owner approved the updated 14-category App Privacy declaration, and Apple confirms it is published. Only Purchase History was removed; provider SDK declarations remain. Banking/tax remain on hold pending the distinct residential-membership correction, without enabling any paid offer.
+
+## Free App Review submission — 19 October 2026
+
+Apple accepted the submission at 19:40 UTC and shows **Waiting for Review** for iOS 1.0, using the saved build 14. The console displayed **1 Item Submitted** and the submission reference is `a9c57d00-a409-4967-94c8-fbbe7c0f12cc`. No subscription products were included. Manual release is retained; submission is not approval or public publication. The separate banking/tax hold was not changed.
+
+The validation caught a failed Spanish search-image upload that still occupied its placement. A replacement was retained in Asset Library while Apple processed it. The submitted Spanish search placement explicitly reuses its already processed Spanish universal header asset; its library usage confirms both Spanish placements. The other four search images, all five headers and the real native screenshot gallery remain. The version passed Apple's asset validation before submission.
+
+Complete the remaining signed-device checks above and verify the EU trader/contact status before manual release. Apple review acceptance does not establish those product or administrative results.

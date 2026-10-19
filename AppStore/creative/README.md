@@ -18,9 +18,13 @@ inside the central header region and verify Apple's placement previews.
 The header renderer insets its composition and moves the text column inward
 to preserve readable margins in Apple's additional phone crop. The dedicated
 3:2 search composition fills its placement with larger content rather than
-reusing the complete universal header canvas. Uploading a file is not proof of
-acceptance: check the relevant locale's `1 of 1` slot after processing and
-reload, then inspect its Preview. Ordinary native screenshots belong in the
+reusing the complete universal header canvas. Uploading a file or seeing
+`1 of 1` is not proof of successful ingestion.
+Verify its Asset Library row has the expected aspect ratio, eligible placement
+and asset-details link, with no upload-error badge. A failed upload can still
+occupy a version slot and block review. Check the placement preview and run
+the version's Add for Review validation before claiming submission readiness.
+Ordinary native screenshots belong in the
 separate App Previews and Screenshots tab. Do not use marketing artwork as a
 subscription purchase-screen review attachment.
 
