@@ -1,0 +1,54 @@
+name: Simulator tests
+on:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: simulator-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  scheme:
+    runs-on: xcode-27
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - name: Boot a fresh iOS 27.0 iPhone simulator
+        id: simulator
+        run: |
+          xcodebuild -version
+          udid=$(xcrun simctl list devices available -j | python3 -c '
+          import json, sys
+          devices = json.load(sys.stdin)["devices"]
+          for runtime in sorted(r for r in devices if ".iOS-27-" in r):
+              for name in ("iPhone 17", "iPhone 17 Pro", "iPhone 18 Pro"):
+                  for device in devices[runtime]:
+                      if device["name"] == name:
+                          print(device["udid"]); sys.exit()
+          sys.exit("No iOS 27 iPhone simulator is installed")')
+          xcrun simctl boot "$udid"
+          xcrun simctl bootstatus "$udid" -b
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+      - name: Run the required Makeet scheme
+        run: |
+          xcodebuild test -project Makeet.xcodeproj -scheme Makeet \
+            -destination "id=${{ steps.simulator.outputs.udid }}" \
+            -derivedDataPath artifacts/Simulator \
+            -resultBundlePath artifacts/MakeetTests.xcresult \
+            CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER=
+      - name: Export test screenshots
+        if: always()
+        run: |
+          [ -d artifacts/MakeetTests.xcresult ] || exit 0
+          mkdir -p artifacts/screenshots
+          xcrun xcresulttool export attachments --path artifacts/MakeetTests.xcresult --output-path artifacts/screenshots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: simulator-tests
+          path: |
+            artifacts/MakeetTests.xcresult
+            artifacts/screenshots
+          if-no-files-found: ignore
+          retention-days: 14
