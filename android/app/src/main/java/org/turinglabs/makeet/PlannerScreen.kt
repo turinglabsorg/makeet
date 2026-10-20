@@ -103,7 +103,7 @@ fun selectedCalendars(context: Context, scope: String): CalendarSelection {
             val start = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()
             val events = service.events(start, start.plusSeconds((horizon + 2) * 86400L), selection.ids + listOfNotNull(selection.destination))
             val planned = service.plannedDays(start.minusSeconds(86400), start.plusSeconds((horizon + 2) * 86400L), planningHabits)
-            ScheduleEngine.propose(planningHabits, state.activities, events.map { Busy(it.start, it.end) }, horizon, planned = planned)
+            ScheduleEngine.propose(planningHabits, state.activities, events.filter { it.blocking }.map { Busy(it.start, it.end) }, horizon, planned = planned)
         } }.onSuccess { proposals = it }.onFailure { proposals = emptyList(); error = true }
     }
     LazyColumn(contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {

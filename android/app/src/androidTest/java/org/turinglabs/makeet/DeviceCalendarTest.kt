@@ -7,6 +7,9 @@ import android.provider.CalendarContract
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.test.*
+import androidx.compose.ui.test.junit4.createComposeRule
 import org.junit.*
 import org.junit.rules.RuleChain
 import org.junit.rules.TestRule
@@ -18,11 +21,12 @@ import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
 class DeviceCalendarTest {
+    private val ui = createComposeRule()
     @get:Rule val permissions: TestRule = RuleChain.outerRule(object: TestRule {
         override fun apply(base: Statement, description: Description) = object: Statement() {
             override fun evaluate() { Assume.assumeTrue(android.os.Build.FINGERPRINT.contains("generic") || android.os.Build.MODEL.contains("sdk_gphone")); base.evaluate() }
         }
-    }).around(GrantPermissionRule.grant(Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR))
+    }).around(GrantPermissionRule.grant(Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR)).around(ui)
     @Test fun confirmedCalendarWritesAreIdempotentAndRespectConflictsAndRecurrences() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val resolver = context.contentResolver
@@ -38,6 +42,7 @@ class DeviceCalendarTest {
             put(CalendarContract.Calendars.VISIBLE, 1); put(CalendarContract.Calendars.SYNC_EVENTS, 1); put(CalendarContract.Calendars.CALENDAR_TIME_ZONE, "Europe/Rome")
         })!!
         val calendarId = ContentUris.parseId(uri)
+        val displayScope = "calendar-qa-${UUID.randomUUID()}"
         try {
             val service = DeviceCalendarService(context)
             val zone = ZoneId.of("Europe/Rome")
@@ -57,6 +62,20 @@ class DeviceCalendarTest {
             val other = habit.copy(id = UUID.randomUUID().toString())
             Assert.assertTrue(runCatching { service.create(listOf(Proposal(other, busyStart, busyStart.plusSeconds(1200), false)), setOf(calendarId), calendarId, listOf(other)) }.isFailure)
             Assert.assertTrue(runCatching { service.create(listOf(p.copy(start = start.plusSeconds(86400), end = start.plusSeconds(87600))), emptySet(), calendarId, listOf(habit)) }.isFailure)
+            val freeStart = start.plusSeconds(2 * 86400)
+            resolver.insert(CalendarContract.Events.CONTENT_URI, ContentValues().apply {
+                put(CalendarContract.Events.CALENDAR_ID, calendarId); put(CalendarContract.Events.TITLE, "QA free appointment")
+                put(CalendarContract.Events.DTSTART, freeStart.toEpochMilli()); put(CalendarContract.Events.DTEND, freeStart.plusSeconds(1200).toEpochMilli())
+                put(CalendarContract.Events.EVENT_TIMEZONE, zone.id); put(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_FREE)
+            })!!
+            val free = service.events(freeStart.minusSeconds(1), freeStart.plusSeconds(1201), setOf(calendarId)).single { it.title == "QA free appointment" }
+            Assert.assertFalse(free.blocking)
+            Assert.assertEquals(1, service.create(listOf(p.copy(start = freeStart, end = freeStart.plusSeconds(1200))), setOf(calendarId), calendarId, listOf(habit)))
+            context.getSharedPreferences("makeet.calendar.$displayScope", android.content.Context.MODE_PRIVATE).edit()
+                .putStringSet("sources", setOf(calendarId.toString())).commit()
+            ui.setContent { MaterialTheme { CalendarDayEvents(freeStart.atZone(ZoneId.systemDefault()).toLocalDate(), displayScope) } }
+            ui.waitUntil(5000) { ui.onAllNodesWithText("QA free appointment", substring = true).fetchSemanticsNodes().isNotEmpty() }
+            ui.onNodeWithText("QA free appointment", substring = true).assertIsDisplayed()
             resolver.insert(CalendarContract.Events.CONTENT_URI, ContentValues().apply {
                 put(CalendarContract.Events.CALENDAR_ID, calendarId); put(CalendarContract.Events.TITLE, "QA recurring appointment")
                 put(CalendarContract.Events.DTSTART, start.minusSeconds(3600).toEpochMilli()); put(CalendarContract.Events.DURATION, "PT30M")
@@ -70,8 +89,10 @@ class DeviceCalendarTest {
             Assert.assertFalse(retained.any { it.title == habit.name })
             Assert.assertEquals(1, retained.count { it.title == "QA existing appointment" })
             Assert.assertEquals(3, retained.count { it.title == "QA recurring appointment" })
+            Assert.assertEquals(1, retained.count { it.title == "QA free appointment" })
         } finally {
             resolver.delete(ContentUris.withAppendedId(calendarsUri, calendarId), null, null)
+            context.deleteSharedPreferences("makeet.calendar.$displayScope")
         }
     }
 }

@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import java.time.Instant
 
 data class DeviceCalendar(val id: Long, val name: String, val account: String, val writable: Boolean)
-data class CalendarEvent(val id: Long, val title: String, val start: Instant, val end: Instant, val calendarId: Long)
+data class CalendarEvent(val id: Long, val title: String, val start: Instant, val end: Instant, val calendarId: Long, val blocking: Boolean = true)
 
 class DeviceCalendarService(private val context: Context) {
     private val resolver get() = context.contentResolver
@@ -28,9 +28,9 @@ class DeviceCalendarService(private val context: Context) {
         val builder = CalendarContract.Instances.CONTENT_URI.buildUpon()
         ContentUris.appendId(builder, start.toEpochMilli()); ContentUris.appendId(builder, end.toEpochMilli())
         val placeholders = selected.joinToString(",") { "?" }
-        return resolver.query(builder.build(), arrayOf("event_id", "title", "begin", "end", "calendar_id"),
-            "calendar_id IN ($placeholders) AND (availability IS NULL OR availability != ?) AND (eventStatus IS NULL OR eventStatus != 2)", (selected.map { it.toString() } + CalendarContract.Events.AVAILABILITY_FREE.toString()).toTypedArray(), "begin")
-            ?.use { c -> buildList { while(c.moveToNext()) add(CalendarEvent(c.getLong(0), c.getString(1).orEmpty(), Instant.ofEpochMilli(c.getLong(2)), Instant.ofEpochMilli(c.getLong(3)), c.getLong(4))) } }.orEmpty()
+        return resolver.query(builder.build(), arrayOf("event_id", "title", "begin", "end", "calendar_id", "availability"),
+            "calendar_id IN ($placeholders) AND (eventStatus IS NULL OR eventStatus != 2)", selected.map { it.toString() }.toTypedArray(), "begin")
+            ?.use { c -> buildList { while(c.moveToNext()) add(CalendarEvent(c.getLong(0), c.getString(1).orEmpty(), Instant.ofEpochMilli(c.getLong(2)), Instant.ofEpochMilli(c.getLong(3)), c.getLong(4), c.isNull(5) || c.getInt(5) != CalendarContract.Events.AVAILABILITY_FREE)) } }.orEmpty()
     }
     fun mark(p: Proposal) = "makeet://plan/${p.habit.id}-${p.start.epochSecond}"
     private fun ownEvents(from: Instant, to: Instant): Map<String, Long> {
@@ -55,7 +55,7 @@ class DeviceCalendarService(private val context: Context) {
         val existing = ownEvents(from, to)
         val planned = plannedDays(from, to, current)
         val new = proposals.filter { mark(it) !in existing && (it.habit.id to it.habit.date(it.start)) !in planned }
-        val busy = events(from, to, selected + destination)
+        val busy = events(from, to, selected + destination).filter { it.blocking }
         require(new.none { p -> busy.any { p.start < it.end && p.end > it.start } }) { "calendar_conflict" }
         val operations = new.map { p -> ContentProviderOperation.newInsert(CalendarContract.Events.CONTENT_URI).withValues(ContentValues().apply {
             put(CalendarContract.Events.CALENDAR_ID, destination); put(CalendarContract.Events.TITLE, p.habit.name)
