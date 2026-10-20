@@ -88,7 +88,20 @@ func main() {
 			os.Exit(1)
 		}
 	}
-	service := api.New(db, api.Config{Billing: subscriptions, BillingPreviewUsers: previewUsers, Providers: providers, Apple: appleClient, Push: pushClient, Site: site.WithConfig(siteConfig), TrustRelay: os.Getenv("MAKEET_TRUST_RELAY") == "true"})
+	appleWebClientID := os.Getenv("MAKEET_APPLE_WEB_CLIENT_ID")
+	if appleWebClientID != "" {
+		found := false
+		for _, id := range strings.Split(os.Getenv("MAKEET_APPLE_CLIENT_IDS"), ",") {
+			if strings.TrimSpace(id) == appleWebClientID {
+				found = true
+			}
+		}
+		if !found || appleClient == nil {
+			slog.Error("Apple web sign-in requires an allowed service audience and signing configuration")
+			os.Exit(1)
+		}
+	}
+	service := api.New(db, api.Config{Billing: subscriptions, BillingPreviewUsers: previewUsers, Providers: providers, Apple: appleClient, AppleWebClientID: appleWebClientID, Push: pushClient, Site: site.WithConfig(siteConfig), TrustRelay: os.Getenv("MAKEET_TRUST_RELAY") == "true"})
 	go service.RunPush(ctx)
 	handler := service.Handler()
 	server := &http.Server{Addr: env("MAKEET_LISTEN", "127.0.0.1:8086"), Handler: handler, ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 << 10}

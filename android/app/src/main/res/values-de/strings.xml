@@ -1,0 +1,189 @@
+<resources>
+    <string name="s_5d1d13e5a51e" formatted="false">12 Wochen</string>
+    <string name="s_56a795b7bdce" formatted="false">28 Tage</string>
+    <string name="s_7f920bb639c9" formatted="false">7 Tage</string>
+    <string name="s_49a8d9011ac8" formatted="false">So könnte dein Tag aussehen</string>
+    <string name="s_e439c98fe594" formatted="false">Ein Plan passend zu deinen Fortschritten, gewählten Tagen und Kalenderereignissen.</string>
+    <string name="s_7e1b0d5641f2" formatted="false">Konto</string>
+    <string name="s_38da1505ca83" formatted="false">Aktivität</string>
+    <string name="s_d60651e77979" formatted="false">Aktivität auf mehreren Geräten geändert</string>
+    <string name="s_258144331d27" formatted="false">Zum Kalender hinzugefügt</string>
+    <string name="s_8d47b52eb542" formatted="false">Passe die Mengen an und speichere. Neue Einträge für vergangene Tage werden als manuelle Korrekturen um 12 Uhr in der Zeitzone der Gewohnheit erfasst.</string>
+    <string name="s_92b086bff947" formatted="false">Alle Funktionen sind kostenlos, einschließlich der Kontosynchronisierung.</string>
+    <string name="s_61a0e241683c" formatted="false">Alle gewählten Tage sind bereits geplant, abgeschlossen oder haben keinen freien Platz zwischen 7 und 22 Uhr. Du kannst Zeitraum oder Einstellungen ändern.</string>
+    <string name="s_07119d34d752" formatted="false">Kalenderzugriff erlauben</string>
+    <string name="s_d53d5c49ea41" formatted="false">Negative Werte zulassen</string>
+    <string name="s_92845e68d53f" formatted="false">Schon Gewohnheiten auf diesem Gerät? Nach der Anmeldung entscheidest du, ob du sie importierst.</string>
+    <string name="s_b0bc62fd661c" formatted="false">Auch zukünftige Makeet-Blöcke entfernen</string>
+    <string name="s_49e96d7cdf58" formatted="false">Menge</string>
+    <string name="s_41625a78cd8e" formatted="false">Menge pro Tippen</string>
+    <string name="s_68c77cee5fb9" formatted="false">Mit einem Konto bleiben deine Fortschritte auch auf einem neuen Gerät bei dir. Oder du startest nur hier.</string>
+    <string name="s_b8352b44a588" formatted="false">App-Sprache</string>
+    <string name="s_66f4804ee23d" formatted="false">Archiv</string>
+    <string name="s_76be03f4a9ad" formatted="false">Archivierte Gewohnheiten</string>
+    <string name="s_9c2bc1ebc662" formatted="false">Archivierte Gewohnheiten behalten ihren gesamten Verlauf.</string>
+    <string name="s_76900f1bfd16" formatted="false">Zurück</string>
+    <string name="s_2441ea11cc36" formatted="false">Längste Serie</string>
+    <string name="s_d5d0a30b517e" formatted="false">Kalender</string>
+    <string name="s_9042a0ac6644" formatted="false">Der Kalenderzugriff wurde nicht erlaubt. Du kannst ihn in den Einstellungen aktivieren.</string>
+    <string name="s_a1977617a775" formatted="false">Kalender und Mitteilungen bleiben freiwillig. Aktiviere sie später mit deiner Erlaubnis.</string>
+    <string name="s_19766ed6ccb2" formatted="false">Abbrechen</string>
+    <string name="s_b25c85e885b1" formatted="false">Änderungen an Ziel und Wochentagen gelten auch für frühere Statistiken. Erfasste Mengen bleiben unverändert.</string>
+    <string name="s_98dc94810d88" formatted="false">Wähle eine Gewohnheit, deine Zielmenge und deine ideale Zeit. Den Rest gestalten wir gemeinsam.</string>
+    <string name="s_2805f1b82745" formatted="false">Wähle einen Grenzwert, auch null. Mengen darüber zählen als Malus. Bestätige null, um einen Tag ohne Vorkommnisse zu erfassen.</string>
+    <string name="s_118fb65601f7" formatted="false">Foto auswählen</string>
+    <string name="s_5d5aefaef90f" formatted="false">Wähle die Version, die du behalten möchtest. Änderungen werden nie automatisch verworfen.</string>
+    <string name="s_6b73191a0a4b" formatted="false">Farbe</string>
+    <string name="s_d4aa365fc311" formatted="false">Bestätigen und Ereignisse erstellen</string>
+    <string name="s_4ca48b4230a5" formatted="false">Import bestätigen</string>
+    <string name="s_6132bd8d4447" formatted="false">Plan bestätigen</string>
+    <string name="s_819b0f4d4418" formatted="false">Null bestätigen</string>
+    <string name="s_f66187eaf7b5" formatted="false">Kalender verbinden</string>
+    <string name="s_9d9d0e910537" formatted="false">Verbinde deinen Kalender, um freie Zeiten zu finden. Ohne Zugriff sind die Zeiten unverbindlich und können mit Terminen kollidieren.</string>
+    <string name="s_ffb5d61f4372" formatted="false">Verbinde deinen Kalender, wann du möchtest. Jeder neue Termin benötigt deine Bestätigung.</string>
+    <string name="s_3136712d6fd3" formatted="false">Mit Makeet verbunden</string>
+    <string name="s_dc273117482b" formatted="false">Verbindungen</string>
+    <string name="s_d1b838382467" formatted="false">Termine berücksichtigen aus</string>
+    <string name="s_31fbef162594" formatted="false">Weiter</string>
+    <string name="s_da074c6da9c8" formatted="false">Auf diesem Gerät fortfahren</string>
+    <string name="s_340ac4c3fd1f" formatted="false">Mit Apple fortfahren</string>
+    <string name="s_cce937e89144" formatted="false">Weiter mit Google</string>
+    <string name="s_500c1238de89" formatted="false">Nur deine echten lokalen Fortschritte werden in das aktuelle Konto kopiert. Das ursprüngliche Archiv bleibt auf diesem Gerät.</string>
+    <string name="s_f1bc81c12ece" formatted="false">Aktion fehlgeschlagen</string>
+    <string name="s_a018b7a8a188" formatted="false">Speichern fehlgeschlagen</string>
+    <string name="s_4759498ac2a7" formatted="false">Erstellen</string>
+    <string name="s_8149e54cc778" formatted="false">Erstelle unter Heute eine Gewohnheit, um sie zu verfolgen.</string>
+    <string name="s_23cbd1796681" formatted="false">Zeitblöcke erstellen in</string>
+    <string name="s_0811d862679a" formatted="false">Tägliche Erinnerung</string>
+    <string name="s_8d834c41b129" formatted="false">Tagesziel</string>
+    <string name="s_a2e20a335700" formatted="false">Konto löschen</string>
+    <string name="s_7b503321357a" formatted="false">Konto und Daten löschen</string>
+    <string name="s_8a93ebf0efa9" formatted="false">Alle Demodaten löschen?</string>
+    <string name="s_05df0c87b956" formatted="false">Demodaten löschen</string>
+    <string name="s_47e79aeefc16" formatted="false">Gewohnheit und Fortschritte löschen</string>
+    <string name="s_280b10c89cc4" formatted="false">Dauerhaft löschen</string>
+    <string name="s_c496fab2a683" formatted="false">Makeet-Konto löschen?</string>
+    <string name="s_71ddd59aa6f1" formatted="false">Demodaten</string>
+    <string name="s_45989de49fb7" formatted="false">Details</string>
+    <string name="s_1dd6611ca85c" formatted="false">Gerätesprache</string>
+    <string name="s_2f8b1a7d3792" formatted="false">Ablenkungen</string>
+    <string name="s_b7e31a0d4c87" formatted="false">Nicht überschreiten</string>
+    <string name="s_11a6767d5674" formatted="false">Fertig</string>
+    <string name="s_8ba53464e4f8" formatted="false">Wasser trinken</string>
+    <string name="s_2e0a504da223" formatted="false">Jedes Konto hat ein eigenes Archiv. Bei der Anmeldung werden lokale Daten und Beispieldaten nicht automatisch hochgeladen.</string>
+    <string name="s_2684d21a690f" formatted="false">Jede Gewohnheit erhält höchstens einen Block pro geplantem Tag. Bestehende zukünftige Ereignisse bleiben erhalten.</string>
+    <string name="s_1e21254b05aa" formatted="false">Gewohnheit bearbeiten</string>
+    <string name="s_15c4aa13037e" formatted="false">Profil bearbeiten</string>
+    <string name="s_235bb833a4de" formatted="false">Fortschritte bearbeiten</string>
+    <string name="s_61ad8976e650" formatted="false">Emoji</string>
+    <string name="s_f63c0259964a" formatted="false">Ereignisse des Tages</string>
+    <string name="s_61af1bd0038e" formatted="false">Mit Demodaten entdecken</string>
+    <string name="s_9c80b04be554" formatted="false">Deine Daten exportieren</string>
+    <string name="s_2046ba7c9cf3" formatted="false">Finde deinen Moment</string>
+    <string name="s_5a58184f4a38" formatted="false">Zum Beispiel: Wasser trinken</string>
+    <string name="s_b885a8a77fac" formatted="false">Freies Zeitfenster in den ausgewählten Kalendern.</string>
+    <string name="s_691364dcb16e" formatted="false">Gläser, Seiten, Minuten: Ergänze Mengen und korrigiere sie bei Bedarf.</string>
+    <string name="s_f0063b808736" formatted="false">Stunde</string>
+    <string name="s_272c737e3330" formatted="false">Menge, Tag für Tag</string>
+    <string name="s_a35abcd6dac9" formatted="false">Symbol</string>
+    <string name="s_0cf00f99e0e2" formatted="false">Beispielansicht</string>
+    <string name="s_e8380369af18" formatted="false">In dieses Konto importieren?</string>
+    <string name="s_85fe351711d0" formatted="false">Lokales Archiv importieren</string>
+    <string name="s_55a276cc4ec1" formatted="false">Version dieses Geräts behalten</string>
+    <string name="s_a4fe65264ef7" formatted="false">Sprache</string>
+    <string name="s_f5477e6341cf" formatted="false">Los geht’s</string>
+    <string name="s_903b99c3073b" formatted="false">Fangen wir mit etwas Einfachem an.</string>
+    <string name="s_cf3a204b337f" formatted="false">Einen Schritt erfassen</string>
+    <string name="s_ea2100dc89ae" formatted="false">Einträge</string>
+    <string name="s_27edfc17456d" formatted="false">Schaffe Raum für wichtige Gewohnheiten. Makeet hilft dir, Mengen zu erfassen und den passenden Zeitpunkt zu finden.</string>
+    <string name="s_c81daa9e8b9b" formatted="false">Schaffen wir Platz in deinem Kalender</string>
+    <string name="app_name" formatted="false">Makeet</string>
+    <string name="s_6255563f8946" formatted="false">Makeet liest nur ausgewählte Kalender. Nach deiner Bestätigung hinzugefügte Termine werden vom Kalenderkonto dieses Geräts synchronisiert.</string>
+    <string name="s_0ed5acb7fda8" formatted="false">Miss deinen Fortschritt</string>
+    <string name="s_f5384164dc68" formatted="false">Mehr Farbe, mehr Fortschritt. Tippe auf einen Tag, um Gewohnheiten und Ereignisse zu sehen.</string>
+    <string name="s_6ecc3df6bffd" formatted="false">Bewegen</string>
+    <string name="s_33b2fafc2dc9" formatted="false">Neue Gewohnheit</string>
+    <string name="s_74e53211fef4" formatted="false">Nächster Monat</string>
+    <string name="s_e069dea43742" formatted="false">Keine archivierten Gewohnheiten</string>
+    <string name="s_9b8af7141f6e" formatted="false">Auf diesem Gerät sind keine Kalender eingerichtet. Füge in deiner Kalender-App ein Konto hinzu und aktualisiere anschließend.</string>
+    <string name="s_21c46e27fcaa" formatted="false">Keine Ereignisse in den ausgewählten Kalendern.</string>
+    <string name="s_2c0ef8bf3e7e" formatted="false">Es sind keine Gewohnheiten geplant. In Kalender kannst du alle Fortschritte ansehen und korrigieren.</string>
+    <string name="s_7d59634f2802" formatted="false">Kein neues Passwort. Kein öffentliches Profil.</string>
+    <string name="s_b318eca70643" formatted="false">Ohne Registrierung. Deine Fortschritte bleiben hier. Du kannst dich jederzeit anmelden.</string>
+    <string name="s_f0406a0e7eb1" formatted="false">Nicht erlaubt</string>
+    <string name="s_bc1c29a467ae" formatted="false">Nicht bestätigt</string>
+    <string name="s_788011833a5a" formatted="false">Mitteilungen</string>
+    <string name="s_565339bc4d33" formatted="false">OK</string>
+    <string name="s_d1432a444676" formatted="false">Ein Emoji</string>
+    <string name="s_6b6cfa792b78" formatted="false">Ein kleiner Schritt, heute.</string>
+    <string name="s_040f8f2e203d" formatted="false">Nur auf diesem Gerät</string>
+    <string name="s_0664f9436952" formatted="false">Öffne Makeet, um auf deine Daten zuzugreifen.</string>
+    <string name="s_97e14081dd4d" formatted="false">Optionale Erinnerungen laufen auf diesem Gerät. Sie enthalten keine Gewohnheitsnamen. Android verwaltet den Zustellzeitpunkt.</string>
+    <string name="s_241c75409278" formatted="false">Malus</string>
+    <string name="s_13ae4c193d33" formatted="false">Bevorzugte Uhrzeit</string>
+    <string name="s_6a2769502a5d" formatted="false">Vorheriger Monat</string>
+    <string name="s_c385c3440806" formatted="false">Datenschutzhinweise</string>
+    <string name="s_8f4de740d11a" formatted="false">Privates Konto</string>
+    <string name="s_ac8a73189fe3" formatted="false">Profilfoto</string>
+    <string name="s_2068b81b75d4" formatted="false">Erreichen</string>
+    <string name="s_9b9a8d05a7ec" formatted="false">Lesen</string>
+    <string name="s_0e9161011702" formatted="false">Aktualisieren</string>
+    <string name="s_1e4d3096cccb" formatted="false">Vorschläge aktualisieren</string>
+    <string name="s_3e7cfd6da8bd" formatted="false">Erinnerungszeit</string>
+    <string name="s_7e8c35b8edff" formatted="false">Einen Schritt abziehen</string>
+    <string name="s_f46512ab2099" formatted="false">Foto entfernen</string>
+    <string name="s_ec0d28399ae9" formatted="false">Entfernt nur zukünftige Ereignisse dieser Gewohnheit in bearbeitbaren Kalendern. Andere Ereignisse bleiben erhalten.</string>
+    <string name="s_a0397f6dfd88" formatted="false">Ruhetage unterbrechen keine Serien und zählen nicht als verfehlte Ziele.</string>
+    <string name="s_a76e13b98392" formatted="false">Wiederherstellen</string>
+    <string name="s_85a115aafbb6" formatted="false">Prüfen und alle hinzufügen</string>
+    <string name="s_1509f561f241" formatted="false">Speichern</string>
+    <string name="s_d0ef86e220fc" formatted="false">Testmitteilung senden</string>
+    <string name="s_404e46687360" formatted="false">Sitzungsdauer (Minuten)</string>
+    <string name="s_053b3f4034fd" formatted="false">Auf null setzen</string>
+    <string name="s_48f0d3d397d4" formatted="false">Abmelden</string>
+    <string name="s_8169693101a4" formatted="false">Startdatum</string>
+    <string name="s_87f8d815f10f" formatted="false">Unverbindliche Zeit: Kalender nicht verbunden.</string>
+    <string name="s_be91940b79f4" formatted="false">Support</string>
+    <string name="s_cf679329ebcb" formatted="false">Die Synchronisierung pausiert. Deine Fortschritte bleiben auf diesem Gerät; bei Verbindung versuchen wir es erneut.</string>
+    <string name="s_885e8f48bd70" formatted="false">Jetzt synchronisieren</string>
+    <string name="s_5c8b9e1ce0a2" formatted="false">Synchronisierung läuft</string>
+    <string name="s_967171659584" formatted="false">Systemkalender</string>
+    <string name="s_8c45a486e4b1" formatted="false">Nutzungsbedingungen</string>
+    <string name="s_5e015c2ce93e" formatted="false">Der Assistent schlägt anhand dieser Angaben ein freies Zeitfenster vor. Termine werden nicht automatisch erstellt.</string>
+    <string name="s_165eb02a05ba" formatted="false">Es ist Platz für den ersten Schritt.</string>
+    <string name="s_f394479f90ef" formatted="false">Diese Gewohnheit wurde geändert. Schließe und öffne die Bearbeitung vor dem Speichern erneut.</string>
+    <string name="s_149b431b8e77" formatted="false">Die Gewohnheit und alle ihre Einträge werden dauerhaft gelöscht. Das kann nicht rückgängig gemacht werden.</string>
+    <string name="s_ab099184fe74" formatted="false">Von der App geplanter Zeitblock. Die Erfüllung der Gewohnheit wird separat erfasst.</string>
+    <string name="s_2b065c7c9ce4" formatted="false">Heute</string>
+    <string name="s_e856c6c6a48b" formatted="false">Entwicklung</string>
+    <string name="s_a8283ade3185" formatted="false">Eintrag rückgängig machen</string>
+    <string name="s_f40d6125934b" formatted="false">Einheit, z. B. Gläser, Seiten, Minuten</string>
+    <string name="s_acb794853b07" formatted="false">Synchronisierte Version verwenden</string>
+    <string name="s_a12ac84d49b6" formatted="false">Was du in den nächsten Tagen zu tun hast</string>
+    <string name="s_c0fcac132ef6" formatted="false">Was du heute zu tun hast</string>
+    <string name="s_4ff3a32fe763" formatted="false">Wo bleiben deine Fortschritte?</string>
+    <string name="s_4078b3fd006f" formatted="false">An welchen Tagen?</string>
+    <string name="s_1a1f969a1639" formatted="false">Mit einem Konto</string>
+    <string name="s_a389ebc9919b" formatted="false">Bei aktivierten negativen Werten kann die Minustaste den Saldo unter null bringen. Der Verlauf behält die Vorzeichen bei.</string>
+    <string name="s_ffd32e288eda" formatted="false">Grenze eingehalten</string>
+    <string name="s_19a1feef2e5f" formatted="false">Du kannst vergangene Tage ab dem Startdatum der Gewohnheit korrigieren.</string>
+    <string name="s_717e7f098d94" formatted="false">Heute kannst du dich ausruhen</string>
+    <string name="s_0aa839bf9b60" formatted="false">Dein Konto und deine Daten werden dauerhaft aus dem Dienst gelöscht. Dies kann nicht rückgängig gemacht werden.</string>
+    <string name="s_a1cdccff3934" formatted="false">Dein Konto wurde beim Dienst gelöscht. Starte die App neu, um das Archiv auf diesem Gerät vollständig zu leeren.</string>
+    <string name="s_436f97b16f9b" formatted="false">Deine Gewohnheit</string>
+    <string name="s_2c6b2e253c01" formatted="false">Dein Name</string>
+    <string name="s_14b5b98e61bd" formatted="false">Dein Name und Foto sind nur für dich sichtbar und werden in deinem Konto gespeichert.</string>
+    <string name="s_9130cfe83860" formatted="false">Deine eigenen Gewohnheiten bleiben erhalten. Nur die gekennzeichneten Beispiele und ihre Einträge werden entfernt.</string>
+    <string name="s_d9ab76c650a6" formatted="false">Dein Plan</string>
+    <string name="s_1bbc271359ac" formatted="false">Dein privates Archiv, kostenlos synchronisiert.</string>
+    <string name="s_ae97166d804d" formatted="false">Dein Profil wurde auf einem anderen Gerät geändert. Öffne die Bearbeitung erneut, um die aktuelle Version zu laden.</string>
+    <string name="s_83e3a28a1d15" formatted="false">Deine Fortschritte haben sich geändert. Öffne den Tag erneut, um die aktuellen Werte zu verwenden.</string>
+    <string name="s_463ef412a919" formatted="false">Deine Fortschritte bleiben erhalten. Prüfe die Verbindung oder öffne diese Ansicht erneut und versuche es noch einmal.</string>
+    <string name="s_d5f152577564" formatted="false">aktuelle Serie in Tagen</string>
+    <string name="s_e25d3872dc17" formatted="false">Tagesdurchschnitt</string>
+    <string name="s_1155d87d350c" formatted="false">Tage mit erreichtem Ziel</string>
+    <string name="s_266550babbb7" formatted="false">Gläser</string>
+    <string name="s_90e63d85fa1a" formatted="false">Minuten</string>
+    <string name="s_bfa062de040f" formatted="false">Seiten</string>
+    <string name="s_2bf61a3bc850" formatted="false">Mal</string>
+</resources>

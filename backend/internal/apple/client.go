@@ -131,10 +131,21 @@ func (c *Client) post(ctx context.Context, path string, form url.Values) ([]byte
 }
 
 func (c *Client) Exchange(ctx context.Context, code, nonce string, who identity.Identity, verifier identity.Verifier) (string, error) {
+	return c.ExchangeWithRedirect(ctx, code, nonce, who, verifier, "")
+}
+
+func (c *Client) ExchangeWithRedirect(ctx context.Context, code, nonce string, who identity.Identity, verifier identity.Verifier, redirect string) (string, error) {
 	if code == "" || len(code) > 4096 || who.Audience == "" {
 		return "", ErrRejected
 	}
-	body, err := c.post(ctx, "/token", url.Values{"client_id": {who.Audience}, "code": {code}, "grant_type": {"authorization_code"}})
+	form := url.Values{"client_id": {who.Audience}, "code": {code}, "grant_type": {"authorization_code"}}
+	if redirect != "" {
+		if redirect != "https://api.makeet.app/v1/auth/apple/callback" {
+			return "", ErrRejected
+		}
+		form.Set("redirect_uri", redirect)
+	}
+	body, err := c.post(ctx, "/token", form)
 	if err != nil {
 		return "", err
 	}

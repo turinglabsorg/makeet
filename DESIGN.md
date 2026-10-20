@@ -65,3 +65,8 @@ Header and search artwork use the existing warm canvas, forest ink, pale accent 
 ## Flexible goals and signed quantities
 
 Place the goal-direction segment and optional negative-values switch with the quantitative controls. Minimum goals retain the familiar positive target; limit goals allow zero and explain explicit confirmation. Unlogged limit days use a neutral “To confirm” status. Confirmed zero is green; excess above a limit or a negative minimum balance uses the clay warning color and a textual malus amount. Keep numeric values visible alongside color. Minus remains left and plus right, including the calendar correction draft; only explicitly enabled habits can go below zero. Limit habits do not show calendar action scheduling controls. Provide a keyboard Done action so the whole form remains reachable on a phone.
+
+
+## Android native client
+
+Use Jetpack Compose with Android system sans typography and the same warm/forest tokens, 20-dp cards, 54-dp provider buttons and 48-dp touch controls. Preserve platform photo/document pickers, permission dialogs and Home Screen widgets. The plus/avatar toolbar, explicit account/local onboarding, Monday-first weekday pills, quantity/limit controls and confirmed calendar planning follow the shared product rules. Keep demo status visible above every main tab and label disconnected planning as illustrative. RemoteViews widgets show two habits with numeric progress and the same minus/plus/zero behavior. Android reminders use an explicit local-notification description; do not reuse APNs registration wording.

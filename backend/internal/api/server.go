@@ -30,16 +30,19 @@ type Config struct {
 	BillingPreviewUsers map[string]bool
 	Providers           map[string]identity.Verifier
 	Apple               *apple.Client
+	AppleWebClientID    string
 	Push                *push.Client
 	Site                http.Handler
 	Clock               func() time.Time
 	TrustRelay          bool
 }
 type Server struct {
-	db     *sql.DB
-	cfg    Config
-	mu     sync.Mutex
-	limits map[string]bucket
+	db       *sql.DB
+	cfg      Config
+	mu       sync.Mutex
+	limits   map[string]bucket
+	webMu    sync.Mutex
+	webFlows map[string]*appleWebFlow
 }
 type bucket struct {
 	start time.Time
@@ -61,7 +64,7 @@ func New(db *sql.DB, cfg Config) *Server {
 	if cfg.Clock == nil {
 		cfg.Clock = time.Now
 	}
-	return &Server{db: db, cfg: cfg, limits: make(map[string]bucket)}
+	return &Server{db: db, cfg: cfg, limits: make(map[string]bucket), webFlows: make(map[string]*appleWebFlow)}
 }
 func (s *Server) Handler() http.Handler {
 	mux := http.NewServeMux()
@@ -79,10 +82,13 @@ func (s *Server) Handler() http.Handler {
 				providers = append(providers, p)
 			}
 		}
-		respond(w, 200, map[string]any{"providers": providers, "billing_enabled": s.publicBillingEnabled()})
+		respond(w, 200, map[string]any{"providers": providers, "billing_enabled": s.publicBillingEnabled(), "apple_android_enabled": s.appleWebEnabled()})
 	})
 	mux.HandleFunc("POST /v1/auth/challenges", s.challenge)
 	mux.HandleFunc("POST /v1/auth/exchange", s.exchange)
+	mux.HandleFunc("POST /v1/auth/apple/start", s.startAppleWeb)
+	mux.HandleFunc("POST /v1/auth/apple/callback", s.callbackAppleWeb)
+	mux.HandleFunc("POST /v1/auth/apple/result", s.resultAppleWeb)
 	mux.HandleFunc("POST /v1/auth/refresh", s.refresh)
 	mux.HandleFunc("POST /v1/auth/logout", s.auth(s.logout))
 	mux.HandleFunc("GET /v1/me", s.auth(s.me))
@@ -286,7 +292,7 @@ func (s *Server) exchange(w http.ResponseWriter, r *http.Request) {
 	}
 	var providerToken string
 	if req.Provider == "apple" {
-		providerToken, err = s.cfg.Apple.Exchange(r.Context(), req.AuthorizationCode, nonce, who, verifier)
+		providerToken, err = s.cfg.Apple.ExchangeWithRedirect(r.Context(), req.AuthorizationCode, nonce, who, verifier, s.appleRedirect(who.Audience))
 		if err != nil {
 			if errors.Is(err, apple.ErrRejected) {
 				fail(w, 401, "invalid_authorization")
