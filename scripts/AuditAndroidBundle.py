@@ -42,7 +42,7 @@ with zipfile.ZipFile(args.bundle) as bundle:
         assert not name.endswith((".p8", ".jks", ".keystore", ".p12", ".storekit")), "Private signing or test resource in bundle"
         if name.endswith(".dex"):
             content = bundle.read(name)
-            for marker in [b"ProfileTestActivity", b"fixture-access", b"qa@example.invalid", b"makeet.invalid"]:
+            for marker in [b"ProfileTestActivity", b"ProfileFixtureState", b"fixture-access", b"qa@example.invalid", b"makeet.invalid"]:
                 assert marker not in content, "Debug/test fixture in release"
         if name.endswith(".so"):
             data = bundle.read(name)

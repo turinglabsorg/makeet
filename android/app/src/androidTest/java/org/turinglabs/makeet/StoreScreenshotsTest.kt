@@ -38,6 +38,8 @@ class StoreScreenshotsTest {
                     instrumentation.waitForIdleSync()
                     instrumentation.uiAutomation.waitForIdle(300, 3000)
                     val bitmap = instrumentation.uiAutomation.takeScreenshot()
+                    Assert.assertEquals("Use the dedicated emulator at the documented Play capture size", 1080, bitmap.width)
+                    Assert.assertEquals(1920, bitmap.height)
                     File(context.getExternalFilesDir(null), "store-$tag-$screen.png").outputStream().use { output -> bitmap.compress(Bitmap.CompressFormat.PNG, 100, output) }
                 }
             }

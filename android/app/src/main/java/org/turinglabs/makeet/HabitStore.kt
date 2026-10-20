@@ -16,7 +16,7 @@ data class Record(val kind: String, val id: String, val revision: Long, val dele
         d.getLong("revision"), d.getBoolean("deleted"), d.optJSONObject("data") ?: JSONObject()) }
 }
 
-class HabitStore(context: Context, val scope: String) : SQLiteOpenHelper(context, "makeet-${safe(scope)}.db", null, 3) {
+class HabitStore(context: Context, val scope: String) : SQLiteOpenHelper(context, "makeet-${safe(scope)}.db", null, 3), java.io.Closeable {
     companion object {
         private fun safe(scope: String): String { require(scope == "local" || UUID.fromString(scope).toString() == scope); return scope }
     }

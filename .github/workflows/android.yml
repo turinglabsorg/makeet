@@ -1,9 +1,10 @@
 name: Android
 on:
   pull_request:
-    paths: ['android/**', 'Resources/Localizable.xcstrings', 'scripts/*Android*', '.github/workflows/android.yml']
+    paths: ['android/**', 'Resources/Localizable.xcstrings', 'PlayStore/**', 'scripts/ValidatePlayStore.py', 'scripts/*Android*', '.github/workflows/android.yml']
   push:
-    paths: ['android/**', 'Resources/Localizable.xcstrings', 'scripts/*Android*', '.github/workflows/android.yml']
+    branches: [main]
+    paths: ['android/**', 'Resources/Localizable.xcstrings', 'PlayStore/**', 'scripts/ValidatePlayStore.py', 'scripts/*Android*', '.github/workflows/android.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -31,6 +32,8 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Validate localized resources
         run: python3 scripts/GenerateAndroidStrings.py --check
+      - name: Validate actual Play listing assets
+        run: python3 scripts/ValidatePlayStore.py
       - name: Unit tests, lint and unsigned release audit build
         working-directory: android
         run: ./gradlew :app:testDebugUnitTest :app:lintRelease :app:bundleRelease :app:assembleDebug :app:assembleDebugAndroidTest --console=plain

@@ -1,5 +1,7 @@
 package org.turinglabs.makeet
 
+import androidx.exifinterface.media.ExifInterface
+
 import android.app.Application
 import android.content.Context
 import android.graphics.Bitmap
@@ -260,7 +262,7 @@ class MakeetModel(app: Application, injectedAPI: AccountAPI?) : AndroidViewModel
         require(bounds.outWidth > 0 && bounds.outHeight > 0)
         var sample = 1; while (maxOf(bounds.outWidth, bounds.outHeight) / sample > 640) sample *= 2
         val decoded = context.contentResolver.openInputStream(uri).use { BitmapFactory.decodeStream(it, null, BitmapFactory.Options().apply { inSampleSize = sample }) } ?: error("invalid_image")
-        val orientation = runCatching { context.contentResolver.openInputStream(uri)!!.use { android.media.ExifInterface(it).getAttributeInt(android.media.ExifInterface.TAG_ORIENTATION, 1) } }.getOrDefault(1)
+        val orientation = runCatching { context.contentResolver.openInputStream(uri)!!.use { ExifInterface(it).getAttributeInt(ExifInterface.TAG_ORIENTATION, 1) } }.getOrDefault(1)
         val transform = android.graphics.Matrix().apply {
             when(orientation) {
                 2 -> setScale(-1f, 1f)
