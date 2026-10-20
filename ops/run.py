@@ -15,7 +15,7 @@ try:
     if config.is_symlink() or config.stat().st_mode & 0o077:
         raise RuntimeError('Configuration permissions must be private')
     values = json.loads(config.read_text())
-    allowed = {'MAKEET_PRIVACY_CONTROLLER', 'MAKEET_HOSTING_COUNTRY', 'MAKEET_APPLE_CLIENT_IDS',
+    allowed = {'MAKEET_PRIVACY_CONTROLLER', 'MAKEET_HOSTING_COUNTRY', 'MAKEET_APPLE_CLIENT_IDS', 'MAKEET_APPLE_WEB_CLIENT_ID',
                'MAKEET_GOOGLE_CLIENT_IDS', 'MAKEET_BILLING_ENABLED', 'MAKEET_BILLING_SANDBOX', 'MAKEET_BILLING_PREVIEW_USERS', 'MAKEET_APPLE_TEAM_ID', 'MAKEET_APPLE_KEY_ID',
                'MAKEET_APNS_TEAM_ID', 'MAKEET_APNS_KEY_ID', 'MAKEET_APNS_ENVIRONMENT', 'MAKEET_APNS_TOPICS', 'MAKEET_TRUST_RELAY'}
     if set(values) - allowed or any(not isinstance(v, str) for v in values.values()):
