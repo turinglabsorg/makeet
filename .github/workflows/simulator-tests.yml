@@ -42,6 +42,9 @@ jobs:
           only=()
           for identifier in $ONLY; do only+=("-only-testing:$identifier"); done
           xcodebuild test -project Makeet.xcodeproj -scheme Makeet "${only[@]}" \
+            -test-timeouts-enabled YES \
+            -default-test-execution-time-allowance 300 \
+            -maximum-test-execution-time-allowance 600 \
             -destination "id=${{ steps.simulator.outputs.udid }}" \
             -derivedDataPath artifacts/Simulator \
             -resultBundlePath artifacts/MakeetTests.xcresult \
