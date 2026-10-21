@@ -17,6 +17,7 @@ import GoogleSignIn
     private(set) var subscription: SubscriptionStore?
     private(set) var working = false
     private(set) var checkingService = false
+    private(set) var passwordEnabled = false
     private(set) var requestedPurchaseID: String?
     private(set) var startupError: String?
     var message: String?
@@ -38,6 +39,11 @@ import GoogleSignIn
                 container = try ModelContainer(for: Habit.self, Activity.self,
                     configurations: ModelConfiguration(isStoredInMemoryOnly: true))
                 #if DEBUG && targetEnvironment(simulator)
+                if ProcessInfo.processInfo.arguments.contains("--password-fixture") {
+                    let fixture = try PasswordUITestFixture()
+                    api = fixture.api; passwordEnabled = true
+                    if let session = try fixture.storage.load() { user = session.tokens.user; scope = .account(session.tokens.user.id) }
+                }
                 if ProcessInfo.processInfo.arguments.contains("--profile-fixture") {
                     let fixture = try ProfileUITestFixture()
                     user = fixture.user; scope = .account(fixture.user.id)
@@ -72,6 +78,7 @@ import GoogleSignIn
         do {
             message = nil
             providers = try await api.providers()
+            passwordEnabled = try await api.passwordEnabled()
             await refreshAppleChallenge()
         } catch { message = String(localized: "Connessione al servizio non disponibile. Puoi continuare sul dispositivo.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) }
         await subscription?.load()
@@ -128,6 +135,34 @@ import GoogleSignIn
             }
             appleChallenge = try? await api.challenge("apple")
         }
+    }
+
+    func passwordLogin(identifier: String, password: String) async throws {
+        guard !working, user == nil, let api else { throw AccountAPIError.signedOut }
+        working = true; defer { working = false }
+        let user = try await api.passwordLogin(identifier: identifier, password: password)
+        try activate(user)
+        await sync?.synchronize()
+        await profile?.refresh()
+    }
+    func requestPassword(username: String, email: String, password: String, userID: UUID?) async throws -> String {
+        guard !working, user?.id == userID, let api else { throw AccountAPIError.signedOut }
+        working = true; defer { working = false }
+        return try await api.requestPassword(username: username, email: email, password: password, language: AppLanguage.code, userID: userID)
+    }
+    func recoverPassword(identifier: String) async throws -> String {
+        guard !working, let api else { throw AccountAPIError.signedOut }
+        working = true; defer { working = false }
+        return try await api.recoverPassword(identifier: identifier, language: AppLanguage.code)
+    }
+    func confirmPassword(requestID: String, code: String, password: String, userID: UUID?) async throws {
+        guard !working, user?.id == userID, let api else { throw AccountAPIError.signedOut }
+        working = true; defer { working = false }
+        try await api.confirmPassword(requestID: requestID, code: code, password: password, userID: userID)
+    }
+    func passwordStatus(userID: UUID) async throws -> PasswordAccessStatus {
+        guard user?.id == userID, let api else { throw AccountAPIError.signedOut }
+        return try await api.passwordStatus(userID: userID)
     }
 
     func logout() async {
@@ -246,6 +281,11 @@ import GoogleSignIn
 
     private func activate(_ user: AccountUser) throws {
         guard let api else { throw AccountAPIError.signedOut }
+        if testing {
+            let next = try ModelContainer(for: Habit.self, Activity.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+            self.user = user; scope = .account(user.id); container = next; message = nil
+            return
+        }
         let next = try AccountStoreLocation().container(for: user.id)
         let service = try AccountSyncService(userID: user.id, context: next.mainContext, api: api)
         let devicePush = try DevicePushService(api: api, userID: user.id)
@@ -257,6 +297,11 @@ import GoogleSignIn
     }
 
     private func returnToLocal() throws {
+        if testing {
+            user = nil; scope = .local
+            container = try ModelContainer(for: Habit.self, Activity.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+            return
+        }
         let local = try SharedStore.makeContainer()
         sync?.stop(); push?.stop(); profile?.stop(); subscription?.stop(); try WidgetAccountScope.activate(nil)
         user = nil; sync = nil; push = nil; profile = nil; subscription = nil; scope = .local; container = local

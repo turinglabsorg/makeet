@@ -1,0 +1,212 @@
+<resources>
+    <string name="s_5d1d13e5a51e" formatted="false">12 weeks</string>
+    <string name="s_56a795b7bdce" formatted="false">28 days</string>
+    <string name="s_c69e83a43dc3" formatted="false">3–32 characters: unaccented letters, numbers, dot, hyphen or underscore.</string>
+    <string name="s_7f920bb639c9" formatted="false">7 days</string>
+    <string name="s_49a8d9011ac8" formatted="false">A glimpse of your day</string>
+    <string name="s_e439c98fe594" formatted="false">A plan built around your progress, chosen days, and calendar events.</string>
+    <string name="s_7e1b0d5641f2" formatted="false">Account</string>
+    <string name="s_38da1505ca83" formatted="false">Activity</string>
+    <string name="s_d60651e77979" formatted="false">Activity changed on multiple devices</string>
+    <string name="s_258144331d27" formatted="false">Added to calendar</string>
+    <string name="s_8d47b52eb542" formatted="false">Adjust quantities and save. New entries on past days are marked as manual corrections at noon in the habit’s time zone.</string>
+    <string name="s_92b086bff947" formatted="false">All features are free, including account sync.</string>
+    <string name="s_61a0e241683c" formatted="false">All selected days are already planned, completed, or have no free time between 7 AM and 10 PM. You can change the period or preferences.</string>
+    <string name="s_07119d34d752" formatted="false">Allow calendar access</string>
+    <string name="s_d53d5c49ea41" formatted="false">Allow negative values</string>
+    <string name="s_ec73a3d028bc" formatted="false">Already have an account? Add credentials in Account on the device where you are signed in to keep your progress.</string>
+    <string name="s_92845e68d53f" formatted="false">Already have habits on this device? You decide whether to import them after signing in.</string>
+    <string name="s_b0bc62fd661c" formatted="false">Also remove future Makeet blocks</string>
+    <string name="s_49e96d7cdf58" formatted="false">Amount</string>
+    <string name="s_41625a78cd8e" formatted="false">Amount per tap</string>
+    <string name="s_68c77cee5fb9" formatted="false">An account keeps your progress with you, even on a new device. Or you can start just here.</string>
+    <string name="s_b8352b44a588" formatted="false">App language</string>
+    <string name="s_66f4804ee23d" formatted="false">Archive</string>
+    <string name="s_76be03f4a9ad" formatted="false">Archived habits</string>
+    <string name="s_9c2bc1ebc662" formatted="false">Archived habits keep their full history.</string>
+    <string name="s_76900f1bfd16" formatted="false">Back</string>
+    <string name="s_2441ea11cc36" formatted="false">Best streak</string>
+    <string name="s_d5d0a30b517e" formatted="false">Calendar</string>
+    <string name="s_9042a0ac6644" formatted="false">Calendar access wasn’t granted. You can enable it in Settings.</string>
+    <string name="s_a1977617a775" formatted="false">Calendar and notifications are optional. Enable them later, with your permission.</string>
+    <string name="s_19766ed6ccb2" formatted="false">Cancel</string>
+    <string name="s_b25c85e885b1" formatted="false">Changes to targets and weekdays also apply to past statistics. Recorded quantities stay unchanged.</string>
+    <string name="s_79805562c5e6" formatted="false">Check your details or code and try again. Your archive is retained.</string>
+    <string name="s_98dc94810d88" formatted="false">Choose a habit, your target amount, and your ideal time. We’ll shape the rest together.</string>
+    <string name="s_2805f1b82745" formatted="false">Choose a limit, including zero. Quantities above the limit count as a penalty. Confirm zero to record a day with no occurrences.</string>
+    <string name="s_118fb65601f7" formatted="false">Choose a photo</string>
+    <string name="s_5d5aefaef90f" formatted="false">Choose which version to keep. Changes are never discarded automatically.</string>
+    <string name="s_6b73191a0a4b" formatted="false">Color</string>
+    <string name="s_d4aa365fc311" formatted="false">Confirm and create events</string>
+    <string name="s_589c584b0d72" formatted="false">Confirm code</string>
+    <string name="s_4ca48b4230a5" formatted="false">Confirm import</string>
+    <string name="s_6132bd8d4447" formatted="false">Confirm your plan</string>
+    <string name="s_819b0f4d4418" formatted="false">Confirm zero</string>
+    <string name="s_f66187eaf7b5" formatted="false">Connect calendar</string>
+    <string name="s_9d9d0e910537" formatted="false">Connect your calendar to find free slots. Without access, suggested times may overlap with your commitments.</string>
+    <string name="s_ffb5d61f4372" formatted="false">Connect your calendar when you want. Every new event needs your confirmation.</string>
+    <string name="s_3136712d6fd3" formatted="false">Connected to Makeet</string>
+    <string name="s_dc273117482b" formatted="false">Connections</string>
+    <string name="s_d1b838382467" formatted="false">Consider commitments in</string>
+    <string name="s_31fbef162594" formatted="false">Continue</string>
+    <string name="s_da074c6da9c8" formatted="false">Continue on this device</string>
+    <string name="s_cce937e89144" formatted="false">Continue with Google</string>
+    <string name="s_500c1238de89" formatted="false">Copy only your real local progress into the current account. The original archive stays on this device.</string>
+    <string name="s_f1bc81c12ece" formatted="false">Couldn’t complete the action</string>
+    <string name="s_a018b7a8a188" formatted="false">Couldn’t save</string>
+    <string name="s_4759498ac2a7" formatted="false">Create</string>
+    <string name="s_8149e54cc778" formatted="false">Create a habit in Today to start tracking it.</string>
+    <string name="s_798ca2ce18bf" formatted="false">Create account</string>
+    <string name="s_23cbd1796681" formatted="false">Create blocks in</string>
+    <string name="s_9a35a12e27e3" formatted="false">Credentials saved. You can use them on your other device too.</string>
+    <string name="s_0811d862679a" formatted="false">Daily reminder</string>
+    <string name="s_8d834c41b129" formatted="false">Daily target</string>
+    <string name="s_a2e20a335700" formatted="false">Delete account</string>
+    <string name="s_7b503321357a" formatted="false">Delete account and data</string>
+    <string name="s_8a93ebf0efa9" formatted="false">Delete all demo data?</string>
+    <string name="s_05df0c87b956" formatted="false">Delete demo data</string>
+    <string name="s_47e79aeefc16" formatted="false">Delete habit and progress</string>
+    <string name="s_280b10c89cc4" formatted="false">Delete permanently</string>
+    <string name="s_c496fab2a683" formatted="false">Delete your Makeet account?</string>
+    <string name="s_71ddd59aa6f1" formatted="false">Demo data</string>
+    <string name="s_45989de49fb7" formatted="false">Details</string>
+    <string name="s_1dd6611ca85c" formatted="false">Device language</string>
+    <string name="s_2f8b1a7d3792" formatted="false">Distractions</string>
+    <string name="s_b7e31a0d4c87" formatted="false">Do not exceed</string>
+    <string name="s_11a6767d5674" formatted="false">Done</string>
+    <string name="s_8ba53464e4f8" formatted="false">Drink water</string>
+    <string name="s_2e0a504da223" formatted="false">Each account has a separate archive. Signing in never uploads local or demo data automatically.</string>
+    <string name="s_2684d21a690f" formatted="false">Each habit gets at most one block per scheduled day. Existing future events are kept.</string>
+    <string name="s_1e21254b05aa" formatted="false">Edit habit</string>
+    <string name="s_15c4aa13037e" formatted="false">Edit profile</string>
+    <string name="s_235bb833a4de" formatted="false">Edit progress</string>
+    <string name="s_61ad8976e650" formatted="false">Emoji</string>
+    <string name="s_f63c0259964a" formatted="false">Events for the day</string>
+    <string name="s_61af1bd0038e" formatted="false">Explore with demo data</string>
+    <string name="s_9c80b04be554" formatted="false">Export your data</string>
+    <string name="s_2046ba7c9cf3" formatted="false">Find your moment</string>
+    <string name="s_5a58184f4a38" formatted="false">For example: drink water</string>
+    <string name="s_bb42f8cd525d" formatted="false">Forgot password</string>
+    <string name="s_b885a8a77fac" formatted="false">Free slot in your selected calendars.</string>
+    <string name="s_691364dcb16e" formatted="false">Glasses, pages, minutes: add quantities and correct them when needed.</string>
+    <string name="s_f0063b808736" formatted="false">Hour</string>
+    <string name="s_272c737e3330" formatted="false">How much, day by day</string>
+    <string name="s_a35abcd6dac9" formatted="false">Icon</string>
+    <string name="s_ea103c3ca5d6" formatted="false">If the request is valid, you’ll receive an email code. It expires in 15 minutes. Check spam too.</string>
+    <string name="s_0cf00f99e0e2" formatted="false">Illustrative preview</string>
+    <string name="s_e8380369af18" formatted="false">Import into this account?</string>
+    <string name="s_85fe351711d0" formatted="false">Import local archive</string>
+    <string name="s_55a276cc4ec1" formatted="false">Keep this device’s version</string>
+    <string name="s_a4fe65264ef7" formatted="false">Language</string>
+    <string name="s_f5477e6341cf" formatted="false">Let’s begin</string>
+    <string name="s_903b99c3073b" formatted="false">Let’s start with something simple.</string>
+    <string name="s_cf3a204b337f" formatted="false">Log a step</string>
+    <string name="s_ea2100dc89ae" formatted="false">Logs</string>
+    <string name="s_27edfc17456d" formatted="false">Make room for the habits that matter to you. Makeet helps you record how much you do and find the right time.</string>
+    <string name="s_c81daa9e8b9b" formatted="false">Make room in your day</string>
+    <string name="app_name" formatted="false">Makeet</string>
+    <string name="s_6255563f8946" formatted="false">Makeet reads only the calendars you select. Events added after your confirmation are synchronized by the calendar account on this device.</string>
+    <string name="s_0ed5acb7fda8" formatted="false">Measure your progress</string>
+    <string name="s_f5384164dc68" formatted="false">More color, more progress. Tap a day to see habits and events.</string>
+    <string name="s_6ecc3df6bffd" formatted="false">Move</string>
+    <string name="s_33b2fafc2dc9" formatted="false">New habit</string>
+    <string name="s_74e53211fef4" formatted="false">Next month</string>
+    <string name="s_e069dea43742" formatted="false">No archived habits</string>
+    <string name="s_9b8af7141f6e" formatted="false">No calendars are configured on this device. Add an account in your calendar app, then refresh.</string>
+    <string name="s_21c46e27fcaa" formatted="false">No events in the selected calendars.</string>
+    <string name="s_2c0ef8bf3e7e" formatted="false">No habits are scheduled. View and adjust all your progress in Calendar.</string>
+    <string name="s_b318eca70643" formatted="false">No sign-up. Your progress stays here. You can sign in whenever you like.</string>
+    <string name="s_f0406a0e7eb1" formatted="false">Not allowed</string>
+    <string name="s_bc1c29a467ae" formatted="false">Not confirmed</string>
+    <string name="s_788011833a5a" formatted="false">Notifications</string>
+    <string name="s_565339bc4d33" formatted="false">OK</string>
+    <string name="s_d1432a444676" formatted="false">One emoji</string>
+    <string name="s_6b6cfa792b78" formatted="false">One small step today.</string>
+    <string name="s_040f8f2e203d" formatted="false">Only on this device</string>
+    <string name="s_0664f9436952" formatted="false">Open Makeet to access your data.</string>
+    <string name="s_97e14081dd4d" formatted="false">Optional reminders run on this device. They contain no habit names. Delivery time is managed by Android.</string>
+    <string name="s_e7cf3ef4f17c" formatted="false">Password</string>
+    <string name="s_f1224daf2aea" formatted="false">Password access is temporarily unavailable. Try again later.</string>
+    <string name="s_241c75409278" formatted="false">Penalty</string>
+    <string name="s_13ae4c193d33" formatted="false">Preferred time</string>
+    <string name="s_6a2769502a5d" formatted="false">Previous month</string>
+    <string name="s_c385c3440806" formatted="false">Privacy notice</string>
+    <string name="s_8f4de740d11a" formatted="false">Private account</string>
+    <string name="s_ac8a73189fe3" formatted="false">Profile photo</string>
+    <string name="s_2068b81b75d4" formatted="false">Reach</string>
+    <string name="s_9b9a8d05a7ec" formatted="false">Read</string>
+    <string name="s_21b0f25a6f0d" formatted="false">Recover password</string>
+    <string name="s_35e41faf666a" formatted="false">Recovery email</string>
+    <string name="s_0e9161011702" formatted="false">Refresh</string>
+    <string name="s_1e4d3096cccb" formatted="false">Refresh suggestions</string>
+    <string name="s_3e7cfd6da8bd" formatted="false">Reminder time</string>
+    <string name="s_7e8c35b8edff" formatted="false">Remove a step</string>
+    <string name="s_f46512ab2099" formatted="false">Remove photo</string>
+    <string name="s_ec0d28399ae9" formatted="false">Removes only future events linked to this habit in editable calendars. Other events stay in place.</string>
+    <string name="s_b74070f90e8c" formatted="false">Repeat password</string>
+    <string name="s_a0397f6dfd88" formatted="false">Rest days do not break streaks or count as missed goals.</string>
+    <string name="s_a76e13b98392" formatted="false">Restore</string>
+    <string name="s_85a115aafbb6" formatted="false">Review and add all</string>
+    <string name="s_1509f561f241" formatted="false">Save</string>
+    <string name="s_66a5b4090d14" formatted="false">Send code</string>
+    <string name="s_d0ef86e220fc" formatted="false">Send test notification</string>
+    <string name="s_404e46687360" formatted="false">Session duration (minutes)</string>
+    <string name="s_053b3f4034fd" formatted="false">Set to zero</string>
+    <string name="s_bfd402b2f6f3" formatted="false">Sign in</string>
+    <string name="s_bedac809a0ca" formatted="false">Sign in with password</string>
+    <string name="s_48f0d3d397d4" formatted="false">Sign out</string>
+    <string name="s_962e64b76196" formatted="false">Start again</string>
+    <string name="s_8169693101a4" formatted="false">Start date</string>
+    <string name="s_87f8d815f10f" formatted="false">Suggested time: calendar not connected.</string>
+    <string name="s_be91940b79f4" formatted="false">Support</string>
+    <string name="s_cf679329ebcb" formatted="false">Sync is paused. Your progress stays on this device; we’ll retry when connected.</string>
+    <string name="s_885e8f48bd70" formatted="false">Sync now</string>
+    <string name="s_5c8b9e1ce0a2" formatted="false">Syncing</string>
+    <string name="s_967171659584" formatted="false">System calendars</string>
+    <string name="s_8c45a486e4b1" formatted="false">Terms of use</string>
+    <string name="s_5e015c2ce93e" formatted="false">The assistant uses these preferences to suggest a free slot. No event is created automatically.</string>
+    <string name="s_165eb02a05ba" formatted="false">There’s room for a first step.</string>
+    <string name="s_f394479f90ef" formatted="false">This habit changed. Close and reopen the editor before saving.</string>
+    <string name="s_149b431b8e77" formatted="false">This permanently deletes the habit and all its entries. This cannot be undone.</string>
+    <string name="s_ab099184fe74" formatted="false">Time block planned by the app. Habit completion is logged separately.</string>
+    <string name="s_7874d9e66d40" formatted="false">To change your password, sign out and choose Forgot password. Your old sessions will be signed out.</string>
+    <string name="s_2b065c7c9ce4" formatted="false">Today</string>
+    <string name="s_2ec9ffbe70ff" formatted="false">Too many attempts. Wait and try again.</string>
+    <string name="s_e856c6c6a48b" formatted="false">Trends</string>
+    <string name="s_a8283ade3185" formatted="false">Undo</string>
+    <string name="s_f40d6125934b" formatted="false">Unit, e.g. glasses, pages, minutes</string>
+    <string name="s_f1390589dc33" formatted="false">Use 15–128 characters. A phrase with spaces is welcome.</string>
+    <string name="s_acb794853b07" formatted="false">Use the synced version</string>
+    <string name="s_e3b89e9d33f8" formatted="false">Username</string>
+    <string name="s_e3db92128adf" formatted="false">Username and password</string>
+    <string name="s_2d4a46f36888" formatted="false">Username or email</string>
+    <string name="s_3ee75029c70e" formatted="false">Verification code</string>
+    <string name="s_a12ac84d49b6" formatted="false">What you have to do in the coming days</string>
+    <string name="s_c0fcac132ef6" formatted="false">What you have to do today</string>
+    <string name="s_4ff3a32fe763" formatted="false">Where should your progress live?</string>
+    <string name="s_4078b3fd006f" formatted="false">Which days?</string>
+    <string name="s_1a1f969a1639" formatted="false">With an account</string>
+    <string name="s_a389ebc9919b" formatted="false">With negative values enabled, minus can take your balance below zero. History preserves the sign of each quantity.</string>
+    <string name="s_ffd32e288eda" formatted="false">Within limit</string>
+    <string name="s_19a1feef2e5f" formatted="false">You can adjust past days from the habit’s start date onward.</string>
+    <string name="s_717e7f098d94" formatted="false">You can rest today</string>
+    <string name="s_0aa839bf9b60" formatted="false">Your account and data will be permanently deleted from the service. This action cannot be undone.</string>
+    <string name="s_1a8919de2a23" formatted="false">Your account and progress stay private.</string>
+    <string name="s_a1cdccff3934" formatted="false">Your account was deleted from the service. Restart the app to finish clearing this device’s archive.</string>
+    <string name="s_436f97b16f9b" formatted="false">Your habit</string>
+    <string name="s_2c6b2e253c01" formatted="false">Your name</string>
+    <string name="s_14b5b98e61bd" formatted="false">Your name and photo are visible only to you and saved in your account.</string>
+    <string name="s_9130cfe83860" formatted="false">Your own habits are preserved. Only the labeled examples and their entries will be removed.</string>
+    <string name="s_d9ab76c650a6" formatted="false">Your plan</string>
+    <string name="s_1bbc271359ac" formatted="false">Your private archive, synced for free.</string>
+    <string name="s_ae97166d804d" formatted="false">Your profile changed on another device. Reopen the editor to load the latest version.</string>
+    <string name="s_83e3a28a1d15" formatted="false">Your progress has changed. Reopen the day to use the latest values.</string>
+    <string name="s_463ef412a919" formatted="false">Your progress is retained. Check your connection or reopen this screen and try again.</string>
+    <string name="s_d5f152577564" formatted="false">current streak in days</string>
+    <string name="s_e25d3872dc17" formatted="false">daily average</string>
+    <string name="s_1155d87d350c" formatted="false">days on target</string>
+    <string name="s_266550babbb7" formatted="false">glasses</string>
+    <string name="s_90e63d85fa1a" formatted="false">minutes</string>
+    <string name="s_bfa062de040f" formatted="false">pages</string>
+    <string name="s_2bf61a3bc850" formatted="false">times</string>
+</resources>

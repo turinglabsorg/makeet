@@ -4,6 +4,7 @@ import StoreKit
 struct PlusView: View {
     @Environment(AccountManager.self) private var account
     @Environment(\.dismiss) private var dismiss
+    @State private var signingInWithPassword = false
     private var policyLanguage: String { ["it", "en", "fr", "de", "es"].contains(AppLanguage.code) ? AppLanguage.code : "en" }
     var body: some View {
         NavigationStack {
@@ -35,7 +36,7 @@ struct PlusView: View {
                         Button(String(localized: "Ripristina acquisti", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await store.restore() } }.disabled(store.working)
                     } else {
                         Text(String(localized: "Accedi con Apple o Google per collegare Plus al tuo account. Puoi continuare a usare tutte le funzioni locali senza registrarti.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-                        AccountSignInButtons()
+                        AccountSignInButtons { signingInWithPassword = true }
                     }
                     Link(String(localized: "Gestisci abbonamento", bundle: AppLanguage.bundle, locale: AppLanguage.locale), destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
                     Link(String(localized: "Informativa privacy", bundle: AppLanguage.bundle, locale: AppLanguage.locale), destination: URL(string: "https://makeet.app/\(policyLanguage)/privacy")!)
@@ -46,6 +47,7 @@ struct PlusView: View {
                 .toolbar { ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Fine", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { dismiss() }.accessibilityIdentifier("plusDone") } }
                 .task { await account.subscription?.load() }
         }
+        .sheet(isPresented: $signingInWithPassword) { PasswordAccessSheet(userID: nil) { signingInWithPassword = false } }
         #if os(macOS)
         .frame(minWidth: 480, minHeight: 600)
         #endif

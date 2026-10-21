@@ -28,6 +28,8 @@ jobs:
         with:
           go-version-file: backend/go.mod
           cache-dependency-path: backend/go.sum
+      - name: Isolated service launcher, backup and ingress tests
+        run: python3 -m unittest discover -s ops -p 'test_*.py' -v
       - name: Signed identity and sync integration tests
         working-directory: backend
         run: go test -race ./...

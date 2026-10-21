@@ -1,6 +1,6 @@
 # App developer procedure
 
-Makeet ships native Apple apps: the iOS 17+ app, the macOS 14+ companion and their widgets. There is no Android app. Read `AGENTS.md` and `DESIGN.md` first; `docs/ci.md`, `docs/validation.md` and `docs/release-readiness.md` hold the detailed evidence.
+Makeet ships native Apple apps: the iOS 17+ app, the macOS 14+ companion and their widgets. A native Android client is under `android/`; see `docs/android.md` for its separate Play release gates. Read `AGENTS.md` and `DESIGN.md` first; `docs/ci.md`, `docs/validation.md` and `docs/release-readiness.md` hold the detailed evidence.
 
 ## Environments
 
@@ -22,8 +22,8 @@ Makeet ships native Apple apps: the iOS 17+ app, the macOS 14+ companion and the
 
 ## Authentication
 
-- Accounts use Sign in with Apple and Google only. Never add a test-token login to production.
-- UI tests use `--ui-testing` (in-memory archive) and the Debug-Simulator `--profile-fixture` with an `.invalid` host. They never touch Keychain sessions, real account stores or the public API.
+- Accounts retain Apple and Google identities and add verified username/password credentials through the same Go session service. Android does not expose Apple sign-in. Never add a test-token login to production. See `docs/password-accounts.md`.
+- UI tests use `--ui-testing` (in-memory archive) and the Debug-Simulator `--profile-fixture` and `--password-fixture` with an `.invalid` host. They never touch Keychain sessions, real account stores or the public API.
 - Real provider, multi-device and deletion checks use a disposable account on a signed device, never the owner's account.
 
 ## Screenshots

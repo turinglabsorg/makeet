@@ -51,9 +51,11 @@ final class ProfileEditorUITests: XCTestCase {
         app.buttons["editProfile"].tap()
         XCTAssertTrue(app.buttons["removeProfilePhoto"].waitForExistence(timeout: 5))
         app.buttons["chooseProfilePhoto"].tap()
-        XCTAssertTrue(app.segmentedControls.buttons["Foto"].waitForExistence(timeout: 10))
+        let picker = app.navigationBars["Foto"]
+        XCTAssertTrue(picker.waitForExistence(timeout: 10))
+        XCTAssertTrue(picker.buttons["Cancel"].isHittable)
         attach("System photo picker", app)
-        app.navigationBars["Foto"].buttons["Cancel"].tap()
+        picker.buttons["Cancel"].tap()
         let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.navigationBars["Foto"])
         XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 5), .completed)
         XCTAssertTrue(app.textFields["profileName"].waitForExistence(timeout: 5))

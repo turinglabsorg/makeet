@@ -24,16 +24,12 @@ struct TodayView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     Label(now.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(AppLanguage.locale)), systemImage: "sun.max")
                         .font(.subheadline).foregroundStyle(.secondary)
                     Spacer()
                     Text("MAKEET").font(.caption.weight(.bold)).tracking(3)
-                }
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(String(localized: "Un po’ ogni giorno.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.system(.largeTitle, design: .default, weight: .semibold))
-                    Text(String(localized: "Fai spazio a ciò che ti fa bene.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).foregroundStyle(.secondary)
                 }
                 if demoMode {
                     HStack {
@@ -48,19 +44,18 @@ struct TodayView: View {
                         description: Text(String(localized: "Non hai abitudini in programma. Nel Calendario puoi vedere e correggere tutti i tuoi progressi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)))
                 }
                 else {
-                    HStack(spacing: 20) {
+                    HStack(spacing: 12) {
                         ZStack {
                             Circle().stroke(Palette.accent.opacity(0.12), lineWidth: 7)
                             Circle().trim(from: 0, to: dailyFraction).stroke(Palette.accent,
                                 style: StrokeStyle(lineWidth: 7, lineCap: .round)).rotationEffect(.degrees(-90))
                             Text(dailyFraction, format: .percent.precision(.fractionLength(0)))
-                                .font(.system(.title3, design: .default, weight: .semibold)).monospacedDigit()
-                        }.frame(width: 72, height: 72).accessibilityElement(children: .ignore)
+                                .font(.subheadline.weight(.semibold)).monospacedDigit()
+                        }.frame(width: 44, height: 44).accessibilityElement(children: .ignore)
                             .accessibilityLabel(String(localized: "Progresso giornaliero \(Int(dailyFraction * 100)) per cento", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-                        VStack(alignment: .leading, spacing: 6) {
+                        VStack(alignment: .leading, spacing: 2) {
                             Text(String(localized: "La tua giornata", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.headline)
                             Text(String(localized: "\(completed) di \(habits.count) obiettivi raggiunti", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.subheadline).foregroundStyle(.secondary)
-                            Text(String(localized: "Anche i piccoli passi contano.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer(minLength: 0)
                     }.journalCard()
@@ -69,7 +64,7 @@ struct TodayView: View {
                         Spacer()
                         Text(String(localized: "Oggi", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption).foregroundStyle(.secondary)
                     }
-                    VStack(spacing: 14) {
+                    VStack(spacing: 8) {
                         ForEach(habits) { habit in
                             HabitCard(habit: habit, activities: activities, now: now,
                                       decrement: { subtract(habit) }, increment: { log(habit) }, confirmZero: {
@@ -78,16 +73,8 @@ struct TodayView: View {
                             })
                         }
                     }
-                    HStack(alignment: .top, spacing: 12) {
-                        Image(systemName: "sparkles").font(.title3)
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(String(localized: "Le abitudini incontrano la tua agenda.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.subheadline.weight(.semibold))
-                            Text(String(localized: "In “Il tuo piano” trovi gli orari proposti in base ai tuoi progressi e agli spazi liberi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-                                .font(.caption).foregroundStyle(.secondary)
-                        }
-                    }.padding(18).background(Palette.soft, in: RoundedRectangle(cornerRadius: 18))
                 }
-            }.padding(24).frame(maxWidth: 650)
+            }.padding(16).frame(maxWidth: 650)
         }
         .journalBackground()
         .toolbar {
@@ -228,56 +215,57 @@ struct HabitCard: View {
     private var tint: Color { Palette.habit(colorIndex) }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            HStack(spacing: 12) {
-                Button(action: decrement) {
-                    Text("−\(snapshot.step.quantityText)").font(.subheadline.weight(.semibold)).monospacedDigit()
-                        .frame(minWidth: 44, minHeight: 44).background(tint.opacity(0.08), in: RoundedRectangle(cornerRadius: 14))
-                }.buttonStyle(.plain).foregroundStyle(tint).disabled(!snapshot.allowsNegative && progress.quantity <= 0)
-                    .opacity(snapshot.allowsNegative || progress.quantity > 0 ? 1 : 0.35)
-                    .accessibilityLabel(String(localized: "Togli \(snapshot.step.quantityText) \(unit) da \(snapshot.name)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-                    .accessibilityIdentifier("decrement-\(snapshot.name)")
+        let progress = progress
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 8) {
+                if snapshot.goal == .atMost && progress.quantity == 0 {
+                    Button(action: confirmZero) {
+                        Image(systemName: progress.registrations > 0 ? "checkmark.square.fill" : "square")
+                            .font(.title2).frame(width: 44, height: 44)
+                            .background(tint.opacity(0.08), in: RoundedRectangle(cornerRadius: 10))
+                    }.buttonStyle(.plain).foregroundStyle(tint)
+                        .disabled(progress.registrations > 0)
+                        .accessibilityLabel(String(localized: "Conferma zero", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                        .accessibilityValue(progress.registrations > 0 ? String(localized: "Limite rispettato", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Da confermare", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                        .accessibilityIdentifier("confirm-zero-\(snapshot.name)")
+                }
+                if snapshot.goal != .atMost || progress.quantity != 0 || snapshot.allowsNegative {
+                    Button(action: decrement) {
+                        Text("−\(snapshot.step.quantityText)").font(.subheadline.weight(.semibold)).monospacedDigit()
+                            .frame(minWidth: 44, minHeight: 44).background(tint.opacity(0.08), in: RoundedRectangle(cornerRadius: 10))
+                    }.buttonStyle(.plain).foregroundStyle(tint).disabled(!snapshot.allowsNegative && progress.quantity <= 0)
+                        .opacity(snapshot.allowsNegative || progress.quantity > 0 ? 1 : 0.35)
+                        .accessibilityLabel(String(localized: "Togli \(snapshot.step.quantityText) \(unit) da \(snapshot.name)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                        .accessibilityIdentifier("decrement-\(snapshot.name)")
+                }
                 NavigationLink { HabitDetailView(habit: habit) } label: {
-                    HStack(spacing: 10) {
-                        HabitMark(symbol: symbol).font(.title3).foregroundStyle(tint)
-                            .frame(width: 42, height: 42).background(tint.opacity(0.10), in: RoundedRectangle(cornerRadius: 13))
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text(snapshot.name).font(.headline).foregroundStyle(Palette.ink)
+                    HStack(spacing: 6) {
+                        HabitMark(symbol: symbol).font(.body).foregroundStyle(tint)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(snapshot.name).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
                             Text(HabitText.quantity(progress.quantity, target: snapshot.target, unit: unit, goal: snapshot.goal))
-                                .font(.subheadline).foregroundStyle(.secondary).monospacedDigit()
+                                .font(.caption).foregroundStyle(.secondary).monospacedDigit()
                                 .accessibilityIdentifier("progress-\(snapshot.name)")
+                            HabitProgressStatus(progress: progress, unit: unit).font(.caption2)
                         }.frame(maxWidth: .infinity, alignment: .leading)
-                    }
+                    }.frame(minHeight: 44)
                 }.buttonStyle(.plain)
                 Button(action: increment) {
                     Text("+\(snapshot.step.quantityText)").font(.subheadline.weight(.semibold)).monospacedDigit()
-                        .frame(minWidth: 50, minHeight: 44).background(tint.opacity(0.10), in: RoundedRectangle(cornerRadius: 14))
+                        .frame(minWidth: 44, minHeight: 44).background(tint.opacity(0.10), in: RoundedRectangle(cornerRadius: 10))
                 }.buttonStyle(.plain).foregroundStyle(tint)
                     .accessibilityLabel(String(localized: "Aggiungi \(snapshot.step.quantityText) \(unit) a \(snapshot.name)", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .accessibilityIdentifier("increment-\(snapshot.name)")
             }
-            HabitProgressStatus(progress: progress, unit: unit).font(.caption)
-            if snapshot.goal == .atMost && progress.registrations == 0 {
-                Button(String(localized: "Conferma zero", bundle: AppLanguage.bundle, locale: AppLanguage.locale), action: confirmZero)
-                    .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
-                    .accessibilityIdentifier("confirm-zero-\(snapshot.name)")
-            }
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(tint.opacity(0.10))
-                    Capsule().fill(progress.malus > 0 ? Palette.warning : tint).frame(width: max(0, geometry.size.width * progress.fraction))
-                }
-            }.frame(height: 4).accessibilityHidden(true)
-            HStack(spacing: 5) {
+            HStack(spacing: 3) {
                 ForEach(0..<14, id: \.self) { index in
                     let date = snapshot.calendar.date(byAdding: .day, value: index - 13, to: now)!
                     let day = HabitEngine.progress(for: snapshot, on: date, activities: activities)
-                    RoundedRectangle(cornerRadius: 4).fill(day.malus > 0 ? Palette.warning : tint.opacity(day.registrations > 0 ? 0.20 + day.fraction * 0.80 : 0.07))
-                        .frame(maxWidth: .infinity).frame(height: 15)
-                        .overlay { if day.completed { Image(systemName: "checkmark").font(.system(size: 7, weight: .bold)).foregroundStyle(.white) } }
+                    RoundedRectangle(cornerRadius: 2).fill(day.malus > 0 ? Palette.warning : tint.opacity(day.registrations > 0 ? 0.20 + day.fraction * 0.80 : 0.07))
+                        .frame(maxWidth: .infinity).frame(height: 6)
                 }
             }.accessibilityLabel(String(localized: "Attività degli ultimi 14 giorni", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-        }.journalCard()
+        }.journalCard(padding: 10)
     }
 }
 

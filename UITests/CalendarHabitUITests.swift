@@ -206,16 +206,18 @@ extension CalendarHabitUITests {
         let app = launch(demo: false)
         createFlexibleHabit("Beer", limit: true, negative: false, in: app)
         XCTAssertTrue(app.buttons["confirm-zero-Beer"].exists)
-        XCTAssertFalse(app.buttons["decrement-Beer"].isEnabled)
+        XCTAssertFalse(app.buttons["decrement-Beer"].exists)
         app.buttons["confirm-zero-Beer"].tap()
-        XCTAssertFalse(app.buttons["confirm-zero-Beer"].exists)
+        XCTAssertTrue(app.buttons["confirm-zero-Beer"].exists)
+        XCTAssertFalse(app.buttons["confirm-zero-Beer"].isEnabled)
         app.buttons["increment-Beer"].tap(); app.buttons["increment-Beer"].tap()
         XCTAssertTrue(app.staticTexts["progress-Beer"].label.hasPrefix("2 /"))
         XCTAssertTrue(app.staticTexts["Malus: 2 volte"].exists)
         attach("Zero limit with two occurrences as malus", app)
         app.buttons["decrement-Beer"].tap(); app.buttons["decrement-Beer"].tap()
         XCTAssertTrue(app.staticTexts["progress-Beer"].label.hasPrefix("0 /"))
-        XCTAssertFalse(app.buttons["confirm-zero-Beer"].exists)
+        XCTAssertTrue(app.buttons["confirm-zero-Beer"].exists)
+        XCTAssertFalse(app.buttons["confirm-zero-Beer"].isEnabled)
         createFlexibleHabit("Balance", limit: false, negative: true, in: app)
         app.buttons["decrement-Balance"].tap()
         XCTAssertTrue(app.staticTexts["progress-Balance"].label.hasPrefix("-1 /"))
@@ -272,5 +274,57 @@ extension CalendarHabitUITests {
         app.buttons["decrement-Bere acqua"].tap()
         XCTAssertTrue(app.staticTexts["4 / 8 bicchieri"].exists)
         attach("Local tracking stays free", app)
+    }
+}
+
+
+extension CalendarHabitUITests {
+    @MainActor func testCompactHomeHistoryAndFullWidthPlanning() {
+        continueAfterFailure = false
+        let app = launch()
+        for name in ["Bere acqua", "Leggere", "Muovermi"] {
+            let plus = app.buttons["increment-\(name)"]
+            XCTAssertTrue(plus.waitForExistence(timeout: 5))
+            XCTAssertTrue(plus.isHittable)
+            XCTAssertGreaterThanOrEqual(plus.frame.height + 0.001, 44)
+            XCTAssertGreaterThanOrEqual(plus.frame.width + 0.001, 44)
+        }
+        attach("Compact Home with three habits", app)
+        app.buttons["increment-Muovermi"].tap()
+        XCTAssertTrue(app.staticTexts["progress-Muovermi"].label.hasPrefix("10 /"))
+        app.buttons["decrement-Muovermi"].tap()
+        app.tabBars.buttons["Andamento"].tap()
+        XCTAssertTrue(app.buttons["history-Bere acqua"].waitForExistence(timeout: 5))
+        for name in ["Bere acqua", "Leggere", "Muovermi"] {
+            XCTAssertTrue(app.buttons["history-\(name)"].isHittable)
+        }
+        attach("Compact three-month history including empty month", app)
+        app.buttons["history-Bere acqua"].tap()
+        XCTAssertTrue(app.segmentedControls["statisticsPeriod"].waitForExistence(timeout: 5))
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tabBars.buttons["Il tuo piano"].tap()
+        let review = app.buttons["reviewFuturePlan"]
+        reveal(review, in: app)
+        XCTAssertGreaterThan(review.frame.width, app.frame.width - 40)
+        attach("Full-width batch review in compact Planner", app)
+        app.tabBars.buttons["Calendario"].tap()
+        let events = app.otherElements["dayEventsCard"]
+        reveal(app.staticTexts["Eventi del giorno"], in: app)
+        attach("Full-width day events in compact Calendar", app)
+        if events.exists { XCTAssertGreaterThan(events.frame.width, app.frame.width - 40) }
+        app.tabBars.buttons["Oggi"].tap()
+        createFlexibleHabit("Zero", limit: true, negative: false, in: app)
+        let zero = app.buttons["confirm-zero-Zero"]
+        XCTAssertTrue(zero.isEnabled)
+        XCTAssertEqual(zero.frame.minX, app.buttons["decrement-Bere acqua"].frame.minX, accuracy: 1)
+        attach("Zero checkbox alongside three numeric habits", app)
+        zero.tap()
+        XCTAssertFalse(zero.isEnabled)
+        app.tabBars.buttons["Andamento"].tap()
+        XCTAssertTrue(app.buttons["history-Zero"].exists)
+        attach("New habit retains empty historical months", app)
+        app.tabBars.buttons["Oggi"].tap()
+        XCTAssertFalse(app.buttons["confirm-zero-Zero"].isEnabled)
+        attach("Confirmed zero checkbox retained after navigation", app)
     }
 }

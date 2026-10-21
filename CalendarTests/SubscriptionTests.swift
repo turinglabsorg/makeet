@@ -18,7 +18,7 @@ final class SubscriptionTests: XCTestCase {
         XCTAssertFalse(store.working)
     }
 
-    @MainActor func testStoreKitPurchaseRestoreRefundExpiryAndAccountIsolation() async throws {
+    @MainActor func testStoreKitPurchaseRestoreRenewalRefundAndAccountIsolation() async throws {
         #if !targetEnvironment(simulator)
         throw XCTSkip("Isolated StoreKit test catalog is Simulator-only")
         #else
@@ -29,7 +29,7 @@ final class SubscriptionTests: XCTestCase {
         let user = UUID()
         var accepted = 0
         var serverActive = false
-        var serverTime = Date()
+        let serverTime = Date()
         let store = SubscriptionStore(userID: user, submit: { raw in
             XCTAssertFalse(raw.isEmpty); accepted += 1
             var active = false
@@ -62,8 +62,34 @@ final class SubscriptionTests: XCTestCase {
         try session.refundTransaction(identifier: transaction.identifier)
         await eventually { !store.hasPlus }
         XCTAssertFalse(store.hasPlus)
-        session.clearTransactions(); serverActive = false
-        await store.load(); await store.purchase(monthly); XCTAssertTrue(store.hasPlus)
+        #endif
+    }
+    @MainActor func testStoreKitExpirationWithoutRenewalUsesAnIndependentAccount() async throws {
+        #if !targetEnvironment(simulator)
+        throw XCTSkip("Isolated StoreKit test catalog is Simulator-only")
+        #else
+        executionTimeAllowance = 90
+        let session = try await isolatedSession()
+        defer { session.clearTransactions(); session.resetToDefaultState() }
+        let user = UUID()
+        var serverActive = false
+        var serverTime = Date()
+        let store = SubscriptionStore(userID: user, submit: { raw in
+            XCTAssertFalse(raw.isEmpty)
+            var active = false
+            for await result in Transaction.currentEntitlements {
+                if case .verified(let value) = result, value.appAccountToken == user,
+                   value.revocationDate == nil, (value.expirationDate ?? .distantPast) > serverTime { active = true }
+            }
+            serverActive = active
+            return AccountEntitlement(billingEnabled: true, active: active, expiresAt: Int64(Date().addingTimeInterval(3600).timeIntervalSince1970))
+        }, fetch: { AccountEntitlement(billingEnabled: true, active: serverActive, expiresAt: Int64(Date().addingTimeInterval(3600).timeIntervalSince1970)) })
+        defer { store.stop() }
+        await store.load()
+        let monthly = try XCTUnwrap(store.products.first { $0.id == SubscriptionStore.monthly })
+        XCTAssertFalse(store.hasPlus)
+        await store.purchase(monthly)
+        XCTAssertTrue(store.hasPlus)
         let expiring = try XCTUnwrap(session.allTransactions().last)
         let originalExpiry = try XCTUnwrap(expiring.expirationDate)
         try session.disableAutoRenewForTransaction(identifier: expiring.identifier)

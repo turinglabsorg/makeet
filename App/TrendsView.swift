@@ -6,47 +6,131 @@ import WidgetKit
 struct TrendsView: View {
     @Query(sort: \Habit.createdAt) private var allHabits: [Habit]
     @Query private var activities: [Activity]
+    @State private var now = Date()
     private var habits: [Habit] { allHabits.filter { !$0.archived } }
     var body: some View {
+        let snapshots = activities.map(\.snapshot)
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                Text(String(localized: "Ogni passo lascia\nun segno.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.system(.largeTitle, design: .default, weight: .semibold))
-                Text(String(localized: "Guarda oltre la serie di giorni. Conta anche quanto fai, con quale frequenza e quando.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).foregroundStyle(.secondary)
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text(String(localized: "Ultimi 3 mesi e mese corrente", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.subheadline.weight(.semibold))
+                    Spacer()
+                    Image(systemName: "chart.xyaxis.line").foregroundStyle(Palette.accent)
+                }
+                if habits.contains(where: \.isDemo) {
+                    Label(String(localized: "Dati dimostrativi", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "flask").font(.caption).foregroundStyle(.secondary)
+                }
                 if habits.isEmpty {
                     ContentUnavailableView(String(localized: "I tuoi progressi iniziano qui", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "chart.bar.xaxis",
                         description: Text(String(localized: "Crea un’abitudine in Oggi per iniziare a misurarla.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)))
                 }
                 ForEach(habits) { habit in
-                    let stats = HabitEngine.statistics(for: habit.snapshot, activities: activities.map(\.snapshot))
                     NavigationLink { HabitDetailView(habit: habit) } label: {
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack {
-                                Label { Text(habit.name) } icon: { HabitMark(symbol: habit.symbol) }.font(.headline)
-                                Spacer()
-                                Image(systemName: "arrow.up.right").foregroundStyle(.secondary)
-                            }
-                            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                                Text(stats.total.quantityText).font(.system(.largeTitle, design: .default, weight: .medium))
-                                Text(String(localized: "\(habit.unit) · \(stats.days.count) giorni", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.subheadline).foregroundStyle(.secondary)
-                            }
-                            Chart(stats.days) { day in
-                                BarMark(x: .value(String(localized: "Giorno", bundle: AppLanguage.bundle, locale: AppLanguage.locale), day.date, unit: .day), y: .value(String(localized: "Quantità", bundle: AppLanguage.bundle, locale: AppLanguage.locale), day.quantity))
-                                    .foregroundStyle(Palette.habit(habit.colorIndex)).cornerRadius(2)
-                            }.chartXAxis(.hidden).chartYAxis(.hidden).frame(height: 70)
-                            HStack {
-                                Text(String(localized: "Obiettivo raggiunto: \(stats.completionRate.formatted(.percent.precision(.fractionLength(0)).locale(AppLanguage.locale)))", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-                                Spacer()
-                                Text(String(localized: "Serie: \(stats.currentStreak) g", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-                            }.font(.caption).foregroundStyle(.secondary)
-                        }.journalCard()
-                    }.buttonStyle(.plain)
+                        HabitHistoryRow(habit: habit, activities: snapshots, now: now)
+                    }.buttonStyle(.plain).accessibilityIdentifier("history-\(habit.name)")
                 }
-            }.padding(24).frame(maxWidth: 650)
+                HStack(spacing: 6) {
+                    RoundedRectangle(cornerRadius: 2).strokeBorder(Palette.ink.opacity(0.15)).frame(width: 9, height: 9)
+                    Text(String(localized: "Nessuna registrazione", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                    Spacer(minLength: 12)
+                    Text(String(localized: "Poco", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                    ForEach(1..<5) { level in
+                        RoundedRectangle(cornerRadius: 2).fill(Palette.accent.opacity(Double(level) / 4)).frame(width: 9, height: 9)
+                    }
+                    Text(String(localized: "Obiettivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                }.font(.caption2).foregroundStyle(.secondary).accessibilityElement(children: .combine)
+            }.padding(16).frame(maxWidth: 650)
         }.journalBackground().navigationTitle(String(localized: "Andamento", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .task {
+            while !Task.isCancelled {
+                now = Date()
+                do { try await Task.sleep(for: .seconds(30)) } catch { break }
+            }
+        }
     }
+}
+
+struct HabitHistoryRow: View {
+    private let habit: HabitSnapshot
+    private let symbol: String
+    private let unit: String
+    private let tint: Color
+    private let months: [HistoryMonth]
+    private let statistics: HabitStatistics
+    private let progressByDay: [Date: DayProgress]
+
+    init(habit: Habit, activities: [ActivitySnapshot], now: Date) {
+        self.habit = habit.snapshot
+        symbol = habit.symbol; unit = habit.unit; tint = Palette.habit(habit.colorIndex)
+        let calendar = habit.snapshot.calendar
+        let current = calendar.dateInterval(of: .month, for: now)!.start
+        let first = calendar.date(byAdding: .month, value: -3, to: current)!
+        months = (0..<4).map { offset in
+            let start = calendar.date(byAdding: .month, value: offset, to: first)!
+            let count = calendar.range(of: .day, in: .month, for: start)!.count
+            return HistoryMonth(start: start, dates: (0..<count).map { calendar.date(byAdding: .day, value: $0, to: start)! })
+        }
+        let window = calendar.dateComponents([.day], from: first, to: calendar.startOfDay(for: now)).day! + 1
+        let stats = HabitEngine.statistics(for: habit.snapshot, activities: activities, now: now, window: window)
+        statistics = stats
+        progressByDay = Dictionary(uniqueKeysWithValues: stats.days.map { ($0.date, $0) })
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 6) {
+                HabitMark(symbol: symbol).foregroundStyle(tint)
+                Text(habit.name).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
+                Spacer(minLength: 4)
+                Text(statistics.total.quantityText + " " + unit).font(.caption).foregroundStyle(.secondary).monospacedDigit()
+                Image(systemName: "chevron.right").font(.caption2).foregroundStyle(.secondary)
+            }.frame(minHeight: 24)
+            ForEach(months) { month in
+                HStack(spacing: 6) {
+                    Text(month.start.formatted(.dateTime.month(.abbreviated).locale(AppLanguage.locale)))
+                        .font(.caption2).foregroundStyle(.secondary).frame(width: 32, alignment: .leading)
+                    HStack(spacing: 2) {
+                        ForEach(0..<31, id: \.self) { index in
+                            if index < month.dates.count {
+                                let date = month.dates[index]
+                                let day = progressByDay[date]
+                                RoundedRectangle(cornerRadius: 2)
+                                    .fill(day.map { $0.malus > 0 ? Palette.warning : tint.opacity($0.registrations > 0 ? 0.2 + $0.fraction * 0.8 : 0.04) } ?? .clear)
+                                    .overlay { RoundedRectangle(cornerRadius: 2).strokeBorder(tint.opacity(0.15), lineWidth: 0.5) }
+                                    .frame(maxWidth: .infinity).frame(height: 9)
+                            } else { Color.clear.frame(maxWidth: .infinity).frame(height: 9) }
+                        }
+                    }.accessibilityHidden(true)
+                }.accessibilityElement(children: .ignore)
+                    .accessibilityLabel(month.start.formatted(.dateTime.month(.wide).year().locale(AppLanguage.locale)))
+                    .accessibilityValue(monthSummary(month))
+                    .accessibilityIdentifier("history-month-\(habit.name)-\(habit.calendar.component(.month, from: month.start))")
+            }
+            HStack {
+                Text(String(localized: "Obiettivo raggiunto: \(statistics.completionRate.formatted(.percent.precision(.fractionLength(0)).locale(AppLanguage.locale)))", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                Spacer()
+                Text(String(localized: "Serie: \(statistics.currentStreak) g", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+            }.font(.caption2).foregroundStyle(.secondary)
+        }.journalCard(padding: 10)
+    }
+
+    private func monthSummary(_ month: HistoryMonth) -> String {
+        let days = month.dates.compactMap { progressByDay[$0] }
+        guard days.contains(where: { $0.registrations > 0 }) else {
+            return String(localized: "Nessuna registrazione", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
+        }
+        return QuantityTotal.sum(days.map(\.quantity)).quantityText + " " + unit + "; " +
+            String(localized: "\(days.filter(\.completed).count) di \(days.filter(\.scheduled).count) obiettivi raggiunti", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
+    }
+}
+
+private struct HistoryMonth: Identifiable {
+    var id: Date { start }
+    let start: Date
+    let dates: [Date]
 }
 
 struct HabitDetailView: View {
@@ -102,7 +186,7 @@ struct HabitDetailView: View {
         let stats = HabitEngine.statistics(for: snapshot, activities: snapshots, window: window)
         let continuity = window == 84 ? stats : HabitEngine.statistics(for: snapshot, activities: snapshots, window: 84)
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 12) {
                 if habit.archived {
                     VStack(alignment: .leading, spacing: 12) {
                         Label(String(localized: "Abitudine archiviata", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "archivebox").font(.headline)
@@ -191,7 +275,7 @@ struct HabitDetailView: View {
                         }.buttonStyle(.borderedProminent).disabled(habit.archived)
                     }.controlSize(.large)
                 }.journalCard()
-            }.padding(24).frame(maxWidth: 650)
+            }.padding(16).frame(maxWidth: 650)
         }.journalBackground().navigationTitle(String(localized: "Dettaglio", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)

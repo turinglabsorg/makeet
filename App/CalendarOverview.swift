@@ -20,7 +20,10 @@ struct CalendarOverview: View {
         let snapshots = activities.map(\.snapshot)
         let days = HabitEngine.calendarDays(habits: habits.map(\.snapshot), activities: snapshots, dates: dates, displayCalendar: display, excludedGoals: Set(habits.filter(\.archived).map(\.id)))
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 12) {
+                if habits.contains(where: \.isDemo) {
+                    Label(String(localized: "Dati dimostrativi", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "flask").font(.caption).foregroundStyle(.secondary)
+                }
                 HStack {
                     monthButton(-1, symbol: "chevron.left", label: String(localized: "Mese precedente", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     Spacer()
@@ -37,7 +40,7 @@ struct CalendarOverview: View {
                         }
                     }.accessibilityHidden(true)
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 7), spacing: 6) {
-                        ForEach(0..<((display.component(.weekday, from: range.start) + 5) % 7), id: \.self) { _ in Color.clear.frame(height: 52) }
+                        ForEach(0..<((display.component(.weekday, from: range.start) + 5) % 7), id: \.self) { _ in Color.clear.frame(height: 44) }
                         ForEach(days) { day in
                             let chosen = display.isDate(day.date, inSameDayAs: selected)
                             let future = day.date > display.startOfDay(for: Date())
@@ -46,7 +49,7 @@ struct CalendarOverview: View {
                                     Text(day.date, format: .dateTime.day().locale(AppLanguage.locale)).font(.subheadline.weight(chosen ? .bold : .medium))
                                     if future { Image(systemName: calendar.events(on: day.date).contains(where: { $0.makeetHabitID != nil }) ? "calendar.badge.checkmark" : "minus").font(.system(size: 9)) }
                                     else { Text("\(day.completedGoals)/\(day.scheduledGoals)").font(.system(size: 9)).monospacedDigit() }
-                                }.frame(maxWidth: .infinity, minHeight: 52)
+                                }.frame(maxWidth: .infinity, minHeight: 44)
                                     .foregroundStyle(day.hasMalus || day.fraction >= 0.65 ? .white : Palette.ink)
                                     .background(day.hasMalus ? Palette.warning : Palette.accent.opacity(day.fraction > 0 ? 0.2 + 0.8 * day.fraction : (day.hasActivity ? 0.2 : 0.05)), in: RoundedRectangle(cornerRadius: 12))
                                     .overlay { RoundedRectangle(cornerRadius: 12).stroke(chosen ? Palette.ink : .clear, lineWidth: 2) }
@@ -67,7 +70,7 @@ struct CalendarOverview: View {
                         .font(.subheadline.weight(.semibold)).accessibilityIdentifier("editCalendarDay")
                         .disabled(display.startOfDay(for: selected) > display.startOfDay(for: Date()) || active.isEmpty)
                 }
-                VStack(spacing: 16) {
+                VStack(spacing: 8) {
                     ForEach(habits) { habit in
                         let snapshot = habit.snapshot
                         let date = snapshot.date(forCalendarDay: selected, displayedIn: display)
@@ -91,7 +94,7 @@ struct CalendarOverview: View {
                     }
                     if habits.isEmpty { Text(String(localized: "Crea la prima abitudine nell’app.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).foregroundStyle(.secondary) }
                 }.journalCard()
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text(String(localized: "Eventi del giorno", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.headline)
                     if !calendar.authorized {
                         Button(String(localized: "Collega calendario", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { connections = true }
@@ -102,8 +105,8 @@ struct CalendarOverview: View {
                     ForEach(calendar.events(on: selected), id: \.occurrenceID) { event in
                         CalendarEventRow(event: event)
                     }
-                }.journalCard()
-            }.padding(.vertical, 24).padding(.horizontal, 16).frame(maxWidth: 650)
+                }.journalCard().accessibilityIdentifier("dayEventsCard")
+            }.padding(.vertical, 12).padding(.horizontal, 16).frame(maxWidth: 650)
         }.journalBackground().navigationTitle(String(localized: "Calendario", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)

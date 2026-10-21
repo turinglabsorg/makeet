@@ -19,6 +19,7 @@ import (
 	"github.com/turinglabsorg/makeet/backend/internal/apple"
 	"github.com/turinglabsorg/makeet/backend/internal/billing"
 	"github.com/turinglabsorg/makeet/backend/internal/identity"
+	"github.com/turinglabsorg/makeet/backend/internal/mailer"
 	"github.com/turinglabsorg/makeet/backend/internal/push"
 	"github.com/turinglabsorg/makeet/backend/internal/site"
 	"github.com/turinglabsorg/makeet/backend/internal/store"
@@ -71,7 +72,7 @@ func main() {
 		}
 	}
 	siteConfig := site.Config{ControllerLine: os.Getenv("MAKEET_PRIVACY_CONTROLLER"), HostingCountry: os.Getenv("MAKEET_HOSTING_COUNTRY")}
-	if len(providers) > 0 && !siteConfig.Ready() {
+	if (len(providers) > 0 || os.Getenv("MAKEET_RESEND_API_KEY") != "") && !siteConfig.Ready() {
 		slog.Error("accounts require configured privacy information")
 		os.Exit(1)
 	}
@@ -88,7 +89,28 @@ func main() {
 			os.Exit(1)
 		}
 	}
-	service := api.New(db, api.Config{Billing: subscriptions, BillingPreviewUsers: previewUsers, Providers: providers, Apple: appleClient, Push: pushClient, Site: site.WithConfig(siteConfig), TrustRelay: os.Getenv("MAKEET_TRUST_RELAY") == "true"})
+	appleWebClientID := os.Getenv("MAKEET_APPLE_WEB_CLIENT_ID")
+	if appleWebClientID != "" {
+		found := false
+		for _, id := range strings.Split(os.Getenv("MAKEET_APPLE_CLIENT_IDS"), ",") {
+			if strings.TrimSpace(id) == appleWebClientID {
+				found = true
+			}
+		}
+		if !found || appleClient == nil {
+			slog.Error("Apple web sign-in requires an allowed service audience and signing configuration")
+			os.Exit(1)
+		}
+	}
+	var passwordMailer api.PasswordMailer
+	if os.Getenv("MAKEET_RESEND_API_KEY") != "" || os.Getenv("MAKEET_EMAIL_FROM") != "" {
+		passwordMailer, err = mailer.New(os.Getenv("MAKEET_RESEND_API_KEY"), os.Getenv("MAKEET_EMAIL_FROM"))
+		if err != nil {
+			slog.Error("password accounts require valid email configuration")
+			os.Exit(1)
+		}
+	}
+	service := api.New(db, api.Config{Mailer: passwordMailer, Billing: subscriptions, BillingPreviewUsers: previewUsers, Providers: providers, Apple: appleClient, AppleWebClientID: appleWebClientID, Push: pushClient, Site: site.WithConfig(siteConfig), TrustRelay: os.Getenv("MAKEET_TRUST_RELAY") == "true"})
 	go service.RunPush(ctx)
 	handler := service.Handler()
 	server := &http.Server{Addr: env("MAKEET_LISTEN", "127.0.0.1:8086"), Handler: handler, ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 << 10}

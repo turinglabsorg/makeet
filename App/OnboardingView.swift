@@ -8,6 +8,7 @@ struct OnboardingView: View {
     @Binding var step: Int
     @State private var storage: StorageChoice?
     @State private var editingProfile = false
+    @State private var signingInWithPassword = false
     let finish: () -> Void
 
     private enum StorageChoice { case account, local }
@@ -36,6 +37,9 @@ struct OnboardingView: View {
                 if user != nil && step == 2 { step = 3 }
             }
             .task { if account.user != nil { await account.start() } }
+            .sheet(isPresented: $signingInWithPassword) {
+                PasswordAccessSheet(userID: nil) { signingInWithPassword = false }
+            }
             .sheet(isPresented: $editingProfile) {
                 if let profile = account.profile { ProfileEditorView(service: profile) }
             }
@@ -108,7 +112,7 @@ struct OnboardingView: View {
                     .foregroundStyle(Palette.ink.opacity(0.72))
             }
             choice(.account, title: String(localized: "Con un account", bundle: AppLanguage.bundle, locale: AppLanguage.locale),
-                   body: String(localized: "Il tuo archivio privato, sincronizzato gratuitamente. Accedi con Apple o Google.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "person.crop.circle.fill")
+                   body: String(localized: "Il tuo archivio privato, sincronizzato gratuitamente. Scegli come accedere.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "person.crop.circle.fill")
             choice(.local, title: String(localized: "Solo su questo dispositivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale),
                    body: String(localized: "Nessuna registrazione. I progressi restano qui: potrai accedere quando vuoi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "iphone")
             Text(storage == .local
@@ -132,13 +136,13 @@ struct OnboardingView: View {
                 Text(String(localized: "È il tuo primo accesso? Creiamo il tuo account. Sei già dei nostri? Ritrovi i tuoi progressi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .foregroundStyle(Palette.ink.opacity(0.72))
             }
-            AccountSignInButtons()
+            AccountSignInButtons { signingInWithPassword = true }
             if account.checkingService { ProgressView() }
             else if account.providers.isEmpty {
                 Button(String(localized: "Verifica disponibilità", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await account.start() } }
             }
             if let message = account.message { Text(message).font(.callout).foregroundStyle(Palette.ink.opacity(0.72)) }
-            Label(String(localized: "Nessuna nuova password. Nessun profilo pubblico.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "lock")
+            Label(String(localized: "Il tuo account e i tuoi progressi restano privati.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "lock")
                 .font(.footnote).foregroundStyle(Palette.ink.opacity(0.72))
             Text(String(localized: "Hai già abitudini sul dispositivo? Dopo l’accesso decidi tu se importarle.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                 .font(.footnote).foregroundStyle(Palette.ink.opacity(0.72))

@@ -22,6 +22,7 @@ type Apple struct {
 	Server        *httptest.Server
 	RevokeFailure atomic.Bool
 	Revocations   atomic.Int32
+	LastRedirect  atomic.Value
 }
 
 func NewApple(t *testing.T) *Apple {
@@ -64,6 +65,7 @@ func NewApple(t *testing.T) *Apple {
 		}
 		switch r.URL.Path {
 		case "/token":
+			a.LastRedirect.Store(r.Form.Get("redirect_uri"))
 			if r.Form.Get("grant_type") != "authorization_code" || r.Form.Get("code") == "" {
 				http.Error(w, "invalid grant", 400)
 				return

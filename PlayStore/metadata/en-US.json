@@ -1,0 +1,15 @@
+{
+  "title": "Makeet",
+  "short_description": "Small steps, meaningful progress. Habits, quantities and calendar planning.",
+  "full_description": "Make room for the habits that matter to you. Makeet helps you record how much you do, notice patterns and find time in your day.\n\nYOUR HABITS, YOUR RULES\nChoose the days of the week, an icon or emoji, a unit and an amount per tap. Set a minimum to reach or a limit not to exceed, including zero. Enable negative values when a signed balance makes sense. Correct quantities with minus and plus, or explicitly confirm a zero-occurrence day.\n\nSEE MORE THAN A STREAK\nExplore a monthly heatmap, daily quantities, averages, completion rates, current and best streaks and logging hours. Revisit past days from each habit’s start date and save corrections explicitly.\n\nPLAN AHEAD\nPreview time blocks for today or the next 7, 14 or 28 days. Makeet considers your selected weekdays, preferred times, previous logging and busy periods in the device calendars you connect. Review every batch before events are added. Calendar blocks never mark habits complete. Calendar-account synchronization is managed by Android.\n\nSTART LOCALLY, ADD AN ACCOUNT WHEN YOU WANT\nKeep your archive on this device or use an optional private account for synchronization through Makeet. Signing in never uploads an existing local archive automatically: you choose whether to import it. Edit your private profile and export or delete your data from the app.\n\nMADE FOR EVERYDAY USE\nHome Screen widget, optional on-device reminders, light and dark appearances and native English, Italian, French, German and Spanish support. Edit, archive, restore or permanently delete habits.\n\nMakeet is free. No subscriptions, advertising or public profiles. Calendar access and notifications are optional. Demo examples are clearly labeled and stay separate from real account synchronization.",
+  "privacy_url": "https://makeet.app/en/privacy",
+  "support_url": "https://makeet.app/en/support",
+  "deletion_url": "https://makeet.app/en/deletion",
+  "feature_graphic_alt": "Makeet habits and monthly calendar with clearly labeled sample data.",
+  "screenshots_alt": {
+    "01-today.png": "Today: quantities, zero-limit habits and minus/plus controls with sample data.",
+    "02-calendar.png": "Monthly activity heatmap and past-day corrections with sample data.",
+    "03-trends.png": "Habit quantities, averages, completion and streak statistics with sample data.",
+    "04-plan.png": "Future time-block suggestions with disconnected-calendar preview and sample data."
+  }
+}

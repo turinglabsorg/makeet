@@ -1,0 +1,1 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"><application><activity android:name=".ProfileTestActivity" android:exported="false" android:theme="@style/Theme.Makeet" /><activity android:name=".PasswordTestActivity" android:exported="false" android:theme="@style/Theme.Makeet" /></application></manifest>

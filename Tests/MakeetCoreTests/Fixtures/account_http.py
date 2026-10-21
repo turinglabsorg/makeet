@@ -24,8 +24,10 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/v1/me/profile" and self.headers.get("Authorization") == "Bearer fixture-next":
             with lock:
                 self.reply(200, profile)
+        elif self.path == "/v1/me/password" and self.headers.get("Authorization") == "Bearer fixture-next":
+            self.reply(200, {"enabled": True, "username": "qa.user", "email": "qa@example.invalid"})
         elif self.path == "/v1/config":
-            self.reply(200, {"providers": ["apple", "google"], "billing_enabled": True})
+            self.reply(200, {"providers": ["apple", "google"], "billing_enabled": True, "password_enabled": True})
         elif self.path == "/v1/me/entitlement" and self.headers.get("Authorization") == "Bearer fixture-next":
             self.reply(200, {"billing_enabled": True, "active": False, "product_id": "", "expires_at": 0})
         elif self.path == "/v1/me/export" and self.headers.get("Authorization") == "Bearer fixture-next":
@@ -38,7 +40,14 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
-        if self.path.startswith("/v1/devices/") and self.headers.get("Authorization") == "Bearer fixture-next":
+        if self.path == "/v1/auth/password/login":
+            self.reply(200, {"access_token": "fixture-next", "refresh_token": "fixture-rotated", "expires_in": 900,
+                "user": {"id": "d604b64a-f819-4822-840a-8c472d388632", "email": "test@example.invalid"}})
+        elif self.path in ["/v1/auth/password/register", "/v1/auth/password/recover", "/v1/me/password"]:
+            self.reply(202, {"request_id": "fixture-request"})
+        elif self.path in ["/v1/auth/password/confirm", "/v1/me/password/confirm"]:
+            self.reply(400, {"error": "invalid_verification"})
+        elif self.path.startswith("/v1/devices/") and self.headers.get("Authorization") == "Bearer fixture-next":
             if body.get("installation_secret") != "fixture-installation" or not body.get("message_id"):
                 self.reply(400, {"error": "invalid_device_request"})
             elif self.path.endswith("/test"):

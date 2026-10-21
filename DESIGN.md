@@ -12,7 +12,7 @@ A calm native tool for personal momentum. Warm surfaces, forest ink, precise col
 - Dark appearance: charcoal green canvas with light ink and muted green surfaces.
 - Headings: native San Francisco, semibold, using the largeTitle and title Dynamic Type styles. Body: San Francisco, 15–17 pt using semantic styles. Numerical values use monospaced digits. Use the default system design throughout the app, widgets, and app icon; avoid serif, editorial, or display typefaces.
 - Spacing scale: 4, 8, 12, 16, 20, 24, 32.
-- Cards: 20 pt radius. Small marks: 4–6 pt. Buttons: 14 pt.
+- Cards: 16 pt radius with 10–12 pt insets. Small marks: 4–6 pt. Buttons: 14 pt.
 - Touch targets: at least 44 pt. Use Dynamic Type and VoiceOver labels. Colors always accompany values or symbols.
 
 ## Screens
@@ -24,7 +24,7 @@ A calm native tool for personal momentum. Warm surfaces, forest ink, precise col
 
 ## Interaction
 
-Place minus on the left and plus on the right of habit content. Each plus records one timestamped entry using the habit's chosen step. Minus subtracts that step from today's newest entries, stops at zero, and is disabled when empty. Detail undo still removes an individual entry. Reaching a target never prevents additional logging. A planned calendar block never marks a habit complete. Widgets share these rules, with two rows in medium widgets to preserve 44-point controls.
+Place minus on the left and plus on the right of habit content. Each plus records one timestamped entry using the habit's chosen step. Minus subtracts that step from today's newest entries, stops at zero, and is disabled when empty. Detail undo still removes an individual entry. Reaching a target never prevents additional logging. A planned calendar block never marks a habit complete. Widgets share these rules, with three 44-point rows in medium widgets, one habit in small widgets and up to six in large widgets. Medium widgets omit a decorative header and use 8-point margins. Zero confirmation occupies the leading control, stays checked after confirmation and never implicitly records another entry; retain a separate decrement when signed quantities are enabled.
 
 Habit appearance offers SF Symbols or a single emoji, including composed emoji and flags. Preserve native emoji colors. Keep all app-owned text in the five-language catalogs and allow translated labels to wrap; dates and quantities follow the system locale. User-entered habit names and units remain unchanged. Blank state offers creation; demo data is opt-in and visibly labeled.
 
@@ -65,3 +65,23 @@ Header and search artwork use the existing warm canvas, forest ink, pale accent 
 ## Flexible goals and signed quantities
 
 Place the goal-direction segment and optional negative-values switch with the quantitative controls. Minimum goals retain the familiar positive target; limit goals allow zero and explain explicit confirmation. Unlogged limit days use a neutral “To confirm” status. Confirmed zero is green; excess above a limit or a negative minimum balance uses the clay warning color and a textual malus amount. Keep numeric values visible alongside color. Minus remains left and plus right, including the calendar correction draft; only explicitly enabled habits can go below zero. Limit habits do not show calendar action scheduling controls. Provide a keyboard Done action so the whole form remains reachable on a phone.
+
+
+## Android native client
+
+Use Jetpack Compose with Android system sans typography and the same warm/forest tokens, 20-dp cards, 54-dp provider buttons and 48-dp touch controls. Preserve platform photo/document pickers, permission dialogs and Home Screen widgets. The plus/avatar toolbar, explicit account/local onboarding, Monday-first weekday pills, quantity/limit controls and confirmed calendar planning follow the shared product rules. Keep demo status visible above every main tab and label disconnected planning as illustrative. RemoteViews widgets show two habits with numeric progress and the same minus/plus/zero behavior. Request a four-column/two-row default on modern launchers, retain at least 208 dp for both 48-dp controls and use pale forest button surfaces. Android reminders use an explicit local-notification description; do not reuse APNs registration wording.
+
+## Password access
+
+Offer a 54-point password-access action alongside the available identity providers. Android offers Google and password access; iOS retains Apple as well. Password access opens in a dedicated sheet hosted by the stable Connections or Onboarding root; do not expand changing-height credential forms inside a Form row. Registration asks for username, recovery email, password and confirmation, then an explicit email-code confirmation. Explain username and password bounds before submission. Passwords stay in transient view state and use native secure fields and autofill hints. Recovery has its own explicit identifier/code/new-password route. Generic request acceptance does not disclose account existence. Show actionable retry messages without dismissing a draft or changing the archive on failure.
+
+Existing-account enrollment belongs in Account, presented from the stable Connections navigation container. Bind enrollment to the original account and show confirmation before returning. Registration explains how existing provider users can add credentials without creating a second account. Never merge accounts based only on a matching email.
+
+
+## Compact progress overview
+
+Today uses 16-point page margins, 8-point gaps between habit rows and a 44-point daily summary ring. Each habit row retains 44-point leading/trailing controls, a name/quantity/status stack and a six-point 14-day history strip. Zero-limit confirmation appears as a square checkbox in the leading-control position and remains visibly checked after explicit confirmation. Do not remove signed decrement controls.
+
+Trends presents one compact row per habit with monthly daily strips for the last three complete calendar months and the current month. Empty and pre-creation periods remain visible as empty outlines, without invented activity or statistical denominators. Future days remain empty. Retain quantity totals, streaks, malus coloring and navigation to the existing detailed statistics. Month values are available to accessibility.
+
+Planner actions fill the content width; day events and all shared journal cards stretch to that same width. Use 12-point section spacing rather than large decorative gaps, while preserving full confirmation before calendar writes.

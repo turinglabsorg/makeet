@@ -8,9 +8,11 @@ Makeet starts from the clarity of a habit grid and adds timestamped quantities, 
 
 Screenshots show sample data.
 
+An Android developer candidate is available in `android/`, implemented with Kotlin and Jetpack Compose against the same Go service. It supports Android 8.0 and newer, targets Android 16, and uses the same entirely free product model and five languages. Google Play distribution and real Android provider validation are still pending. See [Android architecture and release gates](docs/android.md). Username/password access and explicit credential enrollment for existing accounts are implemented in the shared service and both native clients; activation and native release verification are tracked in [password accounts](docs/password-accounts.md).
+
 ## Product target
 
-Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple and Google sign-in only. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). The native account adapter uses Keychain sessions, separate account archives and durable retry/conflict handling. Apple iOS and Google providers are enabled for live validation. An Apple exchange, session restoration and account settings with a successful empty sync were verified on a physical iPhone; the owner also confirmed a fresh Apple sign-in succeeds in TestFlight. Google and multi-device progress checks remain release requirements. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
+Makeet is intended for public use with open self-service registration and private data for each account. Its custom Go backend runs independently of the native app on the owner's Mac Pro, with Apple/Google identities and verified username/password access through the same account authority. Identity verification, session rotation, account data deletion, and account-scoped sync APIs have HTTP/database integration coverage. The pre-release website and API are deployed at [makeet.app](https://makeet.app) and [api.makeet.app](https://api.makeet.app/healthz). The native account adapter uses Keychain sessions, separate account archives and durable retry/conflict handling. Apple iOS and Google providers are enabled for live validation. An Apple exchange, session restoration and account settings with a successful empty sync were verified on a physical iPhone; the owner also confirmed a fresh Apple sign-in succeeds in TestFlight. Google and multi-device progress checks remain release requirements. See [the backend](backend/README.md) and [account requirements](docs/integrations.md#public-account-architecture-requirements).
 
 ## Current foundation
 
@@ -83,6 +85,7 @@ xcodebuild -project Makeet.xcodeproj -scheme Makeet \
 - `Shared/`: SwiftData models, storage configuration, colors, and UI tokens.
 - `App/`: shared SwiftUI iOS/macOS interface and EventKit adapter.
 - `Widget/`: interactive WidgetKit extension and logging intent.
+- `android/`: native Android client, account-scoped SQLite persistence, calendar adapter, widget and native tests.
 - `Tests/`: domain and disk-persistence tests.
 - `CalendarTests/`: Simulator-hosted EventKit integration and notification permission/registration tests.
 - `UITests/`: iOS creation, logging, undo, navigation, and connection-state checks.

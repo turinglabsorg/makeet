@@ -1,0 +1,15 @@
+{
+  "title": "Makeet",
+  "short_description": "Kleine Schritte, echte Fortschritte. Gewohnheiten, Mengen und Kalender.",
+  "full_description": "Schaffe Raum für die Gewohnheiten, die dir wichtig sind. Makeet hilft dir, deine Mengen zu erfassen, Muster zu erkennen und Zeit in deinem Tag zu finden.\n\nDEINE GEWOHNHEITEN, DEINE REGELN\nWähle Wochentage, ein Symbol oder Emoji, eine Einheit und eine Menge pro Tippen. Lege ein Mindestziel oder eine Obergrenze fest, auch null. Aktiviere negative Werte für einen Saldo mit Vorzeichen. Korrigiere Mengen mit Minus und Plus oder bestätige einen Tag ohne Vorkommnisse ausdrücklich mit null.\n\nMEHR ALS EINE SERIE\nEntdecke die Monatsübersicht mit Farbintensität, tägliche Mengen, Durchschnittswerte, erreichte Ziele, aktuelle und längste Serien sowie Erfassungszeiten. Bearbeite vergangene Tage ab dem Startdatum einer Gewohnheit und speichere Korrekturen ausdrücklich.\n\nVORAUSPLANEN\nSieh Zeitvorschläge für heute oder die nächsten 7, 14 oder 28 Tage. Makeet berücksichtigt gewählte Wochentage, bevorzugte Uhrzeiten, frühere Einträge und belegte Zeiten in den verbundenen Gerätekalendern. Prüfe jeden Stapel, bevor Termine hinzugefügt werden. Kalenderblöcke schließen keine Gewohnheit ab. Android verwaltet die Synchronisierung des Kalenderkontos.\n\nLOKAL BEGINNEN, SPÄTER ANMELDEN\nBehalte dein Archiv auf diesem Gerät oder verwende ein optionales privates Konto zur Synchronisierung über Makeet. Bei der Anmeldung wird dein lokales Archiv niemals automatisch hochgeladen: Du entscheidest über den Import. Bearbeite dein privates Profil und exportiere oder lösche deine Daten in der App.\n\nFÜR DEN ALLTAG\nWidget auf dem Startbildschirm, optionale lokale Erinnerungen, helle und dunkle Darstellung und native Unterstützung für Deutsch, Englisch, Italienisch, Französisch und Spanisch. Bearbeite, archiviere, reaktiviere oder lösche Gewohnheiten endgültig.\n\nMakeet ist kostenlos. Keine Abonnements, Werbung oder öffentlichen Profile. Kalenderzugriff und Benachrichtigungen sind optional. Beispieldaten sind klar gekennzeichnet und von der Synchronisierung echter Konten ausgeschlossen.",
+  "privacy_url": "https://makeet.app/de/privacy",
+  "support_url": "https://makeet.app/de/support",
+  "deletion_url": "https://makeet.app/de/deletion",
+  "feature_graphic_alt": "Makeet-Gewohnheiten und Monatskalender mit klar gekennzeichneten Beispieldaten.",
+  "screenshots_alt": {
+    "01-today.png": "Heute: Mengen, Null-Limits und Minus-/Plus-Steuerung mit Beispieldaten.",
+    "02-calendar.png": "Monatsübersicht und Korrekturen vergangener Tage mit Beispieldaten.",
+    "03-trends.png": "Mengen, Durchschnittswerte, erreichte Ziele und Serien mit Beispieldaten.",
+    "04-plan.png": "Künftige Zeitvorschläge ohne verbundenen Kalender mit Beispieldaten."
+  }
+}

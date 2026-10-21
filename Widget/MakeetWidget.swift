@@ -94,6 +94,25 @@ struct DecrementHabitIntent: AppIntent {
     }
 }
 
+struct ConfirmZeroIntent: AppIntent {
+    static var title: LocalizedStringResource = "Conferma zero"
+    static var openAppWhenRun = false
+    @Parameter(title: "Abitudine") var habitID: String
+    @Parameter(title: "Archivio") var storeScope: String
+    init() {}
+    init(habitID: UUID, scope: String) { self.habitID = habitID.uuidString; storeScope = scope }
+    @MainActor func perform() async throws -> some IntentResult {
+        guard let id = UUID(uuidString: habitID) else { throw IntentFailure.missingHabit }
+        try WidgetAccountScope.withContainer(expected: storeScope) { container, _ in
+            let context = ModelContext(container)
+            let descriptor = FetchDescriptor<Habit>(predicate: #Predicate { $0.id == id && !$0.archived })
+            guard let habit = try context.fetch(descriptor).first else { throw IntentFailure.missingHabit }
+            try SharedStore.confirmZero(habit, in: context)
+        }
+        return .result()
+    }
+}
+
 enum HabitIntentStore {
     @MainActor static func change(_ habitID: String, scope: String, subtract: Bool) throws {
         guard let id = UUID(uuidString: habitID) else { throw IntentFailure.missingHabit }
@@ -116,11 +135,13 @@ struct ProgressWidgetView: View {
     let entry: ProgressEntry
     @Environment(\.widgetFamily) private var family
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: family == .systemMedium ? 0 : 6) {
+            if family != .systemMedium || entry.habits.isEmpty {
             HStack {
                 Text(verbatim: "makeet").font(.system(.headline, design: .default))
                 Spacer()
                 Image(systemName: "leaf").foregroundStyle(Palette.accent)
+            }
             }
             if entry.habits.isEmpty {
                 Text(entry.unavailable ? String(localized: "Apri Makeet per accedere ai tuoi dati.", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Un piccolo passo, oggi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
@@ -128,17 +149,19 @@ struct ProgressWidgetView: View {
                 Text(entry.unavailable ? String(localized: "Archivio non disponibile", bundle: AppLanguage.bundle, locale: AppLanguage.locale) : String(localized: "Crea la prima abitudine nell’app.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .font(.caption).foregroundStyle(.secondary)
             } else {
-                ForEach(Array(entry.habits.prefix(family == .systemSmall ? 1 : 2))) { habit in
+                ForEach(Array(entry.habits.prefix(family == .systemSmall ? 1 : (family == .systemMedium ? 3 : 6)))) { habit in
                     if family == .systemSmall {
                         info(habit)
-                        HStack { minus(habit); Spacer(minLength: 0); plus(habit) }
+                        HStack { leading(habit); Spacer(minLength: 0); plus(habit) }
                         ProgressView(value: habit.fraction).tint(habit.malus > 0 ? Palette.warning : Palette.habit(habit.colorIndex))
                     } else {
-                        HStack(spacing: 10) { minus(habit); info(habit); Spacer(minLength: 0); plus(habit) }
+                        HStack(spacing: 6) { leading(habit); info(habit); Spacer(minLength: 0); plus(habit) }
+                            .frame(minHeight: 44)
                     }
                 }
             }
         }
+        .padding(8)
         .foregroundStyle(Palette.ink)
         .containerBackground(Palette.paper, for: .widget)
         .widgetURL(URL(string: "makeet://habit"))
@@ -147,15 +170,27 @@ struct ProgressWidgetView: View {
     private func info(_ habit: WidgetHabit) -> some View {
         VStack(alignment: .leading, spacing: 3) {
             Label { Text(habit.name) } icon: { HabitMark(symbol: habit.symbol) }
-                .font(.subheadline.weight(.medium)).lineLimit(1)
+                .font(.caption.weight(.semibold)).lineLimit(1)
             Text(HabitText.quantity(habit.quantity, target: habit.target, unit: habit.unit, goal: habit.goal))
-                .font(.caption).foregroundStyle(.secondary).monospacedDigit()
+                .font(.caption2).foregroundStyle(.secondary).monospacedDigit().lineLimit(1).minimumScaleFactor(0.8)
             if habit.malus > 0 {
                 Text(String(localized: "Malus: \(habit.malus.quantityText) \(habit.unit)", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption2).foregroundStyle(Palette.warning)
             } else if habit.goal == .atMost && habit.registrations == 0 {
                 Text(String(localized: "Da confermare", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption2).foregroundStyle(.secondary)
             }
         }
+    }
+
+    @ViewBuilder private func leading(_ habit: WidgetHabit) -> some View {
+        if habit.goal == .atMost && habit.quantity == 0 {
+            Button(intent: ConfirmZeroIntent(habitID: habit.id, scope: entry.scope)) {
+                Image(systemName: habit.registrations > 0 ? "checkmark.square.fill" : "square")
+                    .font(.title2).frame(width: 44, height: 44)
+            }.buttonStyle(.plain).foregroundStyle(Palette.habit(habit.colorIndex))
+                .disabled(habit.registrations > 0)
+                .accessibilityLabel(String(localized: "Conferma zero", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+            if habit.allowsNegative { minus(habit) }
+        } else { minus(habit) }
     }
 
     private func minus(_ habit: WidgetHabit) -> some View {
@@ -182,6 +217,7 @@ struct ProgressWidgetView: View {
         StaticConfiguration(kind: kind, provider: ProgressProvider()) { ProgressWidgetView(entry: $0) }
             .configurationDisplayName("Un passo con Makeet")
             .description(String(localized: "I tuoi progressi e un tocco per registrarli.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
-            .supportedFamilies([.systemSmall, .systemMedium])
+            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+            .contentMarginsDisabled()
     }
 }

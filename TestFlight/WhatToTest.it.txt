@@ -1,9 +1,7 @@
-Makeet 1.0: abitudini, statistiche, calendario e pianificazione sono gratuiti sul dispositivo. Makeet Plus aggiunge solo la sincronizzazione privata tra i tuoi dispositivi. Il piano è sempre disponibile, anche senza account.
+Makeet è interamente gratuita: abitudini, statistiche, calendario, pianificazione e sincronizzazione privata tra dispositivi.
 
-Puoi modificare o eliminare definitivamente un’abitudine dal dettaglio. La cancellazione richiede conferma e può rimuovere anche i blocchi futuri creati da Makeet nei calendari modificabili.
+Questa versione rende Oggi più compatta, mostra tre abitudini nel widget medio e aggiunge una casella per confermare lo zero. Andamento mostra gli ultimi tre mesi completi e il mese corrente, anche senza attività. Controlla anche i pulsanti a tutta larghezza nel piano e gli eventi del giorno.
 
-In Oggi: + a sinistra, solo profilo tondo a destra; archivio nelle impostazioni. Il piano mostra cosa hai da fare oggi o nei prossimi giorni e permette di rivedere fino a 28 giorni prima di aggiungere gli eventi. Il messaggio di calendario già collegato non compare più.
+Puoi accedere con Apple, Google oppure username e password. La registrazione e il recupero richiedono un codice email. Chi ha già un account può aggiungere le credenziali dalle impostazioni dello stesso account.
 
-Le funzioni restano disponibili durante questa anteprima; gli abbonamenti non addebitano nulla. Puoi esportare i dati anche senza Plus. I calendari Google configurati sul dispositivo usano la sincronizzazione di sistema.
-
-Prova anche accesso Apple/Google, profilo, lingua, widget e riapertura dell’app. Segnala eventuali errori senza cancellare il tuo account.
+Prova navigazione, registrazioni, riapertura, widget e accesso. I calendari Google configurati sul dispositivo usano la sincronizzazione di sistema. Segnala eventuali errori senza cancellare il tuo account.
