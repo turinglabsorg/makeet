@@ -26,7 +26,7 @@ import java.time.*
 data class ScreenState(val habits: List<Habit> = emptyList(), val activities: List<Activity> = emptyList(),
                        val user: User? = null, val profile: JSONObject = JSONObject(), val syncing: Boolean = false,
                        val error: Boolean = false, val synced: Boolean = false, val conflicts: List<Record> = emptyList(),
-                       val appleEnabled: Boolean = false,
+                       val passwordEnabled: Boolean = false,
                        val demo: Boolean = false,
                        val demoIds: Set<String> = emptySet(),
                        val errorKey: String = "Your progress is retained. Check your connection or reopen this screen and try again.")
@@ -59,7 +59,7 @@ class MakeetModel(app: Application, injectedAPI: AccountAPI?) : AndroidViewModel
     val screen = state.asStateFlow()
     init {
         updateScope(); reload(api.sessionLoadFailed)
-        viewModelScope.launch { runCatching { api.appleEnabled() }.onSuccess { state.value = state.value.copy(appleEnabled = it) } }
+        viewModelScope.launch { runCatching { api.passwordEnabled() }.onSuccess { state.value = state.value.copy(passwordEnabled = it) } }
         if (api.user() != null) synchronize()
     }
     private fun updateScope() {
@@ -173,39 +173,31 @@ class MakeetModel(app: Application, injectedAPI: AccountAPI?) : AndroidViewModel
         catch (_: Exception) { state.value = state.value.copy(error = true); false }
         finally { authentication.unlock() }
     }
-    suspend fun signInApple(activity: Context): Boolean {
-        if(!authentication.tryLock()) return false
-        return try {
-            check(state.value.appleEnabled)
-            val random = ByteArray(32).also { java.security.SecureRandom().nextBytes(it) }
-            val verifier = Base64.encodeToString(random, Base64.URL_SAFE or Base64.NO_WRAP or Base64.NO_PADDING)
-            val proof = Base64.encodeToString(java.security.MessageDigest.getInstance("SHA-256").digest(verifier.toByteArray(Charsets.US_ASCII)), Base64.URL_SAFE or Base64.NO_WRAP or Base64.NO_PADDING)
-            val challenge = api.challenge("apple")
-            val flow = api.startApple(challenge, proof, activity.resources.configuration.locales[0].language)
-            val uri = android.net.Uri.parse(flow.getString("authorization_url"))
-            check(uri.scheme == "https" && uri.host == "appleid.apple.com" && uri.path == "/auth/authorize")
-            activity.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, uri))
-            val deadline = System.currentTimeMillis() + 300_000
-            var credentials: JSONObject? = null
-            while(System.currentTimeMillis() < deadline && credentials == null) {
-                delay(5000)
-                val result = api.pollApple(flow.getString("id"), verifier)
-                if(result.optString("status") == "ready") credentials = result
-            }
-            val result = credentials ?: error("expired_flow")
+    suspend fun passwordLogin(identifier: String, password: String) {
+        check(authentication.tryLock())
+        try {
             operation.withLock {
-                val user = api.exchange(challenge, result.getString("id_token"), "apple", result.getString("authorization_code"))
-                store.close(); store = HabitStore(context, user.id); updateScope(); reload()
+                check(api.user() == null)
+                val user = api.passwordLogin(identifier, password)
+                val next = try { HabitStore(context, user.id) }
+                    catch(e: Exception) { runCatching { api.logout() }; throw e }
+                store.close(); store = next; updateScope(); reload()
             }
-            syncNow(); true
-        } catch(e: CancellationException) { throw e }
-        catch(e: Exception) {
-            if(e !is APIFailure || e.payload.optString("error") != "provider_cancelled") state.value = state.value.copy(error = true)
-            false
+            syncNow()
         } finally { authentication.unlock() }
     }
+    suspend fun requestPassword(username: String, email: String, password: String, userID: String?): String {
+        check(api.user()?.id == userID)
+        return api.requestPassword(username, email, password, context.resources.configuration.locales[0].language, userID)
+    }
+    suspend fun recoverPassword(identifier: String) = api.recoverPassword(identifier, context.resources.configuration.locales[0].language)
+    suspend fun confirmPassword(id: String, code: String, password: String, userID: String?) {
+        check(api.user()?.id == userID)
+        api.confirmPassword(id, code, password, userID)
+    }
+    suspend fun passwordStatus(userID: String) = api.passwordStatus(userID)
     private fun switchToLocal() {
-        store.close(); store = HabitStore(context, "local"); state.value = ScreenState(); updateScope()
+        store.close(); store = HabitStore(context, "local"); state.value = ScreenState(passwordEnabled = state.value.passwordEnabled); updateScope()
     }
     fun logout() { viewModelScope.launch { operation.withLock { api.logout(); switchToLocal(); reload() } } }
     suspend fun deleteAccount(): Boolean = operation.withLock {
@@ -216,7 +208,7 @@ class MakeetModel(app: Application, injectedAPI: AccountAPI?) : AndroidViewModel
         val p = context.getSharedPreferences("makeet", Context.MODE_PRIVATE)
         p.edit().putString("pending_deleted_account", user.id).commit()
         val sessionCleared = runCatching { api.clearAfterDeletion() }.isSuccess
-        store.close(); store = HabitStore(context, "local"); state.value = ScreenState(); updateScope(); reload()
+        store.close(); store = HabitStore(context, "local"); state.value = ScreenState(passwordEnabled = state.value.passwordEnabled); updateScope(); reload()
         val name = "makeet-${user.id}.db"
         val archiveCleared = context.deleteDatabase(name) || !context.getDatabasePath(name).exists()
         context.deleteSharedPreferences("makeet.calendar.${user.id}")

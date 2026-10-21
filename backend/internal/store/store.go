@@ -67,5 +67,12 @@ CREATE UNIQUE INDEX IF NOT EXISTS push_reminder_day ON push_messages(device_id,d
 CREATE INDEX IF NOT EXISTS activity_day ON records(user_id,kind,deleted,json_extract(data,'$.habit_id'),unixepoch(json_extract(data,'$.timestamp')));
 CREATE TABLE IF NOT EXISTS subscriptions(environment TEXT NOT NULL,original_id TEXT NOT NULL,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,transaction_id TEXT NOT NULL,product_id TEXT NOT NULL,expires_date INTEGER NOT NULL,signed_date INTEGER NOT NULL,revoked INTEGER NOT NULL,PRIMARY KEY(environment,original_id));
 CREATE INDEX IF NOT EXISTS subscriptions_user_expiry ON subscriptions(user_id,revoked,expires_date DESC);
-PRAGMA user_version=6;
+CREATE TABLE IF NOT EXISTS password_credentials(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, version INTEGER NOT NULL DEFAULT 1);
+CREATE TABLE IF NOT EXISTS password_requests(id TEXT PRIMARY KEY, user_id TEXT REFERENCES users(id) ON DELETE CASCADE, kind TEXT NOT NULL, username TEXT NOT NULL, email TEXT NOT NULL, password_hash TEXT NOT NULL, credential_version INTEGER NOT NULL, code_hash TEXT NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL, expires_at INTEGER NOT NULL);
+CREATE INDEX IF NOT EXISTS password_requests_expiry ON password_requests(expires_at);
+CREATE INDEX IF NOT EXISTS password_requests_email ON password_requests(email,created_at);
+CREATE INDEX IF NOT EXISTS password_requests_user ON password_requests(user_id);
+CREATE TABLE IF NOT EXISTS password_attempts(identifier_hash TEXT PRIMARY KEY, failures INTEGER NOT NULL, reset_at INTEGER NOT NULL);
+CREATE INDEX IF NOT EXISTS password_attempts_expiry ON password_attempts(reset_at);
+PRAGMA user_version=7;
 `

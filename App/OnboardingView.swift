@@ -108,7 +108,7 @@ struct OnboardingView: View {
                     .foregroundStyle(Palette.ink.opacity(0.72))
             }
             choice(.account, title: String(localized: "Con un account", bundle: AppLanguage.bundle, locale: AppLanguage.locale),
-                   body: String(localized: "Il tuo archivio privato, sincronizzato gratuitamente. Accedi con Apple o Google.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "person.crop.circle.fill")
+                   body: String(localized: "Il tuo archivio privato, sincronizzato gratuitamente. Scegli come accedere.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "person.crop.circle.fill")
             choice(.local, title: String(localized: "Solo su questo dispositivo", bundle: AppLanguage.bundle, locale: AppLanguage.locale),
                    body: String(localized: "Nessuna registrazione. I progressi restano qui: potrai accedere quando vuoi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), symbol: "iphone")
             Text(storage == .local
@@ -138,7 +138,7 @@ struct OnboardingView: View {
                 Button(String(localized: "Verifica disponibilità", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await account.start() } }
             }
             if let message = account.message { Text(message).font(.callout).foregroundStyle(Palette.ink.opacity(0.72)) }
-            Label(String(localized: "Nessuna nuova password. Nessun profilo pubblico.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "lock")
+            Label(String(localized: "Il tuo account e i tuoi progressi restano privati.", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "lock")
                 .font(.footnote).foregroundStyle(Palette.ink.opacity(0.72))
             Text(String(localized: "Hai già abitudini sul dispositivo? Dopo l’accesso decidi tu se importarle.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                 .font(.footnote).foregroundStyle(Palette.ink.opacity(0.72))

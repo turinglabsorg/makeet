@@ -192,12 +192,13 @@ struct ConnectionsView: View {
     let calendar: CalendarService
     @Environment(\.dismiss) private var dismiss
     @State private var editingProfile = false
+    @State private var editingPassword = false
     @State private var deletingAccount = false
     @State private var importingArchive = false
     var body: some View {
         NavigationStack {
             Form {
-                AccountSettingsSection(deleting: $deletingAccount, importing: $importingArchive, editingProfile: $editingProfile)
+                AccountSettingsSection(deleting: $deletingAccount, importing: $importingArchive, editingProfile: $editingProfile, editingPassword: $editingPassword)
                 LanguageSettingsSection()
                 Section {
                     Text(String(localized: "Tutte le funzioni sono gratuite, inclusa la sincronizzazione con un account.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).accessibilityIdentifier("freeAccessInfo")
@@ -263,6 +264,14 @@ struct ConnectionsView: View {
         .alert(String(localized: "Operazione non riuscita", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: Binding(get: { exportError != nil }, set: { if !$0 { exportError = nil } })) {
             Button(String(localized: "OK", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { exportError = nil }
         } message: { Text(exportError ?? "") }
+        .sheet(isPresented: $editingPassword) {
+            if let id = account.user?.id {
+                NavigationStack {
+                    ScrollView { PasswordAccessView(mode: .enroll, userID: id, completed: { editingPassword = false }).padding(24) }
+                        .toolbar { ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { editingPassword = false }.disabled(account.working) } }
+                }.interactiveDismissDisabled(account.working)
+            }
+        }
         .sheet(isPresented: $editingProfile) {
             if let profile = account.profile { ProfileEditorView(service: profile) }
         }

@@ -21,17 +21,11 @@ The client uses Android system sans typography, the project's forest/warm palett
 
 Demo data is an explicit action available only in an empty local archive. Every screen and widget labels the examples. Demo habit IDs are stored separately from the synchronization payload, excluded from account import and included as labels in JSON export. Clearing examples preserves user-created habits. The optional Store capture test drives this actual product mode and native tabs; it does not construct screenshots from invented interfaces.
 
-## Apple sign-in on Android
+## Account access
 
-The backend adds three opt-in routes:
+Android supports Google sign-in and the shared username/password account flow. The owner requested removal of Apple sign-in from Android on 21 October 2026; its native control, browser polling code and callback intent filter are removed. Apple sign-in on iOS and existing Apple identities remain supported. An existing Apple account can add a username and password from its authenticated iOS Account screen and use those credentials on Android without changing its account UUID or progress.
 
-- `POST /v1/auth/apple/start`: binds an existing Apple challenge to a SHA-256 proof and creates a five-minute, bounded, memory-only handoff. It returns the official Apple authorization URL.
-- `POST /v1/auth/apple/callback`: accepts only a size-limited form POST, verifies state, the original nonce and the configured Service ID audience, and displays a localized return-to-app link containing no credentials.
-- `POST /v1/auth/apple/result`: requires the original proof verifier and consumes a ready handoff once. The native client then uses the existing account exchange, provider-grant encryption and session service.
-
-There is no second account authority, email-based identity linking, callback token in a custom URL, durable plaintext credential storage or database migration. Restarting the server discards pending handoffs safely. Apple web code exchange uses only the fixed registered callback `https://api.makeet.app/v1/auth/apple/callback`.
-
-`MAKEET_APPLE_WEB_CLIENT_ID` defaults empty. Enabling it requires the same Service ID in `MAKEET_APPLE_CLIENT_IDS`, the existing Apple signing configuration and an Apple Developer Service ID grouped with the Makeet primary App ID. The isolated service launcher accepts this public option in its private configuration allowlist; subprocess tests verify default-off behavior, propagation to the service and fail-closed rejection of invalid configuration. `/v1/config.apple_android_enabled` remains false until configured; Android offers Apple sign-in only when this capability is available. Actual Apple identity continuity from iOS to Android remains a release gate.
+Password registration requires email verification. Recovery confirms a single-use email code and revokes prior sessions. Existing-account credential enrollment requires that account's authenticated session and verification of its recovery email; no email-based automatic account merging exists. Native passwords stay in view memory, while existing encrypted session storage handles issued tokens. See [the account protocol and delivery configuration](password-accounts.md).
 
 ## Build and verification
 
@@ -73,13 +67,13 @@ hush run --name MAKEET_ANDROID_UPLOAD_KEYSTORE --env MAKEET_UPLOAD_KEYSTORE --re
 
 On 20 October 2026 the owner confirmed the Play declarations and dedicated upload-key custody. The free Makeet app record (`4975909492999272952`) was created, and a signed, audited 1.0 (1) bundle was accepted into an unpublished internal-release draft. ReTrace mapping is attached. Console reports no blocking bundle error; warnings remain for missing testers and missing debug symbols for a transitive native library. These are distinct from the submitted iOS build and do not establish Android review approval or distribution.
 
-Four Android OAuth clients now exist in the existing Makeet Google project: three bound to the Play app-signing fingerprints exposed by Console and one bound to the dedicated upload signer for Release QA. They reuse the existing backend audience and add no calendar scope. Apple Service ID `org.turinglabs.makeet.web` is registered with Sign in with Apple, grouped with `org.turinglabs.makeet`; its persisted configuration contains only `api.makeet.app` and the fixed HTTPS callback above. Provider registration is complete; backend activation and actual identity continuity tests remain release gates.
+Four Android OAuth clients now exist in the existing Makeet Google project: three bound to the Play app-signing fingerprints exposed by Console and one bound to the dedicated upload signer for Release QA. They reuse the existing backend audience and add no calendar scope. Apple Service ID `org.turinglabs.makeet.web` is registered with Sign in with Apple, grouped with `org.turinglabs.makeet`; its persisted configuration contains only `api.makeet.app` and the fixed HTTPS callback above. The previously registered Apple Service ID is unused by the Android client after the owner’s 21 October decision. Google certificate registration remains relevant; actual identity continuity tests remain release gates.
 
 Before distribution, complete:
 
 1. Preserve the free Makeet record, Play App Signing enrollment and dedicated upload credentials in hush.
 2. Preserve the signed candidate and the four certificate-bound Google OAuth clients. Reuse the approved public backend/server audience; do not create an independent backend or Firebase authentication authority.
-3. Configure and verify the grouped Apple Service ID, deploy the tested opt-in handoff safely and test both real identity paths, account restoration, profile/photo saves, cross-platform sync, offline replay, conflicts, account switching and deletion.
+3. Deploy and verify password registration, email verification/recovery and explicit existing-account enrollment. Test real Google/password access, account restoration, profile/photo saves, cross-platform sync, offline replay, conflicts, account switching and deletion.
 4. Complete Android-specific Data safety, app access, content rating, target audience, privacy/support/deletion URLs, localized listing text and genuine native screenshots. Do not copy the Apple SDK's disclosures into the Android questionnaire without auditing the Android dependency set.
 5. Verify native photo/document pickers, permissions, local reminders, the Home Screen widget, smaller screens and an older supported Android release.
 6. Use internal testing and the closed-testing/production-access process shown by this personal account. Google currently requires at least 12 continuously opted-in testers for 14 days for new personal accounts before applying for production access. Recruit actual testers; do not fabricate accounts or test engagement. [Google requirements](https://support.google.com/googleplay/android-developer/answer/14151465).

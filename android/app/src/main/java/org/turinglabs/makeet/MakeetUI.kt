@@ -149,20 +149,17 @@ fun date(day: LocalDate): String = day.format(DateTimeFormatter.ofLocalizedDate(
     val state by model.screen.collectAsStateWithLifecycle()
     var busy by remember { mutableStateOf(false) }
     var task by remember { mutableStateOf<Job?>(null) }
-    fun begin(apple: Boolean) {
+    var passwordAccess by remember { mutableStateOf(false) }
+    fun begin() {
         task = scope.launch {
             busy = true
-            try { if(if(apple) model.signInApple(context) else model.signIn(context)) signedIn() }
+            try { if(model.signIn(context)) signedIn() }
             finally { busy = false }
         }
     }
-    GoogleButton(busy) { begin(false) }
-    if(state.appleEnabled) Button(onClick = { begin(true) }, enabled = !busy,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 54.dp), shape = RoundedCornerShape(15.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)) {
-        Image(painterResource(R.drawable.apple_logo), null, Modifier.size(40.dp))
-        Text(t("Continue with Apple"))
-    }
+    GoogleButton(busy) { begin() }
+    if(state.passwordEnabled) OutlinedButton({ passwordAccess = true }, enabled = !busy, modifier = Modifier.fillMaxWidth().heightIn(min = 54.dp)) { Text(t("Sign in with password")) }
+    if(passwordAccess) PasswordAccess(model, null, { passwordAccess = false }) { passwordAccess = false; signedIn() }
     if(busy) TextButton(onClick = { task?.cancel() }) { Text(t("Cancel")) }
 }
 

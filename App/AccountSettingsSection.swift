@@ -6,6 +6,7 @@ struct AccountSettingsSection: View {
     @Binding var deleting: Bool
     @Binding var importing: Bool
     @Binding var editingProfile: Bool
+    @Binding var editingPassword: Bool
 
     var body: some View {
         Section {
@@ -16,6 +17,10 @@ struct AccountSettingsSection: View {
                 } label: {
                     Label(String(localized: "Modifica profilo", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "person.crop.circle.badge.pencil")
                 }.accessibilityIdentifier("editProfile")
+                if account.passwordEnabled {
+                    Button(String(localized: "Nome utente e password", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { editingPassword = true }
+                        .accessibilityIdentifier("managePassword")
+                }
                 if let sync = account.sync {
                     if sync.syncing { ProgressView(String(localized: "Sincronizzazione in corso", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) }
                     else if let last = sync.lastSuccess {
@@ -76,6 +81,7 @@ struct AccountSettingsSection: View {
 struct AccountSignInButtons: View {
     @Environment(AccountManager.self) private var account
     @Environment(\.colorScheme) private var colorScheme
+    @State private var passwordExpanded = false
     var body: some View {
         VStack(spacing: 12) {
             if account.providers.contains("apple") || account.user == nil {
@@ -100,6 +106,11 @@ struct AccountSignInButtons: View {
                 }.buttonStyle(.plain)
                     .disabled(account.working || !account.providers.contains("google"))
                     .accessibilityIdentifier("googleSignIn")
+            }
+            if account.passwordEnabled {
+                Button(String(localized: "Accedi con password", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { passwordExpanded.toggle() }
+                    .frame(maxWidth: .infinity, minHeight: 54).buttonStyle(.bordered).disabled(account.working).accessibilityIdentifier("showPasswordAccess")
+                if passwordExpanded { PasswordAccessView(userID: nil) }
             }
             if account.working { ProgressView() }
         }

@@ -70,3 +70,9 @@ Place the goal-direction segment and optional negative-values switch with the qu
 ## Android native client
 
 Use Jetpack Compose with Android system sans typography and the same warm/forest tokens, 20-dp cards, 54-dp provider buttons and 48-dp touch controls. Preserve platform photo/document pickers, permission dialogs and Home Screen widgets. The plus/avatar toolbar, explicit account/local onboarding, Monday-first weekday pills, quantity/limit controls and confirmed calendar planning follow the shared product rules. Keep demo status visible above every main tab and label disconnected planning as illustrative. RemoteViews widgets show two habits with numeric progress and the same minus/plus/zero behavior. Request a four-column/two-row default on modern launchers, retain at least 208 dp for both 48-dp controls and use pale forest button surfaces. Android reminders use an explicit local-notification description; do not reuse APNs registration wording.
+
+## Password access
+
+Offer a 54-point password-access action alongside the available identity providers. Android offers Google and password access; iOS retains Apple as well. Registration asks for username, recovery email, password and confirmation, then an explicit email-code confirmation. Explain username and password bounds before submission. Passwords stay in transient view state and use native secure fields and autofill hints. Recovery has its own explicit identifier/code/new-password route. Generic request acceptance does not disclose account existence. Show actionable retry messages without dismissing a draft or changing the archive on failure.
+
+Existing-account enrollment belongs in Account, presented from the stable Connections navigation container. Bind enrollment to the original account and show confirmation before returning. Registration explains how existing provider users can add credentials without creating a second account. Never merge accounts based only on a matching email.

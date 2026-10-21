@@ -1,6 +1,6 @@
 # Makeet backend
 
-Custom Go HTTP service with SQLite storage. Apple and Google provide identity; Makeet owns accounts, sessions, authorization, and the sync log. No hosted authentication platform or email/password login is used.
+Custom Go HTTP service with SQLite storage. Apple and Google provide identity; Makeet owns accounts, sessions, authorization, and the sync log. Verified username/password credentials use this same account and session service; no hosted authentication platform is used.
 
 ## Status
 
@@ -130,3 +130,7 @@ Historical unsubmitted products are `org.turinglabs.makeet.plus.monthly` and `or
 ## Flexible goal sync
 
 Habit JSON adds optional `goal` (`at_least` by default or `at_most`) and `allows_negative` (false by default). A limit target may be zero; minimum targets stay positive. Activity amounts may be finite signed values or an explicit zero confirmation. No schema migration is required. Updated clients send `X-Makeet-Sync-Version: 2`. Before any mutation/retry response, account-indexed checks reject older clients when advanced goal data exists, preventing silent loss of limits or signed progress. Legacy default fields are normalized for immutable pending-batch retry compatibility. Reminder eligibility honors weekdays/start dates; a limit day needs a reminder only while unlogged.
+
+## Username/password accounts
+
+Schema 7 adds verified username/password credentials and expiring single-use email requests alongside existing provider identities. The same session, ownership, synchronization and deletion paths remain authoritative. `MAKEET_RESEND_API_KEY` is injected from hush; the dedicated sender `noreply@noreply.makeet.app` is configured with `MAKEET_EMAIL_FROM`. Password access is advertised only when the mailer is configured. See [protocol, rate limits and validation](../docs/password-accounts.md).

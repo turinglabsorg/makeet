@@ -30,7 +30,7 @@ assert not any(p in permissions for p in ["com.android.vending.BILLING", "com.go
 application = manifest.find("application")
 assert application is not None and application.get(android + "debuggable", "false") == "false"
 assert application.get(android + "allowBackup") == "false"
-assert not any("ProfileTestActivity" in a.get(android + "name", "") for a in application.findall("activity"))
+assert not any(marker in a.get(android + "name", "") for a in application.findall("activity") for marker in ["ProfileTestActivity", "PasswordTestActivity"])
 native = []
 with zipfile.ZipFile(args.bundle) as bundle:
     names = bundle.namelist()
@@ -42,7 +42,7 @@ with zipfile.ZipFile(args.bundle) as bundle:
         assert not name.endswith((".p8", ".jks", ".keystore", ".p12", ".storekit")), "Private signing or test resource in bundle"
         if name.endswith(".dex"):
             content = bundle.read(name)
-            for marker in [b"ProfileTestActivity", b"ProfileFixtureState", b"fixture-access", b"qa@example.invalid", b"makeet.invalid"]:
+            for marker in [b"ProfileTestActivity", b"ProfileFixtureState", b"PasswordTestActivity", b"PasswordFixtureState", b"password-fixture.makeet.invalid", b"password-ui-access", b"fixture-access", b"qa@example.invalid", b"makeet.invalid"]:
                 assert marker not in content, "Debug/test fixture in release"
         if name.endswith(".so"):
             data = bundle.read(name)

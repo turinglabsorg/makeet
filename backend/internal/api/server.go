@@ -35,14 +35,16 @@ type Config struct {
 	Site                http.Handler
 	Clock               func() time.Time
 	TrustRelay          bool
+	Mailer              PasswordMailer
 }
 type Server struct {
-	db       *sql.DB
-	cfg      Config
-	mu       sync.Mutex
-	limits   map[string]bucket
-	webMu    sync.Mutex
-	webFlows map[string]*appleWebFlow
+	db            *sql.DB
+	cfg           Config
+	mu            sync.Mutex
+	limits        map[string]bucket
+	webMu         sync.Mutex
+	webFlows      map[string]*appleWebFlow
+	passwordSlots chan struct{}
 }
 type bucket struct {
 	start time.Time
@@ -64,7 +66,7 @@ func New(db *sql.DB, cfg Config) *Server {
 	if cfg.Clock == nil {
 		cfg.Clock = time.Now
 	}
-	return &Server{db: db, cfg: cfg, limits: make(map[string]bucket), webFlows: make(map[string]*appleWebFlow)}
+	return &Server{db: db, cfg: cfg, limits: make(map[string]bucket), webFlows: make(map[string]*appleWebFlow), passwordSlots: make(chan struct{}, 2)}
 }
 func (s *Server) Handler() http.Handler {
 	mux := http.NewServeMux()
@@ -82,7 +84,7 @@ func (s *Server) Handler() http.Handler {
 				providers = append(providers, p)
 			}
 		}
-		respond(w, 200, map[string]any{"providers": providers, "billing_enabled": s.publicBillingEnabled(), "apple_android_enabled": s.appleWebEnabled()})
+		respond(w, 200, map[string]any{"providers": providers, "billing_enabled": s.publicBillingEnabled(), "apple_android_enabled": s.appleWebEnabled(), "password_enabled": s.cfg.Mailer != nil})
 	})
 	mux.HandleFunc("POST /v1/auth/challenges", s.challenge)
 	mux.HandleFunc("POST /v1/auth/exchange", s.exchange)
@@ -90,6 +92,13 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("POST /v1/auth/apple/callback", s.callbackAppleWeb)
 	mux.HandleFunc("POST /v1/auth/apple/result", s.resultAppleWeb)
 	mux.HandleFunc("POST /v1/auth/refresh", s.refresh)
+	mux.HandleFunc("POST /v1/auth/password/register", s.passwordRegister)
+	mux.HandleFunc("POST /v1/auth/password/login", s.passwordLogin)
+	mux.HandleFunc("POST /v1/auth/password/recover", s.passwordRecover)
+	mux.HandleFunc("POST /v1/auth/password/confirm", s.passwordConfirm)
+	mux.HandleFunc("GET /v1/me/password", s.auth(s.passwordStatus))
+	mux.HandleFunc("POST /v1/me/password", s.auth(s.passwordEnroll))
+	mux.HandleFunc("POST /v1/me/password/confirm", s.auth(s.passwordEnrollConfirm))
 	mux.HandleFunc("POST /v1/auth/logout", s.auth(s.logout))
 	mux.HandleFunc("GET /v1/me", s.auth(s.me))
 	mux.HandleFunc("GET /v1/me/profile", s.auth(s.getProfile))
@@ -114,7 +123,7 @@ func (s *Server) Handler() http.Handler {
 		if strings.HasPrefix(r.URL.Path, "/v1/") {
 			w.Header().Set("Cache-Control", "no-store")
 		}
-		if strings.HasPrefix(r.URL.Path, "/v1/auth/") && !s.allow(s.clientAddress(r)) {
+		if (strings.HasPrefix(r.URL.Path, "/v1/auth/") || strings.HasPrefix(r.URL.Path, "/v1/me/password")) && !s.allow(s.clientAddress(r)) {
 			w.Header().Set("Retry-After", "60")
 			fail(w, 429, "rate_limited")
 			return

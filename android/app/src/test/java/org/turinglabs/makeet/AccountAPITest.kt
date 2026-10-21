@@ -21,6 +21,22 @@ class AccountAPITest {
         .put("user", JSONObject().put("id", id).put("email", "qa@example.invalid"))
         .put("access_token", "fixture-access").put("refresh_token", "fixture-refresh")
         .put("expires_in", 900).put("expires_at_android", expiry)
+    @Test fun passwordLoginPersistsSessionAndEnrollmentRejectsAnotherAccount() = runBlocking {
+        val server = MockWebServer(); server.start()
+        try {
+            server.enqueue(MockResponse().setBody(tokens(Instant.now().epochSecond + 900).toString()))
+            val storage = MemoryStorage(null)
+            val api = AccountAPI(storage, server.url("/").toString().trimEnd('/'))
+            assertEquals(id, api.passwordLogin("qa.user", "fixture password for testing").id)
+            assertEquals("/v1/auth/password/login", server.takeRequest().path)
+            assertNotNull(storage.value)
+            assertTrue(runCatching { api.requestPassword("qa.user", "qa@example.invalid", "fixture password for testing", "en", UUID.randomUUID().toString()) }.isFailure)
+            assertEquals(1, server.requestCount)
+            server.enqueue(MockResponse().setResponseCode(400).setBody("{\"error\":\"invalid_verification\"}"))
+            assertTrue(runCatching { api.confirmPassword("request", "00000000", "", id) }.isFailure)
+            assertEquals(id, api.user()?.id)
+        } finally { server.shutdown() }
+    }
     @Test fun concurrentCallsRotateRefreshOnceAndUseSavedToken() = runBlocking {
         val server = MockWebServer(); server.start()
         try {

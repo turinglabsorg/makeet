@@ -35,6 +35,24 @@ final class AccountAPITests: XCTestCase, @unchecked Sendable {
         addTeardownBlock { process.terminate(); process.waitUntilExit() }
         return (process, URL(string: "http://127.0.0.1:\(number)")!)
     }
+    func testPasswordLoginPersistsSessionAndEnrollmentStaysBoundToAccount() async throws {
+        let (_, url) = try server()
+        let storage = TestSessionStorage(nil)
+        let api = try AccountAPI(baseURL: url, storage: storage)
+        let available = try await api.passwordEnabled(); XCTAssertTrue(available)
+        let user = try await api.passwordLogin(identifier: "qa.user", password: "fixture password for testing")
+        XCTAssertEqual(user.id, accountID); XCTAssertNotNil(storage.load())
+        let status = try await api.passwordStatus(userID: accountID); XCTAssertEqual(status.username, "qa.user")
+        do {
+            _ = try await api.requestPassword(username: "qa.user", email: "qa@example.invalid", password: "fixture password for testing", language: "en", userID: UUID())
+            XCTFail("Cross-account credential enrollment accepted")
+        } catch AccountAPIError.signedOut {}
+        do {
+            try await api.confirmPassword(requestID: "fixture-request", code: "00000000", userID: accountID)
+            XCTFail("Invalid code accepted")
+        } catch AccountAPIError.response(400, _) {}
+        let retained = await api.currentUser(); XCTAssertEqual(retained?.id, accountID)
+    }
     func testConcurrentRequestsRotateOncePersistThenUseReplacementOverHTTP() async throws {
         let (_, url) = try server()
         let storage = TestSessionStorage(StoredSession(tokens: try tokens(), now: .distantPast))

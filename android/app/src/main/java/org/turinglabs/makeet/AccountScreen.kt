@@ -21,6 +21,7 @@ import java.time.Instant
 
 @Composable fun AccountScreen(model: MakeetModel, state: ScreenState) {
     val context = LocalContext.current; val scope = rememberCoroutineScope()
+    var passwordAccess by remember { mutableStateOf(false) }
     var busy by remember { mutableStateOf(false) }
     var profile by remember { mutableStateOf(false) }; var deleting by remember { mutableStateOf(false) }
     var importing by remember { mutableStateOf(false) }; var archive by remember { mutableStateOf(false) }
@@ -39,7 +40,7 @@ import java.time.Instant
         item { CardBox {
             if(state.user == null) {
                 Text(t("Your private archive, synced for free."), style = MaterialTheme.typography.headlineSmall)
-                Text(t("No new password. No public profile."))
+                Text(t("Your account and progress stay private."))
                 ProviderButtons(model)
                 Text(t("Each account has a separate archive. Signing in never uploads local or demo data automatically."), style = MaterialTheme.typography.bodySmall)
             } else {
@@ -52,6 +53,7 @@ import java.time.Instant
                 Text(t(if(state.syncing) "Syncing" else if(state.synced) "Connected to Makeet" else "Sync is paused. Your progress stays on this device; we’ll retry when connected."))
                 OutlinedButton(model::synchronize, enabled = !state.syncing) { Text(t("Sync now")) }
                 if(model.localHasData()) TextButton({ importing = true }) { Text(t("Import local archive")) }
+                if(state.passwordEnabled) OutlinedButton({ passwordAccess = true }) { Text(t("Username and password")) }
                 TextButton(model::logout) { Text(t("Sign out")) }
             }
         } }
@@ -71,6 +73,7 @@ import java.time.Instant
             if(state.user != null) TextButton({ deleting = true }) { Text(t("Delete account"), color = MaterialTheme.colorScheme.error) }
         } }
     }
+    if(passwordAccess && state.user != null) PasswordAccess(model, state.user.id, { passwordAccess = false }) { passwordAccess = false }
     if(profile) ProfileEditor(model, state, { profile = false })
     if(exportFailed) AlertDialog(onDismissRequest = { exportFailed = false }, title = { Text(t("Couldn’t save")) }, text = { Text(t("Your progress is retained. Check your connection or reopen this screen and try again.")) }, confirmButton = { TextButton({ exportFailed = false }) { Text(t("OK")) } })
     if(archive) FullScreen(t("Archived habits"), { archive = false }) {

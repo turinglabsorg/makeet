@@ -65,11 +65,27 @@ class AccountAPI(private val storage: SessionStorage, private val baseURL: Strin
     @Volatile private var session: JSONObject? = runCatching { storage.load() }.getOrElse { sessionLoadFailed = true; null }
     private var generation = UUID.randomUUID()
     fun user(): User? = session?.getJSONObject("user")?.let { User(UUID.fromString(it.getString("id")).toString(), it.getString("email")) }
-    suspend fun appleEnabled() = send("GET", "/v1/config").optBoolean("apple_android_enabled", false)
+    suspend fun passwordEnabled() = send("GET", "/v1/config").optBoolean("password_enabled", false)
     suspend fun challenge(provider: String = "google") = send("POST", "/v1/auth/challenges", JSONObject().put("provider", provider))
-    suspend fun startApple(challenge: JSONObject, proof: String, language: String) = send("POST", "/v1/auth/apple/start", JSONObject()
-        .put("challenge_id", challenge.getString("id")).put("code_challenge", proof).put("language", language))
-    suspend fun pollApple(id: String, verifier: String) = send("POST", "/v1/auth/apple/result", JSONObject().put("id", id).put("code_verifier", verifier))
+    suspend fun passwordLogin(identifier: String, password: String): User = mutex.withLock {
+        val response = send("POST", "/v1/auth/password/login", JSONObject().put("identifier", identifier).put("password", password))
+        currentCoroutineContext().ensureActive()
+        install(response); generation = UUID.randomUUID(); user()!!
+    }
+    suspend fun requestPassword(username: String, email: String, password: String, language: String, expectedUser: String?): String {
+        val body = JSONObject().put("username", username).put("email", email).put("password", password).put("language", language)
+        val response = if(expectedUser == null) send("POST", "/v1/auth/password/register", body)
+            else authenticated("POST", "/v1/me/password", expectedUser, body)
+        return response.getString("request_id")
+    }
+    suspend fun recoverPassword(identifier: String, language: String): String = send("POST", "/v1/auth/password/recover",
+        JSONObject().put("identifier", identifier).put("language", language)).getString("request_id")
+    suspend fun confirmPassword(id: String, code: String, password: String, expectedUser: String?) {
+        val body = JSONObject().put("request_id", id).put("code", code).put("password", password)
+        if(expectedUser == null) send("POST", "/v1/auth/password/confirm", body)
+        else authenticated("POST", "/v1/me/password/confirm", expectedUser, body)
+    }
+    suspend fun passwordStatus(expectedUser: String) = authenticated("GET", "/v1/me/password", expectedUser)
     suspend fun exchange(challenge: JSONObject, token: String, provider: String = "google", code: String = ""): User = mutex.withLock {
         val response = send("POST", "/v1/auth/exchange", JSONObject().put("provider", provider)
             .put("challenge_id", challenge.getString("id")).put("id_token", token).put("authorization_code", code))

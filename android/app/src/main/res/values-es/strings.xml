@@ -1,6 +1,7 @@
 <resources>
     <string name="s_5d1d13e5a51e" formatted="false">12 semanas</string>
     <string name="s_56a795b7bdce" formatted="false">28 días</string>
+    <string name="s_c69e83a43dc3" formatted="false">De 3 a 32 caracteres: letras sin acento, números, punto, guion o guion bajo.</string>
     <string name="s_7f920bb639c9" formatted="false">7 días</string>
     <string name="s_49a8d9011ac8" formatted="false">Un ejemplo de tu día</string>
     <string name="s_e439c98fe594" formatted="false">Un plan basado en tus progresos, los días elegidos y los eventos del calendario.</string>
@@ -13,6 +14,7 @@
     <string name="s_61a0e241683c" formatted="false">Todos los días elegidos están planificados, completados o sin huecos libres entre las 7 y las 22. Puedes cambiar el período o las preferencias.</string>
     <string name="s_07119d34d752" formatted="false">Permitir acceso al calendario</string>
     <string name="s_d53d5c49ea41" formatted="false">Permitir valores negativos</string>
+    <string name="s_ec73a3d028bc" formatted="false">¿Ya tienes una cuenta? Añade credenciales en Cuenta en el dispositivo donde has iniciado sesión para conservar tus avances.</string>
     <string name="s_92845e68d53f" formatted="false">¿Ya tienes hábitos en este dispositivo? Después de entrar decides si quieres importarlos.</string>
     <string name="s_b0bc62fd661c" formatted="false">Eliminar también los bloques futuros de Makeet</string>
     <string name="s_49e96d7cdf58" formatted="false">Cantidad</string>
@@ -29,12 +31,14 @@
     <string name="s_a1977617a775" formatted="false">Calendario y notificaciones son opcionales. Actívalos más adelante con tu permiso.</string>
     <string name="s_19766ed6ccb2" formatted="false">Cancelar</string>
     <string name="s_b25c85e885b1" formatted="false">Los cambios de objetivo y días también se aplican a las estadísticas pasadas. Las cantidades registradas no cambian.</string>
+    <string name="s_79805562c5e6" formatted="false">Comprueba tus datos o el código y vuelve a intentarlo. Tu archivo se conserva.</string>
     <string name="s_98dc94810d88" formatted="false">Elige un hábito, la cantidad que quieres alcanzar y tu momento ideal. Al resto le damos forma juntos.</string>
     <string name="s_2805f1b82745" formatted="false">Elige un límite, incluso cero. Las cantidades superiores cuentan como penalización. Confirma cero para registrar un día sin ocurrencias.</string>
     <string name="s_118fb65601f7" formatted="false">Elegir una foto</string>
     <string name="s_5d5aefaef90f" formatted="false">Elige qué versión conservar. Ningún cambio se descarta automáticamente.</string>
     <string name="s_6b73191a0a4b" formatted="false">Color</string>
     <string name="s_d4aa365fc311" formatted="false">Confirmar y crear eventos</string>
+    <string name="s_589c584b0d72" formatted="false">Confirmar código</string>
     <string name="s_4ca48b4230a5" formatted="false">Confirmar importación</string>
     <string name="s_6132bd8d4447" formatted="false">Confirmar el plan</string>
     <string name="s_819b0f4d4418" formatted="false">Confirmar cero</string>
@@ -46,14 +50,15 @@
     <string name="s_d1b838382467" formatted="false">Tener en cuenta los compromisos de</string>
     <string name="s_31fbef162594" formatted="false">Continuar</string>
     <string name="s_da074c6da9c8" formatted="false">Continuar en este dispositivo</string>
-    <string name="s_340ac4c3fd1f" formatted="false">Continuar con Apple</string>
     <string name="s_cce937e89144" formatted="false">Continuar con Google</string>
     <string name="s_500c1238de89" formatted="false">Copia solo tu progreso local real a la cuenta actual. El archivo original permanece en este dispositivo.</string>
     <string name="s_f1bc81c12ece" formatted="false">No se ha podido completar la acción</string>
     <string name="s_a018b7a8a188" formatted="false">No se ha podido guardar</string>
     <string name="s_4759498ac2a7" formatted="false">Crear</string>
     <string name="s_8149e54cc778" formatted="false">Crea un hábito en Hoy para empezar a medirlo.</string>
+    <string name="s_798ca2ce18bf" formatted="false">Crear cuenta</string>
     <string name="s_23cbd1796681" formatted="false">Crear los bloques en</string>
+    <string name="s_9a35a12e27e3" formatted="false">Credenciales guardadas. También puedes usarlas en tu otro dispositivo.</string>
     <string name="s_0811d862679a" formatted="false">Recordatorio diario</string>
     <string name="s_8d834c41b129" formatted="false">Objetivo diario</string>
     <string name="s_a2e20a335700" formatted="false">Eliminar cuenta</string>
@@ -81,11 +86,13 @@
     <string name="s_9c80b04be554" formatted="false">Exportar tus datos</string>
     <string name="s_2046ba7c9cf3" formatted="false">Encuentra tu momento</string>
     <string name="s_5a58184f4a38" formatted="false">Por ejemplo: beber agua</string>
+    <string name="s_bb42f8cd525d" formatted="false">He olvidado mi contraseña</string>
     <string name="s_b885a8a77fac" formatted="false">Hueco libre en los calendarios seleccionados.</string>
     <string name="s_691364dcb16e" formatted="false">Vasos, páginas, minutos: añade cantidades y corrígelas cuando haga falta.</string>
     <string name="s_f0063b808736" formatted="false">Hora</string>
     <string name="s_272c737e3330" formatted="false">Cuánto, día a día</string>
     <string name="s_a35abcd6dac9" formatted="false">Icono</string>
+    <string name="s_ea103c3ca5d6" formatted="false">Si la solicitud es válida, recibirás un código por correo. Caduca en 15 minutos. Revisa también el correo no deseado.</string>
     <string name="s_0cf00f99e0e2" formatted="false">Vista ilustrativa</string>
     <string name="s_e8380369af18" formatted="false">¿Importar a esta cuenta?</string>
     <string name="s_85fe351711d0" formatted="false">Importar archivo local</string>
@@ -108,7 +115,6 @@
     <string name="s_9b8af7141f6e" formatted="false">No hay calendarios configurados en este dispositivo. Añade una cuenta en tu app de calendario y actualiza.</string>
     <string name="s_21c46e27fcaa" formatted="false">No hay eventos en los calendarios seleccionados.</string>
     <string name="s_2c0ef8bf3e7e" formatted="false">No tienes hábitos programados. En Calendario puedes ver y corregir todos tus progresos.</string>
-    <string name="s_7d59634f2802" formatted="false">Sin nueva contraseña. Sin perfil público.</string>
     <string name="s_b318eca70643" formatted="false">Sin registro. Tu progreso se queda aquí. Puedes iniciar sesión cuando quieras.</string>
     <string name="s_f0406a0e7eb1" formatted="false">No permitidas</string>
     <string name="s_bc1c29a467ae" formatted="false">Sin confirmar</string>
@@ -119,6 +125,8 @@
     <string name="s_040f8f2e203d" formatted="false">Solo en este dispositivo</string>
     <string name="s_0664f9436952" formatted="false">Abre Makeet para acceder a tus datos.</string>
     <string name="s_97e14081dd4d" formatted="false">Los recordatorios opcionales funcionan en este dispositivo. No contienen nombres de hábitos. Android gestiona la hora de entrega.</string>
+    <string name="s_e7cf3ef4f17c" formatted="false">Contraseña</string>
+    <string name="s_f1224daf2aea" formatted="false">El acceso con contraseña no está disponible temporalmente. Inténtalo más tarde.</string>
     <string name="s_241c75409278" formatted="false">Penalización</string>
     <string name="s_13ae4c193d33" formatted="false">Hora preferida</string>
     <string name="s_6a2769502a5d" formatted="false">Mes anterior</string>
@@ -127,20 +135,27 @@
     <string name="s_ac8a73189fe3" formatted="false">Foto de perfil</string>
     <string name="s_2068b81b75d4" formatted="false">Alcanzar</string>
     <string name="s_9b9a8d05a7ec" formatted="false">Leer</string>
+    <string name="s_21b0f25a6f0d" formatted="false">Recuperar contraseña</string>
+    <string name="s_35e41faf666a" formatted="false">Correo de recuperación</string>
     <string name="s_0e9161011702" formatted="false">Actualizar</string>
     <string name="s_1e4d3096cccb" formatted="false">Actualizar propuestas</string>
     <string name="s_3e7cfd6da8bd" formatted="false">Hora del recordatorio</string>
     <string name="s_7e8c35b8edff" formatted="false">Quitar un paso</string>
     <string name="s_f46512ab2099" formatted="false">Quitar foto</string>
     <string name="s_ec0d28399ae9" formatted="false">Solo elimina los eventos futuros vinculados a este hábito en calendarios editables. Los demás eventos se conservan.</string>
+    <string name="s_b74070f90e8c" formatted="false">Repetir contraseña</string>
     <string name="s_a0397f6dfd88" formatted="false">Los días de descanso no interrumpen las rachas ni cuentan como objetivos incumplidos.</string>
     <string name="s_a76e13b98392" formatted="false">Restaurar</string>
     <string name="s_85a115aafbb6" formatted="false">Revisar y añadir todo</string>
     <string name="s_1509f561f241" formatted="false">Guardar</string>
+    <string name="s_66a5b4090d14" formatted="false">Enviar código</string>
     <string name="s_d0ef86e220fc" formatted="false">Enviar notificación de prueba</string>
     <string name="s_404e46687360" formatted="false">Duración de la sesión (minutos)</string>
     <string name="s_053b3f4034fd" formatted="false">Poner a cero</string>
+    <string name="s_bfd402b2f6f3" formatted="false">Acceder</string>
+    <string name="s_bedac809a0ca" formatted="false">Acceder con contraseña</string>
     <string name="s_48f0d3d397d4" formatted="false">Cerrar sesión</string>
+    <string name="s_962e64b76196" formatted="false">Empezar de nuevo</string>
     <string name="s_8169693101a4" formatted="false">Fecha de inicio</string>
     <string name="s_87f8d815f10f" formatted="false">Hora orientativa: calendario sin conectar.</string>
     <string name="s_be91940b79f4" formatted="false">Soporte</string>
@@ -154,11 +169,18 @@
     <string name="s_f394479f90ef" formatted="false">Este hábito ha cambiado. Cierra y vuelve a abrir el editor antes de guardar.</string>
     <string name="s_149b431b8e77" formatted="false">Se eliminará permanentemente el hábito y todos sus registros. Esta acción no se puede deshacer.</string>
     <string name="s_ab099184fe74" formatted="false">Bloque planificado por la app. La realización del hábito se registra por separado.</string>
+    <string name="s_7874d9e66d40" formatted="false">Para cambiar la contraseña, cierra sesión y elige He olvidado mi contraseña. Se cerrarán tus sesiones anteriores.</string>
     <string name="s_2b065c7c9ce4" formatted="false">Hoy</string>
+    <string name="s_2ec9ffbe70ff" formatted="false">Demasiados intentos. Espera y vuelve a intentarlo.</string>
     <string name="s_e856c6c6a48b" formatted="false">Evolución</string>
     <string name="s_a8283ade3185" formatted="false">Deshacer registro</string>
     <string name="s_f40d6125934b" formatted="false">Unidad, p. ej. vasos, páginas, minutos</string>
+    <string name="s_f1390589dc33" formatted="false">Usa entre 15 y 128 caracteres. Puedes usar una frase con espacios.</string>
     <string name="s_acb794853b07" formatted="false">Usar la versión sincronizada</string>
+    <string name="s_e3b89e9d33f8" formatted="false">Nombre de usuario</string>
+    <string name="s_e3db92128adf" formatted="false">Usuario y contraseña</string>
+    <string name="s_2d4a46f36888" formatted="false">Usuario o correo</string>
+    <string name="s_3ee75029c70e" formatted="false">Código de verificación</string>
     <string name="s_a12ac84d49b6" formatted="false">Qué tienes que hacer los próximos días</string>
     <string name="s_c0fcac132ef6" formatted="false">Qué tienes que hacer hoy</string>
     <string name="s_4ff3a32fe763" formatted="false">¿Dónde guardamos tu progreso?</string>
@@ -169,6 +191,7 @@
     <string name="s_19a1feef2e5f" formatted="false">Puedes corregir días anteriores desde la fecha de inicio del hábito.</string>
     <string name="s_717e7f098d94" formatted="false">Hoy puedes descansar</string>
     <string name="s_0aa839bf9b60" formatted="false">Tu cuenta y tus datos se eliminarán definitivamente del servicio. Esta acción no se puede deshacer.</string>
+    <string name="s_1a8919de2a23" formatted="false">Tu cuenta y tus avances siguen siendo privados.</string>
     <string name="s_a1cdccff3934" formatted="false">Tu cuenta se eliminó del servicio. Reinicia la app para terminar de limpiar el archivo de este dispositivo.</string>
     <string name="s_436f97b16f9b" formatted="false">Tu hábito</string>
     <string name="s_2c6b2e253c01" formatted="false">Tu nombre</string>

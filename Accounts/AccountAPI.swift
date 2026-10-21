@@ -24,6 +24,12 @@ public enum AccountAPIError: Error, Sendable {
     case conflict([SyncRecord])
 }
 
+public struct PasswordAccessStatus: Decodable, Sendable {
+    public let enabled: Bool
+    public let username: String
+    public let email: String
+}
+
 public actor AccountAPI {
     private let baseURL: URL
     private let http: URLSession
@@ -45,6 +51,46 @@ public actor AccountAPI {
         struct Config: Decodable { let providers: [String] }
         let data = try await send("GET", "/v1/config")
         return try AccountCoding.decoder().decode(Config.self, from: data).providers
+    }
+    public func passwordEnabled() async throws -> Bool {
+        struct Config: Decodable { let password_enabled: Bool? }
+        return try AccountCoding.decoder().decode(Config.self, from: await send("GET", "/v1/config")).password_enabled ?? false
+    }
+    public func passwordLogin(identifier: String, password: String) async throws -> AccountUser {
+        let epoch = generation
+        let body = try AccountCoding.encoder().encode(["identifier": identifier, "password": password])
+        let data = try await send("POST", "/v1/auth/password/login", body: body)
+        let next = StoredSession(tokens: try AccountCoding.decoder().decode(AccountTokens.self, from: data))
+        guard epoch == generation, !Task.isCancelled else { throw AccountAPIError.signedOut }
+        try storage.save(next); generation = UUID(); session = next
+        refreshing?.cancel(); refreshing = nil
+        return next.tokens.user
+    }
+    public func requestPassword(username: String, email: String, password: String, language: String, userID: UUID? = nil) async throws -> String {
+        struct Response: Decodable { let request_id: String }
+        let body = try AccountCoding.encoder().encode(["username": username, "email": email, "password": password, "language": language])
+        let data: Data
+        if let userID {
+            guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+            data = try await authenticated("POST", "/v1/me/password", body: body)
+        } else { data = try await send("POST", "/v1/auth/password/register", body: body) }
+        return try AccountCoding.decoder().decode(Response.self, from: data).request_id
+    }
+    public func recoverPassword(identifier: String, language: String) async throws -> String {
+        struct Response: Decodable { let request_id: String }
+        let body = try AccountCoding.encoder().encode(["identifier": identifier, "language": language])
+        return try AccountCoding.decoder().decode(Response.self, from: await send("POST", "/v1/auth/password/recover", body: body)).request_id
+    }
+    public func confirmPassword(requestID: String, code: String, password: String = "", userID: UUID? = nil) async throws {
+        let body = try AccountCoding.encoder().encode(["request_id": requestID, "code": code, "password": password])
+        if let userID {
+            guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+            _ = try await authenticated("POST", "/v1/me/password/confirm", body: body)
+        } else { _ = try await send("POST", "/v1/auth/password/confirm", body: body) }
+    }
+    public func passwordStatus(userID: UUID) async throws -> PasswordAccessStatus {
+        guard session?.tokens.user.id == userID else { throw AccountAPIError.signedOut }
+        return try AccountCoding.decoder().decode(PasswordAccessStatus.self, from: await authenticated("GET", "/v1/me/password"))
     }
     public func billingEnabled() async throws -> Bool {
         struct Config: Decodable { let billing_enabled: Bool? }

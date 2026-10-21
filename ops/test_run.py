@@ -27,7 +27,7 @@ class LauncherTests(unittest.TestCase):
             'import json, os\n'
             'print(json.dumps({key: os.getenv(key) for key in '
             '["MAKEET_APPLE_WEB_CLIENT_ID", "MAKEET_APPLE_CLIENT_IDS", '
-            '"MAKEET_LISTEN", "MAKEET_DATABASE"]}))\n')
+            '"MAKEET_LISTEN", "MAKEET_DATABASE", "MAKEET_EMAIL_FROM"]}))\n')
         binary.chmod(0o700)
 
     def test_default_and_configured_web_signin_reach_child(self):
@@ -48,6 +48,17 @@ class LauncherTests(unittest.TestCase):
             output = json.loads(result.stdout)
             self.assertEqual(output['MAKEET_APPLE_WEB_CLIENT_ID'], values['MAKEET_APPLE_WEB_CLIENT_ID'])
             self.assertEqual(output['MAKEET_APPLE_CLIENT_IDS'], values['MAKEET_APPLE_CLIENT_IDS'])
+
+    def test_email_sender_reaches_child_but_secret_config_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            service = Path(tmp)
+            self.make_service(service)
+            result = self.launch(service, {'MAKEET_EMAIL_FROM': 'noreply@noreply.makeet.app'})
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(json.loads(result.stdout)['MAKEET_EMAIL_FROM'], 'noreply@noreply.makeet.app')
+            result = self.launch(service, {'MAKEET_RESEND_API_KEY': 'fixture-secret'})
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(result.stdout, '')
 
     def test_unknown_nonstring_or_public_config_never_launches(self):
         with tempfile.TemporaryDirectory() as tmp:
