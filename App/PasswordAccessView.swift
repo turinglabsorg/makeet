@@ -5,6 +5,7 @@ struct PasswordAccessView: View {
     @Environment(AccountManager.self) private var account
     @State var mode: Mode = .login
     let userID: UUID?
+    @Binding var submitting: Bool
     var completed: () -> Void = {}
     @State private var identifier = ""
     @State private var username = ""
@@ -15,7 +16,6 @@ struct PasswordAccessView: View {
     @State private var requestID: String?
     @State private var message: String?
     @State private var saved = false
-    @State private var submitting = false
     private enum Field: Hashable { case identifier, username, email, password, repeated, code }
     @FocusState private var focusedField: Field?
     @State private var existing: PasswordAccessStatus?
@@ -91,14 +91,16 @@ struct PasswordAccessView: View {
     }
     private var passwordFields: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SecureField(String(localized: "Password", bundle: AppLanguage.bundle, locale: AppLanguage.locale), text: $password)
-                .textContentType(mode == .login ? .password : .newPassword).focused($focusedField, equals: .password).accessibilityIdentifier("passwordValue")
+            secureField(String(localized: "Password", bundle: AppLanguage.bundle, locale: AppLanguage.locale), text: $password, field: .password, identifier: "passwordValue")
             if mode != .login {
-                SecureField(String(localized: "Ripeti password", bundle: AppLanguage.bundle, locale: AppLanguage.locale), text: $repeatedPassword)
-                    .textContentType(.newPassword).focused($focusedField, equals: .repeated).accessibilityIdentifier("passwordRepeat")
+                secureField(String(localized: "Ripeti password", bundle: AppLanguage.bundle, locale: AppLanguage.locale), text: $repeatedPassword, field: .repeated, identifier: "passwordRepeat")
                 Text(String(localized: "Usa da 15 a 128 caratteri. Puoi usare una frase con spazi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.caption)
             }
         }
+    }
+    private func secureField(_ title: String, text: Binding<String>, field: Field, identifier: String) -> some View {
+        SecureField(title, text: text).textContentType(mode == .login ? .password : .newPassword)
+            .focused($focusedField, equals: field).accessibilityIdentifier(identifier).frame(minHeight: 44)
     }
     private var title: String {
         switch mode {
@@ -120,9 +122,11 @@ struct PasswordAccessView: View {
     }
     private var validNewPassword: Bool { password.unicodeScalars.count >= 15 && password.unicodeScalars.count <= 128 && password == repeatedPassword }
     private func changeMode(_ next: Mode) {
+        focusedField = nil
         mode = next; requestID = nil; password = ""; repeatedPassword = ""; code = ""; message = nil
     }
     @MainActor private func submit() async {
+        guard !submitting else { return }
         submitting = true; message = nil; defer { submitting = false }
         do {
             if let requestID {
@@ -149,5 +153,33 @@ struct PasswordAccessView: View {
                 message = String(localized: "Controlla i dati o il codice e riprova. Il tuo archivio è conservato.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)
             }
         }
+    }
+}
+
+
+struct PasswordAccessSheet: View {
+    @Environment(AccountManager.self) private var account
+    @Environment(\.dismiss) private var dismiss
+    @State private var submitting = false
+    var mode: PasswordAccessView.Mode = .login
+    let userID: UUID?
+    let completed: () -> Void
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                PasswordAccessView(mode: mode, userID: userID, submitting: $submitting, completed: completed)
+                    .padding(16).frame(maxWidth: 520).frame(maxWidth: .infinity)
+            }.journalBackground()
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { dismiss() }
+                            .disabled(submitting || account.working).accessibilityIdentifier("passwordCancel")
+                    }
+                }
+        }.interactiveDismissDisabled(submitting || account.working)
+        #if os(macOS)
+        .frame(minWidth: 420, minHeight: 550)
+        #endif
     }
 }

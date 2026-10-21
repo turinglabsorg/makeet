@@ -22,10 +22,11 @@ struct PlannerView: View {
     var body: some View {
         let proposed = proposals
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                Label(String(localized: "IL TUO ASSISTENTE", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "sparkles").font(.caption.weight(.semibold)).tracking(1.5)
-                Text(String(localized: "Una giornata che\nfa spazio a te.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.system(.largeTitle, design: .default, weight: .semibold))
-                Text(String(localized: "Un piano che parte dai tuoi progressi, dai giorni scelti e dagli impegni in calendario.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).foregroundStyle(.secondary)
+            VStack(alignment: .leading, spacing: 12) {
+                Text(String(localized: "Un piano che parte dai tuoi progressi, dai giorni scelti e dagli impegni in calendario.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).font(.subheadline).foregroundStyle(.secondary)
+                if habits.contains(where: \.isDemo) {
+                    Label(String(localized: "Dati dimostrativi", bundle: AppLanguage.bundle, locale: AppLanguage.locale), systemImage: "flask").font(.caption).foregroundStyle(.secondary)
+                }
                 if !calendar.authorized {
                     HStack(alignment: .top, spacing: 14) {
                         Image(systemName: "calendar.badge.plus").font(.title2)
@@ -51,7 +52,10 @@ struct PlannerView: View {
                     Text(String(localized: "4 settimane", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).tag(28)
                 }.pickerStyle(.segmented).accessibilityIdentifier("planningHorizon")
                 if !proposed.isEmpty {
-                    Button(String(localized: "Rivedi e aggiungi tutto", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { batch = PlanBatch(proposals: proposed) }
+                    Button { batch = PlanBatch(proposals: proposed) } label: {
+                        Text(String(localized: "Rivedi e aggiungi tutto", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                            .foregroundStyle(.white).frame(maxWidth: .infinity, minHeight: 32)
+                    }
                         .buttonStyle(.borderedProminent).disabled(!calendar.authorized).accessibilityIdentifier("reviewFuturePlan")
                 }
                 HStack {
@@ -84,7 +88,7 @@ struct PlannerView: View {
                 }
                 ForEach(proposed) { proposal in
                     if let habit = habits.first(where: { $0.id == proposal.habitID }) {
-                        VStack(alignment: .leading, spacing: 16) {
+                        VStack(alignment: .leading, spacing: 8) {
                             HStack(alignment: .top, spacing: 16) {
                                 VStack(alignment: .leading, spacing: 3) {
                                     Text(proposal.start.formatted(.dateTime.day().month(.abbreviated).locale(AppLanguage.locale))).font(.caption).foregroundStyle(.secondary)
@@ -100,14 +104,17 @@ struct PlannerView: View {
                                 }
                                 Spacer(minLength: 0)
                             }.fixedSize(horizontal: false, vertical: true)
-                            Button(String(localized: "Rivedi e aggiungi al calendario", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { reviewing = proposal }
+                            Button { reviewing = proposal } label: {
+                                Text(String(localized: "Rivedi e aggiungi al calendario", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                                    .frame(maxWidth: .infinity, minHeight: 32)
+                            }
                                 .buttonStyle(.bordered).disabled(!calendar.authorized)
                         }.journalCard()
                     }
                 }
                 Text(String(localized: "Le proposte sono calcolate sul dispositivo. Dopo almeno 5 registrazioni precedenti a oggi, l’assistente considera l’ora in cui registri più spesso negli ultimi 28 giorni. Un blocco in agenda non completa un’abitudine.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .font(.caption).foregroundStyle(.secondary)
-            }.padding(24).frame(maxWidth: 650)
+            }.padding(16).frame(maxWidth: 650)
         }.journalBackground().navigationTitle(String(localized: "Il tuo piano", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
@@ -193,12 +200,13 @@ struct ConnectionsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var editingProfile = false
     @State private var editingPassword = false
+    @State private var signingInWithPassword = false
     @State private var deletingAccount = false
     @State private var importingArchive = false
     var body: some View {
         NavigationStack {
             Form {
-                AccountSettingsSection(deleting: $deletingAccount, importing: $importingArchive, editingProfile: $editingProfile, editingPassword: $editingPassword)
+                AccountSettingsSection(deleting: $deletingAccount, importing: $importingArchive, editingProfile: $editingProfile, editingPassword: $editingPassword, signingInWithPassword: $signingInWithPassword)
                 LanguageSettingsSection()
                 Section {
                     Text(String(localized: "Tutte le funzioni sono gratuite, inclusa la sincronizzazione con un account.", bundle: AppLanguage.bundle, locale: AppLanguage.locale)).accessibilityIdentifier("freeAccessInfo")
@@ -264,13 +272,11 @@ struct ConnectionsView: View {
         .alert(String(localized: "Operazione non riuscita", bundle: AppLanguage.bundle, locale: AppLanguage.locale), isPresented: Binding(get: { exportError != nil }, set: { if !$0 { exportError = nil } })) {
             Button(String(localized: "OK", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { exportError = nil }
         } message: { Text(exportError ?? "") }
+        .sheet(isPresented: $signingInWithPassword) {
+            PasswordAccessSheet(userID: nil) { signingInWithPassword = false }
+        }
         .sheet(isPresented: $editingPassword) {
-            if let id = account.user?.id {
-                NavigationStack {
-                    ScrollView { PasswordAccessView(mode: .enroll, userID: id, completed: { editingPassword = false }).padding(24) }
-                        .toolbar { ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Annulla", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { editingPassword = false }.disabled(account.working) } }
-                }.interactiveDismissDisabled(account.working)
-            }
+            if let id = account.user?.id { PasswordAccessSheet(mode: .enroll, userID: id) { editingPassword = false } }
         }
         .sheet(isPresented: $editingProfile) {
             if let profile = account.profile { ProfileEditorView(service: profile) }

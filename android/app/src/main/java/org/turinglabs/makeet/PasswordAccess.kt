@@ -7,6 +7,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
@@ -27,6 +28,9 @@ import kotlinx.coroutines.launch
     var saved by remember { mutableStateOf(false) }
     var existing by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
+    val scroll = rememberScrollState()
+    val focus = LocalFocusManager.current
+    LaunchedEffect(mode, requestID) { focus.clearFocus(); scroll.scrollTo(0) }
     LaunchedEffect(userID) {
         if(userID != null) {
             busy = true
@@ -36,10 +40,10 @@ import kotlinx.coroutines.launch
             finally { busy = false }
         }
     }
-    fun restart(next: String) { mode = next; password = ""; repeated = ""; code = ""; requestID = null; error = null }
+    fun restart(next: String) { focus.clearFocus(); mode = next; password = ""; repeated = ""; code = ""; requestID = null; error = null }
     val title = when(mode) { "register" -> "Create account"; "recover" -> "Recover password"; "enroll" -> "Username and password"; else -> "Sign in with password" }
     FullScreen(t(title), { if(!busy) close() }) {
-        Column(Modifier.fillMaxSize().imePadding().verticalScroll(rememberScrollState()).padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        Column(Modifier.fillMaxSize().imePadding().verticalScroll(scroll).padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
             if(saved) {
                 Text(t("Credentials saved. You can use them on your other device too."))
                 Button(completed) { Text(t("Done")) }
@@ -73,7 +77,7 @@ import kotlinx.coroutines.launch
                     mode == "recover" -> identifier.isNotBlank()
                     else -> username.length >= 3 && email.contains("@") && validPassword
                 }
-                Button(onClick = { scope.launch {
+                Button(onClick = { focus.clearFocus(); scope.launch {
                     busy = true; error = null
                     try {
                         val id = requestID

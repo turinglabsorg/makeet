@@ -45,6 +45,7 @@ type Server struct {
 	webMu         sync.Mutex
 	webFlows      map[string]*appleWebFlow
 	passwordSlots chan struct{}
+	mailSlots     chan struct{}
 }
 type bucket struct {
 	start time.Time
@@ -66,7 +67,7 @@ func New(db *sql.DB, cfg Config) *Server {
 	if cfg.Clock == nil {
 		cfg.Clock = time.Now
 	}
-	return &Server{db: db, cfg: cfg, limits: make(map[string]bucket), webFlows: make(map[string]*appleWebFlow), passwordSlots: make(chan struct{}, 2)}
+	return &Server{db: db, cfg: cfg, limits: make(map[string]bucket), webFlows: make(map[string]*appleWebFlow), passwordSlots: make(chan struct{}, 2), mailSlots: make(chan struct{}, 32)}
 }
 func (s *Server) Handler() http.Handler {
 	mux := http.NewServeMux()

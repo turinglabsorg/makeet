@@ -13,6 +13,7 @@ import (
 	"net/mail"
 	"regexp"
 	"strings"
+	"time"
 	"unicode/utf8"
 
 	"github.com/google/uuid"
@@ -70,13 +71,23 @@ func passwordMatches(value, encoded string) bool {
 	key := argon2.IDKey([]byte(value), salt, 3, 64*1024, 2, 32)
 	return subtle.ConstantTimeCompare(key, expected) == 1 && valid
 }
-func (s *Server) passwordAvailable(w http.ResponseWriter) bool {
+func (s *Server) passwordAvailable(w http.ResponseWriter, sending ...bool) bool {
 	if s.cfg.Mailer == nil {
 		fail(w, 503, "password_not_configured")
 		return false
 	}
 	select {
 	case s.passwordSlots <- struct{}{}:
+		if len(sending) > 0 && sending[0] {
+			select {
+			case s.mailSlots <- struct{}{}:
+			default:
+				<-s.passwordSlots
+				w.Header().Set("Retry-After", "5")
+				fail(w, 429, "rate_limited")
+				return false
+			}
+		}
 		return true
 	default:
 		w.Header().Set("Retry-After", "5")
@@ -91,10 +102,16 @@ func (s *Server) passwordEnroll(w http.ResponseWriter, r *http.Request, p princi
 	s.passwordStart(w, r, "enroll", p.UserID)
 }
 func (s *Server) passwordStart(w http.ResponseWriter, r *http.Request, kind, userID string) {
-	if !s.passwordAvailable(w) {
+	if !s.passwordAvailable(w, true) {
 		return
 	}
-	defer func() { <-s.passwordSlots }()
+	queued := false
+	defer func() {
+		<-s.passwordSlots
+		if !queued {
+			<-s.mailSlots
+		}
+	}()
 	var req passwordRequest
 	if !decode(w, r, &req) {
 		return
@@ -110,13 +127,19 @@ func (s *Server) passwordStart(w http.ResponseWriter, r *http.Request, kind, use
 		internal(w, err)
 		return
 	}
-	s.createPasswordRequest(w, r, kind, userID, req, encoded, 0)
+	queued = s.createPasswordRequest(w, r, kind, userID, req, encoded, 0)
 }
 func (s *Server) passwordRecover(w http.ResponseWriter, r *http.Request) {
-	if !s.passwordAvailable(w) {
+	if !s.passwordAvailable(w, true) {
 		return
 	}
-	defer func() { <-s.passwordSlots }()
+	queued := false
+	defer func() {
+		<-s.passwordSlots
+		if !queued {
+			<-s.mailSlots
+		}
+	}()
 	var req struct {
 		Identifier string `json:"identifier"`
 		Language   string `json:"language"`
@@ -141,63 +164,63 @@ func (s *Server) passwordRecover(w http.ResponseWriter, r *http.Request) {
 		internal(w, err)
 		return
 	}
-	s.createPasswordRequest(w, r, "recover", userID, out, "", version)
+	queued = s.createPasswordRequest(w, r, "recover", userID, out, "", version)
 }
-func (s *Server) createPasswordRequest(w http.ResponseWriter, r *http.Request, kind, userID string, req passwordRequest, encoded string, version int) {
+func (s *Server) createPasswordRequest(w http.ResponseWriter, r *http.Request, kind, userID string, req passwordRequest, encoded string, version int) bool {
 	id := uuid.NewString()
 	tx, err := s.db.BeginTx(r.Context(), nil)
 	if err != nil {
 		internal(w, err)
-		return
+		return false
 	}
 	defer tx.Rollback()
 	now := s.cfg.Clock().Unix()
 	if _, err = tx.ExecContext(r.Context(), "DELETE FROM password_requests WHERE expires_at<=?", now); err != nil {
 		internal(w, err)
-		return
+		return false
 	}
 	var count int
 	if err = tx.QueryRowContext(r.Context(), "SELECT COUNT(*) FROM password_requests").Scan(&count); err != nil {
 		internal(w, err)
-		return
+		return false
 	}
 	if count >= 10000 {
 		fail(w, 429, "rate_limited")
-		return
+		return false
 	}
 	if userID != "" {
 		if err = tx.QueryRowContext(r.Context(), "SELECT COUNT(*) FROM password_requests WHERE user_id=? AND created_at>?", userID, now-15*60).Scan(&count); err != nil {
 			internal(w, err)
-			return
+			return false
 		}
 		if count >= 3 {
 			respond(w, 202, map[string]string{"request_id": id})
-			return
+			return false
 		}
 	}
 	if kind != "recover" {
 		err = tx.QueryRowContext(r.Context(), "SELECT COUNT(*) FROM password_credentials WHERE username=? OR email=? OR user_id=?", req.Username, req.Email, userID).Scan(&count)
 		if err != nil {
 			internal(w, err)
-			return
+			return false
 		}
 		if count > 0 {
 			respond(w, 202, map[string]string{"request_id": id})
-			return
+			return false
 		}
 	}
 	if err = tx.QueryRowContext(r.Context(), "SELECT COUNT(*) FROM password_requests WHERE email=? AND created_at>?", req.Email, now-15*60).Scan(&count); err != nil {
 		internal(w, err)
-		return
+		return false
 	}
 	if count >= 3 {
 		respond(w, 202, map[string]string{"request_id": id})
-		return
+		return false
 	}
 	number, err := rand.Int(rand.Reader, big.NewInt(100000000))
 	if err != nil {
 		internal(w, err)
-		return
+		return false
 	}
 	code := fmt.Sprintf("%08d", number.Int64())
 	var owner any
@@ -207,18 +230,24 @@ func (s *Server) createPasswordRequest(w http.ResponseWriter, r *http.Request, k
 	_, err = tx.ExecContext(r.Context(), "INSERT INTO password_requests(id,user_id,kind,username,email,password_hash,credential_version,code_hash,created_at,expires_at) VALUES(?,?,?,?,?,?,?,?,?,?)", id, owner, kind, req.Username, req.Email, encoded, version, hash(id+":"+code), now, now+15*60)
 	if err != nil {
 		internal(w, err)
-		return
+		return false
 	}
 	if err = tx.Commit(); err != nil {
 		internal(w, err)
-		return
+		return false
 	}
-	if err = s.cfg.Mailer.SendCode(r.Context(), req.Email, code, kind, req.Language); err != nil {
-		s.db.ExecContext(r.Context(), "DELETE FROM password_requests WHERE id=?", id)
-		fail(w, 503, "email_unavailable")
-		return
-	}
+	go func() {
+		defer func() { <-s.mailSlots }()
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		if s.cfg.Mailer.SendCode(ctx, req.Email, code, kind, req.Language) != nil {
+			cleanup, stop := context.WithTimeout(context.Background(), 3*time.Second)
+			defer stop()
+			s.db.ExecContext(cleanup, "DELETE FROM password_requests WHERE id=?", id)
+		}
+	}()
 	respond(w, 202, map[string]string{"request_id": id})
+	return true
 }
 func (s *Server) passwordLogin(w http.ResponseWriter, r *http.Request) {
 	if !s.passwordAvailable(w) {

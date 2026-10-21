@@ -8,6 +8,7 @@ struct OnboardingView: View {
     @Binding var step: Int
     @State private var storage: StorageChoice?
     @State private var editingProfile = false
+    @State private var signingInWithPassword = false
     let finish: () -> Void
 
     private enum StorageChoice { case account, local }
@@ -36,6 +37,9 @@ struct OnboardingView: View {
                 if user != nil && step == 2 { step = 3 }
             }
             .task { if account.user != nil { await account.start() } }
+            .sheet(isPresented: $signingInWithPassword) {
+                PasswordAccessSheet(userID: nil) { signingInWithPassword = false }
+            }
             .sheet(isPresented: $editingProfile) {
                 if let profile = account.profile { ProfileEditorView(service: profile) }
             }
@@ -132,7 +136,7 @@ struct OnboardingView: View {
                 Text(String(localized: "È il tuo primo accesso? Creiamo il tuo account. Sei già dei nostri? Ritrovi i tuoi progressi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .foregroundStyle(Palette.ink.opacity(0.72))
             }
-            AccountSignInButtons()
+            AccountSignInButtons { signingInWithPassword = true }
             if account.checkingService { ProgressView() }
             else if account.providers.isEmpty {
                 Button(String(localized: "Verifica disponibilità", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { Task { await account.start() } }

@@ -1,9 +1,7 @@
-Makeet 1.0: Gewohnheiten, Statistiken, Kalender und Planung sind auf dem Gerät kostenlos. Makeet Plus ergänzt nur die private Synchronisierung zwischen deinen Geräten. Planung ist immer verfügbar, auch ohne Konto.
+Makeet ist vollständig kostenlos, einschließlich privater Synchronisierung und Planung.
 
-Gewohnheiten lassen sich im Detail bearbeiten oder endgültig löschen. Löschen erfordert eine Bestätigung; zukünftige Makeet-Blöcke können aus beschreibbaren Kalendern entfernt werden.
+Heute ist kompakter, das mittlere Widget zeigt drei Gewohnheiten und ein Kontrollkästchen bestätigt null. Trends zeigt die letzten drei vollständigen Monate und den aktuellen Monat, auch ohne Aktivität. Planungsaktionen und Tagesereignisse nutzen die gesamte Breite.
 
-Heute zeigt links + und rechts nur das runde Profil; das Archiv liegt in den Einstellungen. Planung für heute oder bis zu 28 Tage mit Prüfung vor der Terminerstellung. Das Banner für verbundene Kalender entfällt.
+Melde dich mit Apple, Google oder Benutzername und Passwort an. Registrierung und Wiederherstellung benötigen einen E-Mail-Code. Bestehende Konten können Zugangsdaten in ihren eigenen Einstellungen hinzufügen, ohne ein weiteres Konto anzulegen.
 
-In dieser Vorschau bleiben alle Funktionen verfügbar; Abonnements berechnen nichts. Datenexport bleibt ohne Plus verfügbar. Auf dem Gerät eingerichtete Google-Kalender verwenden die Systemsynchronisierung.
-
-Prüfe auch Apple/Google-Anmeldung, Profil, Sprache, Widgets und erneutes Öffnen. Melde Fehler, ohne dein Konto zu löschen.
+Teste Navigation, Einträge, erneutes Öffnen, Widgets und Anmeldung. Auf dem Gerät eingerichtete Google-Kalender nutzen die Systemsynchronisierung. Melde Fehler, ohne dein Konto zu löschen.

@@ -7,6 +7,7 @@ struct AccountSettingsSection: View {
     @Binding var importing: Bool
     @Binding var editingProfile: Bool
     @Binding var editingPassword: Bool
+    @Binding var signingInWithPassword: Bool
 
     var body: some View {
         Section {
@@ -50,7 +51,7 @@ struct AccountSettingsSection: View {
                     .font(.title3.weight(.semibold)).foregroundStyle(Palette.ink).padding(.top, 8)
                 Text(String(localized: "I progressi restano su questo dispositivo finché non accedi.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                     .font(.subheadline).foregroundStyle(Palette.ink.opacity(0.72))
-                AccountSignInButtons()
+                AccountSignInButtons { signingInWithPassword = true }
                 if account.providers.isEmpty {
                     Text(String(localized: "Gli accessi Apple e Google saranno attivati al completamento della configurazione del servizio.", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
                         .font(.caption).foregroundStyle(.secondary)
@@ -81,7 +82,7 @@ struct AccountSettingsSection: View {
 struct AccountSignInButtons: View {
     @Environment(AccountManager.self) private var account
     @Environment(\.colorScheme) private var colorScheme
-    @State private var passwordExpanded = false
+    let passwordAccess: () -> Void
     var body: some View {
         VStack(spacing: 12) {
             if account.providers.contains("apple") || account.user == nil {
@@ -108,9 +109,12 @@ struct AccountSignInButtons: View {
                     .accessibilityIdentifier("googleSignIn")
             }
             if account.passwordEnabled {
-                Button(String(localized: "Accedi con password", bundle: AppLanguage.bundle, locale: AppLanguage.locale)) { passwordExpanded.toggle() }
-                    .frame(maxWidth: .infinity, minHeight: 54).buttonStyle(.bordered).disabled(account.working).accessibilityIdentifier("showPasswordAccess")
-                if passwordExpanded { PasswordAccessView(userID: nil) }
+                Button(action: passwordAccess) {
+                    Text(String(localized: "Accedi con password", bundle: AppLanguage.bundle, locale: AppLanguage.locale))
+                        .frame(maxWidth: .infinity, minHeight: 54)
+                }.buttonStyle(.plain).foregroundStyle(Palette.accent)
+                    .background(Palette.soft, in: RoundedRectangle(cornerRadius: 15))
+                    .disabled(account.working).accessibilityIdentifier("showPasswordAccess")
             }
             if account.working { ProgressView() }
         }

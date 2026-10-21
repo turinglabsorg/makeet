@@ -1,9 +1,7 @@
-Makeet 1.0: habits, statistics, calendar and planning are free on your device. Makeet Plus only adds private sync across your devices. Planning is always available, even without an account.
+Makeet is entirely free, including private synchronization and planning.
 
-Edit or permanently delete a habit from its detail screen. Deletion requires confirmation, with optional cleanup of future Makeet blocks in writable calendars.
+Today is more compact, the medium widget shows three habits, and an explicit checkbox confirms zero. Trends shows the last three complete months and the current month, including empty periods. Planning actions and day events fill the available width.
 
-Today places plus on the left and a round profile on the right; archive is in settings. Planning covers today or up to 28 days, with a full review before creating events. The connected-calendar banner is removed.
+Sign in with Apple, Google or a username and password. Registration and recovery require an email code. Existing accounts can add credentials from their own account settings without creating another account.
 
-All features remain available during this preview; subscriptions do not charge. Data export remains available without Plus. Device-configured Google calendars use system synchronization.
-
-Also check Apple/Google login, profile, language, widgets and reopening. Report errors without deleting your account.
+Try navigation, logging, reopening, widgets and sign-in. Device-configured Google calendars use system synchronization. Report errors without deleting your account.

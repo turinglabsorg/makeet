@@ -39,8 +39,9 @@ struct HabitProgressStatus: View {
 }
 
 extension View {
-    func journalCard() -> some View {
-        padding(20).background(Palette.card, in: RoundedRectangle(cornerRadius: 20))
+    func journalCard(padding inset: CGFloat = 12) -> some View {
+        padding(inset).frame(maxWidth: .infinity, alignment: .leading)
+            .background(Palette.card, in: RoundedRectangle(cornerRadius: 16))
     }
     func journalBackground() -> some View { background(Palette.paper.ignoresSafeArea()) }
 }

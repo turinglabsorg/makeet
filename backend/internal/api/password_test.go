@@ -15,26 +15,36 @@ import (
 )
 
 type codeMail struct {
-	mu          sync.Mutex
-	code, email string
-	fail        bool
-	count       int
+	mu     sync.Mutex
+	fail   bool
+	codes  chan string
+	failed chan struct{}
 }
 
 func (m *codeMail) SendCode(_ context.Context, email, code, kind, lang string) error {
 	m.mu.Lock()
-	defer m.mu.Unlock()
-	if m.fail {
+	failed := m.fail
+	m.mu.Unlock()
+	if failed {
+		m.failed <- struct{}{}
 		return errors.New("fixture unavailable")
 	}
-	m.code = code
-	m.email = email
-	m.count++
+	m.codes <- code
 	return nil
+}
+func (m *codeMail) next(t *testing.T) string {
+	t.Helper()
+	select {
+	case code := <-m.codes:
+		return code
+	case <-time.After(5 * time.Second):
+		t.Fatal("email fixture not called")
+		return ""
+	}
 }
 func passwordFixture(t *testing.T) (*fixture, *codeMail) {
 	f := setup(t)
-	m := &codeMail{}
+	m := &codeMail{codes: make(chan string, 8), failed: make(chan struct{}, 8)}
 	provider := identity.New(context.Background(), f.issuer.Server.URL, f.issuer.Server.URL, []string{"native-client"})
 	f.api = api.New(f.db, api.Config{Mailer: m, Apple: f.apple.Client, Providers: map[string]identity.Verifier{"google": provider, "apple": provider}, Clock: func() time.Time { return f.now }})
 	f.server.Close()
@@ -69,10 +79,11 @@ func (f *fixture) confirmPassword(id, code, password, owner string, status int) 
 func TestPasswordRegistrationVerificationSessionsAndIsolation(t *testing.T) {
 	f, m := passwordFixture(t)
 	id := f.startPassword("/v1/auth/password/register", "", "First.User", "first@example.invalid")
+	code := m.next(t)
 	f.passwordLogin("first.user", testPassword, 401)
 	f.confirmPassword(id, "wrong000", "", "", 400)
-	f.confirmPassword(id, m.code, "", "", 200)
-	f.confirmPassword(id, m.code, "", "", 400)
+	f.confirmPassword(id, code, "", "", 200)
+	f.confirmPassword(id, code, "", "", 400)
 	a := f.passwordLogin("FIRST.USER", testPassword, 200)
 	b := f.passwordLogin("first@example.invalid", testPassword, 200)
 	if a.User.ID == "" || a.User.ID != b.User.ID {
@@ -91,7 +102,7 @@ func TestPasswordRegistrationVerificationSessionsAndIsolation(t *testing.T) {
 	}
 	f.passwordLogin("first.user", "wrong", 401)
 	duplicate := f.startPassword("/v1/auth/password/register", "", "first.user", "another@example.invalid")
-	f.confirmPassword(duplicate, m.code, "", "", 400)
+	f.confirmPassword(duplicate, code, "", "", 400)
 	f.request("POST", "/v1/auth/refresh", "", map[string]string{"refresh_token": a.Refresh}, 200)
 	f.request("DELETE", "/v1/me", b.Access, map[string]string{"confirmation": "DELETE"}, 204)
 	f.passwordLogin("first.user", testPassword, 401)
@@ -99,7 +110,8 @@ func TestPasswordRegistrationVerificationSessionsAndIsolation(t *testing.T) {
 func TestPasswordRecoveryExpiryReplayAndSessionRevocation(t *testing.T) {
 	f, m := passwordFixture(t)
 	id := f.startPassword("/v1/auth/password/register", "", "recovery", "recover@example.invalid")
-	f.confirmPassword(id, m.code, "", "", 200)
+	code := m.next(t)
+	f.confirmPassword(id, code, "", "", 200)
 	a := f.passwordLogin("recovery", testPassword, 200)
 	recover := func(identifier string) string {
 		var v struct {
@@ -109,9 +121,9 @@ func TestPasswordRecoveryExpiryReplayAndSessionRevocation(t *testing.T) {
 		return v.ID
 	}
 	unknown := recover("unknown")
-	f.confirmPassword(unknown, m.code, testPassword, "", 400)
+	f.confirmPassword(unknown, code, testPassword, "", 400)
 	reset := recover("recovery")
-	code := m.code
+	code = m.next(t)
 	next := "replacement fixture password 77"
 	f.confirmPassword(reset, code, next, "", 200)
 	f.confirmPassword(reset, code, testPassword, "", 400)
@@ -120,7 +132,7 @@ func TestPasswordRecoveryExpiryReplayAndSessionRevocation(t *testing.T) {
 	f.passwordLogin("recovery", testPassword, 401)
 	f.passwordLogin("recovery", next, 200)
 	reset = recover("recovery")
-	code = m.code
+	code = m.next(t)
 	f.now = f.now.Add(16 * time.Minute)
 	f.confirmPassword(reset, code, testPassword, "", 400)
 }
@@ -129,9 +141,10 @@ func TestPasswordEnrollmentRequiresSessionAndEmailProof(t *testing.T) {
 	a := f.login("apple", "original")
 	b := f.login("google", "other")
 	id := f.startPassword("/v1/me/password", a.Access, "linked.user", "linked@example.invalid")
-	f.confirmPassword(id, m.code, "", "", 400)
-	f.confirmPassword(id, m.code, "", b.Access, 400)
-	f.confirmPassword(id, m.code, "", a.Access, 200)
+	code := m.next(t)
+	f.confirmPassword(id, code, "", "", 400)
+	f.confirmPassword(id, code, "", b.Access, 400)
+	f.confirmPassword(id, code, "", a.Access, 200)
 	password := f.passwordLogin("linked.user", testPassword, 200)
 	if password.User.ID != a.User.ID {
 		t.Fatal("enrollment created a competing account")
@@ -144,7 +157,7 @@ func TestPasswordEnrollmentRequiresSessionAndEmailProof(t *testing.T) {
 func TestPasswordCodesBoundedAndEmailFailureDoesNotCreateAccount(t *testing.T) {
 	f, m := passwordFixture(t)
 	id := f.startPassword("/v1/auth/password/register", "", "bounded", "bounded@example.invalid")
-	code := m.code
+	code := m.next(t)
 	wrong := "11111111"
 	if code == wrong {
 		wrong = "22222222"
@@ -154,14 +167,29 @@ func TestPasswordCodesBoundedAndEmailFailureDoesNotCreateAccount(t *testing.T) {
 	}
 	f.confirmPassword(id, code, "", "", 400)
 	f.now = f.now.Add(time.Minute)
+	m.mu.Lock()
 	m.fail = true
-	f.request("POST", "/v1/auth/password/register", "", map[string]string{"username": "failure", "email": "failure@example.invalid", "password": testPassword}, 503)
+	m.mu.Unlock()
+	f.request("POST", "/v1/auth/password/register", "", map[string]string{"username": "failure", "email": "failure@example.invalid", "password": testPassword}, 202)
+	select {
+	case <-m.failed:
+	case <-time.After(5 * time.Second):
+		t.Fatal("email failure not exercised")
+	}
 	var n int
 	f.db.QueryRow("SELECT COUNT(*) FROM users").Scan(&n)
 	if n != 0 {
 		t.Fatal("unverified account persisted")
 	}
-	f.db.QueryRow("SELECT COUNT(*) FROM password_requests WHERE email='failure@example.invalid'").Scan(&n)
+	for attempt := 0; attempt < 100; attempt++ {
+		if err := f.db.QueryRow("SELECT COUNT(*) FROM password_requests WHERE email='failure@example.invalid'").Scan(&n); err != nil {
+			t.Fatal(err)
+		}
+		if n == 0 {
+			break
+		}
+		time.Sleep(5 * time.Millisecond)
+	}
 	if n != 0 {
 		t.Fatal("failed email code remained usable")
 	}
@@ -174,18 +202,19 @@ func TestPasswordPendingProofSurvivesRestartAndNeverLinksByEmail(t *testing.T) {
 		t.Fatal(err)
 	}
 	id := f.startPassword("/v1/auth/password/register", "", "independent", email)
+	code := m.next(t)
 	var proof, encoded string
 	if err := f.db.QueryRow("SELECT code_hash,password_hash FROM password_requests WHERE id=?", id).Scan(&proof, &encoded); err != nil {
 		t.Fatal(err)
 	}
-	if strings.Contains(proof, m.code) || strings.Contains(encoded, testPassword) {
+	if strings.Contains(proof, code) || strings.Contains(encoded, testPassword) {
 		t.Fatal("plaintext pending credential")
 	}
 	// Reconstruct the HTTP server over the same durable database before confirmation.
 	f.server.Close()
 	f.api = api.New(f.db, api.Config{Mailer: m, Clock: func() time.Time { return f.now }})
 	f.server = httptest.NewServer(f.api.Handler())
-	f.confirmPassword(id, m.code, "", "", 200)
+	f.confirmPassword(id, code, "", "", 200)
 	account := f.passwordLogin("independent", testPassword, 200)
 	if account.User.ID == provider.User.ID {
 		t.Fatal("provider account linked by matching email")
@@ -206,4 +235,45 @@ func TestPasswordDisabledAndBruteForceLimit(t *testing.T) {
 	f.passwordLogin("missing", testPassword, 429)
 	f.now = f.now.Add(16 * time.Minute)
 	f.passwordLogin("missing", testPassword, 401)
+}
+
+type blockedCodeMail struct{ started, release, done chan struct{} }
+
+func (m *blockedCodeMail) SendCode(ctx context.Context, email, code, kind, language string) error {
+	close(m.started)
+	defer close(m.done)
+	select {
+	case <-m.release:
+		return nil
+	case <-ctx.Done():
+		return ctx.Err()
+	}
+}
+func TestPasswordRecoveryResponseDoesNotWaitForProviderOrExposeExistence(t *testing.T) {
+	f, m := passwordFixture(t)
+	id := f.startPassword("/v1/auth/password/register", "", "private.user", "private@example.invalid")
+	f.confirmPassword(id, m.next(t), "", "", 200)
+	gate := &blockedCodeMail{started: make(chan struct{}), release: make(chan struct{}), done: make(chan struct{})}
+	defer close(gate.release)
+	f.server.Close()
+	f.api = api.New(f.db, api.Config{Mailer: gate, Clock: func() time.Time { return f.now }})
+	f.server = httptest.NewServer(f.api.Handler())
+	known := f.request("POST", "/v1/auth/password/recover", "", map[string]string{"identifier": "private.user"}, 202)
+	select {
+	case <-gate.started:
+	case <-time.After(5 * time.Second):
+		t.Fatal("provider request not queued")
+	}
+	unknown := f.request("POST", "/v1/auth/password/recover", "", map[string]string{"identifier": "missing.user"}, 202)
+	for _, body := range [][]byte{known, unknown} {
+		var response map[string]string
+		if json.Unmarshal(body, &response) != nil || len(response) != 1 || response["request_id"] == "" {
+			t.Fatal("recovery disclosed identity state")
+		}
+	}
+	select {
+	case <-gate.done:
+		t.Fatal("response waited for email provider")
+	default:
+	}
 }
