@@ -49,6 +49,8 @@ final class PasswordAccessUITests: XCTestCase {
         fill(app.textFields["passwordEmail"], "qa@example.invalid")
         fill(app.secureTextFields["passwordValue"], "provider fixture password 123")
         fill(app.secureTextFields["passwordRepeat"], "provider fixture password 123")
+        capture("Existing account credentials ready to verify", app)
+        XCTAssertTrue(app.buttons["passwordSubmit"].isEnabled)
         app.buttons["passwordSubmit"].tap()
         XCTAssertTrue(app.textFields["passwordCode"].waitForExistence(timeout: 5))
         fill(app.textFields["passwordCode"], "12345678"); app.buttons["passwordSubmit"].tap()
@@ -142,9 +144,13 @@ final class PasswordAccessUITests: XCTestCase {
         XCTAssertTrue(field.waitForExistence(timeout: 5)); field.tap()
         if field.elementType == .secureTextField {
             let app = XCUIApplication()
-            if app.buttons["GenerateStrongPasswordButton"].waitForExistence(timeout: 1) {
+            let firstNewPassword = field.identifier == "passwordValue" && app.secureTextFields["passwordRepeat"].exists
+            let suggestion = app.buttons["GenerateStrongPasswordButton"]
+            if suggestion.waitForExistence(timeout: firstNewPassword ? 10 : 1) {
                 let proof = XCTAttachment(screenshot: app.screenshot()); proof.name = "iOS Password AutoFill choice"; proof.lifetime = .keepAlways; add(proof)
                 app.buttons["xmark"].tap()
+                let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: suggestion)
+                XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 5), .completed)
             }
         }
         let previous = field.value as? String ?? ""
