@@ -1,17 +1,17 @@
 {
   "Language": "Français",
   "Description": "Des habitudes à votre rythme",
-  "Status": "Aperçu iPhone en test interne sur TestFlight. Pas encore sur l’App Store.",
+  "Status": "Gratuit sur l’App Store pour iPhone et iPad. Sans abonnement ni achat intégré.",
   "Eyebrow": "De petits pas. De vrais progrès.",
   "Headline": "Faites place.\nChaque jour.",
   "Intro": "Choisissez vos jours, comptez chaque petit pas et faites de la place dans votre calendrier. Les habitudes qui comptent, au rythme de votre vie.",
   "Explore": "Découvrir Makeet",
   "Support": "Assistance",
-  "Preview": "Aperçu iPhone · données de démonstration · interface en italien",
+  "Preview": "App native pour iPhone · données de démonstration · interface en italien",
   "FeaturesTitle": "Autour de votre journée",
   "FeaturesIntro": "Votre rythme.\nMême quand il change.",
   "Future": "Makeet est gratuit : habitudes illimitées, statistiques, planification et synchronisation privée entre appareils. Sans abonnement ni achat intégré. Gardez vos données sur l’appareil ou connectez-vous avec Apple ou Google.",
-  "Footer": "Des habitudes à votre rythme. Aperçu iPhone ; Mac et widgets en développement.",
+  "Footer": "Des habitudes à votre rythme. Gratuit sur iPhone et iPad.",
   "Privacy": "Confidentialité",
   "Terms": "Conditions",
   "Deletion": "Supprimer le compte",
@@ -55,8 +55,8 @@
   ],
   "Questions": [
     {
-      "Title": "Quand pourrai-je la télécharger ?",
-      "Body": "Makeet est en test interne sur iPhone via TestFlight. Le lien public vers l’App Store apparaîtra ici à sa disponibilité. La version Mac et les widgets sont en développement et en cours de validation."
+      "Title": "Où télécharger Makeet ?",
+      "Body": "Makeet est disponible gratuitement sur l’App Store pour iPhone et iPad. Android est actuellement en phase de test ; le lien Google Play sera ajouté à la sortie de la version publique."
     },
     {
       "Title": "Faut-il un compte ?",
@@ -191,5 +191,8 @@
       "sam.",
       "dim."
     ]
-  }
+  },
+  "Download": "Télécharger sur l’App Store",
+  "DownloadTitle": "Votre premier petit pas commence ici.",
+  "DownloadBody": "Choisissez une habitude. Faites-la vôtre. Téléchargez Makeet gratuitement sur iPhone et iPad."
 }

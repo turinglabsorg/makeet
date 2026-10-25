@@ -1,17 +1,17 @@
 {
   "Language": "Deutsch",
   "Description": "Gewohnheiten in deinem Tempo",
-  "Status": "iPhone-Vorschau im internen Test über TestFlight. Noch nicht im App Store.",
+  "Status": "Kostenlos im App Store für iPhone und iPad. Keine Abonnements oder In-App-Käufe.",
   "Eyebrow": "Kleine Schritte. Echte Fortschritte.",
   "Headline": "Schaffe Raum.\nJeden Tag.",
   "Intro": "Wähle deine Tage, zähle jeden kleinen Schritt und schaffe Platz im Kalender. Gewohnheiten, die zählen – im Rhythmus deines Lebens.",
   "Explore": "Makeet entdecken",
   "Support": "Support",
-  "Preview": "iPhone-Vorschau · Beispieldaten · Oberfläche auf Italienisch",
+  "Preview": "Native iPhone-App · Beispieldaten · Oberfläche auf Italienisch",
   "FeaturesTitle": "Rund um deinen Tag",
   "FeaturesIntro": "Dein Rhythmus.\nRaum für Veränderung.",
   "Future": "Makeet ist kostenlos: unbegrenzte Gewohnheiten, Statistiken, Planung und private Synchronisierung zwischen Geräten. Keine Abonnements oder In-App-Käufe. Nutze das Gerät lokal oder melde dich mit Apple oder Google an.",
-  "Footer": "Gewohnheiten in deinem Tempo. iPhone-Vorschau; Mac und Widgets in Entwicklung.",
+  "Footer": "Gewohnheiten in deinem Tempo. Kostenlos für iPhone und iPad.",
   "Privacy": "Datenschutz",
   "Terms": "Bedingungen",
   "Deletion": "Konto löschen",
@@ -55,8 +55,8 @@
   ],
   "Questions": [
     {
-      "Title": "Wann kann ich die App laden?",
-      "Body": "Makeet wird intern auf dem iPhone über TestFlight getestet. Der öffentliche App-Store-Link erscheint hier, sobald die App verfügbar ist. Die Mac-Version und Widgets werden entwickelt und überprüft."
+      "Title": "Wo kann ich Makeet laden?",
+      "Body": "Makeet ist kostenlos im App Store für iPhone und iPad verfügbar. Android befindet sich derzeit im Test. Der Google-Play-Link folgt, sobald die öffentliche Version verfügbar ist."
     },
     {
       "Title": "Brauche ich ein Konto?",
@@ -191,5 +191,8 @@
       "Sa",
       "So"
     ]
-  }
+  },
+  "Download": "Im App Store laden",
+  "DownloadTitle": "Dein erster kleiner Schritt beginnt hier.",
+  "DownloadBody": "Wähle eine Gewohnheit und gestalte sie nach deinen Wünschen. Lade Makeet kostenlos für iPhone und iPad."
 }

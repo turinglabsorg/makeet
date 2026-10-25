@@ -1,17 +1,17 @@
 {
   "Language": "English",
   "Description": "Habits, at your pace",
-  "Status": "iPhone preview in internal TestFlight testing. Not yet on the App Store.",
+  "Status": "Free on the App Store for iPhone and iPad. No subscriptions or in-app purchases.",
   "Eyebrow": "Small steps. Real progress.",
   "Headline": "Make it.\nEvery day.",
   "Intro": "Choose your days, count every small step and make room in your calendar. Habits that matter, at the pace of your life.",
   "Explore": "Take a closer look",
   "Support": "Support",
-  "Preview": "iPhone preview · demo data · interface shown in Italian",
+  "Preview": "Native iPhone app · demo data · interface shown in Italian",
   "FeaturesTitle": "Built around your day",
   "FeaturesIntro": "Your rhythm.\nRoom to change.",
   "Future": "Makeet is free: unlimited habits, statistics, planning and private sync across devices. No subscriptions or in-app purchases. Stay on your device or sign in with Apple or Google.",
-  "Footer": "Habits, at your pace. iPhone preview; Mac and widgets in development.",
+  "Footer": "Habits, at your pace. Free for iPhone and iPad.",
   "Privacy": "Privacy",
   "Terms": "Terms",
   "Deletion": "Delete account",
@@ -55,8 +55,8 @@
   ],
   "Questions": [
     {
-      "Title": "When can I download it?",
-      "Body": "Makeet is in internal iPhone testing through TestFlight. A public App Store link will appear here when the app is available. The Mac version and widgets are in development and validation."
+      "Title": "Where can I download Makeet?",
+      "Body": "Makeet is available free on the App Store for iPhone and iPad. Android is currently in testing; a Google Play download link will be added when the public release is available."
     },
     {
       "Title": "Do I need an account?",
@@ -191,5 +191,8 @@
       "Sat",
       "Sun"
     ]
-  }
+  },
+  "Download": "Download on the App Store",
+  "DownloadTitle": "Your first small step starts here.",
+  "DownloadBody": "Choose one habit. Make it yours. Download Makeet free for iPhone and iPad."
 }

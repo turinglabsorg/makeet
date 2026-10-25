@@ -13,6 +13,8 @@ import (
 //go:embed templates assets locales
 var files embed.FS
 
+const appStoreURL = "https://apps.apple.com/app/id6823557479"
+
 type Section struct {
 	Title string
 	Body  string
@@ -22,6 +24,7 @@ type CalendarCopy struct {
 	Weekdays                                                  []string
 }
 type Copy struct {
+	Download, DownloadTitle, DownloadBody                                                                                                                                                                                                string
 	Language, Description, Status, Eyebrow, Headline, Intro, Explore, Support, Preview, FeaturesTitle, FeaturesIntro, Future, Footer, Privacy, Terms, Deletion, Back, Email, SupportBody, LegalStatus, LegalBody, NotFound, NotFoundBody string
 	Features                                                                                                                                                                                                                             []Section
 	Questions                                                                                                                                                                                                                            []Section
@@ -31,6 +34,7 @@ type Copy struct {
 }
 type page struct {
 	Copy
+	AppStoreURL                                   string
 	Lang, Path, Title                             string
 	Home, Help, Legal, Missing                    bool
 	PolicyReady, IsPrivacy                        bool
@@ -109,7 +113,7 @@ func WithConfig(cfg Config) http.Handler {
 			path = "/"
 		}
 		copy := translations[lang]
-		p := page{Copy: copy, Lang: lang, Path: path, Title: "Makeet — " + copy.Description}
+		p := page{Copy: copy, Lang: lang, Path: path, Title: "Makeet — " + copy.Description, AppStoreURL: appStoreURL}
 		status := 200
 		switch path {
 		case "/":

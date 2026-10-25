@@ -1,17 +1,17 @@
 {
   "Language": "Italiano",
   "Description": "Abitudini, al tuo passo",
-  "Status": "Anteprima iPhone in test interno su TestFlight. Non ancora disponibile su App Store.",
+  "Status": "Gratis su App Store per iPhone e iPad. Nessun abbonamento e nessun acquisto in-app.",
   "Eyebrow": "Piccoli passi. Progressi veri.",
   "Headline": "Fai spazio.\nOgni giorno.",
   "Intro": "Scegli i tuoi giorni, conta ogni piccolo passo e trova spazio nel calendario. Le abitudini che contano, al ritmo della tua vita.",
   "Explore": "Scopri Makeet",
   "Support": "Supporto",
-  "Preview": "Anteprima iPhone · dati dimostrativi · interfaccia in italiano",
+  "Preview": "App nativa per iPhone · dati dimostrativi · interfaccia in italiano",
   "FeaturesTitle": "Intorno alla tua giornata",
   "FeaturesIntro": "Il tuo ritmo.\nAnche quando cambia.",
   "Future": "Makeet è gratuito: abitudini illimitate, statistiche, pianificazione e sincronizzazione privata tra dispositivi. Nessun abbonamento e nessun acquisto in-app. Puoi restare sul dispositivo oppure accedere con Apple o Google.",
-  "Footer": "Abitudini, al tuo passo. Anteprima iPhone; Mac e widget in sviluppo.",
+  "Footer": "Abitudini, al tuo passo. Gratis per iPhone e iPad.",
   "Privacy": "Privacy",
   "Terms": "Termini",
   "Deletion": "Elimina account",
@@ -55,8 +55,8 @@
   ],
   "Questions": [
     {
-      "Title": "Quando posso scaricarla?",
-      "Body": "Makeet è in test interno su iPhone tramite TestFlight. Il link pubblico ad App Store comparirà qui quando l’app sarà disponibile. La versione Mac e i widget sono in sviluppo e verifica."
+      "Title": "Dove posso scaricare Makeet?",
+      "Body": "Makeet è disponibile gratis su App Store per iPhone e iPad. Android è attualmente in fase di test: aggiungeremo il link a Google Play quando sarà disponibile la versione pubblica."
     },
     {
       "Title": "Serve un account?",
@@ -191,5 +191,8 @@
       "sab",
       "dom"
     ]
-  }
+  },
+  "Download": "Scarica su App Store",
+  "DownloadTitle": "Il tuo primo piccolo passo parte da qui.",
+  "DownloadBody": "Scegli un’abitudine. Falla tua. Scarica Makeet gratis per iPhone e iPad."
 }

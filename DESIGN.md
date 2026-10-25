@@ -30,7 +30,7 @@ Habit appearance offers SF Symbols or a single emoji, including composed emoji a
 
 ## Public website
 
-Use the same warm canvas, forest ink and native system sans typography. The home page combines a large action-led heading, a labeled native app screenshot and a small intensity grid, followed by numbered feature rows and native expandable FAQs. Keep navigation and language switching keyboard accessible; stack the hero and feature columns on narrow screens. All visible copy supports the same five languages. Clearly label pre-release availability and illustrative data; show a download link only after verified availability.
+Use the same warm canvas, forest ink and native system sans typography. The home page combines a large action-led heading, a labeled native app screenshot and a small intensity grid, followed by numbered feature rows and native expandable FAQs. Keep navigation and language switching keyboard accessible; stack the hero and feature columns on narrow screens. All visible copy supports the same five languages. Show the verified App Store download as the primary hero action, repeat it after the FAQ and keep it in the footer on every route. Keep a secondary feature link, visible example-data labels and honest platform availability. System typography and the existing forest button style remain authoritative.
 
 ## First-run onboarding
 
@@ -54,7 +54,7 @@ Calendar uses a seven-column month with intensity, numeric completed/expected go
 
 Planner uses natural-language Today/next-days headings, a1/7/14/28-day horizon and a complete batch review before calendar writes. Hide the connected-calendar success banner. Connections explains that tracking, planning and private account synchronization are free. Omit Plus entry points and purchase prompts in the current release.
 
-The public landing includes a labeled illustrative month panel alongside localized weekday selections (Monday, Tuesday and Thursday); static samples must never look interactive or use real account data. Display numeric completed/expected goals alongside intensity, plus a less/more legend. The hero uses the current native iPhone demo screenshot, explicitly identified as Italian in every locale. Explain the internal TestFlight preview, device-configured calendars, confirmed 28-day planning and free access in localized copy; avoid public download or purchase buttons before verified availability.
+The public landing includes a labeled illustrative month panel alongside localized weekday selections (Monday, Tuesday and Thursday); static samples must never look interactive or use real account data. Display numeric completed/expected goals alongside intensity, plus a less/more legend. The hero uses the current native iPhone demo screenshot, explicitly identified as Italian in every locale. Explain device-configured calendars, confirmed 28-day planning and free access in localized copy. Public iPhone/iPad availability is verified; show the App Store download path clearly. Android remains in testing until its public release is confirmed.
 
 Account deletion uses the stable native confirmation dialog with a clear permanent-erasure warning and immediate destructive action; retain native outside dismissal where the system presents a popover.
 
